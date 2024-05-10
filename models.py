@@ -1,7 +1,7 @@
 """python file that contains all the models for the project"""
 
 class User():
-    """User class. This is a class for all User objects, and contains
+    """User class that acts as a template for all User objects, and contains
     all of a user's attributes and methods, as well as the constructor
     for a User object"""
 
@@ -61,7 +61,7 @@ class User():
 
 
 class Advert():
-    """Advert class. This is a class for all Advert objects, and contains
+    """Advert class that acts as a template for all Advert objects, and contains
     all of an Advert's attributes and methods, as well as the constructor
     for an Advert object"""
 
@@ -117,3 +117,41 @@ class Advert():
     def get_available(self):
         """Getter for available variable"""
         return self.available
+
+
+class Collection():
+    """Collection class that acts as a template for all Collection objects.
+    When an order is reserved, a collection object is made that
+    contains all the details of the transaction"""
+
+    def __init__(self, advert, seller, buyer, date):
+        """Constructor for Collection class"""
+        self.advert = advert
+        self.seller = seller
+        self.buyer = buyer
+        self.date = date
+
+
+class Message():
+    """Message class that acts as a template for all Message objects.
+    When a user sends a message to another user, a message object is
+    created and then added to that users Messages list"""
+
+    def __init__(self, sender, receiver, timestamp, contents):
+        """Constructor for Message class"""
+        self.sender = sender
+        self.receiver = receiver
+        self.timestamp = timestamp
+        self.contents = contents
+
+
+class Email():
+    """Email class that acts as a template for all Email objects
+    When we want to send an email, we create an Email object that
+    contains all the data for the email"""
+
+    def __init__(self, users, title, contents):
+        """Constructor for email class"""
+        self.users = users
+        self.title = title
+        self.contents = contents
