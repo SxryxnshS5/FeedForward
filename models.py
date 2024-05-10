@@ -117,17 +117,29 @@ class Advert():
     def get_available(self):
         """Getter for available variable"""
         return self.available
-   
+
 
 class Collection():
-    """Collection class that acts as a template for all collection objects.
+    """Collection class that acts as a template for all Collection objects.
     When an order is reserved, a collection object is made that
     contains all the details of the transaction"""
 
-    def __init__(self,advert, seller, buyer, date):
+    def __init__(self, advert, seller, buyer, date):
         """Constructor for Collection class"""
         self.advert = advert
         self.seller = seller
         self.buyer = buyer
         self.date = date
-        
+
+
+class Message():
+    """Message class that acts as a template for all Message objects.
+    When a user sends a message to another user, a message object is
+    created and then added to that users Messages list"""
+
+    def __init__(self, sender, receiver, timestamp, contents):
+        """Constructor for Message class"""
+        self.sender = sender
+        self.receiver = receiver
+        self.timestamp = timestamp
+        self.contents = contents
