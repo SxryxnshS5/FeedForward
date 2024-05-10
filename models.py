@@ -73,3 +73,47 @@ class Advert():
         self.owner = owner
         self.expiry = expiry
         self.available = available
+
+    def set_title(self, new_title):
+        """Setter for title variable"""
+        self.title = new_title
+
+    def get_title(self):
+        """Getter for title variable"""
+        return self.title
+
+    def set_address(self, new_address):
+        """Setter for address variable"""
+        self.address = new_address
+
+    def get_address(self):
+        """Getter for address variable"""
+        return self.address
+
+    def set_contents(self, new_contents):
+        """Setter for contents variable"""
+        self.contents = new_contents
+
+    def get_contents(self):
+        """Getter for contents variable"""
+        return self.contents
+
+    def get_owner(self):
+        """Getter for owner variable"""
+        return self.owner
+
+    def set_expiry(self, new_expiry):
+        """Setter for expiry variable"""
+        self.expiry = new_expiry
+
+    def get_expiry(self):
+        """Getter for expiry variable"""
+        return self.expiry
+
+    def set_available(self, new_available):
+        """Setter for available variable"""
+        self.available = new_available
+
+    def get_available(self):
+        """Getter for available variable"""
+        return self.available
