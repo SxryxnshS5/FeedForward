@@ -1,0 +1,53 @@
+.back-to-top {
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    height: 40px; /* Adjust the height as needed */
+    width: 120px; /* Adjust the width as needed */
+}
+
+/* Custom styles for the footer */
+.custom-footer {
+    background-color: #E8DFCA;
+    width: 100%; /* Set the width to 100% */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 30px;
+    border-top-right-radius: 200px;
+    color: black;
+    position: fixed; /* Position the footer */
+    bottom: 0; /* Align it to the bottom */
+}
+
+/* Style for each footer section */
+.footer-section {
+    flex: 1;
+    text-align: center;
+}
+
+.footer-section img.logo {
+    max-width: 100%;
+    margin-bottom: 100px; /* Add a distance of 75px between the logo and copyright */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 767px) {
+    .custom-footer {
+        flex-direction: column;
+        align-items: center;
+        width: calc(100% - 40px); /* Adjust width for smaller screens */
+    }
+
+    .footer-section {
+        margin: 10px 0;
+    }
+
+    .footer-section img.logo {
+        margin-bottom: 10px; /* Adjust margin for smaller screens if needed */
+    }
+
+    .social-link {
+        font-size: 20px; /* Adjust icon size for smaller screens */
+    }
+}
