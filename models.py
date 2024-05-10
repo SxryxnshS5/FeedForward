@@ -143,3 +143,15 @@ class Message():
         self.receiver = receiver
         self.timestamp = timestamp
         self.contents = contents
+
+
+class Email():
+    """Email class that acts as a template for all Email objects
+    When we want to send an email, we create an Email object that
+    contains all the data for the email"""
+
+    def __init__(self, users, title, contents):
+        """Constructor for email class"""
+        self.users = users
+        self.title = title
+        self.contents = contents
