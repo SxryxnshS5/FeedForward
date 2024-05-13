@@ -87,7 +87,7 @@ body {
 }
 
 .cream-box-button {
-    max-width: calc(100% - 40px )%; /* Adjust the maximum width of the button as needed */
+    max-width: calc(100% - 40px ); /* Adjust the maximum width of the button as needed */
     margin-top: 10px; /* Adjust margin as needed */
     background-color: black;
     color: white;
