@@ -51,7 +51,50 @@ body {
 
 }
 
+.donors-text {
 
+    font-family: "Inter tight", sans-serif;
+    font-size: max(33px);
+    font-weight: 600;
+    max-width: 100%;
+    word-wrap: break-word;
+
+
+}
+
+.donors-text-body {
+
+    font-family: "Inter tight", sans-serif;
+
+    font-weight: 400;
+    max-width: 100%;
+    word-wrap: break-word;
+
+
+}
+
+.cream-box {
+    background-color: #E8DFCA;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin-top: 500px;
+    border-radius: 5px;
+    height: 500px;
+    max-width: 100%;
+    overflow: hidden;
+    word-wrap: break-word;
+
+}
+
+.cream-box-button {
+    max-width: calc(100% - 40px )%; /* Adjust the maximum width of the button as needed */
+    margin-top: 10px; /* Adjust margin as needed */
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    height: auto;
+    width: auto;
+}
 
 .home-div {
     background-color: #4F6F52;
