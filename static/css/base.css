@@ -70,6 +70,31 @@ body {
 
 }
 
+.donors-div {
+    background-color: #E8DFCA;
+    height: 700px;
+    width: 1000px;
+    transform: translateY(100%); /* Adjust vertical position to center it vertically */
+    margin-left: 150px;
+    padding-right: 100px;
+
+
+
+}
+
+.in-need-div {
+    background-color: #E8DFCA;
+    height: 700px;
+    width: 1000px;
+    transform: translateY(100%); /* Adjust vertical position to center it vertically */
+    margin-right: 150px;
+    padding-left: 100px;
+    right: 0;
+
+
+
+}
+
 
 
 
