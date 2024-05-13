@@ -14,13 +14,13 @@ body {
 .custom-footer {
     background-color: #E8DFCA;
     width: 100%; /* Set the width to 100% */
+    color: black;
     display: flex;
+    border-top-right-radius: 200px;
     flex-wrap: wrap;
     justify-content: space-between;
+    position: fixed;
     padding: 30px;
-    border-top-right-radius: 200px;
-    color: black;
-    position: fixed; /* Position the footer */
     bottom: 0; /* Align it to the bottom */
 }
 

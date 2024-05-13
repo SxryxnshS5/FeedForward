@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<link rel="stylesheet" href="../static/css/index.css">
 <h1 class="title">Home - Feed Forward</h1>
     {% with messages = get_flashed_messages() %}
                 {% if messages %}
@@ -11,6 +11,63 @@
                 {% endif %}
     {% endwith %}
 
-<p>HOME PAGE</p>
+    <div class="home-div">
+        <div class="home-logo-text">
+           <p>FEED FORWARD</p>
+        </div>
+
+
+
+     <img src="../static/images/base/fevicon_light.png" alt="Logo"  class="home-logo">
+        <img src="../static/images/base/map.png" alt="Logo" width="610" height=610 class="map-image">
+
+        <div class="open-map-div">
+        <button class="open-map" onclick="" id="openMap">Open Map</button>
+        </div>
+
+        <div class = "no-one-div">
+            <p class = "no-one-text">No one should go hungry.</p>
+        </div>
+
+
+
+
+        </section>
+
+
+
+
+        <div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="cream-box text-center">
+        <p class="donors-text">Donors</p>
+          <p class="donors-text-body">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco</p>
+          <button class="cream-box-button" onclick="" id="Donate">Donate</button>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="cream-box text-center">
+        <p class="donors-text">Those In Need</p>
+          <p class="donors-text-body">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco</p>
+          <button class="cream-box-button" onclick="" id="Donate">Find Food</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        <section>
+
+        </section>
+
+
+
+    </div>
+
 
 {% endblock %}
