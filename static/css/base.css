@@ -1,5 +1,91 @@
 body {
     background-color: #1A4D2E;
+    height: 2000px;
+
+
+
+
+
+
+}
+
+/* Custom styles for the map image */
+.map-image {
+    position: absolute; /* Position the image absolutely */
+    top: 40%; /* Align the top of the image to the middle of the page */
+    right: 0; /* Align the right side of the image to the right edge of the page */
+    transform: translateY(-80%); /* Adjust vertical position to center it vertically */
+    margin-right: 150px;
+    margin-top: 100px;
+    height: 400px;
+    width: 400px;
+}
+
+.home-logo {
+    position: absolute;
+    height: 150px;
+    width: 150px;
+    margin-left: 100px;
+    margin-top: 100px;
+}
+
+.home-logo-text {
+    position: absolute;
+    margin-left: 300px;
+    margin-top: 100px;
+    font-family: "Rowdies", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 100px;
+    letter-spacing: 5px;
+    color: #e8dfca;
+}
+
+.no-one-text {
+    position: absolute;
+    font-family: "Inter tight", sans-serif;
+    font-size: 70px;
+    font-weight: 600;
+    margin-left: 95px;
+    margin-top: 80px;
+
+}
+
+
+
+.home-div {
+    background-color: #4F6F52;
+    height: 800px;
+}
+
+.no-one-div {
+    background-color: #7B937D;
+    height: 300px;
+    width: 1000px;
+    transform: translateY(120%); /* Adjust vertical position to center it vertically */
+    margin-left: 150px;
+    padding-right: 100px;
+    border-radius: 70px;
+
+
+}
+
+
+
+
+.open-map {
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    height: 40px; /* Adjust the height as needed */
+    width: 120px; /* Adjust the width as needed */
+    position: absolute; /* Position the image absolutely */
+    top: 40%; /* Align the top of the image to the middle of the page */
+    right: 0; /* Align the right side of the image to the right edge of the page */
+    transform: translateY(-80%); /* Adjust vertical position to center it vertically */
+    margin-right: 280px;
+    margin-top: 250px;
+
 }
 
 .back-to-top {
@@ -18,9 +104,10 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 30px;
+    position: fixed; /* Position the footer */
     border-top-right-radius: 200px;
     color: black;
-    position: fixed; /* Position the footer */
+
     bottom: 0; /* Align it to the bottom */
 }
 

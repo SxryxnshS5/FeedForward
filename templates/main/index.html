@@ -1,16 +1,105 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+<html>
 
-{% block content %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Feed Forward</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
 
-<h1 class="title">Home - Feed Forward</h1>
-    {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <div class="notification is-danger">
-                        {{ messages[0] }}.
-                    </div>
-                {% endif %}
-    {% endwith %}
+</head>
 
-<p>HOME PAGE</p>
+<body>
 
-{% endblock %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="base.html">
+            <img src="../static/images/base/fevicon.png" alt="Bootstrap" width="50" height="50">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link custom-active-nav" aria-current="page" href="index.html">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Sign up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">About Us</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <div class="home-div">
+        <div class="home-logo-text">
+           <p>FEED FORWARD</p>
+        </div>
+
+
+
+     <img src="../static/images/base/fevicon_light.png" alt="Logo"  class="home-logo">
+        <img src="../static/images/base/map.png" alt="Logo" width="610" height=610 class="map-image">
+
+        <div class="open-map-div">
+        <button class="open-map" onclick="" id="openMap">Open Map</button>
+        </div>
+
+        <div class = "no-one-div">
+            <p class = "no-one-text">No one should go hungry.</p>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+<footer class="custom-footer">
+    <div class="footer-section">
+        <p>Contact us</p>
+        <p>Email: lorem@ipsum.com</p>
+        <p>Support line: 01274 345789</p>
+    </div>
+    <div class="footer-section">
+        <button class="back-to-top" onclick="backToTop()" id="backToTopBtn">Back to Top</button>
+    </div>
+    <div class="footer-section">
+        <img src="../static/images/base/fevicon.png" alt="Logo" width="50" height="50">
+
+        <p>&copy; Feed Forward 2024</p>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+</html>
+</title>
+</head>
+<body>
+
+
+</body>
+</html>
