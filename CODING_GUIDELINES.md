@@ -20,7 +20,7 @@ This document contains all of the coding guidelines that we have followed in the
 
 ## Comments
 - Use block comments to document a small section of code
-- Docstrings should be used for all public modules, functions, classes and methods
+- Docstrings should be used for all public modules, functions, classes and methods. Docstrings should contain the date of creation, the author and a high-level summary
 
 ## Whitespace
 - Whitespace should not be used around comparisons E.g. x<3, not x < 3
