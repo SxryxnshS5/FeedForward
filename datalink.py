@@ -1,8 +1,21 @@
 # table = user | advert | foodorder | message
+import mysql.connector
+
 
 def _connect():
     # connect to food sharing database (only for internal use here)
-    pass
+    try:
+        connection = mysql.connector.connect(
+            host="localhost",  # TODO: store in .env file
+            user="root",
+            password="password",
+            database="2033foodsharing"
+        )
+        print("Database Connected")
+        return connection
+    except mysql.connector.Error as e:
+        print(e)
+        return None
 
 
 def _create(table, **columns):
