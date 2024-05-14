@@ -72,11 +72,17 @@
               <div class="cream-box1 text-center">
                   <h3>Monthly Newsletter</h3>
                   <p class="donors-text-body">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
-                  <button class="cream-box-button1" onclick="findFood()" id="FindFood">Sign-up</button>
+                  <button class="cream-box-button1" id="Newsletterbtn">Sign-up</button>
                 </div>
           </div>
 
      </div>
 </section> 
+
+<script>
+  document.getElementById("Newsletterbtn").addEventListener("click", function() {
+      window.location.href = "{{ url_for('newsletter') }}"; 
+  });
+  </script>
   
 {% endblock %}

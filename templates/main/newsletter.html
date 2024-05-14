@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" href="../static/css/newsletter.css">
+
+<div class="image-container">
+    <img src="../static/images/base/uppershape.png" alt="Sticky Image" class="sticky-image">
+    <div class="image-text">
+        <h2 class="fjalla-one-regular">Newsletter</h2>
+    </div>
+</div>
+
+    {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="notification is-danger">
+                        {{ messages[0] }}.
+                    </div>
+                {% endif %}
+    {% endwith %}
+
+<section>
+    <div class="row text-center body-text">
+        <h2 class="fjalla-one-regular2" style="color: white;">Sign-up for our monthly <br>newsletter and stay updated!!</h2>
+    </div>
+</section>
+
+
+<section>
+    <div class="background-container">
+    <div class="container1">
+        <form action="#" class="signup-form">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <button type="submit" class="signupbtn">Sign Up</button>
+        </form>
+      </div>
+      </div>
+    </section>
+{% endblock %}
