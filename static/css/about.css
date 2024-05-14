@@ -77,7 +77,7 @@
 
 }
 
-.cream-box {
+.cream-box1 {
     background-color: #E8DFCA;
     padding: 20px;
     border: 1px solid #ccc;
@@ -102,42 +102,6 @@
     max-width: 100%;
     overflow: hidden;
     word-wrap: break-word;
-
-}
-
-.cream-box-button {
-    width: 40%;
-    padding: 15px;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.donors-div {
-    background-color: #E8DFCA;
-    height: 700px;
-    width: 1000px;
-    transform: translateY(100%); /* Adjust vertical position to center it vertically */
-    margin-left: 150px;
-    padding-right: 100px;
-
-
-
-}
-
-.in-need-div {
-    background-color: #E8DFCA;
-    height: 700px;
-    width: 1000px;
-    transform: translateY(100%); /* Adjust vertical position to center it vertically */
-    margin-right: 150px;
-    padding-left: 100px;
-    right: 0;
-
-
 
 }
 
