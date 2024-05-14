@@ -1,3 +1,5 @@
+""" python file containing flask forms for user related actions"""
+
 import re
 from flask_wtf import FlaskForm, Recaptcha
 from wtforms import StringField, SubmitField, PasswordField, BooleanField, DateField
@@ -30,12 +32,13 @@ class SignUpForm(FlaskForm):
     """ Signup Form containing all the details needed for a user to create an account"""
 
     email = StringField(validators=[DataRequired(), Email()])
-    name = StringField(validators=[DataRequired(), validate_name])
-    password = PasswordField(validators=[DataRequired, Length(min=8), validate_password])
+    first_name = StringField(validators=[DataRequired(), validate_name])
+    last_name = StringField(validators=[DataRequired(), validate_name])
+    password = PasswordField(validators=[DataRequired(), Length(min=8), validate_password])
     confirm_password = PasswordField(validators=[DataRequired(), EqualTo('password', message='Both password fields '
                                                                                              'must be equal')])
-    birthday = DateField(validators=[DataRequired])
-    address = StringField(validators=[DataRequired])
+    birthday = DateField(validators=[DataRequired()])
+    address = StringField(validators=[DataRequired()])
     submit = SubmitField()
 
 
@@ -44,6 +47,4 @@ class LoginForm(FlaskForm):
 
     email = StringField(validators=[DataRequired(), Email()])
     password = PasswordField(validators=[DataRequired()])
-    postcode = StringField(validators=[DataRequired()])
-    #recaptcha = RecaptchaField()
     submit = SubmitField()
