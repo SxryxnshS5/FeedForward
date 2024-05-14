@@ -1,3 +1,5 @@
+""" python file containing flask forms for user related actions"""
+
 import re
 from flask_wtf import FlaskForm, Recaptcha
 from wtforms import StringField, SubmitField, PasswordField, BooleanField, DateField
