@@ -31,11 +31,11 @@ class SignUpForm(FlaskForm):
 
     email = StringField(validators=[DataRequired(), Email()])
     name = StringField(validators=[DataRequired(), validate_name])
-    password = PasswordField(validators=[DataRequired, Length(min=8), validate_password])
+    password = PasswordField(validators=[DataRequired(), Length(min=8), validate_password])
     confirm_password = PasswordField(validators=[DataRequired(), EqualTo('password', message='Both password fields '
                                                                                              'must be equal')])
-    birthday = DateField(validators=[DataRequired])
-    address = StringField(validators=[DataRequired])
+    birthday = DateField(validators=[DataRequired()])
+    address = StringField(validators=[DataRequired()])
     submit = SubmitField()
 
 
