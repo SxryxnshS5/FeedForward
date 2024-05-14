@@ -58,6 +58,17 @@
     align-items: center; /* Vertical centering */
 }
 
+.body-text-1 {
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 60px;
+}
+
+.body-p {
+    size: 100px;
+
+}
+
 .donors-text {
 
     font-family: "Inter tight", sans-serif;
@@ -94,6 +105,20 @@
 
 }
 
+.cream-box1 {
+    background-color: #E8DFCA;
+    padding: 20px;
+    border: 1px solid #ccc;
+
+    margin-bottom: 60px;
+    border-radius: 5px;
+    height: 240px;
+    max-width: 100%;
+    overflow: hidden;
+    word-wrap: break-word;
+
+}
+
 .cream-box-button {
     width: 40%;
     padding: 15px;
@@ -105,6 +130,16 @@
     transition: background-color 0.3s ease;
 }
 
+.cream-box-button1 {
+    width: 20%;
+    padding: 15px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 .donors-div {
     background-color: #E8DFCA;
     height: 700px;

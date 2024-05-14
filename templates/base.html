@@ -35,7 +35,7 @@
                     <a class="nav-link" href="{{ url_for('signup') }}">Sign up</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">About Us</a>
+                    <a class="nav-link" href="{{ url_for('about') }}">About Us</a>
                 </li>
 
             </ul>
@@ -94,6 +94,13 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous">
 
+</script>
+<script>
+    // JavaScript function to scroll back to the top of the page
+    function backToTop() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+    }
 </script>
 </body>
 </html>
