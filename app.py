@@ -14,11 +14,5 @@ def index():
     return render_template('main/index.html')
 
 
-# importing blueprints (imports are here to avoid Circular Import Error)
-from users.views import users_blueprint
-
-# registering blueprints with app
-app.register_blueprint(users_blueprint)
-
 if __name__ == '__main__':
     app.run(debug=True)
