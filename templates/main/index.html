@@ -1,73 +1,55 @@
 {% extends "base.html" %}
 
 {% block content %}
-<link rel="stylesheet" href="../static/css/index.css">
-<h1 class="title">Home - Feed Forward</h1>
+    <link rel="stylesheet" href="../static/css/index.css">
+
     {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <div class="notification is-danger">
-                        {{ messages[0] }}.
-                    </div>
-                {% endif %}
+        {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }}.
+            </div>
+        {% endif %}
     {% endwith %}
-
-    <div class="home-div">
-        <div class="home-logo-text">
-           <p>FEED FORWARD</p>
+    <section class="main-sect">
+      <section class="row section1">
+        <!-- Left column -->
+        <div class="col-lg-6 part1">
+          <div class="subpt1">
+            <div>
+              <img src="../static/images/base/main-logo.png" alt="Logo" height="100%" width="100%">
+            </div>
+            <div class="sub-text-div">
+              <p class="sub-text">No one should go hungry.</p>
+            </div>
+          </div>
         </div>
-
-
-
-     <img src="../static/images/base/fevicon_light.png" alt="Logo"  class="home-logo">
-        <img src="../static/images/base/map.png" alt="Logo" width="610" height=610 class="map-image">
-
-        <div class="open-map-div">
-        <button class="open-map" onclick="" id="openMap">Open Map</button>
+    
+        <!-- Right column -->
+        <div class="col-lg-6 part2">
+          <div class="map-container">
+            <img src="../static/images/base/map.png" alt="Map" class="map-img">
+            <button class="open-map" onclick="" id="openMap">Open Map</button>
+          </div>
         </div>
+      </section>
+    </section>
 
-        <div class = "no-one-div">
-            <p class = "no-one-text">No one should go hungry.</p>
-        </div>
-
-
-
-
-        </section>
-
-
-
-
-        <div class="container mt-5">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="cream-box text-center">
-        <p class="donors-text">Donors</p>
-          <p class="donors-text-body">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco</p>
-          <button class="cream-box-button" onclick="" id="Donate">Donate</button>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="cream-box text-center">
-        <p class="donors-text">Those In Need</p>
-          <p class="donors-text-body">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco</p>
-          <button class="cream-box-button" onclick="" id="Donate">Find Food</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-        <section>
-
-        </section>
-
-
-
-    </div>
-
-
+    <div class="container mt-5">
+      <div class="row">
+          <div class="col-md-6">
+              <div class="cream-box text-center">
+                  <p class="donors-text">Donors</p>
+                  <p class="donors-text-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+                  <button class="cream-box-button" onclick="donate()" id="Donate">Donate</button>
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="cream-box text-center">
+                  <p class="donors-text">Those In Need</p>
+                  <p class="donors-text-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+                  <button class="cream-box-button" onclick="findFood()" id="FindFood">Find Food</button>
+              </div>
+          </div>
+     </div>
+  
 {% endblock %}
