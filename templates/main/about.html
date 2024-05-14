@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <!-- Include custom CSS file for about page -->
     <link rel="stylesheet" href="../static/css/about.css">
 
+    <!-- Flash messages handling -->
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             <div class="notification is-danger">
@@ -10,67 +12,79 @@
             </div>
         {% endif %}
     {% endwith %}
+
+    <!-- Main content section -->
     <section class="main-sect">
-      <section class="row section1">
-        <!-- Left column -->
-        <div class="col-lg-6 part1">
-          <div class="subpt1">
-            <div>
-              <img src="../static/images/base/main-logo.png" alt="Logo" height="100%" width="100%">
+        <section class="row section1">
+            <!-- Left column -->
+            <div class="col-lg-6 part1">
+                <div class="subpt1">
+                    <div>
+                        <!-- Main logo -->
+                        <img src="../static/images/base/main-logo.png" alt="Logo" height="100%" width="100%">
+                    </div>
+                    <div class="sub-text-div">
+                        <!-- Quote about food -->
+                        <p class="sub-text">“Throwing away food is like stealing from<br>
+                            the table of
+                            those who are poor and hungry.”</p>
+                    </div>
+                </div>
             </div>
-            <div class="sub-text-div">
-              <p class="sub-text">“Throwing away food is like stealing from<br>
-                 the table of
-                those who are poor and hungry.”</p>
-            </div>
-          </div>
-        </div>
     
-        <!-- Right column -->
-        <div class="col-lg-6 part2">
-          <div class="title-container">
-                <h2 class="fjalla-one-regular">About <br> Us !!</h2>
-          </div>
-        </div>
-      </section>
+            <!-- Right column -->
+            <div class="col-lg-6 part2">
+                <div class="title-container">
+                    <!-- Title -->
+                    <h2 class="fjalla-one-regular">About <br> Us !!</h2>
+                </div>
+            </div>
+        </section>
     </section>
 
-<section>
-    <div class="row text-center body-text-1">
-        <h3>Our mission</h3>
-        <p class="body-p">Lorem ipsum dolor sit amet. Et officia eaque non quas cupiditate et officia modi? Eos
-            explicabo perspiciatis ut optio deleniti eum tenetur dolore. Aut earum voluptate qui <br>
-            ducimus officia et quidem dolorem ab voluptatem neque sed vitae eligendi et quos 
-            autem hic quis eveniet. Ut porro rerum ut quaerat labore ut magnam nobis id labore beatae <br>
-            ut repudiandae labore et modi doloremque.<br>
-            Est consectetur rerum et enim possimus et eaque error obcaecati.</p>
+    <!-- Mission section -->
+    <section>
+        <div class="row text-center body-text-1">
+            <h3>Our mission</h3>
+            <!-- Mission description -->
+            <p class="body-p">Lorem ipsum dolor sit amet. Et officia eaque non quas cupiditate et officia modi? Eos
+                explicabo perspiciatis ut optio deleniti eum tenetur dolore. Aut earum voluptate qui <br>
+                ducimus officia et quidem dolorem ab voluptatem neque sed vitae eligendi et quos 
+                autem hic quis eveniet. Ut porro rerum ut quaerat labore ut magnam nobis id labore beatae <br>
+                ut repudiandae labore et modi doloremque.<br>
+                Est consectetur rerum et enim possimus et eaque error obcaecati.</p>
+        </div>
+    </section>
 
-    </div>
-</section>
+    <!-- Who are we section -->
+    <section>
+        <div class="container mt-5">
+            <div class="row">
+                <div>
+                    <div class="cream-box1 text-center">
+                        <!-- Title -->
+                        <h3 class="donors-text">Who are we?</h3>
+                        <!-- Description -->
+                        <p class="donors-text-body">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> 
 
-<section>
-    <div class="container mt-5">
-      <div class="row">
-          <div>
-              <div class="cream-box1 text-center">
-                  <h3 class="donors-text">Who are we?</h3>
-                  <p class="donors-text-body">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
-              </div>
-          </div>
-
-     </div>
-</section> 
-
-<section>
-    <div class="container mt-5">
-      <div class="row">
-          <div>
-              <div class="cream-box2 text-center">
-                  <h3 class="donors-text">How does this work?</h3>
-                  <p class="donors-text-body">""Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
-              </div>
-          </div>
-
-     </div>
-</section> 
+    <!-- How does this work section -->
+    <section>
+        <div class="container mt-5">
+            <div class="row">
+                <div>
+                    <div class="cream-box2 text-center">
+                        <!-- Title -->
+                        <h3 class="donors-text">How does this work?</h3>
+                        <!-- Description -->
+                        <p class="donors-text-body">""Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> 
 {% endblock %}
