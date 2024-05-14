@@ -1,43 +1,17 @@
 # table = user | advert | foodorder | message
 import mysql.connector
-
+import sqlalchemy
+from sqlalchemy.exc import SQLAlchemyError
 
 def _connect():
-    # connect to food sharing database (only for internal use here)
+    engine = sqlalchemy.create_engine("mysql+mysqlconnector://root:password@localhost:3306/2033foodsharing")
     try:
-        connection = mysql.connector.connect(
-            host="localhost",  # TODO: store in .env file
-            user="root",
-            password="password",
-            database="2033foodsharing"
-        )
-        print("Database Connected")
-        return connection
-    except mysql.connector.Error as e:
-        print(e)
+        engine.connect()
+        print("connected")
+        return engine
+    except SQLAlchemyError as e:
+        print("error", e.__cause__)
         return None
-
-
-def _create(table, **columns):
-    # generic private method for creating a row in any table
-    pass
-
-
-def _retrieve(table, columns, condition=None, orderby=None, asc=True,
-              limit=None):
-    # generic private method for a select query
-    pass
-
-
-def _update(table, new_val, condition=None):
-    # generic private method for updating a row in any table
-    pass
-
-
-def _delete(table, condition):
-    # generic private method for deleting a row in a table
-    pass
-
 
 def create_user(user):
     """Add a new user row to user table using a User object"""
