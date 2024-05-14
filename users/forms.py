@@ -30,7 +30,8 @@ class SignUpForm(FlaskForm):
     """ Signup Form containing all the details needed for a user to create an account"""
 
     email = StringField(validators=[DataRequired(), Email()])
-    name = StringField(validators=[DataRequired(), validate_name])
+    first_name = StringField(validators=[DataRequired(), validate_name])
+    last_name = StringField(validators=[DataRequired(), validate_name])
     password = PasswordField(validators=[DataRequired(), Length(min=8), validate_password])
     confirm_password = PasswordField(validators=[DataRequired(), EqualTo('password', message='Both password fields '
                                                                                              'must be equal')])
@@ -44,6 +45,4 @@ class LoginForm(FlaskForm):
 
     email = StringField(validators=[DataRequired(), Email()])
     password = PasswordField(validators=[DataRequired()])
-    postcode = StringField(validators=[DataRequired()])
-    #recaptcha = RecaptchaField()
     submit = SubmitField()
