@@ -2,8 +2,10 @@
 import mysql.connector
 import sqlalchemy
 from sqlalchemy.exc import SQLAlchemyError
+from app import db
 
 def _connect():
+    # connect to database, only use internally for testing
     engine = sqlalchemy.create_engine("mysql+mysqlconnector://root:password@localhost:3306/2033foodsharing")
     try:
         engine.connect()
