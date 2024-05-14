@@ -1,15 +1,17 @@
 """python file that contains all the models for the project"""
 
+
 class User():
     """User class that acts as a template for all User objects, and contains
     all of a user's attributes and methods, as well as the constructor
     for a User object"""
 
-    def __init__(self, email, password, name, dob, address, role):
+    def __init__(self, email, password, first_name, surname, dob, address, role):
         """Constructor for User class"""
         self.email = email
         self.password = password
-        self.name = name
+        self.first_name = first_name
+        self.surname = surname
         self.dob = dob
         self.address = address
         self.role = role
@@ -31,13 +33,21 @@ class User():
         """Getter for password variable"""
         return self.password
 
-    def set_name(self, new_name):
-        """Setter for name variable"""
-        self.name = new_name
+    def set_first_name(self, new_name):
+        """Setter for first name variable"""
+        self.first_name = new_name
 
-    def get_name(self):
-        """Getter for name variable"""
-        return self.name
+    def get_first_name(self):
+        """Getter for first name variable"""
+        return self.first_name
+
+    def set_surname(self, new_surname):
+        """Setter for surname variable"""
+        self.surname = new_surname
+
+    def get_surname(self):
+        """Getter for surname variable"""
+        return self.surname
 
     def set_dob(self, new_dob):
         """Setter for dob variable"""
