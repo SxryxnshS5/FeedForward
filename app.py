@@ -24,6 +24,10 @@ def login():
 def signup():
     return render_template('main/signup.html')
 
+@app.route('/about')
+def about():
+    return render_template('main/about.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
