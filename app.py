@@ -21,5 +21,9 @@ def login():
 def signup():
     return render_template('main/signup.html')
 
+@app.route('/account')
+def account():
+    return render_template('main/account.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
