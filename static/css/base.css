@@ -1,159 +1,5 @@
 body {
     background-color: #1A4D2E;
-    height: 2000px;
-
-
-
-
-
-
-}
-
-/* Custom styles for the map image */
-.map-image {
-    position: absolute; /* Position the image absolutely */
-    top: 40%; /* Align the top of the image to the middle of the page */
-    right: 0; /* Align the right side of the image to the right edge of the page */
-    transform: translateY(-80%); /* Adjust vertical position to center it vertically */
-    margin-right: 150px;
-    margin-top: 100px;
-    height: 400px;
-    width: 400px;
-}
-
-.home-logo {
-    position: absolute;
-    height: 150px;
-    width: 150px;
-    margin-left: 100px;
-    margin-top: 100px;
-}
-
-.home-logo-text {
-    position: absolute;
-    margin-left: 300px;
-    margin-top: 100px;
-    font-family: "Rowdies", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 100px;
-    letter-spacing: 5px;
-    color: #e8dfca;
-}
-
-.no-one-text {
-    position: absolute;
-    font-family: "Inter tight", sans-serif;
-    font-size: 70px;
-    font-weight: 600;
-    margin-left: 95px;
-    margin-top: 80px;
-
-}
-
-.donors-text {
-
-    font-family: "Inter tight", sans-serif;
-    font-size: max(33px);
-    font-weight: 600;
-    max-width: 100%;
-    word-wrap: break-word;
-
-
-}
-
-.donors-text-body {
-
-    font-family: "Inter tight", sans-serif;
-
-    font-weight: 400;
-    max-width: 100%;
-    word-wrap: break-word;
-
-
-}
-
-.cream-box {
-    background-color: #E8DFCA;
-    padding: 20px;
-    border: 1px solid #ccc;
-    margin-top: 500px;
-    border-radius: 5px;
-    height: 500px;
-    max-width: 100%;
-    overflow: hidden;
-    word-wrap: break-word;
-
-}
-
-.cream-box-button {
-    max-width: calc(100% - 40px )%; /* Adjust the maximum width of the button as needed */
-    margin-top: 10px; /* Adjust margin as needed */
-    background-color: black;
-    color: white;
-    border-radius: 5px;
-    height: auto;
-    width: auto;
-}
-
-.home-div {
-    background-color: #4F6F52;
-    height: 800px;
-}
-
-.no-one-div {
-    background-color: #7B937D;
-    height: 300px;
-    width: 1000px;
-    transform: translateY(120%); /* Adjust vertical position to center it vertically */
-    margin-left: 150px;
-    padding-right: 100px;
-    border-radius: 70px;
-
-
-}
-
-.donors-div {
-    background-color: #E8DFCA;
-    height: 700px;
-    width: 1000px;
-    transform: translateY(100%); /* Adjust vertical position to center it vertically */
-    margin-left: 150px;
-    padding-right: 100px;
-
-
-
-}
-
-.in-need-div {
-    background-color: #E8DFCA;
-    height: 700px;
-    width: 1000px;
-    transform: translateY(100%); /* Adjust vertical position to center it vertically */
-    margin-right: 150px;
-    padding-left: 100px;
-    right: 0;
-
-
-
-}
-
-
-
-
-.open-map {
-    background-color: white;
-    color: black;
-    border-radius: 5px;
-    height: 40px; /* Adjust the height as needed */
-    width: 120px; /* Adjust the width as needed */
-    position: absolute; /* Position the image absolutely */
-    top: 40%; /* Align the top of the image to the middle of the page */
-    right: 0; /* Align the right side of the image to the right edge of the page */
-    transform: translateY(-80%); /* Adjust vertical position to center it vertically */
-    margin-right: 280px;
-    margin-top: 250px;
-
 }
 
 .back-to-top {
@@ -168,14 +14,13 @@ body {
 .custom-footer {
     background-color: #E8DFCA;
     width: 100%; /* Set the width to 100% */
+    color: black;
     display: flex;
+    border-top-right-radius: 200px;
     flex-wrap: wrap;
     justify-content: space-between;
+    position: fixed;
     padding: 30px;
-    position: fixed; /* Position the footer */
-    border-top-right-radius: 200px;
-    color: black;
-
     bottom: 0; /* Align it to the bottom */
 }
 
