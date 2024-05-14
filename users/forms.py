@@ -4,8 +4,9 @@ from wtforms import StringField, SubmitField, PasswordField, BooleanField, DateF
 from wtforms.validators import Email, ValidationError, DataRequired, Length, EqualTo
 
 
-# Validator to check forbidden characters in names
 def validate_name(form, name):
+    """ Validator to check forbidden characters in names """
+
     excluded_chars = "*?!'^+%&/()=}][{$#@<>"
 
     for char in name.data:
@@ -13,8 +14,8 @@ def validate_name(form, name):
             raise ValidationError(f"Character {char} is not allowed")
 
 
-# Validator to check password format
 def validate_password(form, password):
+    """ Validator to check password format """
 
     pattern = re.compile(r'(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-z0-9])')
 
@@ -24,8 +25,10 @@ def validate_password(form, password):
                               "1 special character.")
 
 
-# Signup Form
-class SignupForm(FlaskForm):
+#
+class SignUpForm(FlaskForm):
+    """ Signup Form containing all the details needed for a user to create an account"""
+
     email = StringField(validators=[DataRequired(), Email()])
     name = StringField(validators=[DataRequired(), validate_name])
     password = PasswordField(validators=[DataRequired, Length(min=8), validate_password])
@@ -36,8 +39,9 @@ class SignupForm(FlaskForm):
     submit = SubmitField()
 
 
-# Login Form
-class Login(FlaskForm):
+class LoginForm(FlaskForm):
+    """ Login Form containing the required fields for a user to log in"""
+
     email = StringField(validators=[DataRequired(), Email()])
     password = PasswordField(validators=[DataRequired()])
     postcode = StringField(validators=[DataRequired()])
