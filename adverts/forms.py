@@ -11,3 +11,4 @@ class AdvertForm(FlaskForm):
     contents = StringField(validators=[DataRequired()])
     owner = StringField(validators=[DataRequired()])
     expiry = DateField(validators=[DataRequired()])
+    submit = SubmitField()

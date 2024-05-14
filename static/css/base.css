@@ -1,5 +1,8 @@
 body {
     background-color: #1A4D2E;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure body fills at least viewport height */
 }
 
 .back-to-top {
@@ -19,9 +22,7 @@ body {
     border-top-right-radius: 200px;
     flex-wrap: wrap;
     justify-content: space-between;
-    position: fixed;
     padding: 30px;
-    bottom: 0; /* Align it to the bottom */
 }
 
 /* Style for each footer section */
