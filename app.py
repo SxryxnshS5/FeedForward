@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 app = Flask(__name__)
 
-# Configuring the secret key to sign and validate session cookies
+# Configuring the secret key to sign and validate session cookies.
 load_dotenv()
 app.config['SECRET_KEY'] = os.getenv('SECRET KEY')
 
