@@ -1,5 +1,6 @@
 """python file that contains all the models for the project"""
 
+
 class User():
     """User class that acts as a template for all User objects, and contains
     all of a user's attributes and methods, as well as the constructor
