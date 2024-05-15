@@ -1,8 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-<link rel="stylesheet" href="../static/css/index.css">
-<h1 class="title">Login - Feed Forward</h1>
+
+<link rel="stylesheet" href="../static/css/signup.css">
+
+<div class="image-container">
+    <img src="../static/images/base/uppershape.png" alt="Sticky Image" class="sticky-image">
+    <div class="image-text">
+        <h2 class="fjalla-one-regular">Login</h2>
+    </div>
+</div>
+
     {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     <div class="notification is-danger">
@@ -11,28 +19,21 @@
                 {% endif %}
     {% endwith %}
 
-    <div class="container text-center">
-        <div class="row align-items-start">
-            <div class="col">
-                <form>
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+<div class="background-container">
+    <div class="container1">
+        <form action="#" class="signup-form">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
             </div>
-        </div>
-    
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <button type="submit">Sign Up</button>
+        </form>
     </div>
+</div>
 
 {% endblock %}
