@@ -30,7 +30,7 @@ test_messages = [
 ]
 
 test_collections = [
-    #replace adIDs
+    # replace adIDs after they're auto generated
     [1, "testemail1@gmail.com", "testemail2@gmail.com", datetime.now()],
 ]
 

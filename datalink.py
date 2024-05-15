@@ -49,18 +49,20 @@ def get_available_ads():
 
 
 
-def get_user(username):
+def get_user(email):
     """returns a User object from the database using their username"""
-    pass
+    return User.query.filter_by(email=email).first()
 
 
-def is_unique(username):
-    """returns if a username is already in use"""
-
+def is_unique(email):
+    """returns if a username isn't already in use"""
+    return get_user(email) is None
 
 def set_advert_unavailable(adID):
     """marks advert as unavailable using its ID"""
-    pass
+    ad = Advert.query.filter_by(adID=adID).first()
+    ad.available = False
+    db.session.commit()
 
 
 def check_expiry():
@@ -77,6 +79,19 @@ def update_details(old_user, updated_user):
         - note a new username must be unique
         - note role cannot be changed to admin here
     """
+    if updated_user.role == "admin" and old_user.role != "admin":
+        raise ValueError("Cannot change role to admin")
+    if not is_unique(updated_user.email):
+        raise ValueError("Username unavailable")
+
+    old_user.email = updated_user.email
+    old_user.password = updated_user.password
+    old_user.first_name = updated_user.first_name
+    old_user.surname = updated_user.surname
+    old_user.dob = updated_user.dob
+    old_user.address = updated_user.address
+    old_user.role = updated_user.role
+    db.session.commit()
 
 
 def delete_user(user):
