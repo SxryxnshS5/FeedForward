@@ -2,12 +2,12 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="../static/css/account.css">
+<link rel="stylesheet" href="../static/css/adminaccount.css">
 
 <div class="image-container">
     <img src="../static/images/base/uppershape.png" alt="Sticky Image" class="sticky-image">
     <div class="image-text">
-        <h2 class="fjalla-one-regular">Account overview</h2>
+        <h2 class="fjalla-one-regular">Admin Account overview</h2>
     </div>
 </div>
 
@@ -27,12 +27,12 @@
         <div class="container text-center">
             <div class="row align-items-start">
 
-                <div><!-- Profile image-->
+                <div> <!-- Profile image-->
                     <img src="../static/images/base/pfp.png" alt="pfp" class="pfp">
 
                 </div>
 
-                <!-- User details-->
+
                 <div class="col">
                     <div class="form-floating mb-3">
                         <input type="email" readonly class="form-control-plaintext" id="floatingPlaintextInputFirstName"
@@ -74,7 +74,7 @@
 
                 </div>
 
-                <div><!-- Change details button-->
+                <div>
                     <button class="button-change">Change Details</button>
                 </div>
 
@@ -161,6 +161,108 @@
 
                     </div>
 
+
+                    <div>
+                        <h2 class="ad-history">Current adverts</h2>
+                    </div>
+                    <div>
+                        <table class="table"> <!-- Current advert table-->
+                            <thead>
+                            <tr>
+                                <th scope="col">Serial Number</th>
+                                <th scope="col">Donor Name</th>
+                                <th scope="col">Best Before</th>
+                                <th scope="col">Food Description</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>John Doe</td>
+                                <td>2024-06-01</td>
+                                <td>Apples</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jane Smith</td>
+                                <td>2024-05-10</td>
+                                <td>Oranges</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Michael Johnson</td>
+                                <td>2024-05-20</td>
+                                <td>Bananas</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+
+                    <div>
+                        <button class="button-change">Delete advert</button> <!-- Delete advert button-->
+                    </div>
+
+
+                    <div>
+                        <h2 class="ad-history">Users</h2>
+                    </div>
+
+                    <div>
+                        <table class="table"> <!-- Users table-->
+                            <thead>
+                            <tr>
+                                <th scope="col">User ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Phone Number</th>
+                                <th scope="col">Email</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>John Doe</td>
+                                <td>123-456-7890</td>
+                                <td>john@example.com</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jane Smith</td>
+                                <td>987-654-3210</td>
+                                <td>jane@example.com</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Michael Johnson</td>
+                                <td>555-555-5555</td>
+                                <td>michael@example.com</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+
+                    <div>
+                        <button class="button-change">Delete User</button> <!-- Delete user button-->
+                    </div>
+
+
+                </div> <!-- Row align div -->
+
+
+                <div>
+                    <h2 class="ad-history">Management</h2> <!-- Management buttons-->
+
+                    <div>
+                        <button class="button-admin-create">Create Admin Account</button>
+                    </div>
+
+
+                    <div>
+                        <button class="button-log-out">Log Out Of Account</button>
+                    </div>
                 </div>
 
 

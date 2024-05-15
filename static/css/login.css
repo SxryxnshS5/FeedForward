@@ -18,11 +18,11 @@
 }
 
 .container1 {
-  width: 80%; /* Change the width as per your requirement */
-  max-width: 500px; /* Increase the maximum width */
+  width: 80%;
+  max-width: 500px;
   margin: 50px auto;
   padding: 20px;
-  border-radius: 10px; /* Increased border radius for a softer square shape */
+  border-radius: 10px;
 
 }
 
@@ -38,12 +38,12 @@
 }
 
 .background-container {
-  width: 75%; /* Adjust the width as needed */
+  width: 75%;
   margin: 50px auto;
   background-color: rgba(217, 217, 217, 0.7); /* Translucent background color */
-  border-radius: 80px; /* Border radius for a softer square shape */
+  border-radius: 80px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px; /* Padding to ensure the content doesn't touch the edges */
+  padding: 20px; /
 }
 
 
