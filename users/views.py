@@ -1,4 +1,3 @@
-import logging
 import datalink
 from flask import Blueprint, render_template, flash, redirect, url_for, session, request
 from users.forms import SignUpForm, LoginForm

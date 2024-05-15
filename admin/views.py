@@ -35,7 +35,7 @@ def create_admin_account():
         # check if the user already exists in the db
         admin = User.query.filter_by(email=form.email.data).first()
 
-        # if user already exists, inform user so they can try to sign up again.
+        # if admin already exists, inform user and re-render the admin page.
         if admin:
             flash("Admin already exists.")
             return render_template('main/adminaccount.html')
