@@ -1,8 +1,10 @@
 """python file that contains all the models for the project"""
 from app import db, app
+from flask_login import UserMixin
+import bcrypt
 
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     """User class that acts as a template for all User objects, and contains
     all of a user's attributes and methods, as well as the constructor
     for a User object"""
@@ -25,7 +27,7 @@ class User(db.Model):
     def __init__(self, email, password, first_name, surname, dob, address, role):
         """Constructor for User class"""
         self.email = email
-        self.password = password
+        self.password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
         self.first_name = first_name
         self.surname = surname
         self.dob = dob
@@ -84,6 +86,11 @@ class User(db.Model):
     def get_role(self):
         """Getter for role variable"""
         return self.role
+
+    def verify_password(self, password):
+        """Function to check submitted password matches with the database password (compared after encrypting the
+        submitted password) """
+        return bcrypt.checkpw(password.encode('utf-8'), self.password)
 
 
 class Advert(db.Model):
