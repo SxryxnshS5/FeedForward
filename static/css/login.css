@@ -26,6 +26,17 @@
 
 }
 
+.signupbtn {
+  width: 40%;
+  padding: 15px;
+  background-color: #FFFFFF;
+  color: #000000;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
 .background-container {
   width: 75%; /* Adjust the width as needed */
   margin: 50px auto;
