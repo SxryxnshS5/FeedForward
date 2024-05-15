@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Include custom CSS file for signup page -->
+<link rel="stylesheet" href="../static/css/signup.css">
+
+<!-- Sticky Image with text -->
+<div class="image-container">
+    <img src="../static/images/base/uppershape.png" alt="Sticky Image" class="sticky-image">
+    <div class="image-text">
+        <h2 class="fjalla-one-regular">Create an account</h2>
+    </div>
+</div>
+
+<!-- Flash messages handling -->
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}.
+        </div>
+    {% endif %}
+{% endwith %}
+
+<!-- Background container for signup form -->
+<div class="background-container">
+    <div class="container1">
+        <!-- Signup form -->
+        <form action="#" class="signup-form">
+          <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" name="first-name" required>
+          </div>
+          <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" name="last-name" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div>
+            <div class="form-group">
+            <label for="dob">DOB</label>
+            <input type="dob" id="dob" name="dob" required>
+          </div>
+            </div>
+            <div class="form-group">
+            <label for="address">Address</label>
+            <input type="address" id="address" name="address" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+          </div>
+          <div class="form-group">
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+          </div>
+
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="newsletter" name="newsletter">
+                <label class="form-check-label" for="newsletter">Sign up for our newsletter</label>
+            </div>
+          <button type="submit" class="signupbtn">Sign Up</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
