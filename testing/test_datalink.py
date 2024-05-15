@@ -41,25 +41,8 @@ class TestDatabase(unittest.TestCase):
         with app.app_context():
             # get test user emails
             emails = [user[0] for user in test_users]
-
-            # find any existing test rows that are linked to test emails
-            ads = Advert.query.filter(Advert.owner.in_(emails))
             users = User.query.filter(User.email.in_(emails))
-            messages = Message.query.filter(
-                or_(Message.sender.in_(emails), Message.receiver.in_(emails)))
-            collections = Collection.query.filter(
-                or_(Collection.buyer.in_(emails), Collection.seller.in_(emails)))
-
             # remove any existing test rows
-            for col in collections:
-                datalink.delete_user(col)
-
-            for msg in messages:
-                datalink.delete_message(msg)
-
-            for ad in ads:
-                datalink.delete_advert(ad)
-
             for user in users:
                 datalink.delete_user(user)
 
@@ -96,7 +79,7 @@ class TestDatabase(unittest.TestCase):
             # test deletion
             datalink.delete_advert(advert)
             datalink.delete_user(user)
-            q = User.query.filter_by(email=id).first()
+            q = Advert.query.filter_by(adID=id).first()
             self.assertIsNone(q)
 
     def test_create_delete_message(self):
@@ -145,7 +128,6 @@ class TestDatabase(unittest.TestCase):
 
             # test deletion
             datalink.delete_order(collection)
-            datalink.delete_advert(advert)
             datalink.delete_user(seller)
             datalink.delete_user(collector)
             q = Collection.query.filter_by(advert=test_collect[0], buyer=test_collect[2]).first()
@@ -179,8 +161,6 @@ class TestDatabase(unittest.TestCase):
 
 
             # remove test rows
-            for ad in ads:
-                datalink.delete_advert(ad)
             datalink.delete_user(user1)
             datalink.delete_user(user2)
 
@@ -207,8 +187,6 @@ class TestDatabase(unittest.TestCase):
             self.assertEqual(availables[1].title, "in date")
 
             # remove test rows
-            for ad in ads:
-                datalink.delete_advert(ad)
             datalink.delete_user(user1)
             datalink.delete_user(user2)
 

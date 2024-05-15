@@ -16,11 +16,15 @@ class User(db.Model):
     address = db.Column(db.String(100), nullable=False)
     role = db.Column(db.String(5), nullable=False, default='user')
 
-    adverts = db.relationship('Advert')
-    sent_messages = db.relationship('Message', foreign_keys='[Message.sender]')
-    received_messages = db.relationship('Message', foreign_keys='[Message.receiver]')
-    collected_orders = db.relationship('Collection', foreign_keys='[Collection.buyer]')
-    sold_orders = db.relationship('Collection', foreign_keys='[Collection.seller]')
+    adverts = db.relationship('Advert', cascade="all,delete")
+    sent_messages = db.relationship('Message', foreign_keys='[Message.sender]',
+                                    cascade="all,delete")
+    received_messages = db.relationship('Message', foreign_keys='[Message.receiver]',
+                                        cascade="all,delete")
+    collected_orders = db.relationship('Collection', foreign_keys='[Collection.buyer]',
+                                       cascade="all,delete")
+    sold_orders = db.relationship('Collection', foreign_keys='[Collection.seller]',
+                                  cascade="all,delete")
 
     def __init__(self, email, password, first_name, surname, dob, address, role):
         """Constructor for User class"""
