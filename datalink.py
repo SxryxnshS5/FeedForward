@@ -2,7 +2,8 @@
 import mysql.connector
 import sqlalchemy
 from sqlalchemy.exc import SQLAlchemyError
-from app import db
+from app import db, app
+from models import User, Advert, Message, Collection
 
 def _connect():
     # connect to database, only use internally for testing
@@ -17,29 +18,32 @@ def _connect():
 
 def create_user(user):
     """Add a new user row to user table using a User object"""
-    pass
+    db.session.add(user)
+    db.session.commit()
 
 
 def create_advert(advert):
     """Add a new advert row to advert table using an Advert object"""
-    pass
+    db.session.add(advert)
+    db.session.commit()
 
 
-def create_order(advert, collector, timestamp):
-    """Add new order row to foodorder table
-        & mark advert as unavailable
-    requires an Advert object & User object
-    """
-    pass
+def create_order(order):
+    """Add new order row to foodorder table"""
+    db.session.add(order)
+    db.session.commit()
 
 
 def create_message(message):
     """Add a new message row to message table using an message object"""
-    pass
+    db.session.add(message)
+    db.session.commit()
 
 
 def get_available_ads():
-    """returns list of adverts that are currently available to collect"""
+    """returns list of adverts that are currently available to collect
+        autimatically marks out of date ads as unavailable
+    """
     pass
 
 
@@ -71,17 +75,20 @@ def update_details(old_user, updated_user):
 
 def delete_user(user):
     """removes user object's row in User table"""
-    pass
+    db.session.delete(user)
+    db.session.commit()
 
 
 def delete_advert(advert):
     """removes advert object's row in Advert table"""
-    pass
+    db.session.delete(advert)
+    db.session.commit()
 
 
 def delete_message(message):
     """removes message object's row in Message table"""
-    pass
+    db.session.delete(message)
+    db.session.commit()
 
 
 

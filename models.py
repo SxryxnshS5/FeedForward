@@ -17,7 +17,8 @@ class User(db.Model):
     adverts = db.relationship('Advert')
     sent_messages = db.relationship('Message', foreign_keys='[Message.sender]')
     received_messages = db.relationship('Message', foreign_keys='[Message.receiver]')
-    orders = db.relationship('Collection')
+    collected_orders = db.relationship('Collection', foreign_keys='[Collection.buyer]')
+    sold_orders = db.relationship('Collection', foreign_keys='[Collection.seller]')
 
     def __init__(self, email, password, name, dob, address, role):
         """Constructor for User class"""
