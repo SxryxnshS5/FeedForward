@@ -8,18 +8,30 @@ app = Flask(__name__)
 load_dotenv()
 app.config['SECRET_KEY'] = os.getenv('SECRET KEY')
 
+
 # Define your Flask route to render the HTML template
 @app.route('/')
 def index():
     return render_template('main/index.html')
 
+
 @app.route('/login')
 def login():
     return render_template('main/login.html')
 
+
 @app.route('/signup')
 def signup():
     return render_template('main/signup.html')
+
+@app.route('/about')
+def about():
+    return render_template('main/about.html')
+
+@app.route('/newsletter')
+def newsletter():
+    return render_template('main/newsletter.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

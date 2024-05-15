@@ -33,6 +33,7 @@
   border-radius: 80px; /* Border radius for a softer square shape */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px; /* Padding to ensure the content doesn't touch the edges */
+  margin-bottom: 70px;
 }
 
   
@@ -74,10 +75,20 @@
     background-color: #0056b3;
   }
 
+  .fjalla-one-regular2 {
+    font-family: "Fjalla One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 40px;
+  }
+
   .fjalla-one-regular {
     font-family: "Fjalla One", sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 60px;
   }
-  
+
+  .body-text {
+    margin-top: 50px;
+  }

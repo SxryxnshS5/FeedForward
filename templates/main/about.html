@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <!-- Include custom CSS file -->
-    <link rel="stylesheet" href="../static/css/index.css">
+    <!-- Include custom CSS file for about page -->
+    <link rel="stylesheet" href="../static/css/about.css">
 
     <!-- Flash messages handling -->
     {% with messages = get_flashed_messages() %}
@@ -24,49 +24,29 @@
                         <img src="../static/images/base/main-logo.png" alt="Logo" height="100%" width="100%">
                     </div>
                     <div class="sub-text-div">
-                        <p class="sub-text">No one should go hungry.</p>
+                        <!-- Quote about food -->
+                        <p class="sub-text">“Throwing away food is like stealing from<br>
+                            the table of
+                            those who are poor and hungry.”</p>
                     </div>
                 </div>
             </div>
     
             <!-- Right column -->
             <div class="col-lg-6 part2">
-                <div class="map-container">
-                    <!-- Map image -->
-                    <img src="../static/images/base/map.png" alt="Map" class="map-img">
-                    <!-- Button to open map -->
-                    <button class="open-map" onclick="" id="openMap">Open Map</button>
+                <div class="title-container">
+                    <!-- Title -->
+                    <h2 class="fjalla-one-regular">About <br> Us !!</h2>
                 </div>
             </div>
         </section>
     </section>
 
-    <!-- Donation and Find Food section -->
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="cream-box text-center">
-                    <!-- Donors section -->
-                    <p class="donors-text">Donors</p>
-                    <p class="donors-text-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
-                    <button class="cream-box-button" onclick="donate()" id="Donate">Donate</button>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="cream-box text-center">
-                    <!-- Those In Need section -->
-                    <p class="donors-text">Those In Need</p>
-                    <p class="donors-text-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
-                    <button class="cream-box-button" onclick="findFood()" id="FindFood">Find Food</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Our mission section -->
+    <!-- Mission section -->
     <section>
         <div class="row text-center body-text-1">
             <h3>Our mission</h3>
+            <!-- Mission description -->
             <p class="body-p">Lorem ipsum dolor sit amet. Et officia eaque non quas cupiditate et officia modi? Eos
                 explicabo perspiciatis ut optio deleniti eum tenetur dolore. Aut earum voluptate qui <br>
                 ducimus officia et quidem dolorem ab voluptatem neque sed vitae eligendi et quos 
@@ -76,27 +56,35 @@
         </div>
     </section>
 
-    <!-- Monthly Newsletter section -->
+    <!-- Who are we section -->
     <section>
         <div class="container mt-5">
             <div class="row">
                 <div>
                     <div class="cream-box1 text-center">
-                        <h3>Monthly Newsletter</h3>
+                        <!-- Title -->
+                        <h3 class="donors-text">Who are we?</h3>
+                        <!-- Description -->
                         <p class="donors-text-body">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
-                        <!-- Button to sign up for newsletter -->
-                        <button class="cream-box-button1" id="Newsletterbtn">Sign-up</button>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </section> 
 
-    <!-- Script to redirect to newsletter page -->
-    <script>
-        document.getElementById("Newsletterbtn").addEventListener("click", function() {
-            window.location.href = "{{ url_for('newsletter') }}"; 
-        });
-    </script>
-  
+    <!-- How does this work section -->
+    <section>
+        <div class="container mt-5">
+            <div class="row">
+                <div>
+                    <div class="cream-box2 text-center">
+                        <!-- Title -->
+                        <h3 class="donors-text">How does this work?</h3>
+                        <!-- Description -->
+                        <p class="donors-text-body">""Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> 
 {% endblock %}
