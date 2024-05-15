@@ -10,12 +10,9 @@ load_dotenv()
 app.config['SECRET_KEY'] = os.getenv('SECRET KEY')
 
 # setup database
-#TODO move to .env
-app.config['SQLALCHEMY_DATABASE_URI'] = \
-    "mysql+mysqlconnector://root:password@localhost:3306/2033foodsharing"
-app.config['SQLALCHEMY_ECHO'] = True
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+app.config['SQLALCHEMY_ECHO'] = os.getenv('SQLALCHEMY_ECHO') == 'True'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS') == 'True'
 db = SQLAlchemy(app)
 
 
