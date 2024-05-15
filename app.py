@@ -23,6 +23,7 @@ login_manager.login_view = 'users.login'
 # register LoginManager instance with app
 login_manager.init_app(app)
 
+# import User from models (imported here to avoid Circular Import Error)
 from models import User
 @login_manager.user_loader
 def load_user(email):
@@ -66,9 +67,11 @@ def create_admin_account():
 
 # Import blueprints (imported here to avoid Circular Import Error)
 from users.views import users_blueprint
+from admin.views import admin_blueprint
 
 # Register blueprints with app
 app.register_blueprint(users_blueprint)
+app.register_blueprint(admin_blueprint)
 
 if __name__ == '__main__':
     app.run(debug=True)
