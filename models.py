@@ -98,6 +98,7 @@ class Advert(db.Model):
     contents = db.Column(db.String(200), nullable=False)
     owner = db.Column("creatorID", db.ForeignKey(User.email), nullable=False)
     expiry = db.Column(db.DateTime, nullable=False)
+    available = db.Column(db.Boolean, nullable=False)
 
     def __init__(self, title, address, contents, owner, expiry, available=True):
         """Constructor for Advert class"""
