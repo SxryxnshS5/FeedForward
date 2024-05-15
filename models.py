@@ -10,7 +10,8 @@ class User(db.Model):
     __tablename__ = 'user'
     email = db.Column(db.String(40), primary_key=True)
     password = db.Column(db.String(30), nullable=False)
-    name = db.Column(db.String(40), nullable=False)
+    first_name = db.Column(db.String(40), nullable=False)
+    surname = db.Column(db.String(40), nullable=False)
     dob = db.Column(db.DateTime, nullable=False)
     address = db.Column(db.String(100), nullable=False)
     role = db.Column(db.String(5), nullable=False, default='user')

@@ -15,7 +15,7 @@ class TestDatabase(unittest.TestCase):
         with app.app_context():
 
             test_email = "testemail05127i@gmail.com"
-            user = User(test_email, "password", "John Smith", datetime.datetime.now(), "lorem ipsum", "user")
+            user = User(test_email, "password", "John", "Smith", datetime.datetime.now(), "lorem ipsum", "user")
             datalink.create_user(user)
             # test creation
             q = User.query.filter_by(email=test_email).first()
