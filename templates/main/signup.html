@@ -2,8 +2,10 @@
 
 {% block content %}
 
+<!-- Include custom CSS file for signup page -->
 <link rel="stylesheet" href="../static/css/signup.css">
 
+<!-- Sticky Image with text -->
 <div class="image-container">
     <img src="../static/images/base/uppershape.png" alt="Sticky Image" class="sticky-image">
     <div class="image-text">
@@ -11,16 +13,19 @@
     </div>
 </div>
 
-    {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <div class="notification is-danger">
-                        {{ messages[0] }}.
-                    </div>
-                {% endif %}
-    {% endwith %}
+<!-- Flash messages handling -->
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}.
+        </div>
+    {% endif %}
+{% endwith %}
 
-    <div class="background-container">
+<!-- Background container for signup form -->
+<div class="background-container">
     <div class="container1">
+        <!-- Signup form -->
         <form action="#" class="signup-form">
           <div class="form-group">
             <label for="first-name">First Name</label>
@@ -61,9 +66,9 @@
                 <input type="checkbox" class="form-check-input" id="newsletter" name="newsletter">
                 <label class="form-check-label" for="newsletter">Sign up for our newsletter</label>
             </div>
-          <button type="submit">Sign Up</button>
+          <button type="submit" class="signupbtn">Sign Up</button>
         </form>
-      </div>
-      </div>
+    </div>
+</div>
 
 {% endblock %}

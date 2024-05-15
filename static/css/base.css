@@ -5,13 +5,22 @@ body {
     min-height: 100vh; /* Ensure body fills at least viewport height */
 }
 
+
 .back-to-top {
+    width: 40%;
+    padding: 15px;
     background-color: black;
     color: white;
-    border-radius: 5px;
-    height: 40px; /* Adjust the height as needed */
-    width: 120px; /* Adjust the width as needed */
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
 }
+
+button:hover {
+    background-color: #0056b3;
+  }
 
 /* Custom styles for the footer */
 .custom-footer {
