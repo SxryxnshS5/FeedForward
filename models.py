@@ -1,10 +1,26 @@
 """python file that contains all the models for the project"""
+from app import db, app
 
 
-class User():
+class User(db.Model):
     """User class that acts as a template for all User objects, and contains
     all of a user's attributes and methods, as well as the constructor
     for a User object"""
+
+    __tablename__ = 'user'
+    email = db.Column(db.String(40), primary_key=True)
+    password = db.Column(db.String(30), nullable=False)
+    first_name = db.Column(db.String(40), nullable=False)
+    surname = db.Column(db.String(40), nullable=False)
+    dob = db.Column(db.DateTime, nullable=False)
+    address = db.Column(db.String(100), nullable=False)
+    role = db.Column(db.String(5), nullable=False, default='user')
+
+    adverts = db.relationship('Advert')
+    sent_messages = db.relationship('Message', foreign_keys='[Message.sender]')
+    received_messages = db.relationship('Message', foreign_keys='[Message.receiver]')
+    collected_orders = db.relationship('Collection', foreign_keys='[Collection.buyer]')
+    sold_orders = db.relationship('Collection', foreign_keys='[Collection.seller]')
 
     def __init__(self, email, password, first_name, surname, dob, address, role):
         """Constructor for User class"""
@@ -70,10 +86,18 @@ class User():
         return self.role
 
 
-class Advert():
+class Advert(db.Model):
     """Advert class that acts as a template for all Advert objects, and contains
     all of an Advert's attributes and methods, as well as the constructor
     for an Advert object"""
+
+    __tablename__ = 'advert'
+    adID = db.Column(db.Integer, primary_key=True, nullable=False)
+    title = db.Column(db.String(30), nullable=False)
+    address = db.Column(db.String(100), nullable=False)
+    contents = db.Column(db.String(200), nullable=False)
+    owner = db.Column("creatorID", db.ForeignKey(User.email), nullable=False)
+    expiry = db.Column(db.DateTime, nullable=False)
 
     def __init__(self, title, address, contents, owner, expiry, available=True):
         """Constructor for Advert class"""
@@ -129,10 +153,18 @@ class Advert():
         return self.available
 
 
-class Collection():
+class Collection(db.Model):
     """Collection class that acts as a template for all Collection objects.
     When an order is reserved, a collection object is made that
     contains all the details of the transaction"""
+
+    __tablename__ = 'foodorder'
+    advert = db.Column('adID', db.ForeignKey(Advert.adID), primary_key=True,
+                       nullable=False)
+    buyer = db.Column('ordererID', db.ForeignKey(User.email), primary_key=True,
+                      nullable=False)
+    seller = db.Column('sellerID', db.ForeignKey(User.email), nullable=False)
+    date = db.Column('timestamp', db.DateTime, nullable=False)
 
     def __init__(self, advert, seller, buyer, date):
         """Constructor for Collection class"""
@@ -142,10 +174,18 @@ class Collection():
         self.date = date
 
 
-class Message():
+class Message(db.Model):
     """Message class that acts as a template for all Message objects.
     When a user sends a message to another user, a message object is
     created and then added to that users Messages list"""
+
+    __tablename__ = 'message'
+    sender = db.Column('senderID', db.ForeignKey(User.email), primary_key=True,
+                       nullable=False)
+    receiver = db.Column('receiverID', db.ForeignKey(User.email), primary_key=True,
+                         nullable=False)
+    timestamp = db.Column(db.DateTime, primary_key=True, nullable=False)
+    contents = db.Column(db.String(200), nullable=False)
 
     def __init__(self, sender, receiver, timestamp, contents):
         """Constructor for Message class"""
@@ -165,3 +205,9 @@ class Email():
         self.users = users
         self.title = title
         self.contents = contents
+
+def init_db():
+    with app.app_context():
+        db.drop_all()
+        db.create_all()
+        db.session.commit()

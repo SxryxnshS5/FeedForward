@@ -5,3 +5,6 @@ python_dotenv==1.0.1
 werkzeug==2.3.7
 mime
 flask_login
+mysql-connector-python
+unittest
+flask_sqlalchemy
