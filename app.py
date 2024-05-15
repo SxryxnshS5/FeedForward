@@ -27,7 +27,7 @@ from models import User
 @login_manager.user_loader
 def load_user(email):
     """ user loader function for LoginManager to get user instances from the db """
-    return User.query.get(email)
+    return User.query.filter_by(email=email).first()
 
 # Define your Flask route to render the HTML template
 @app.route('/')
