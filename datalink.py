@@ -5,6 +5,7 @@ from app import db, app
 from models import User, Advert, Message, Collection
 from datetime import datetime
 
+
 def _connect():
     # connect to database, only use internally for testing
     engine = sqlalchemy.create_engine("mysql+mysqlconnector://root:password@localhost:3306/2033foodsharing")
@@ -15,6 +16,7 @@ def _connect():
     except SQLAlchemyError as e:
         print("error", e.__cause__)
         return None
+
 
 def create_user(user):
     """Add a new user row to user table using a User object"""
@@ -48,7 +50,6 @@ def get_available_ads():
     return Advert.query.filter_by(available=True).all()
 
 
-
 def get_user(email):
     """returns a User object from the database using their username"""
     return User.query.filter_by(email=email).first()
@@ -57,6 +58,7 @@ def get_user(email):
 def is_unique(email):
     """returns if a username isn't already in use"""
     return get_user(email) is None
+
 
 def set_advert_unavailable(adID):
     """marks advert as unavailable using its ID"""
@@ -92,6 +94,10 @@ def update_details(old_user, updated_user):
     old_user.address = updated_user.address
     old_user.role = updated_user.role
     db.session.commit()
+
+
+def get_user_collections(collector_email):
+    return Collection.query.filter_by(buyer=collector_email)
 
 
 def delete_user(user):
