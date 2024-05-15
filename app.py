@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template
 from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
 app = Flask(__name__)
 
@@ -15,6 +16,18 @@ app.config['SQLALCHEMY_ECHO'] = os.getenv('SQLALCHEMY_ECHO') == 'True'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS') == 'True'
 db = SQLAlchemy(app)
 
+# initialise instance of LoginManager
+login_manager = LoginManager()
+# set view function which renders login page
+login_manager.login_view = 'users.login'
+# register LoginManager instance with app
+login_manager.init_app(app)
+
+from models import User
+@login_manager.user_loader
+def load_user(email):
+    """ user loader function for LoginManager to get user instances from the db """
+    return User.query.get(email)
 
 # Define your Flask route to render the HTML template
 @app.route('/')
