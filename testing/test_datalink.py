@@ -1,17 +1,27 @@
 import datalink
 import unittest
-from datetime import datetime
+from datetime import datetime, timedelta
 from models import User, Advert, Collection, Message
 from app import app, db
 from sqlalchemy import or_
 
+# test values for each table
 test_users = [
     ["testemail1@gmail.com", "password", "John", "Smith", datetime.now(), "lorem ipsum", "user"],
     ["testemail2@gmail.com", "password", "Eva", "Smith", datetime.now(), "lorem ipsum", "user"],
 ]
 
+# ads with this use by will always be in date
+tomorrow = datetime.today() + timedelta(days=1)
+# ads with this use by will always be out of date
+yesterday = datetime.today() - timedelta(days=1)
+
 test_adverts = [
-    ["Title", "lorem ipsum", "lorem ipsum", "testemail1@gmail.com", datetime.now(), True],
+    ["in date", "lorem ipsum", "lorem ipsum", "testemail1@gmail.com", tomorrow, True],
+    ["in date", "lorem ipsum", "lorem ipsum", "testemail2@gmail.com", tomorrow, True],
+    ["out of date", "lorem ipsum", "lorem ipsum", "testemail1@gmail.com", yesterday, True],
+    ["out of date", "lorem ipsum", "lorem ipsum", "testemail2@gmail.com", yesterday, True],
+    ["unavailable", "lorem ipsum", "lorem ipsum", "testemail2@gmail.com", tomorrow, False],
 ]
 
 test_messages = [
@@ -37,8 +47,13 @@ class TestDatabase(unittest.TestCase):
             users = User.query.filter(User.email.in_(emails))
             messages = Message.query.filter(
                 or_(Message.sender.in_(emails), Message.receiver.in_(emails)))
+            collections = Collection.query.filter(
+                or_(Collection.buyer.in_(emails), Collection.seller.in_(emails)))
 
             # remove any existing test rows
+            for col in collections:
+                datalink.delete_user(col)
+
             for msg in messages:
                 datalink.delete_message(msg)
 
@@ -135,6 +150,68 @@ class TestDatabase(unittest.TestCase):
             datalink.delete_user(collector)
             q = Collection.query.filter_by(advert=test_collect[0], buyer=test_collect[2]).first()
             self.assertIsNone(q)
+
+    def test_check_expiry(self):
+        """test if out of date ads can be marked as unavailable while leaving in date ones alone"""
+        with app.app_context():
+            # setup
+            user1 = User(*test_users[0])
+            datalink.create_user(user1)
+            user2 = User(*test_users[1])
+            datalink.create_user(user2)
+
+            ads = []
+            for i in range(5):
+                ads.append(Advert(*test_adverts[i]))
+                datalink.create_advert(ads[i])
+
+            # check in date ads not set to unavailable
+            assert len(ads) == 5
+            datalink.check_expiry()
+            availables = Advert.query.filter_by(title="in date").all()
+            for ad in availables:
+                self.assertEqual(ad.available, True)
+
+            # check out of date ads set to unavailable
+            unavailables = Advert.query.filter_by(title="out of date").all()
+            for ad in unavailables:
+                self.assertEqual(ad.available, False)
+
+
+            # remove test rows
+            for ad in ads:
+                datalink.delete_advert(ad)
+            datalink.delete_user(user1)
+            datalink.delete_user(user2)
+
+    def test_get_available_with_outdateds(self):
+        """test selecting available adverts and removing ones that are out of date"""
+        with app.app_context():
+            # setup
+            user1 = User(*test_users[0])
+            datalink.create_user(user1)
+            user2 = User(*test_users[1])
+            datalink.create_user(user2)
+
+            ads = []
+            for i in range(5):
+                ads.append(Advert(*test_adverts[i]))
+                datalink.create_advert(ads[i])
+
+            assert len(ads) == 5
+
+            # check only the 2 available ads were returned
+            availables = datalink.get_available_ads()
+            self.assertEquals(len(availables), 2) # only 2 should be available in first 5 test ads
+            self.assertEqual(availables[0].title, "in date")
+            self.assertEqual(availables[1].title, "in date")
+
+            # remove test rows
+            for ad in ads:
+                datalink.delete_advert(ad)
+            datalink.delete_user(user1)
+            datalink.delete_user(user2)
+
 
 if __name__ == '__main__':
     unittest.main()

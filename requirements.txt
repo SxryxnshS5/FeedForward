@@ -8,3 +8,4 @@ flask_login
 mysql-connector-python
 unittest
 flask_sqlalchemy
+SQLAlchemy

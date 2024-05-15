@@ -1,9 +1,9 @@
-# table = user | advert | foodorder | message
-import mysql.connector
 import sqlalchemy
+from sqlalchemy import and_
 from sqlalchemy.exc import SQLAlchemyError
 from app import db, app
 from models import User, Advert, Message, Collection
+from datetime import datetime
 
 def _connect():
     # connect to database, only use internally for testing
@@ -44,7 +44,9 @@ def get_available_ads():
     """returns list of adverts that are currently available to collect
         autimatically marks out of date ads as unavailable
     """
-    pass
+    check_expiry()
+    return Advert.query.filter_by(available=True).all()
+
 
 
 def get_user(username):
@@ -61,9 +63,13 @@ def set_advert_unavailable(adID):
     pass
 
 
-def check_expirery():
+def check_expiry():
     """finds and marks all adverts past their expiry date as unavailable"""
-    pass
+    # equivalent to UPDATE Advert SET available=False WHERE available AND expiry < now
+    Advert.query.filter(
+        and_(Advert.available, Advert.expiry < datetime.now())
+    ).update({Advert.available: False})
+    db.session.commit()
 
 
 def update_details(old_user, updated_user):
