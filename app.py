@@ -47,5 +47,11 @@ def newsletter():
 def create_admin_account():
     return render_template('main/create_admin_account.html')
 
+# Import blueprints (imported here to avoid Circular Import Error)
+from users.views import users_blueprint
+
+# Register blueprints with app
+app.register_blueprint(users_blueprint)
+
 if __name__ == '__main__':
     app.run(debug=True)
