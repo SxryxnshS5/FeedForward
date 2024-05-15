@@ -3,7 +3,7 @@ import unittest
 from datetime import datetime
 from models import User, Advert, Collection, Message
 from app import app, db
-from sqlalchemy import tuple_
+from sqlalchemy import or_
 
 test_users = [
     ["testemail1@gmail.com", "password", "John", "Smith", datetime.now(), "lorem ipsum", "user"],
@@ -16,7 +16,12 @@ test_adverts = [
 
 test_messages = [
     ["testemail1@gmail.com", "testemail2@gmail.com",
-     datetime.strptime("01/01/2001 01:01:01", "%d/%m/%Y %H:%M:%S"), "hello world"]
+     datetime.strptime("01/01/2001 01:01:01", "%d/%m/%Y %H:%M:%S"), "hello world"],
+]
+
+test_collections = [
+    #replace adIDs
+    [1, "testemail1@gmail.com", "testemail2@gmail.com", datetime.now()],
 ]
 
 class TestDatabase(unittest.TestCase):
@@ -24,26 +29,24 @@ class TestDatabase(unittest.TestCase):
     def setUp(self):
         """remove any test rows from the database if they are still there from failed tests"""
         with app.app_context():
-            # get primary keys for each test row
-            adIDs = [advert[0] for advert in test_adverts]
+            # get test user emails
             emails = [user[0] for user in test_users]
-            messageIDs = [(msg[0], msg[1], msg[2]) for msg in test_messages]
 
-            # find any existing test rows
-            ads = Advert.query.filter(Advert.adID.in_(adIDs))
+            # find any existing test rows that are linked to test emails
+            ads = Advert.query.filter(Advert.owner.in_(emails))
             users = User.query.filter(User.email.in_(emails))
             messages = Message.query.filter(
-                tuple_(Message.sender, Message.receiver, Message.timestamp).in_(messageIDs))
+                or_(Message.sender.in_(emails), Message.receiver.in_(emails)))
 
             # remove any existing test rows
+            for msg in messages:
+                datalink.delete_message(msg)
+
             for ad in ads:
                 datalink.delete_advert(ad)
 
             for user in users:
                 datalink.delete_user(user)
-
-            for msg in messages:
-                datalink.delete_user(msg)
 
     def test_connect(self):
         """test datalink can connect to the database"""
@@ -105,6 +108,33 @@ class TestDatabase(unittest.TestCase):
                                         timestamp=test_message[2]).first()
             self.assertIsNone(q)
 
+    def test_create_delete_collection(self):
+        with app.app_context():
+            # setup
+            seller = User(*test_users[0])
+            datalink.create_user(seller)
+            collector = User(*test_users[1])
+            datalink.create_user(collector)
+
+            advert = Advert(*test_adverts[0])
+            datalink.create_advert(advert)
+
+            # test creation
+            test_collect = test_collections[0]
+            test_collect[0] = advert.adID
+            collection = Collection(*test_collect)
+
+            datalink.create_order(collection)
+            q = Collection.query.filter_by(advert=test_collect[0], buyer=test_collect[2]).first()
+            self.assertIsNotNone(q)
+
+            # test deletion
+            datalink.delete_order(collection)
+            datalink.delete_advert(advert)
+            datalink.delete_user(seller)
+            datalink.delete_user(collector)
+            q = Collection.query.filter_by(advert=test_collect[0], buyer=test_collect[2]).first()
+            self.assertIsNone(q)
 
 if __name__ == '__main__':
     unittest.main()

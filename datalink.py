@@ -91,4 +91,10 @@ def delete_message(message):
     db.session.commit()
 
 
+def delete_order(order):
+    """removes order object's row in foodorder table"""
+    db.session.delete(order)
+    db.session.commit()
+
+
 
