@@ -1,0 +1,109 @@
+.image-container {
+    position: relative;
+    width: 100%;
+}
+
+.sticky-image {
+    width: 100%;
+    display: block;
+}
+
+.image-text {
+    position: absolute;
+    top: 50%; /* Adjust vertically */
+    left: 50%; /* Adjust horizontally */
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+
+
+
+.background-container {
+    width: 80%; /* Adjust the width as needed */
+    margin: 50px auto;
+    background-color: rgba(217, 217, 217, 0.7); /* Translucent background color */
+    border-radius: 80px; /* Border radius for a softer square shape */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* Padding to ensure the content doesn't touch the edges */
+}
+
+  .fjalla-one-regular {
+    font-family: "Fjalla One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 60px;
+  }
+
+  .form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 5px;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+input[type="text"],
+textarea,
+input[type="date"],
+input[type="time"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+textarea {
+    height: 100px; /* Adjust height for the 'Food Description' field */
+}
+input[type="submit"] {
+    background-color: #4F6F52;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin: 0 auto; /* Align the button in the middle */
+}
+input[type="submit"]:hover {
+    background-color: #1A4D2E;
+}
+
+.map-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.map-container h3 {
+    text-align: left; /* Align text on the left side */
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+.map-image {
+    max-width: 100%;
+    height: auto;
+}
+.open-map-button {
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 90px;
+}
+.open-map-button:hover {
+    background-color: #0056b3;
+}

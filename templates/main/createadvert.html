@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" href="../static/css/createadvert.css">
+
+<div class="image-container">
+    <img src="../static/images/base/uppershape.png" alt="Sticky Image" class="sticky-image">
+    <div class="image-text">
+        <h2 class="fjalla-one-regular">Create Advert</h2>
+    </div>
+</div>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="notification is-danger">
+    {{ messages[0] }}.
+</div>
+{% endif %}
+{% endwith %}
+
+<div class="background-container">
+    <div class="form-container">
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="donor_name">Donor Name:</label>
+                <input type="text" id="donor_name" name="donor_name" required>
+            </div>
+            <div class="form-group">
+                <label for="food_description">Food Description:</label>
+                <textarea id="food_description" name="food_description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required>
+            </div>
+            <div class="form-group">
+                <label for="best_before">Best Before:</label>
+                <input type="date" id="best_before_date" name="best_before_date" required>
+                <input type="time" id="best_before_time" name="best_before_time" required>
+            </div>
+            
+        </form>
+
+    </div>
+    <div class="map-container">
+        <h3>Drop your location on the map:</h3>
+        <img src="../../static/images/create-advert/map.png" alt="Map Image" class="map-image">
+        <button class="open-map-button">Open Map</button>
+    </div>
+    <input type="submit" value="Create Advert">
+</div>
+
+{% endblock %}
