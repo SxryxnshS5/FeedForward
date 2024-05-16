@@ -15,7 +15,7 @@ def signup():
     if current_user.is_anonymous:
 
         # create a SignUp form object
-        form = SignUpForm
+        form = SignUpForm()
 
         if form.validate_on_submit():
             # check if the user already exists in the db
