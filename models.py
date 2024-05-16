@@ -17,6 +17,7 @@ class User(db.Model, UserMixin):
     dob = db.Column(db.DateTime, nullable=False)
     address = db.Column(db.String(100), nullable=False)
     role = db.Column(db.String(5), nullable=False, default='user')
+    phone = db.Column(db.String(11), nullable=False)
 
     adverts = db.relationship('Advert')
     sent_messages = db.relationship('Message', foreign_keys='[Message.sender]')
@@ -24,7 +25,7 @@ class User(db.Model, UserMixin):
     collected_orders = db.relationship('Collection', foreign_keys='[Collection.buyer]')
     sold_orders = db.relationship('Collection', foreign_keys='[Collection.seller]')
 
-    def __init__(self, email, password, first_name, surname, dob, address, role):
+    def __init__(self, email, password, first_name, surname, dob, address, phone, role):
         """Constructor for User class"""
         self.email = email
         self.password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
@@ -33,6 +34,7 @@ class User(db.Model, UserMixin):
         self.dob = dob
         self.address = address
         self.role = role
+        self.phone = phone
         self.messages = []
 
     def set_email(self, new_email):

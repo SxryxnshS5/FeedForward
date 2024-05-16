@@ -75,4 +75,3 @@ def login():
                 return redirect(url_for('main.admin'))
 
     return render_template('main/login.html', form=form)
-

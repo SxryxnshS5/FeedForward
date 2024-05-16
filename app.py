@@ -45,25 +45,35 @@ def login():
 def signup():
     return render_template('main/signup.html')
 
+
 @app.route('/account')
 def account():
     return render_template('main/account.html')
+
 
 @app.route('/about')
 def about():
     return render_template('main/about.html')
 
+
 @app.route('/adminaccount')
 def adminaccount():
     return render_template('main/adminaccount.html')
+
 
 @app.route('/newsletter')
 def newsletter():
     return render_template('main/newsletter.html')
 
+
 @app.route('/create_admin_account')
 def create_admin_account():
     return render_template('main/create_admin_account.html')
+
+
+@app.route('/create_advert')
+def create_advert():
+    return render_template('main/createadvert.html')
 
 # Import blueprints (imported here to avoid Circular Import Error)
 from users.views import users_blueprint
@@ -72,6 +82,7 @@ from admin.views import admin_blueprint
 # Register blueprints with app
 app.register_blueprint(users_blueprint)
 app.register_blueprint(admin_blueprint)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
