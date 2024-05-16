@@ -24,11 +24,15 @@ login_manager.login_view = 'users.login'
 login_manager.init_app(app)
 
 # import User from models (imported here to avoid Circular Import Error)
-from models import User
+
+
+
 @login_manager.user_loader
 def load_user(email):
+    from models import User
     """ user loader function for LoginManager to get user instances from the db """
     return User.query.filter_by(email=email).first()
+
 
 # Define your Flask route to render the HTML template
 @app.route('/')
@@ -75,14 +79,16 @@ def create_admin_account():
 def create_advert():
     return render_template('main/createadvert.html')
 
-# Import blueprints (imported here to avoid Circular Import Error)
-from users.views import users_blueprint
-from admin.views import admin_blueprint
 
-# Register blueprints with app
-app.register_blueprint(users_blueprint)
-app.register_blueprint(admin_blueprint)
+
 
 
 if __name__ == '__main__':
+    # Import blueprints (imported here to avoid Circular Import Error)
+    from users.views import users_blueprint
+    from admin.views import admin_blueprint
+
+    # Register blueprints with app
+    app.register_blueprint(users_blueprint)
+    app.register_blueprint(admin_blueprint)
     app.run(debug=True)
