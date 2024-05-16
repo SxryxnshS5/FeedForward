@@ -3,12 +3,21 @@ from flask import Flask, render_template
 from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_wtf import CSRFProtect
+from flask_wtf.csrf import CSRFProtect
+
+
+
+
 
 app = Flask(__name__)
 
+csrf = CSRFProtect(app)
+
+
 # Configuring the secret key to sign and validate session cookies.
 load_dotenv()
-app.config['SECRET_KEY'] = os.getenv('SECRET KEY')
+app.config['SECRET_KEY'] = 'a3f0b27e5d8c49e7bf6a38d9c4e216dc'
 
 # setup database
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
@@ -23,12 +32,16 @@ login_manager.login_view = 'users.login'
 # register LoginManager instance with app
 login_manager.init_app(app)
 
-# import User from models (imported here to avoid Circular Import Error)
-from models import User
+
+
+
+
 @login_manager.user_loader
 def load_user(email):
+    from models import User
     """ user loader function for LoginManager to get user instances from the db """
     return User.query.filter_by(email=email).first()
+
 
 # Define your Flask route to render the HTML template
 @app.route('/')
@@ -41,9 +54,6 @@ def login():
     return render_template('main/login.html')
 
 
-@app.route('/signup')
-def signup():
-    return render_template('main/signup.html')
 
 
 @app.route('/account')
@@ -75,14 +85,16 @@ def create_admin_account():
 def create_advert():
     return render_template('main/createadvert.html')
 
-# Import blueprints (imported here to avoid Circular Import Error)
-from users.views import users_blueprint
-from admin.views import admin_blueprint
 
-# Register blueprints with app
-app.register_blueprint(users_blueprint)
-app.register_blueprint(admin_blueprint)
+
 
 
 if __name__ == '__main__':
+    # Import blueprints (imported here to avoid Circular Import Error)
+    from users.views import users_blueprint
+    from admin.views import admin_blueprint
+
+    # Register blueprints with app
+    app.register_blueprint(users_blueprint)
+    app.register_blueprint(admin_blueprint)
     app.run(debug=True)
