@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template
 from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
 app = Flask(__name__)
 
@@ -15,6 +16,19 @@ app.config['SQLALCHEMY_ECHO'] = os.getenv('SQLALCHEMY_ECHO') == 'True'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS') == 'True'
 db = SQLAlchemy(app)
 
+# initialise instance of LoginManager
+login_manager = LoginManager()
+# set view function which renders login page
+login_manager.login_view = 'users.login'
+# register LoginManager instance with app
+login_manager.init_app(app)
+
+# import User from models (imported here to avoid Circular Import Error)
+from models import User
+@login_manager.user_loader
+def load_user(email):
+    """ user loader function for LoginManager to get user instances from the db """
+    return User.query.filter_by(email=email).first()
 
 # Define your Flask route to render the HTML template
 @app.route('/')
@@ -55,6 +69,19 @@ def newsletter():
 @app.route('/create_admin_account')
 def create_admin_account():
     return render_template('main/create_admin_account.html')
+
+
+@app.route('/create_advert')
+def create_advert():
+    return render_template('main/createadvert.html')
+
+# Import blueprints (imported here to avoid Circular Import Error)
+from users.views import users_blueprint
+from admin.views import admin_blueprint
+
+# Register blueprints with app
+app.register_blueprint(users_blueprint)
+app.register_blueprint(admin_blueprint)
 
 
 if __name__ == '__main__':
