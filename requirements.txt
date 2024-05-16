@@ -6,6 +6,5 @@ werkzeug
 mime
 flask_login
 mysql-connector-python
-requests==2.26.0
-pytest==6.2.5
+unittest
 flask_sqlalchemy
