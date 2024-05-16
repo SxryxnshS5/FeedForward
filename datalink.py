@@ -1,14 +1,18 @@
 import sqlalchemy
+import os
 from sqlalchemy import and_, or_
 from sqlalchemy.exc import SQLAlchemyError
 from app import db
 from models import User, Advert, Message, Collection
 from datetime import datetime
+from dotenv import load_dotenv
+
 
 
 def _connect():
     # connect to database, only use internally for testing
-    engine = sqlalchemy.create_engine("mysql+mysqlconnector://root:password@localhost:3306/2033foodsharing")
+    load_dotenv()
+    engine = sqlalchemy.create_engine(os.getenv('SQLALCHEMY_DATABASE_URI'))
     try:
         engine.connect()
         print("connected")
@@ -101,10 +105,13 @@ def get_user_collections(collector_email):
     return Collection.query.filter_by(buyer=collector_email)
 
 
-def get_message_history(user_email):
-    """return all messages sent to and from a user in time order"""
+def get_message_history(user_email1, user_email2):
+    """return all messages sent to between 2 users"""
     return Message.query.filter(
-        or_(Message.sender == user_email, Message.receiver == user_email)
+        or_(
+            and_(Message.sender == user_email1, Message.receiver == user_email2),
+            and_(Message.sender == user_email2, Message.receiver == user_email1),
+        )
     ).order_by(Message.timestamp).all()
 
 

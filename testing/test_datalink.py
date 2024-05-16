@@ -9,6 +9,8 @@ from sqlalchemy import or_
 test_users = [
     ["testemail1@gmail.com", "password", "John", "Smith", datetime.now(), "lorem ipsum", "user"],
     ["testemail2@gmail.com", "password", "Eva", "Smith", datetime.now(), "lorem ipsum", "user"],
+    ["testemail3@gmail.com", "password", "Alex", "Smith", datetime.now(), "lorem ipsum", "user"],
+    ["testemail4@gmail.com", "password", "Bob", "Smith", datetime.now(), "lorem ipsum", "user"],
 ]
 
 # ads with this use by will always be in date
@@ -26,7 +28,13 @@ test_adverts = [
 
 test_messages = [
     ["testemail1@gmail.com", "testemail2@gmail.com",
-     datetime.strptime("01/01/2001 01:01:01", "%d/%m/%Y %H:%M:%S"), "hello world"],
+     datetime.strptime("01/01/2001 01:01:01", "%d/%m/%Y %H:%M:%S"), "1"],
+    ["testemail2@gmail.com", "testemail1@gmail.com",
+         datetime.strptime("01/01/2001 01:01:02", "%d/%m/%Y %H:%M:%S"), "2"],
+    ["testemail1@gmail.com", "testemail2@gmail.com",
+         datetime.strptime("01/01/2001 01:01:03", "%d/%m/%Y %H:%M:%S"), "3"],
+    ["testemail3@gmail.com", "testemail4@gmail.com",
+         datetime.strptime("01/01/2001 01:01:01", "%d/%m/%Y %H:%M:%S"), "hello world"],
 ]
 
 test_collections = [
@@ -190,6 +198,24 @@ class TestDatabase(unittest.TestCase):
             datalink.delete_user(user1)
             datalink.delete_user(user2)
 
+    def test_get_message_history(self):
+        with app.app_context():
+            users = [User(*u) for u in test_users]
+            for u in users:
+                datalink.create_user(u)
+            messages = [Message(*m) for m in test_messages]
+            for m in messages:
+                datalink.create_message(m)
+
+            history = datalink.get_message_history("testemail1@gmail.com", "testemail2@gmail.com")
+            # check messages collected
+            self.assertEqual(len(history), 3)
+            # check messages in order - should be "1", "2", "3"
+            for i in range(3):
+                self.assertEquals(history[i].contents, str(i+1))
+
+            for u in users:
+                datalink.delete_user(u)
 
 if __name__ == '__main__':
     unittest.main()
