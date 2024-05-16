@@ -32,8 +32,6 @@ login_manager.login_view = 'users.login'
 # register LoginManager instance with app
 login_manager.init_app(app)
 
-# import User from models (imported here to avoid Circular Import Error)
-print("Secret Key:", app.config['SECRET_KEY'])
 
 
 
