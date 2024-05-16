@@ -1,5 +1,5 @@
 from flask_login import login_user, logout_user, current_user, login_required
-from users.forms import RegisterForm, LoginForm
+from users.forms import SignUpForm, LoginForm
 import bcrypt
 from flask import Blueprint, flash, render_template, session, redirect, url_for
 from models import User
@@ -11,7 +11,7 @@ users_blueprint = Blueprint('users', __name__, template_folder='templates')
 @users_blueprint.route('/register', methods=['GET', 'POST'])
 def register():
     # create signup form object
-    form = RegisterForm()
+    form = SignUpForm()
     # Check if user is logged out
     if current_user.is_anonymous:
         # if request method is POST or form is valid
@@ -48,4 +48,3 @@ def register():
         return render_template('main/account.html')
     # if request method is GET or form not valid re-render signup page
     return render_template('main/signup.html', form=form)
-
