@@ -3,12 +3,21 @@ from flask import Flask, render_template
 from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_wtf import CSRFProtect
+from flask_wtf.csrf import CSRFProtect
+
+
+
+
 
 app = Flask(__name__)
 
+csrf = CSRFProtect(app)
+
+
 # Configuring the secret key to sign and validate session cookies.
 load_dotenv()
-app.config['SECRET_KEY'] = os.getenv('SECRET KEY')
+app.config['SECRET_KEY'] = 'a3f0b27e5d8c49e7bf6a38d9c4e216dc'
 
 # setup database
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
@@ -24,6 +33,8 @@ login_manager.login_view = 'users.login'
 login_manager.init_app(app)
 
 # import User from models (imported here to avoid Circular Import Error)
+print("Secret Key:", app.config['SECRET_KEY'])
+
 
 
 
@@ -45,9 +56,6 @@ def login():
     return render_template('main/login.html')
 
 
-@app.route('/signup')
-def signup():
-    return render_template('main/signup.html')
 
 
 @app.route('/account')

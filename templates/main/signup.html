@@ -28,6 +28,8 @@
         <!-- Signup form -->
         <form action="#" class="signup-form" method="POST">
           <div class="form-group">
+            {{ form.csrf_token }}
+
               <label for="first-name">First Name</label>
               <input type="text" id="first-name" name="first-name" required>
           </div>

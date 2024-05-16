@@ -8,8 +8,8 @@ from app import db
 users_blueprint = Blueprint('users', __name__, template_folder='templates')
 
 
-@users_blueprint.route('/register', methods=['GET', 'POST'])
-def register():
+@users_blueprint.route('/signup', methods=['GET', 'POST'])
+def signup():
     # create signup form object
     form = SignUpForm()
     # Check if user is logged out
@@ -48,3 +48,5 @@ def register():
         return render_template('main/account.html')
     # if request method is GET or form not valid re-render signup page
     return render_template('main/signup.html', form=form)
+
+
