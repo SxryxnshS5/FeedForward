@@ -31,25 +31,31 @@ def login():
 def signup():
     return render_template('main/signup.html')
 
+
 @app.route('/account')
 def account():
     return render_template('main/account.html')
+
 
 @app.route('/about')
 def about():
     return render_template('main/about.html')
 
+
 @app.route('/adminaccount')
 def adminaccount():
     return render_template('main/adminaccount.html')
+
 
 @app.route('/newsletter')
 def newsletter():
     return render_template('main/newsletter.html')
 
+
 @app.route('/create_admin_account')
 def create_admin_account():
     return render_template('main/create_admin_account.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
