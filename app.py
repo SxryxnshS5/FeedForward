@@ -80,7 +80,9 @@ def create_advert():
     return render_template('main/createadvert.html')
 
 
-
+@app.route('/advert_details')
+def advert_details():
+    return render_template('main/advert_details.html')
 
 
 if __name__ == '__main__':

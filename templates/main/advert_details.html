@@ -2,12 +2,12 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="../static/css/createadvert.css">
+<link rel="stylesheet" href="../static/css/advertdetails.css">
 
 <div class="image-container">
     <img src="../static/images/base/uppershape.png" alt="Sticky Image" class="sticky-image">
     <div class="image-text">
-        <h2 class="fjalla-one-regular">Create Advert</h2>
+        <h2 class="fjalla-one-regular">Advert Details</h2>
     </div>
 </div>
 
@@ -24,31 +24,36 @@
         <form action="#" method="post">
             <div class="form-group">
                 <label for="donor_name">Donor Name:</label>
-                <input type="text" id="donor_name" name="donor_name" required>
+                <textarea id="donor_name" name="donor_name" readonly>John Smith</textarea>
             </div>
             <div class="form-group">
                 <label for="food_description">Food Description:</label>
-                <textarea id="food_description" name="food_description" required readonly>r</textarea>
+                <textarea id="food_description" name="food_description" required readonly>Leftover vegetables</textarea>
             </div>
             <div class="form-group">
                 <label for="address">Address:</label>
-                <input type="text" id="address" name="address" required>
+                <textarea id="address" name="address" required readonly>Urban Sciences Building</textarea>
             </div>
             <div class="form-group">
                 <label for="best_before">Best Before:</label>
-                <input type="date" id="best_before_date" name="best_before_date" required>
-                <input type="time" id="best_before_time" name="best_before_time" required>
+                <input type="date" id="best_before_date" name="best_before_date" value="2024-01-01" required>
+                <input type="time" id="best_before_time" name="best_before_time"  value="17:00" required>
             </div>
-            
+
         </form>
 
     </div>
     <div class="map-container">
-        <h3>Drop your location on the map:</h3>
+        <h3>Location of Advert:</h3>
         <img src="../../static/images/create-advert/map.png" alt="Map Image" class="map-image">
         <button class="open-map-button">Open Map</button>
+
     </div>
-    <input type="submit" value="Create Advert">
+    <div class="button-container">
+        <button class="collect-message-button">Collect Advert</button>
+    <button class="collect-message-button">Message Advertiser</button>
+    </div>
+
 </div>
 
 {% endblock %}
