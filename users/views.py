@@ -48,4 +48,3 @@ def register():
         return render_template('main/account.html')
     # if request method is GET or form not valid re-render signup page
     return render_template('main/signup.html', form=form)
-
