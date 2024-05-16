@@ -19,11 +19,15 @@ class User(db.Model, UserMixin):
     role = db.Column(db.String(5), nullable=False, default='user')
     phone = db.Column(db.String(11), nullable=False)
 
-    adverts = db.relationship('Advert')
-    sent_messages = db.relationship('Message', foreign_keys='[Message.sender]')
-    received_messages = db.relationship('Message', foreign_keys='[Message.receiver]')
-    collected_orders = db.relationship('Collection', foreign_keys='[Collection.buyer]')
-    sold_orders = db.relationship('Collection', foreign_keys='[Collection.seller]')
+    adverts = db.relationship('Advert', cascade="all,delete")
+    sent_messages = db.relationship('Message', foreign_keys='[Message.sender]',
+                                    cascade="all,delete")
+    received_messages = db.relationship('Message', foreign_keys='[Message.receiver]',
+                                        cascade="all,delete")
+    collected_orders = db.relationship('Collection', foreign_keys='[Collection.buyer]',
+                                       cascade="all,delete")
+    sold_orders = db.relationship('Collection', foreign_keys='[Collection.seller]',
+                                  cascade="all,delete")
 
     def __init__(self, email, password, first_name, surname, dob, address, phone, role):
         """Constructor for User class"""
@@ -107,6 +111,7 @@ class Advert(db.Model):
     contents = db.Column(db.String(200), nullable=False)
     owner = db.Column("creatorID", db.ForeignKey(User.email), nullable=False)
     expiry = db.Column(db.DateTime, nullable=False)
+    available = db.Column(db.Boolean, nullable=False)
 
     def __init__(self, title, address, contents, owner, expiry, available=True):
         """Constructor for Advert class"""
