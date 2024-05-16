@@ -56,6 +56,9 @@ def newsletter():
 def create_admin_account():
     return render_template('main/create_admin_account.html')
 
+@app.route('/create_advert')
+def create_advert():
+    return render_template('main/createadvert.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
