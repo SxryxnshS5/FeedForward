@@ -1,8 +1,10 @@
 """python file that contains all the models for the project"""
 from app import db, app
+from flask_login import UserMixin
+import bcrypt
 
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     """User class that acts as a template for all User objects, and contains
     all of a user's attributes and methods, as well as the constructor
     for a User object"""
@@ -17,16 +19,20 @@ class User(db.Model):
     role = db.Column(db.String(5), nullable=False, default='user')
     phone = db.Column(db.String(11), nullable=False)
 
-    adverts = db.relationship('Advert')
-    sent_messages = db.relationship('Message', foreign_keys='[Message.sender]')
-    received_messages = db.relationship('Message', foreign_keys='[Message.receiver]')
-    collected_orders = db.relationship('Collection', foreign_keys='[Collection.buyer]')
-    sold_orders = db.relationship('Collection', foreign_keys='[Collection.seller]')
+    adverts = db.relationship('Advert', cascade="all,delete")
+    sent_messages = db.relationship('Message', foreign_keys='[Message.sender]',
+                                    cascade="all,delete")
+    received_messages = db.relationship('Message', foreign_keys='[Message.receiver]',
+                                        cascade="all,delete")
+    collected_orders = db.relationship('Collection', foreign_keys='[Collection.buyer]',
+                                       cascade="all,delete")
+    sold_orders = db.relationship('Collection', foreign_keys='[Collection.seller]',
+                                  cascade="all,delete")
 
     def __init__(self, email, password, first_name, surname, dob, address, phone, role):
         """Constructor for User class"""
         self.email = email
-        self.password = password
+        self.password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
         self.first_name = first_name
         self.surname = surname
         self.dob = dob
@@ -87,6 +93,11 @@ class User(db.Model):
         """Getter for role variable"""
         return self.role
 
+    def verify_password(self, password):
+        """Function to check submitted password matches with the database password (compared after encrypting the
+        submitted password) """
+        return bcrypt.checkpw(password.encode('utf-8'), self.password)
+
 
 class Advert(db.Model):
     """Advert class that acts as a template for all Advert objects, and contains
@@ -100,6 +111,7 @@ class Advert(db.Model):
     contents = db.Column(db.String(200), nullable=False)
     owner = db.Column("creatorID", db.ForeignKey(User.email), nullable=False)
     expiry = db.Column(db.DateTime, nullable=False)
+    available = db.Column(db.Boolean, nullable=False)
 
     def __init__(self, title, address, contents, owner, expiry, available=True):
         """Constructor for Advert class"""

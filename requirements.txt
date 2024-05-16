@@ -9,3 +9,4 @@ mysql-connector-python
 unittest
 flask_sqlalchemy
 bcrypt
+SQLAlchemy

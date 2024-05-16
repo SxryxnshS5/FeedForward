@@ -54,4 +54,5 @@ def create_admin_account():
 
         # redirect admin to main admin page
         return redirect(url_for('main.adminaccount'))
+
     return render_template('main/adminaccount.html', form=form)
