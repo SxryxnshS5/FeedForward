@@ -40,7 +40,7 @@ def register():
             # create session variable
             session['email'] = new_user.email
             # sends user to 2fa page
-            return redirect(url_for('users.setup_2fa'))
+            return redirect(url_for('main/account.html'))
     else:
         # if user is already logged in
         flash('You are already logged in.')
