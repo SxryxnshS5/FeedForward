@@ -1,7 +1,7 @@
 import sqlalchemy
-from sqlalchemy import and_
+from sqlalchemy import and_, or_
 from sqlalchemy.exc import SQLAlchemyError
-from app import db, app
+from app import db
 from models import User, Advert, Message, Collection
 from datetime import datetime
 
@@ -76,28 +76,36 @@ def check_expiry():
     db.session.commit()
 
 
-def update_details(old_user, updated_user):
+def update_details(database_user, updated_user):
     """updates old_user's details to have updated_user's attribtutes
         - note a new username must be unique
         - note role cannot be changed to admin here
     """
-    if updated_user.role == "admin" and old_user.role != "admin":
+    if updated_user.role == "admin" and database_user.role != "admin":
         raise ValueError("Cannot change role to admin")
     if not is_unique(updated_user.email):
         raise ValueError("Username unavailable")
 
-    old_user.email = updated_user.email
-    old_user.password = updated_user.password
-    old_user.first_name = updated_user.first_name
-    old_user.surname = updated_user.surname
-    old_user.dob = updated_user.dob
-    old_user.address = updated_user.address
-    old_user.role = updated_user.role
+    database_user.email = updated_user.email
+    database_user.password = updated_user.password
+    database_user.first_name = updated_user.first_name
+    database_user.surname = updated_user.surname
+    database_user.dob = updated_user.dob
+    database_user.address = updated_user.address
+    database_user.role = updated_user.role
     db.session.commit()
 
 
 def get_user_collections(collector_email):
+    """return collections made by a user"""
     return Collection.query.filter_by(buyer=collector_email)
+
+
+def get_message_history(user_email):
+    """return all messages sent to and from a user in time order"""
+    return Message.query.filter(
+        or_(Message.sender == user_email, Message.receiver == user_email)
+    ).order_by(Message.timestamp).all()
 
 
 def delete_user(user):
