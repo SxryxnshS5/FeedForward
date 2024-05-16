@@ -18,52 +18,62 @@
 }
 
 .container1 {
-  width: 80%; /* Change the width as per your requirement */
-  max-width: 500px; /* Increase the maximum width */
+  width: 80%;
+  max-width: 500px;
   margin: 50px auto;
   padding: 20px;
-  border-radius: 10px; /* Increased border radius for a softer square shape */
-  
+  border-radius: 10px;
+
+}
+
+.signupbtn {
+  width: 40%;
+  padding: 15px;
+  background-color: #FFFFFF;
+  color: #000000;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .background-container {
-  width: 75%; /* Adjust the width as needed */
+  width: 75%;
   margin: 50px auto;
   background-color: rgba(217, 217, 217, 0.7); /* Translucent background color */
-  border-radius: 80px; /* Border radius for a softer square shape */
+  border-radius: 80px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px; /* Padding to ensure the content doesn't touch the edges */
+  padding: 20px; /
 }
 
-  
+
   .signup-form {
     text-align: center;
   }
-  
+
   .form-group {
     margin-bottom: 20px;
   }
-  
+
   label {
     display: block;
     margin-bottom: 5px;
   }
-  
+
   input[type="text"],
   input[type="email"],
   input[type="tel"],
-  input[type="address"],
-  input[type="dob"],
   input[type="password"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
   }
-  
- .signupbtn {
+
+  button {
     width: 40%;
     padding: 15px;
+
     background-color: #FFFFFF;
     color: #000000;
     border: none;
@@ -71,7 +81,7 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
-  
+
   button:hover {
     background-color: #0056b3;
   }
@@ -82,4 +92,3 @@
     font-style: normal;
     font-size: 60px;
   }
-  
