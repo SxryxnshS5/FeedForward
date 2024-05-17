@@ -29,13 +29,13 @@ def signup():
 
                 # create a new user with the form data
                 new_user = User(email=form.email.data,
-                            first_name=form.first_name.data,
-                            surname=form.last_name.data,
-                            password=form.password.data,
-                            role='user',
-                            dob=form.dob.data,
-                            address=form.address.data,
-                            phone=form.phone.data)
+                                first_name=form.first_name.data,
+                                surname=form.last_name.data,
+                                password=bcrypt.hashpw(form.password.data.encode('utf-8'), bcrypt.gensalt()),
+                                role='user',
+                                dob=form.dob.data,
+                                address=form.address.data,
+                                phone=form.phone.data)
 
                 # add the new user to the database
 
@@ -45,7 +45,7 @@ def signup():
                 # create session variable
                 session['email'] = new_user.email
                 # sends user to 2fa page
-                return redirect(url_for('main/account.html'))
+                return render_template('main/account.html')
     else:
         # if user is already logged in
         flash('You are already logged in.')
@@ -67,39 +67,39 @@ def login():
     if current_user.is_anonymous:
         # if request method is POST or form is valid
         if form.validate_on_submit():
-            from models import User
-            user = User.query.filter_by(email=form.email.data).first()
+            with app.app_context():
+                from models import User
+                user = User.query.filter_by(email=form.email.data).first()
 
-            # check user exists, password/pin/postcode are all correct
-            if not user or not user.verify_password(form.password.data):
-                # Increment authentication attempts
-                session['authentication_attempts'] += 1
-                # check if max number of authentication attempts has been exceeded
-                if session.get('authentication_attempts') >= 3:
-                    # time out the user
-                    flash(Markup(
-                        'Number of incorrect login attempts exceeded. Please click <a href = "/reset" > here </a> to reset.'))
-                    return render_template('main/login.html')
-                else:
-                    flash('Incorrect credentials, {} login attempts remaining'.format(
-                        3 - session.get('authentication_attempts')))
-                    # Generate security log for failed log in
-                    # redirect user to login page
-                    return render_template('main/login.html', form=form)
+                # check user exists, password/pin/postcode are all correct
+                if not user or not user.verify_password(form.password.data):
+                    # Increment authentication attempts
+                    session['authentication_attempts'] += 1
+                    # check if max number of authentication attempts has been exceeded
+                    if session.get('authentication_attempts') >= 3:
+                        # time out the user
+                        flash(Markup(
+                            'Number of incorrect login attempts exceeded. Please click <a href = "/reset" > here </a> to reset.'))
+                        return render_template('main/login.html')
+                    else:
+                        flash('Incorrect credentials, {} login attempts remaining'.format(
+                            3 - session.get('authentication_attempts')))
+                        # Generate security log for failed log in
+                        # redirect user to login page
+                        return render_template('main/login.html', form=form)
 
-            else:
-                # create user
-                login_user(user)
-                current_user.num_logins += 1
-                db.session.commit()
-                # reset authentication attempts
-                session['authentication_attempts'] = 0
-                # generate security log for user log in
-                # redirect to correct page depending on role
-                if current_user.role == 'user':
-                    return redirect(url_for('lottery.lottery'))
                 else:
-                    return redirect(url_for('admin.admin'))
+                    # create user
+                    login_user(user)
+                    db.session.commit()
+                    # reset authentication attempts
+                    session['authentication_attempts'] = 0
+                    # generate security log for user log in
+                    # redirect to correct page depending on role
+                    if current_user.role == 'user':
+                        return render_template('main/account.html')
+                    else:
+                        return render_template('main/adminaccount.html')
     else:
         # if user is already logged in
         flash('You are already logged in.')
