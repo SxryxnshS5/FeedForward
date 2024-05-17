@@ -5,6 +5,7 @@ python_dotenv==1.0.1
 werkzeug
 mime
 flask_login
+email_validator
 mysql-connector-python
 unittest
 flask_sqlalchemy
