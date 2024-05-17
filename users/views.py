@@ -11,6 +11,7 @@ users_blueprint = Blueprint('users', __name__, template_folder='templates')
 
 @users_blueprint.route('/signup', methods=['GET', 'POST'])
 def signup():
+    """Function that provides the functionality of the sign up form"""
     # create signup form object
     form = SignUpForm()
     # Check if user is logged out
@@ -35,7 +36,7 @@ def signup():
                             address=form.address.data)
 
             # add the new user to the database
-            print(new_user)
+
             db.session.add(new_user)
             db.session.commit()
 
@@ -55,6 +56,7 @@ def signup():
 # view user login
 @users_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
+    """Function that provides the functionality of the login form"""
     # set authentication attempts to 0 if there is no authentication attempts yet
     if not session.get('authentication_attempts'):
         session['authentication_attempts'] = 0
