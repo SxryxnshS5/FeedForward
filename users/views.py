@@ -29,13 +29,13 @@ def signup():
 
                 # create a new user with the form data
                 new_user = User(email=form.email.data,
-                            first_name=form.first_name.data,
-                            surname=form.last_name.data,
-                            password=form.password.data,
-                            role='user',
-                            dob=form.dob.data,
-                            address=form.address.data,
-                            phone=form.phone.data)
+                                first_name=form.first_name.data,
+                                surname=form.last_name.data,
+                                password=form.password.data,
+                                role='user',
+                                dob=form.dob.data,
+                                address=form.address.data,
+                                phone=form.phone.data)
 
                 # add the new user to the database
 
@@ -45,7 +45,7 @@ def signup():
                 # create session variable
                 session['email'] = new_user.email
                 # sends user to 2fa page
-                return redirect(url_for('main/account.html'))
+                return render_template('main/account.html')
     else:
         # if user is already logged in
         flash('You are already logged in.')
