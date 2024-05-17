@@ -8,7 +8,6 @@ from datetime import datetime
 from dotenv import load_dotenv
 
 
-
 def _connect():
     # connect to database, only use internally for testing
     load_dotenv()
@@ -137,6 +136,3 @@ def delete_order(order):
     """removes order object's row in foodorder table"""
     db.session.delete(order)
     db.session.commit()
-
-
-

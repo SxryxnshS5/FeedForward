@@ -3,7 +3,7 @@ from users.forms import SignUpForm, LoginForm
 import bcrypt
 from flask import Blueprint, flash, render_template, session, redirect, url_for
 from models import User
-from app import db
+from app import db, app
 from markupsafe import Markup
 
 users_blueprint = Blueprint('users', __name__, template_folder='templates')
@@ -11,38 +11,41 @@ users_blueprint = Blueprint('users', __name__, template_folder='templates')
 
 @users_blueprint.route('/signup', methods=['GET', 'POST'])
 def signup():
+    """Function that provides the functionality of the sign up form"""
     # create signup form object
     form = SignUpForm()
     # Check if user is logged out
     if current_user.is_anonymous:
         # if request method is POST or form is valid
         if form.validate_on_submit():
-            print("PLEASE")
-            user = User.query.filter_by(email=form.email.data).first()
-            # if this returns a user, then the email already exists in database
-            # if email already exists redirect user back to signup page with error message so user can try again
-            if user:
-                flash('Email address already exists')
-                return render_template('main/signup.html', form=form)
+            with app.app_context():
+                print("PLEASE")
+                user = User.query.filter_by(email=form.email.data).first()
+                # if this returns a user, then the email already exists in database
+                # if email already exists redirect user back to signup page with error message so user can try again
+                if user:
+                    flash('Email address already exists')
+                    return render_template('main/signup.html', form=form)
 
-            # create a new user with the form data
-            new_user = User(email=form.email.data,
+                # create a new user with the form data
+                new_user = User(email=form.email.data,
                             first_name=form.first_name.data,
                             surname=form.last_name.data,
                             password=form.password.data,
                             role='user',
                             dob=form.dob.data,
-                            address=form.address.data)
+                            address=form.address.data,
+                            phone=form.phone.data)
 
-            # add the new user to the database
-            print(new_user)
-            db.session.add(new_user)
-            db.session.commit()
+                # add the new user to the database
 
-            # create session variable
-            session['email'] = new_user.email
-            # sends user to 2fa page
-            return redirect(url_for('main/account.html'))
+                db.session.add(new_user)
+                db.session.commit()
+
+                # create session variable
+                session['email'] = new_user.email
+                # sends user to 2fa page
+                return redirect(url_for('main/account.html'))
     else:
         # if user is already logged in
         flash('You are already logged in.')
@@ -55,6 +58,7 @@ def signup():
 # view user login
 @users_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
+    """Function that provides the functionality of the login form"""
     # set authentication attempts to 0 if there is no authentication attempts yet
     if not session.get('authentication_attempts'):
         session['authentication_attempts'] = 0
