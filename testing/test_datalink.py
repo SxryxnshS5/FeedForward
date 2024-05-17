@@ -7,10 +7,10 @@ from sqlalchemy import or_
 
 # test values for each table
 test_users = [
-    ["testemail1@gmail.com", "password", "John", "Smith", datetime.now(), "lorem ipsum", "user"],
-    ["testemail2@gmail.com", "password", "Eva", "Smith", datetime.now(), "lorem ipsum", "user"],
-    ["testemail3@gmail.com", "password", "Alex", "Smith", datetime.now(), "lorem ipsum", "user"],
-    ["testemail4@gmail.com", "password", "Bob", "Smith", datetime.now(), "lorem ipsum", "user"],
+    ["testemail1@gmail.com", "password", "John", "Smith", datetime.now(), "lorem ipsum", "1", "user"],
+    ["testemail2@gmail.com", "password", "Eva", "Smith", datetime.now(), "lorem ipsum", "1", "user"],
+    ["testemail3@gmail.com", "password", "Alex", "Smith", datetime.now(), "lorem ipsum", "1", "user"],
+    ["testemail4@gmail.com", "password", "Bob", "Smith", datetime.now(), "lorem ipsum", "1", "user"],
 ]
 
 # ads with this use by will always be in date
