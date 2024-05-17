@@ -73,6 +73,17 @@
                 </div>
             </div>
 
+            <!-- Phone -->
+            <div class="form-group field">
+                <div class="control">
+                    <label for="phone">Phone</label>
+                    {{ form.phone(class="input", placeholder="phone") }}
+                    {% for error in form.phone.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+
             <!-- Address -->
             <div class="form-group field">
                 <div class="control">
@@ -90,6 +101,17 @@
                     <label for="password">Password</label>
                     {{ form.password(class="input", placeholder="Password", type="password") }}  
                     {% for error in form.password.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-group field">
+                <div class="control">
+                    <label for="confirm_password">Confirm Password</label>
+                    {{ form.confirm_password(class="input", placeholder="Password", type="password") }}
+                    {% for error in form.confirm_password.errors %}
                         <div class="error">{{ error }}</div>
                     {% endfor %}
                 </div>
