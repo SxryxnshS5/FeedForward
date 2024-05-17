@@ -42,9 +42,6 @@ def index():
     return render_template('main/index.html')
 
 
-@app.route('/login')
-def login():
-    return render_template('main/login.html')
 
 
 @app.route('/account')
