@@ -70,6 +70,10 @@ def create_admin_account():
 
 
 
+@app.route('/advert_details')
+def advert_details():
+    return render_template('main/advert_details.html')
+
 
 if __name__ == '__main__':
     # Import blueprints (imported here to avoid Circular Import Error)
