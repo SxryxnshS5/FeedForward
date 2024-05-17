@@ -6,18 +6,13 @@ from flask_login import LoginManager
 from flask_wtf import CSRFProtect
 from flask_wtf.csrf import CSRFProtect
 
-
-
-
-
 app = Flask(__name__)
 
 csrf = CSRFProtect(app)
 
-
 # Configuring the secret key to sign and validate session cookies.
 load_dotenv()
-app.config['SECRET_KEY'] = 'a3f0b27e5d8c49e7bf6a38d9c4e216dc'
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 # setup database
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
@@ -25,15 +20,13 @@ app.config['SQLALCHEMY_ECHO'] = os.getenv('SQLALCHEMY_ECHO') == 'True'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS') == 'True'
 db = SQLAlchemy(app)
 
+
 # initialise instance of LoginManager
 login_manager = LoginManager()
 # set view function which renders login page
 login_manager.login_view = 'users.login'
 # register LoginManager instance with app
 login_manager.init_app(app)
-
-
-
 
 
 @login_manager.user_loader
@@ -47,11 +40,6 @@ def load_user(email):
 @app.route('/')
 def index():
     return render_template('main/index.html')
-
-
-@app.route('/login')
-def login():
-    return render_template('main/login.html')
 
 
 
@@ -84,9 +72,6 @@ def create_admin_account():
 @app.route('/create_advert')
 def create_advert():
     return render_template('main/createadvert.html')
-
-
-
 
 
 if __name__ == '__main__':

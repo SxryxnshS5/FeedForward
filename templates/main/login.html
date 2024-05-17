@@ -21,17 +21,30 @@
 
 <div class="background-container">
     <div class="container1">
-        <form action="#" class="signup-form">
+        <!-- Login form -->
+        <form action="#" class="login-form" method="POST">
+            {{ form.csrf_token }}
+
             <div class="form-group">
                 <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" required>
+                {{ form.email(class="input", placeholder="Email") }}
+                {% for error in form.email.errors %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                {{ form.password(class="input", placeholder="Password", type="password") }}
+                {% for error in form.password.errors %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
             </div>
 
-            <button type="submit" class="signupbtn">Login</button>
+            <div class="form-group field">
+              <div>
+                {{ form.submit(class="button is-info is-centered") }}
+            </div>
+            </div>
         </form>
     </div>
 </div>
