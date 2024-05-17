@@ -220,8 +220,11 @@ class Email():
         self.title = title
         self.contents = contents
 
+
 def init_db():
     with app.app_context():
         db.drop_all()
         db.create_all()
+        new_user = User("a","a","b","c", "08/01/2004", "a", "1","user")
+        db.session.add(new_user)
         db.session.commit()
