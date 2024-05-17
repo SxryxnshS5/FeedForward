@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" href="../static/css/advert_details.css">
+
+<div class="image-container">
+    <img src="../static/images/base/uppershape.png" alt="Sticky Image" class="sticky-image">
+    <div class="image-text">
+        <h2 class="fjalla-one-regular">Advert Details</h2>
+    </div>
+</div>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="notification is-danger">
+    {{ messages[0] }}.
+</div>
+{% endif %}
+{% endwith %}
+
+<div class="background-container">
+    <div class="form-container">
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="donor_name">Donor Name:</label>
+                <p>ABC hotels</p>
+            </div>
+            <div class="form-group">
+                <label for="food_description">Food Description:</label>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas bibendum augue diam</p>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas bibendum augue diam</p>
+            </div>
+            <div class="form-group">
+                <label for="best_before">Best Before:</label>
+                <p>07/06/2024, 3:00 PM</p>
+            </div>
+            
+        </form>
+
+    </div>
+    <div class="map-container">
+        <h3>Location on the map:</h3>
+        <img src="../../static/images/advertdetails/map.png" alt="Map Image" class="map-image">
+        <button class="open-map-button">Open Map</button>
+    </div>
+    <div class="button-container row">
+        <div class="col-lg-6">
+            <input type="submit" value="Collect" class="btn1">
+        </div>
+        <div class="col-lg-6"> 
+            <input type="submit" value="Message Advertiser" class="btn2">
+        </div>
+    </div>
+</div>
+
+{% endblock %}
