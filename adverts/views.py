@@ -6,6 +6,7 @@ adverts_blueprint = Blueprint('adverts', __name__, template_folder='templates')
 
 @adverts_blueprint.route('/create_advert', methods=['GET', 'POST'])
 def create_advert():
+    """Function that provides the functionality of the advert form"""
     form = AdvertForm()
     if form.validate_on_submit():
         print("2")
