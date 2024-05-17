@@ -14,10 +14,8 @@ def signup():
     form = SignUpForm()
     # Check if user is logged out
     if current_user.is_anonymous:
-        print(1)
         # if request method is POST or form is valid
         if form.validate_on_submit():
-            print(2)
             user = User.query.filter_by(email=form.email.data).first()
             # if this returns a user, then the email already exists in database
             # if email already exists redirect user back to signup page with error message so user can try again
@@ -35,7 +33,6 @@ def signup():
                             address=form.address.data)
 
             # add the new user to the database
-            print(new_user)
             db.session.add(new_user)
             db.session.commit()
 
@@ -50,7 +47,6 @@ def signup():
         # send user to account page
         return render_template('main/account.html')
     # if request method is GET or form not valid re-render signup page
-    print("YBDHCBHJBVBHSDFBHJSDBHJU")
     return render_template('main/signup.html', form=form)
 
 
