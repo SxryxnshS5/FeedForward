@@ -1,4 +1,6 @@
 """python file that contains all the models for the project"""
+from datetime import datetime
+
 from app import db, app
 from flask_login import UserMixin
 import bcrypt
@@ -10,8 +12,8 @@ class User(db.Model, UserMixin):
     for a User object"""
 
     __tablename__ = 'user'
-    email = db.Column(db.String(40), primary_key=True)
-    password = db.Column(db.String(30), nullable=False)
+    email = db.Column(db.String(60), primary_key=True)
+    password = db.Column(db.String(60), nullable=False)
     first_name = db.Column(db.String(40), nullable=False)
     surname = db.Column(db.String(40), nullable=False)
     dob = db.Column(db.DateTime, nullable=False)
@@ -225,6 +227,6 @@ def init_db():
     with app.app_context():
         db.drop_all()
         db.create_all()
-        new_user = User("a","a","b","c", "08/01/2004", "a", "1","user")
+        new_user = User("a","a","b","c", datetime.strptime("08/01/2004", "%d/%m/%Y"), "a", "1","user")
         db.session.add(new_user)
         db.session.commit()
