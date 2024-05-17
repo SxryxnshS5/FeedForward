@@ -91,16 +91,15 @@ def login():
                 else:
                     # create user
                     login_user(user)
-                    current_user.num_logins += 1
                     db.session.commit()
                     # reset authentication attempts
                     session['authentication_attempts'] = 0
                     # generate security log for user log in
                     # redirect to correct page depending on role
                     if current_user.role == 'user':
-                        return redirect(url_for('lottery.lottery'))
+                        return render_template('main/account.html')
                     else:
-                        return redirect(url_for('admin.admin'))
+                        return render_template('main/adminaccount.html')
     else:
         # if user is already logged in
         flash('You are already logged in.')

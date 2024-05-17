@@ -12,7 +12,8 @@ class User(db.Model, UserMixin):
     for a User object"""
 
     __tablename__ = 'user'
-    email = db.Column(db.String(60), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(60), nullable=False)
     password = db.Column(db.String(100), nullable=False)
     first_name = db.Column(db.String(40), nullable=False)
     surname = db.Column(db.String(40), nullable=False)
