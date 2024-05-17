@@ -1,33 +1,16 @@
 import os
 from flask import Flask, render_template
 from dotenv import load_dotenv
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
-from flask_wtf import CSRFProtect
-from flask_wtf.csrf import CSRFProtect
+from extensions import init_app, db, login_manager, csrf
 
 app = Flask(__name__)
-
-csrf = CSRFProtect(app)
 
 # Configuring the secret key to sign and validate session cookies.
 load_dotenv()
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
-# setup database
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
-app.config['SQLALCHEMY_ECHO'] = os.getenv('SQLALCHEMY_ECHO') == 'True'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS') == 'True'
-db = SQLAlchemy(app)
-
-
-# initialise instance of LoginManager
-login_manager = LoginManager()
-# set view function which renders login page
-login_manager.login_view = 'users.login'
-# register LoginManager instance with app
-login_manager.init_app(app)
-
+# Initialize extensions
+init_app(app)
 
 @login_manager.user_loader
 def load_user(email):
@@ -35,18 +18,10 @@ def load_user(email):
     """ user loader function for LoginManager to get user instances from the db """
     return User.query.filter_by(email=email).first()
 
-
-# Define your Flask route to render the HTML template
+# Define your Flask routes to render the HTML templates
 @app.route('/')
 def index():
     return render_template('main/index.html')
-
-
-
-
-@app.route('/account')
-def account():
-    return render_template('main/account.html')
 
 
 @app.route('/about')
@@ -73,7 +48,6 @@ def create_admin_account():
 @app.route('/advert_details')
 def advert_details():
     return render_template('main/advert_details.html')
-
 
 if __name__ == '__main__':
     # Import blueprints (imported here to avoid Circular Import Error)

@@ -19,7 +19,6 @@ def signup():
         # if request method is POST or form is valid
         if form.validate_on_submit():
             with app.app_context():
-                print("PLEASE")
                 user = User.query.filter_by(email=form.email.data).first()
                 # if this returns a user, then the email already exists in database
                 # if email already exists redirect user back to signup page with error message so user can try again
@@ -42,10 +41,11 @@ def signup():
                 db.session.add(new_user)
                 db.session.commit()
 
+                userdetails=new_user
                 # create session variable
                 session['email'] = new_user.email
                 # sends user to 2fa page
-                return render_template('main/account.html')
+                return render_template('main/account.html', user=userdetails)
     else:
         # if user is already logged in
         flash('You are already logged in.')
@@ -55,53 +55,59 @@ def signup():
     return render_template('main/signup.html', form=form)
 
 
-# view user login
 @users_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
-    """Function that provides the functionality of the login form"""
-    # set authentication attempts to 0 if there is no authentication attempts yet
-    if not session.get('authentication_attempts'):
-        session['authentication_attempts'] = 0
     form = LoginForm()
-    # check if user is logged in
-    if current_user.is_anonymous:
-        # if request method is POST or form is valid
-        if form.validate_on_submit():
-            with app.app_context():
-                from models import User
-                user = User.query.filter_by(email=form.email.data).first()
 
-                # check user exists, password/pin/postcode are all correct
-                if not user or not user.verify_password(form.password.data):
-                    # Increment authentication attempts
-                    session['authentication_attempts'] += 1
-                    # check if max number of authentication attempts has been exceeded
-                    if session.get('authentication_attempts') >= 3:
-                        # time out the user
-                        flash(Markup(
-                            'Number of incorrect login attempts exceeded. Please click <a href = "/reset" > here </a> to reset.'))
-                        return render_template('main/login.html')
-                    else:
-                        flash('Incorrect credentials, {} login attempts remaining'.format(
-                            3 - session.get('authentication_attempts')))
-                        # Generate security log for failed log in
-                        # redirect user to login page
-                        return render_template('main/login.html', form=form)
-
-                else:
-                    # create user
-                    login_user(user)
-                    db.session.commit()
-                    # reset authentication attempts
-                    session['authentication_attempts'] = 0
-                    # generate security log for user log in
-                    # redirect to correct page depending on role
-                    if current_user.role == 'user':
-                        return render_template('main/account.html')
-                    else:
-                        return render_template('main/adminaccount.html')
-    else:
-        # if user is already logged in
+    if not current_user.is_anonymous:
         flash('You are already logged in.')
-        return render_template('main/account.html')
+        return redirect(url_for('users.account'))
+
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+
+        if user and bcrypt.checkpw(form.password.data.encode('utf-8'), user.password.encode('utf-8')):
+            login_user(user)
+
+            session['authentication_attempts'] = 0
+
+            if current_user.role == 'user':
+                return redirect(url_for('users.account'))
+            else:
+                return redirect(url_for('admin.adminaccount'))
+        else:
+            session['authentication_attempts'] = session.get('authentication_attempts', 0) + 1
+
+            if session['authentication_attempts'] >= 3:
+                flash(Markup('Number of incorrect login attempts exceeded. Please click <a href="/reset">here</a> to reset.'))
+                return redirect(url_for('users.login'))
+            else:
+                flash('Incorrect credentials, {} login attempts remaining'.format(3 - session['authentication_attempts']))
+                return render_template('main/login.html', form=form)
+
     return render_template('main/login.html', form=form)
+
+
+
+# View for user account information
+@users_blueprint.route('/account')
+@login_required
+def account():
+    """
+    View function for displaying user account information.
+    Requires the user to be logged in.
+
+    Returns:
+        flask.Response: Renders the account.html template with user details.
+    """
+    # Fetch and render user details
+    user_details = {
+        'email': current_user.email,
+        'first_name': current_user.first_name,
+        'surname': current_user.last_name,
+        'dob': current_user.dob,
+        'address': current_user.address,
+        'phone': current_user.phone,
+        'role': current_user.role
+    }
+    return render_template('main/account.html', user=user_details)
