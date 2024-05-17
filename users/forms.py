@@ -31,7 +31,7 @@ def validate_password(form, password):
 class SignUpForm(FlaskForm):
     """ Signup Form containing all the details needed for a user to create an account"""
 
-    email = StringField(validators=[DataRequired(), Email()])
+    email = StringField(validators=[Email(), DataRequired()])
     first_name = StringField(validators=[DataRequired(), validate_name])
     last_name = StringField(validators=[DataRequired(), validate_name])
     password = PasswordField(validators=[DataRequired(), Length(min=8), validate_password])
