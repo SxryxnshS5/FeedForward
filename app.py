@@ -17,10 +17,10 @@ csrf = CSRFProtect(app)
 
 # Configuring the secret key to sign and validate session cookies.
 load_dotenv()
-app.config['SECRET_KEY'] = 'a3f0b27e5d8c49e7bf6a38d9c4e216dc'
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 # setup database
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://root:Flying.P1g@localhost:3306/2033foodsharing"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 app.config['SQLALCHEMY_ECHO'] = os.getenv('SQLALCHEMY_ECHO') == 'True'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS') == 'True'
 db = SQLAlchemy(app)
