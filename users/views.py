@@ -40,12 +40,11 @@ def signup():
 
                 db.session.add(new_user)
                 db.session.commit()
-
-                userdetails=new_user
+                
                 # create session variable
                 session['email'] = new_user.email
                 # sends user to 2fa page
-                return render_template('main/account.html', user=userdetails)
+                return render_template('main/account.html', current_user=new_user)
     else:
         # if user is already logged in
         flash('You are already logged in.')
@@ -129,4 +128,4 @@ def account():
         'phone': current_user.phone,
         'role': current_user.role
     }
-    return render_template('main/account.html', user=user_details)
+    return render_template('main/account.html', current_user=user_details)
