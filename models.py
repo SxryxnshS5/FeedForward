@@ -34,7 +34,7 @@ class User(db.Model, UserMixin):
     def __init__(self, email, password, first_name, surname, dob, address, phone, role):
         """Constructor for User class"""
         self.email = email
-        self.password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+        self.password = password
         self.first_name = first_name
         self.surname = surname
         self.dob = dob
@@ -95,10 +95,12 @@ class User(db.Model, UserMixin):
         """Getter for role variable"""
         return self.role
 
-    def verify_password(self, password):
+    def verify_password(self, plain_password):
         """Function to check submitted password matches with the database password (compared after encrypting the
         submitted password) """
-        return bcrypt.checkpw(password.encode('utf-8'), self.password)
+        password_byte_enc = plain_password.encode('utf-8')
+        hashed_password = self.password.encode('utf-8')
+        return bcrypt.checkpw(password_byte_enc, hashed_password)
 
 
 class Advert(db.Model):
