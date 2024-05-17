@@ -69,17 +69,16 @@ def create_admin_account():
     return render_template('main/create_admin_account.html')
 
 
-@app.route('/create_advert')
-def create_advert():
-    return render_template('main/createadvert.html')
 
 
 if __name__ == '__main__':
     # Import blueprints (imported here to avoid Circular Import Error)
     from users.views import users_blueprint
     from admin.views import admin_blueprint
+    from adverts.views import adverts_blueprint
 
     # Register blueprints with app
     app.register_blueprint(users_blueprint)
     app.register_blueprint(admin_blueprint)
+    app.register_blueprint(adverts_blueprint)
     app.run(debug=True)
