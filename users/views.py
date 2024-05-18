@@ -11,7 +11,7 @@ users_blueprint = Blueprint('users', __name__, template_folder='templates')
 
 @users_blueprint.route('/signup', methods=['GET', 'POST'])
 def signup():
-    """Function that provides the functionality of the sign up form"""
+    """Function that provides the functionality of the signup form"""
     # create signup form object
     form = SignUpForm()
     # Check if user is logged out
@@ -59,40 +59,28 @@ def signup():
 def login():
     """Function that provides the functionality of the login form"""
     # set authentication attempts to 0 if there is no authentication attempts yet
-    if not session.get('authentication_attempts'):
-        session['authentication_attempts'] = 0
     form = LoginForm()
+    print("1")
     # check if user is logged in
     if current_user.is_anonymous:
+        print("2")
         # if request method is POST or form is valid
         if form.validate_on_submit():
+            print("3")
             with app.app_context():
                 from models import User
                 user = User.query.filter_by(email=form.email.data).first()
+                print("4")
 
                 # check user exists, password/pin/postcode are all correct
                 if not user or not user.verify_password(form.password.data):
-                    # Increment authentication attempts
-                    session['authentication_attempts'] += 1
-                    # check if max number of authentication attempts has been exceeded
-                    if session.get('authentication_attempts') >= 3:
-                        # time out the user
-                        flash(Markup(
-                            'Number of incorrect login attempts exceeded. Please click <a href = "/reset" > here </a> to reset.'))
-                        return render_template('main/login.html')
-                    else:
-                        flash('Incorrect credentials, {} login attempts remaining'.format(
-                            3 - session.get('authentication_attempts')))
-                        # Generate security log for failed log in
-                        # redirect user to login page
-                        return render_template('main/login.html', form=form)
+                    flash('Incorrect details')
+                    return render_template('main/login.html', form=form)
 
                 else:
                     # create user
                     login_user(user)
                     db.session.commit()
-                    # reset authentication attempts
-                    session['authentication_attempts'] = 0
                     # generate security log for user log in
                     # redirect to correct page depending on role
                     if current_user.role == 'user':
