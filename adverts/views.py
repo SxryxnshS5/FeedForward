@@ -51,3 +51,12 @@ def advert_details(advert):
 def list_adverts():
     adverts = Advert.query.filter_by(available=True)
     return render_template('main/listedadverts.html', current_advert=adverts)
+
+
+@adverts_blueprint.route('/collect_advert/<advert>')
+def collect_advert(advert):
+    print(advert + "HBJBSHBHJCBHDBCHBHJDBSCHBHJDBHJCBDHBCHBDH")
+    #advert_collect = Advert.query.get(advert)
+    #advert_collect.available = False
+
+    return render_template('main/account.html')
