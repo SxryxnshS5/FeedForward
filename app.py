@@ -46,7 +46,6 @@ def create_admin_account():
     return render_template('main/create_admin_account.html')
 
 
-
 if __name__ == '__main__':
     # Import blueprints (imported here to avoid Circular Import Error)
     from users.views import users_blueprint

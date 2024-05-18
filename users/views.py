@@ -122,3 +122,10 @@ def account():
     }
 
     return render_template('main/account.html', current_user=user_details)
+
+
+@users_blueprint.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('about'))
