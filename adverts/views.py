@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template
+import json
+
+from flask import Blueprint, render_template, redirect, url_for, session, request
 from adverts.forms import AdvertForm
 from flask_login import current_user, login_required
 from app import db, app
@@ -24,21 +26,22 @@ def create_advert():
             db.session.add(new_advert)
             db.session.commit()
 
-            return render_template('main/advert_details.html', current_advert=new_advert)
+            return redirect(url_for('adverts.advert_details', advert=new_advert.adID))
     else:
         return render_template('main/createadvert.html', form=form)
 
 
 # View for user account information
-@adverts_blueprint.route('/advert_details')
+@adverts_blueprint.route('/advert_details/<advert>')
 @login_required
-def advert_details():
+def advert_details(advert):
     """
-    View function for displaying user account information.
+    View function for displaying advert information.
     Requires the user to be logged in.
 
     Returns:
-        flask.Response: Renders the account.html template with user details.
+        flask.Response: Renders the advert_details.html template with advert details.
     """
     # Fetch and render user details
-    return render_template('main/advert_details.html')
+
+    return render_template('main/advert_details.html', current_advert=Advert.query.get(advert))
