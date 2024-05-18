@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" href="../static/css/advertmap.css">
+
+<div class="image-container">
+    <img src="../static/images/base/uppershape.png" alt="Sticky Image" class="sticky-image">
+    <div class="image-text">
+        <h2 class="fjalla-one-regular">Advert Map</h2>
+    </div>
+</div>
+
+    {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="notification is-danger">
+                        {{ messages[0] }}.
+                    </div>
+                {% endif %}
+    {% endwith %}
+
+<div class="background-container">
+    <div class="container1">
+          <!-- Map image -->
+        <img src="../static/images/base/NewcastleMapBig.png" alt="Logo" height="100%" width="100%">
+    </div>
+</div>
+
+{% endblock %}

@@ -2,7 +2,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from users.forms import SignUpForm, LoginForm
 import bcrypt
 from flask import Blueprint, flash, render_template, session, redirect, url_for
-from models import User
+from models import User, Advert
 from app import db, app
 from markupsafe import Markup
 
@@ -82,15 +82,19 @@ def login():
                     login_user(user)
                     db.session.commit()
                     # generate security log for user log in
+
+                    adverts = Advert.query.filter_by(owner=current_user.id).all()
+
                     # redirect to correct page depending on role
                     if current_user.role == 'user':
-                        return render_template('main/account.html')
+                        return render_template('main/account.html', adverts=adverts)
                     else:
                         return render_template('main/adminaccount.html')
     else:
         # if user is already logged in
+        adverts = Advert.query.filter_by(owner=current_user.id).all()
         flash('You are already logged in.')
-        return render_template('main/account.html')
+        return render_template('main/account.html', adverts=adverts)
     return render_template('main/login.html', form=form)
 
 
@@ -106,14 +110,30 @@ def account():
     Returns:
         flask.Response: Renders the account.html template with user details.
     """
-    # Fetch and render user details
+    # Fetch user details and adverts
     user_details = {
         'email': current_user.email,
         'first_name': current_user.first_name,
-        'surname': current_user.last_name,
+        'surname': current_user.surname,
         'dob': current_user.dob,
         'address': current_user.address,
         'phone': current_user.phone,
         'role': current_user.role
     }
-    return render_template('main/account.html', current_user=user_details)
+    
+    adverts = Advert.query.filter_by(owner=current_user.id).all()
+
+    return render_template('main/account.html', current_user=user_details, adverts=adverts)
+
+
+@users_blueprint.route('/logout')
+@login_required
+def logout():
+    """Function to log the user out"""
+    # Log the user out
+    logout_user()
+    # Clear the session
+    session.clear()
+    # Redirect to the login page or home page
+    flash('You have been logged out.')
+    return redirect(url_for('users.login'))
