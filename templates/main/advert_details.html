@@ -1,8 +1,11 @@
+
 {% extends "base.html" %}
 
 {% block content %}
 
+
 <link rel="stylesheet" href="../static/css/advert_details.css">
+<script type="text\javascript" src="{{url_for('static', filename='base.js')}}"></script>
 
 <div class="image-container">
     <img src="../static/images/base/uppershape.png" alt="Sticky Image" class="sticky-image">
@@ -42,9 +45,8 @@
         </form>
 
     </div>
-    <div class="map-container">
+    <div class="map-container" id="map">
         <h3>Location on the map:</h3>
-        <img src="../../static/images/advertdetails/map.png" alt="Map Image" class="map-image">
         <button class="open-map-button">Open Map</button>
     </div>
     <div class="button-container row">
@@ -56,3 +58,4 @@
 </div>
 
 {% endblock %}
+
