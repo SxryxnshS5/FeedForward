@@ -24,6 +24,22 @@ def create_advert():
             db.session.add(new_advert)
             db.session.commit()
 
-            return render_template('main/advert_details.html')
+            return render_template('main/advert_details.html', current_advert=new_advert)
     else:
         return render_template('main/createadvert.html', form=form)
+
+
+
+# View for user account information
+@adverts_blueprint.route('/advert_details')
+@login_required
+def advert_details():
+    """
+    View function for displaying user account information.
+    Requires the user to be logged in.
+
+    Returns:
+        flask.Response: Renders the account.html template with user details.
+    """
+    # Fetch and render user details
+    return render_template('main/advert_details.html')
