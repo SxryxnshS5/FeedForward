@@ -1,58 +1,29 @@
 import os
 from flask import Flask, render_template
 from dotenv import load_dotenv
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
+from extensions import init_app, db, login_manager, csrf
 
 app = Flask(__name__)
 
 # Configuring the secret key to sign and validate session cookies.
 load_dotenv()
-app.config['SECRET_KEY'] = os.getenv('SECRET KEY')
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
-# setup database
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
-app.config['SQLALCHEMY_ECHO'] = os.getenv('SQLALCHEMY_ECHO') == 'True'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS') == 'True'
-db = SQLAlchemy(app)
-
-# initialise instance of LoginManager
-login_manager = LoginManager()
-# set view function which renders login page
-login_manager.login_view = 'users.login'
-# register LoginManager instance with app
-login_manager.init_app(app)
-
-# import User from models (imported here to avoid Circular Import Error)
-
+# Initialize extensions
+init_app(app)
 
 
 @login_manager.user_loader
-def load_user(email):
+def load_user(id):
     from models import User
     """ user loader function for LoginManager to get user instances from the db """
-    return User.query.filter_by(email=email).first()
+    return User.query.get(int(id))
 
 
-# Define your Flask route to render the HTML template
+# Define your Flask routes to render the HTML templates
 @app.route('/')
 def index():
     return render_template('main/index.html')
-
-
-@app.route('/login')
-def login():
-    return render_template('main/login.html')
-
-
-@app.route('/signup')
-def signup():
-    return render_template('main/signup.html')
-
-
-@app.route('/account')
-def account():
-    return render_template('main/account.html')
 
 
 @app.route('/about')
@@ -99,8 +70,10 @@ if __name__ == '__main__':
     # Import blueprints (imported here to avoid Circular Import Error)
     from users.views import users_blueprint
     from admin.views import admin_blueprint
+    from adverts.views import adverts_blueprint
 
     # Register blueprints with app
     app.register_blueprint(users_blueprint)
     app.register_blueprint(admin_blueprint)
+    app.register_blueprint(adverts_blueprint)
     app.run(debug=True)

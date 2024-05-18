@@ -12,11 +12,11 @@
 </div>
 
 {% with messages = get_flashed_messages() %}
-{% if messages %}
-<div class="notification is-danger">
-    {{ messages[0] }}.
-</div>
-{% endif %}
+    {% if messages %}
+    <div class="notification is-danger">
+        {{ messages[0] }}.
+    </div>
+    {% endif %}
 {% endwith %}
 
 <div class="background-container">
@@ -29,145 +29,83 @@
 
                 <div><!-- Profile image-->
                     <img src="../static/images/base/pfp.png" alt="pfp" class="pfp">
-
                 </div>
 
                 <!-- User details-->
                 <div class="col">
                     <div class="form-floating mb-3">
-                        <input type="email" readonly class="form-control-plaintext" id="floatingPlaintextInputFirstName"
-                               placeholder="John" value="John">
-                        <label for="floatingPlaintextInputFirstName">First Name</label>
+                        <input type="text" readonly class="form-control-plaintext" id="firstName"
+                               value="{{ current_user.first_name }}">
+                        <label for="firstName">First Name</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="number" readonly class="form-control-plaintext" id="floatingPlaintextInputPhone"
-                               placeholder="phone" value="01274123456">
-                        <label for="floatingPlaintextInputPhone">Phone number</label>
+                        <input type="text" readonly class="form-control-plaintext" id="lastName"
+                               value="{{ current_user.surname }}">
+                        <label for="lastName">Last Name</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="email" readonly class="form-control-plaintext" id="floatingPlaintextInputDOB"
-                               placeholder="DOB" value="01/01/1970">
-                        <label for="floatingPlaintextInputDOB">DOB</label>
+                        <input type="text" readonly class="form-control-plaintext" id="dob"
+                               value="{{ current_user.dob }}">
+                        <label for="dob">Date of Birth</label>
                     </div>
-
-
                 </div>
                 <div class="col">
-
-
                     <div class="form-floating mb-3">
-                        <input type="email" readonly class="form-control-plaintext" id="floatingPlaintextInputLastName"
-                               placeholder="Smith" value="Smith">
-                        <label for="floatingPlaintextInputLastName">Last Name</label>
+                        <input type="email" readonly class="form-control-plaintext" id="email"
+                               value="{{ current_user.email }}">
+                        <label for="email">Email</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="email" readonly class="form-control-plaintext" id="floatingPlaintextInputEmail"
-                               placeholder="name@example.com" value="name@example.com">
-                        <label for="floatingPlaintextInputEmail">Phone number</label>
+                        <input type="text" readonly class="form-control-plaintext" id="address"
+                               value="{{ current_user.address }}">
+                        <label for="address">Address</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="email" readonly class="form-control-plaintext" id="floatingPlaintextInputAddress"
-                               placeholder="St. James Park" value="St. James Park">
-                        <label for="floatingPlaintextInputAddress">Address</label>
+                        <input type="tel" readonly class="form-control-plaintext" id="phone"
+                               value="{{ current_user.phone }}">
+                        <label for="phone">Phone</label>
                     </div>
-
-
                 </div>
 
                 <div><!-- Change details button-->
-                    <button class="button-change">Change Details</button>
+                    <a href="" class="button-change">Change Details</a>
                 </div>
 
-
+                <!-- Advert Collection History -->
                 <div>
                     <h2 class="ad-history">
                         Advert Collection History
                     </h2>
+                    <!-- Table displaying advert collection history -->
+                    <!-- Insert your table code here -->
                 </div>
 
+                <!-- Donation History -->
                 <div>
-                    <table class="table"> <!-- Advert collection history table-->
-                        <thead>
+                    <h2 class="ad-history">
+                        Donation History
+                    </h2>
+                    <!-- Table displaying donation history -->
+                    <!-- Insert your table code here -->
+                    <table>
                         <tr>
-                            <th scope="col">Serial Number</th>
-                            <th scope="col">Date Posted</th>
-                            <th scope="col">Best Before</th>
-                            <th scope="col">Food Description</th>
+                            <th>Title</th>
+                            <th>Contents</th>
+                            <th>Expiry date</th>
                         </tr>
-                        </thead>
-                        <tbody>
+                        {% for advert in current_user.adverts %}
                         <tr>
-                            <th scope="row">1</th>
-                            <td>2024-05-01</td>
-                            <td>2024-06-01</td>
-                            <td>Apples</td>
+                            <td>{{advert.title}}</td>
+                            <td>{{advert.contents}}</td>
+                            <td>{{advert.expiry}}</td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>2024-05-03</td>
-                            <td>2024-05-10</td>
-                            <td>Oranges</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>2024-05-05</td>
-                            <td>2024-05-20</td>
-                            <td>Bananas</td>
-                        </tr>
-                        </tbody>
+                        {% endfor %}
                     </table>
 
                 </div>
 
-                <div>
-                    <div>
-                        <h2 class="ad-history">
-                            Donation History
-                        </h2>
-                    </div>
-
-                    <div>
-                        <table class="table"> <!-- Donation history table-->
-                            <thead>
-                            <tr>
-                                <th scope="col">Serial Number</th>
-                                <th scope="col">Rating</th>
-                                <th scope="col">Best Before</th>
-                                <th scope="col">Food Description</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>4.5</td>
-                                <td>2024-06-01</td>
-                                <td>Apples</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>4.2</td>
-                                <td>2024-05-10</td>
-                                <td>Oranges</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>4.8</td>
-                                <td>2024-05-20</td>
-                                <td>Bananas</td>
-                            </tr>
-                            </tbody>
-                        </table>
-
-
-                    </div>
-
-                </div>
-
-
             </div>
         </div>
-
-
     </div>
 </div>
 

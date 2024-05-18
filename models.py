@@ -1,4 +1,6 @@
 """python file that contains all the models for the project"""
+from datetime import datetime
+
 from app import db, app
 from flask_login import UserMixin
 import bcrypt
@@ -10,8 +12,9 @@ class User(db.Model, UserMixin):
     for a User object"""
 
     __tablename__ = 'user'
-    email = db.Column(db.String(40), primary_key=True)
-    password = db.Column(db.String(30), nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(60), nullable=False, index=True)
+    password = db.Column(db.String(100), nullable=False)
     first_name = db.Column(db.String(40), nullable=False)
     surname = db.Column(db.String(40), nullable=False)
     dob = db.Column(db.DateTime, nullable=False)
@@ -32,7 +35,7 @@ class User(db.Model, UserMixin):
     def __init__(self, email, password, first_name, surname, dob, address, phone, role):
         """Constructor for User class"""
         self.email = email
-        self.password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+        self.password = password
         self.first_name = first_name
         self.surname = surname
         self.dob = dob
@@ -93,10 +96,12 @@ class User(db.Model, UserMixin):
         """Getter for role variable"""
         return self.role
 
-    def verify_password(self, password):
+    def verify_password(self, plain_password):
         """Function to check submitted password matches with the database password (compared after encrypting the
         submitted password) """
-        return bcrypt.checkpw(password.encode('utf-8'), self.password)
+        password_byte_enc = plain_password.encode('utf-8')
+        hashed_password = self.password.encode('utf-8')
+        return bcrypt.checkpw(password_byte_enc, hashed_password)
 
 
 class Advert(db.Model):
@@ -109,7 +114,7 @@ class Advert(db.Model):
     title = db.Column(db.String(30), nullable=False)
     address = db.Column(db.String(100), nullable=False)
     contents = db.Column(db.String(200), nullable=False)
-    owner = db.Column("creatorID", db.ForeignKey(User.email), nullable=False)
+    owner = db.Column(db.ForeignKey(User.id), nullable=False)
     expiry = db.Column(db.DateTime, nullable=False)
     available = db.Column(db.Boolean, nullable=False)
 
@@ -220,8 +225,11 @@ class Email():
         self.title = title
         self.contents = contents
 
+
 def init_db():
     with app.app_context():
         db.drop_all()
         db.create_all()
+        new_user = User("a","a","b","c", datetime.strptime("08/01/2004", "%d/%m/%Y"), "a", "1","user")
+        db.session.add(new_user)
         db.session.commit()
