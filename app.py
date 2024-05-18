@@ -12,11 +12,13 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 # Initialize extensions
 init_app(app)
 
+
 @login_manager.user_loader
 def load_user(email):
     from models import User
     """ user loader function for LoginManager to get user instances from the db """
     return User.query.filter_by(email=email).first()
+
 
 # Define your Flask routes to render the HTML templates
 @app.route('/')
@@ -44,10 +46,10 @@ def create_admin_account():
     return render_template('main/create_admin_account.html')
 
 
-
 @app.route('/advert_details')
 def advert_details():
     return render_template('main/advert_details.html')
+
 
 if __name__ == '__main__':
     # Import blueprints (imported here to avoid Circular Import Error)
