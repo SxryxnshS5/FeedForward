@@ -114,7 +114,7 @@ class Advert(db.Model):
     title = db.Column(db.String(30), nullable=False)
     address = db.Column(db.String(100), nullable=False)
     contents = db.Column(db.String(200), nullable=False)
-    owner = db.Column("creatorID", db.ForeignKey(User.email), nullable=False)
+    owner = db.Column(db.ForeignKey(User.id), nullable=False)
     expiry = db.Column(db.DateTime, nullable=False)
     available = db.Column(db.Boolean, nullable=False)
 
