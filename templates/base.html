@@ -45,13 +45,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <!-- Navigation links (will be dynamic based on user authentication) -->
                 <!-- User authentication, will be implemented after current_user.role is implemented  -->
+                {% if current_user.role == 'user' %}
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('users.login') }}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('users.signup') }}">Sign up</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('adverts.create_advert') }}">Adverts</a>
                     </li>
@@ -62,6 +57,33 @@
                         <a class="nav-link" href="{{ url_for('users.logout') }}">Logout</a>
                     </li>
                 </ul>
+                {% elif current_user.role == 'admin' %}
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('adverts.create_advert') }}">Adverts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('about') }}">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('users.logout') }}">Logout</a>
+                    </li>
+                </ul>
+
+                {% else %}
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('users.login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('users.signup') }}">Sign up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('about') }}">About Us</a>
+                    </li>
+                </ul>
+
+                {% endif %}
             </div>
         </div>
     </nav>
