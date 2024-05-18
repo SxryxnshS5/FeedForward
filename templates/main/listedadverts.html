@@ -24,31 +24,19 @@
         <table class="table"> <!-- Advert collection history table-->
                         <thead>
                         <tr>
-                            <th scope="col">Serial Number</th>
-                            <th scope="col">Date Posted</th>
+                            <th scope="col">Title</th>
                             <th scope="col">Best Before</th>
                             <th scope="col">Food Description</th>
                         </tr>
                         </thead>
                         <tbody>
+                        {% for advert in current_advert %}
                         <tr>
-                            <th scope="row">1</th>
-                            <td>2024-05-01</td>
-                            <td>2024-06-01</td>
-                            <td>Apples</td>
+                            <td><a href="advert_details/{{advert.adID}}">{{advert.title}}</a></td>
+                            <td>{{advert.contents}}</td>
+                            <td>{{advert.expiry}}</td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>2024-05-03</td>
-                            <td>2024-05-10</td>
-                            <td>Oranges</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>2024-05-05</td>
-                            <td>2024-05-20</td>
-                            <td>Bananas</td>
-                        </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
     </div>
