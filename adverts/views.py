@@ -29,7 +29,6 @@ def create_advert():
         return render_template('main/createadvert.html', form=form)
 
 
-
 # View for user account information
 @adverts_blueprint.route('/advert_details')
 @login_required
