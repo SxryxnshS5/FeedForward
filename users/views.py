@@ -2,7 +2,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from users.forms import SignUpForm, LoginForm
 import bcrypt
 from flask import Blueprint, flash, render_template, session, redirect, url_for
-from models import User
+from models import User, Advert
 from app import db, app
 from markupsafe import Markup
 
@@ -107,6 +107,8 @@ def account():
         flask.Response: Renders the account.html template with user details.
     """
     # Fetch and render user details
+
+
     user_details = {
         'email': current_user.email,
         'first_name': current_user.first_name,
@@ -114,6 +116,9 @@ def account():
         'dob': current_user.dob,
         'address': current_user.address,
         'phone': current_user.phone,
-        'role': current_user.role
+        'role': current_user.role,
+        'adverts': Advert.query.filter_by(owner=current_user.id)
+
     }
+
     return render_template('main/account.html', current_user=user_details)

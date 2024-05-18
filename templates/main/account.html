@@ -87,6 +87,21 @@
                     </h2>
                     <!-- Table displaying donation history -->
                     <!-- Insert your table code here -->
+                    <table>
+                        <tr>
+                            <th>Title</th>
+                            <th>Contents</th>
+                            <th>Expiry date</th>
+                        </tr>
+                        {% for advert in current_user.adverts %}
+                        <tr>
+                            <td>{{advert.title}}</td>
+                            <td>{{advert.contents}}</td>
+                            <td>{{advert.expiry}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+
                 </div>
 
             </div>
