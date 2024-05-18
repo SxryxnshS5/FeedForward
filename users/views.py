@@ -124,3 +124,16 @@ def account():
     adverts = Advert.query.filter_by(owner=current_user.id).all()
 
     return render_template('main/account.html', current_user=user_details, adverts=adverts)
+
+
+@users_blueprint.route('/logout')
+@login_required
+def logout():
+    """Function to log the user out"""
+    # Log the user out
+    logout_user()
+    # Clear the session
+    session.clear()
+    # Redirect to the login page or home page
+    flash('You have been logged out.')
+    return redirect(url_for('users.login'))
