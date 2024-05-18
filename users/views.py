@@ -19,7 +19,6 @@ def signup():
         # if request method is POST or form is valid
         if form.validate_on_submit():
             with app.app_context():
-                print("PLEASE")
                 user = User.query.filter_by(email=form.email.data).first()
                 # if this returns a user, then the email already exists in database
                 # if email already exists redirect user back to signup page with error message so user can try again
@@ -41,11 +40,11 @@ def signup():
 
                 db.session.add(new_user)
                 db.session.commit()
-
+                
                 # create session variable
                 session['email'] = new_user.email
                 # sends user to 2fa page
-                return render_template('main/account.html')
+                return render_template('main/account.html', current_user=new_user)
     else:
         # if user is already logged in
         flash('You are already logged in.')
@@ -105,3 +104,28 @@ def login():
         flash('You are already logged in.')
         return render_template('main/account.html')
     return render_template('main/login.html', form=form)
+
+
+
+# View for user account information
+@users_blueprint.route('/account')
+@login_required
+def account():
+    """
+    View function for displaying user account information.
+    Requires the user to be logged in.
+
+    Returns:
+        flask.Response: Renders the account.html template with user details.
+    """
+    # Fetch and render user details
+    user_details = {
+        'email': current_user.email,
+        'first_name': current_user.first_name,
+        'surname': current_user.last_name,
+        'dob': current_user.dob,
+        'address': current_user.address,
+        'phone': current_user.phone,
+        'role': current_user.role
+    }
+    return render_template('main/account.html', current_user=user_details)
