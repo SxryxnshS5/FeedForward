@@ -46,9 +46,24 @@ def create_admin_account():
     return render_template('main/create_admin_account.html')
 
 
+@app.route('/create_advert')
+def create_advert():
+    return render_template('main/createadvert.html')
+
+
 @app.route('/advert_details')
 def advert_details():
     return render_template('main/advert_details.html')
+
+@app.route('/advertmap')
+def advert_map():
+    return render_template('main/advertmap.html')
+
+@app.route('/listedadverts')
+def listedadverts():
+    return render_template('main/listedadverts.html')
+
+
 
 
 if __name__ == '__main__':
