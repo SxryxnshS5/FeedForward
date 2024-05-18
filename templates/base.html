@@ -48,10 +48,16 @@
                 {% if current_user.role == 'user' %}
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('adverts.create_advert') }}">Adverts</a>
+                        <a class="nav-link" href="{{ url_for('adverts.create_advert') }}">Create Advert</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('adverts.list_adverts') }}">Listed adverts</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('about') }}">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('users.account') }}">Account</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('users.logout') }}">Logout</a>
@@ -81,12 +87,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('about') }}">About Us</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('users.logout') }}">Logout</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('adverts.list_adverts') }}">Listed adverts</a>
-                    </li>
+
                 </ul>
 
                 {% endif %}
