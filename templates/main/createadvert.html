@@ -27,9 +27,9 @@
             <!-- Title -->
             <div class="form-group field">
                 <div class="control">
-                    <label for="title">Title</label>
-                    {{ form.title(class="input", placeholder="Title") }}
-                    {% for error in form.title.errors %}
+                    <label for="title">Name</label>
+                    {{ form.name(class="input", placeholder="Name") }}
+                    {% for error in form.name.errors %}
                         <div class="error">{{ error }}</div>
                     {% endfor %}
                 </div>
