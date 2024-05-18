@@ -112,7 +112,7 @@ def account():
     user_details = {
         'email': current_user.email,
         'first_name': current_user.first_name,
-        'surname': current_user.last_name,
+        'surname': current_user.surname,
         'dob': current_user.dob,
         'address': current_user.address,
         'phone': current_user.phone,
