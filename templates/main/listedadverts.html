@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" href="../static/css/listedadverts.css">
+
+<div class="image-container">
+    <img src="../static/images/base/uppershape.png" alt="Sticky Image" class="sticky-image">
+    <div class="image-text">
+        <h2 class="fjalla-one-regular">Listed Adverts</h2>
+    </div>
+</div>
+
+    {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="notification is-danger">
+                        {{ messages[0] }}.
+                    </div>
+                {% endif %}
+    {% endwith %}
+
+<div class="background-container">
+    <div class="container1">
+        <table class="table"> <!-- Advert collection history table-->
+                        <thead>
+                        <tr>
+                            <th scope="col">Serial Number</th>
+                            <th scope="col">Date Posted</th>
+                            <th scope="col">Best Before</th>
+                            <th scope="col">Food Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>2024-05-01</td>
+                            <td>2024-06-01</td>
+                            <td>Apples</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>2024-05-03</td>
+                            <td>2024-05-10</td>
+                            <td>Oranges</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>2024-05-05</td>
+                            <td>2024-05-20</td>
+                            <td>Bananas</td>
+                        </tr>
+                        </tbody>
+                    </table>
+    </div>
+</div>
+
+{% endblock %}

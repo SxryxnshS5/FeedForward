@@ -88,6 +88,12 @@ def advert_details():
 def advert_map():
     return render_template('main/advertmap.html')
 
+@app.route('/listedadverts')
+def listedadverts():
+    return render_template('main/listedadverts.html')
+
+
+
 
 if __name__ == '__main__':
     # Import blueprints (imported here to avoid Circular Import Error)
