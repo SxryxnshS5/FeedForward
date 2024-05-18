@@ -95,7 +95,7 @@
                         </tr>
                         {% for advert in current_user.adverts %}
                         <tr>
-                            <td>{{advert.title}}</td>
+                            <td><a href="advert_details/{{advert.adID}}">{{advert.title}}</a></td>
                             <td>{{advert.contents}}</td>
                             <td>{{advert.expiry}}</td>
                         </tr>
