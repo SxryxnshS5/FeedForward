@@ -45,3 +45,17 @@ def advert_details(advert):
     # Fetch and render user details
 
     return render_template('main/advert_details.html', current_advert=Advert.query.get(advert))
+
+
+@adverts_blueprint.route('/list_adverts')
+def list_adverts():
+    adverts = Advert.query.filter_by(available=True)
+    return render_template('main/listedadverts.html', current_advert=adverts)
+
+
+@adverts_blueprint.route('/collect_advert')
+def collect_advert(advert):
+    #advert_collect = Advert.query.get(advert)
+    #advert_collect.available = False
+
+    return render_template('main/advert_details.html', current_advert=Advert.query.get(advert))
