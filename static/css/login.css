@@ -70,10 +70,9 @@
     border-radius: 5px;
   }
 
-  button {
+  .custom-button {
     width: 40%;
     padding: 15px;
-
     background-color: #FFFFFF;
     color: #000000;
     border: none;
@@ -81,11 +80,11 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
-
-  button:hover {
+  
+  .custom-button:hover {
     background-color: #0056b3;
   }
-
+  
   .fjalla-one-regular {
     font-family: "Fjalla One", sans-serif;
     font-weight: 400;
