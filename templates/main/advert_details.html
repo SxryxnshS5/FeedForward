@@ -2,7 +2,8 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="../static/css/advert_details.css">
+<link rel="stylesheet" href="../static/css/advert_details.css" xmlns="http://www.w3.org/1999/html">
+<script type="text\javascript" src="{{url_for('static', filename='base.js')}}"></script>
 
 <div class="image-container">
     <img src="../static/images/base/uppershape.png" alt="Sticky Image" class="sticky-image">
@@ -23,7 +24,7 @@
     <div class="form-container">
         <form action="#" method="post">
             <div class="form-group">
-                <label for="donor_name">Donor Name:</label>
+                <label for="donor_name">Advert Title:</label>
                 {{ current_advert.title }}
             </div>
             <div class="form-group">
@@ -38,22 +39,27 @@
                 <label for="best_before">Best Before:</label>
                 {{ current_advert.expiry }}
             </div>
-
         </form>
-
     </div>
-    <div class="map-container">
+    <div class="map-container" id="map">
         <h3>Location on the map:</h3>
-        <img src="../../static/images/advertdetails/map.png" alt="Map Image" class="map-image">
         <button class="open-map-button">Open Map</button>
     </div>
     <div class="button-container row">
+        {% if current_user.id != current_advert.owner %}
         <div class="col-lg-6">
-            <input type="submit" value="Collect" class="btn1">
+            <a class="btn btn1" href="../collect_confirmation/{{current_advert.adID}}" onclick="return confirm('Are you sure you want to collect this advert?')">Collect</a>
         </div>
+
         <div class="col-lg-6">
-            <input type="submit" value="Message Advertiser" class="btn2">
+            <input type="submit" value="Message Advertiser" class="btn btn3">
         </div>
+        {% endif %}
+        {% if current_user.id == current_advert.owner %}
+        <div class="col-lg-6">
+            <a class="btn btn2" href="../delete_advert/{{current_advert.adID}}" onclick="return confirm('Are you sure you want to delete this advert?')">Delete</a>
+        </div>
+        {% endif %}
     </div>
 </div>
 

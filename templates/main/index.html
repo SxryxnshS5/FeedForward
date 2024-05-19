@@ -49,7 +49,7 @@
                     <!-- Donors section -->
                     <p class="donors-text">Donors</p>
                     <p class="donors-text-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
-                    <button class="cream-box-button" onclick="donate()" id="Donate">Donate</button>
+                    <button class="cream-box-button" onclick="location.href='{{ url_for('adverts.create_advert') }}'" id="Donate">Donate</button>
                 </div>
             </div>
             <div class="col-md-6">
@@ -57,7 +57,7 @@
                     <!-- Those In Need section -->
                     <p class="donors-text">Those In Need</p>
                     <p class="donors-text-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
-                    <button class="cream-box-button" onclick="findFood()" id="FindFood">Find Food</button>
+                    <button class="cream-box-button" onclick="location.href='{{ url_for('adverts.list_adverts') }}'" id="FindFood">Find Food</button>
                 </div>
             </div>
         </div>

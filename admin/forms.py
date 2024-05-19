@@ -2,7 +2,7 @@
 
 import re
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField, BooleanField, DateField
+from wtforms import StringField, SubmitField, PasswordField, DateField
 from wtforms.validators import Email, ValidationError, DataRequired, Length, EqualTo
 
 
@@ -31,13 +31,13 @@ def validate_password(form, password):
 class AdminSignUpForm(FlaskForm):
     """ Signup Form containing all the details needed for a user to create an account"""
 
-    email = StringField(validators=[DataRequired(), Email()])
+    email = StringField(validators=[Email(), DataRequired()])
     first_name = StringField(validators=[DataRequired(), validate_name])
     last_name = StringField(validators=[DataRequired(), validate_name])
     password = PasswordField(validators=[DataRequired(), Length(min=8), validate_password])
+    phone = StringField(validators=[DataRequired()])
     confirm_password = PasswordField(validators=[DataRequired(), EqualTo('password', message='Both password fields '
                                                                                              'must be equal')])
-    birthday = DateField(validators=[DataRequired()])
+    dob = DateField(validators=[DataRequired()])
     address = StringField(validators=[DataRequired()])
     submit = SubmitField()
-

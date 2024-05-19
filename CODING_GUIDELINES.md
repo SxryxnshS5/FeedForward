@@ -25,6 +25,7 @@ This document contains all of the coding guidelines that we have followed in the
 ## Whitespace
 - Whitespace should not be used around comparisons E.g. x<3, not x < 3
 - Commas should be followed by, but not proceeded by a space. E.g. 1, 2, 3 not 1,2,3 or 1 , 2 , 3
+- All jinja code in html should have a single whitespace surrounding the contents of the code. E.g. { current_user.dob }}, not {{current_user.dob}}
 
 ## Linters
 We used Pylint as our linter to ensure that we follow Pep8 guidelines so that our code is readable and consistent

@@ -2,10 +2,10 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="../static/css/account.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/account.css') }}">
 
 <div class="image-container">
-    <img src="../static/images/base/uppershape.png" alt="Sticky Image" class="sticky-image">
+    <img src="{{ url_for('static', filename='images/base/uppershape.png') }}" alt="Sticky Image" class="sticky-image">
     <div class="image-text">
         <h2 class="fjalla-one-regular">Account overview</h2>
     </div>
@@ -26,9 +26,8 @@
         </h2>
         <div class="container text-center">
             <div class="row align-items-start">
-
                 <div><!-- Profile image-->
-                    <img src="../static/images/base/pfp.png" alt="pfp" class="pfp">
+                    <img src="{{ url_for('static', filename='images/base/pfp.png') }}" alt="pfp" class="pfp">
                 </div>
 
                 <!-- User details-->
@@ -74,34 +73,55 @@
                 <!-- Advert Collection History -->
                 <div>
                     <h2 class="ad-history">
-                        Advert Collection History
+                        Advert Donation History
                     </h2>
-                    <!-- Table displaying advert collection history -->
-                    <!-- Insert your table code here -->
-                </div>
-
-                <!-- Donation History -->
-                <div>
-                    <h2 class="ad-history">
-                        Donation History
-                    </h2>
-                    <!-- Table displaying donation history -->
-                    <!-- Insert your table code here -->
-                    <table>
+                    <table class="table"> <!-- Advert collection history table-->
+                        <thead>
                         <tr>
-                            <th>Title</th>
-                            <th>Contents</th>
-                            <th>Expiry date</th>
+                            <th scope="col">Serial Number</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Best Before</th>
+                            <th scope="col">Food Description</th>
                         </tr>
-                        {% for advert in current_user.adverts %}
+                        </thead>
+                        <tbody>
+                        {% for advert in adverts %}
                         <tr>
-                            <td>{{advert.title}}</td>
-                            <td>{{advert.contents}}</td>
-                            <td>{{advert.expiry}}</td>
+                            <td><a href="advert_details/{{advert.adID}}">{{ advert.adID }}</a></td>
+                            <td>{{ advert.title }}</td>
+                            <td>{{ advert.address }}</td>
+                            <td>{{ advert.expiry }}</td>
+                            <td>{{ advert.contents }}</td>
                         </tr>
                         {% endfor %}
+                        </tbody>
                     </table>
+                </div>
 
+                <!-- Order History -->
+                <div>
+                    <h2 class="ad-history">
+                        Order History
+                    </h2>
+                    <table class="table"> <!-- Advert collection history table-->
+                        <thead>
+                        <tr>
+                            <th scope="col">Advert Number</th>
+                            <th scope="col">Date</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for order in orders %}
+                        <tr>
+                            <td><a href="advert_details/{{order.advert}}">{{ order.advert }}</a></td>
+                            <td>{{ order.date }}</td>
+
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
 
             </div>
