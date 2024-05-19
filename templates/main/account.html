@@ -99,6 +99,31 @@
                     </table>
                 </div>
 
+                <!-- Order History -->
+                <div>
+                    <h2 class="ad-history">
+                        Order History
+                    </h2>
+                    <table class="table"> <!-- Advert collection history table-->
+                        <thead>
+                        <tr>
+                            <th scope="col">Advert Number</th>
+                            <th scope="col">Date</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for order in orders %}
+                        <tr>
+                            <td><a href="advert_details/{{order.advert}}">{{ order.advert }}</a></td>
+                            <td>{{ order.date }}</td>
+
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
     </div>
