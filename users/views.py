@@ -1,4 +1,6 @@
 from flask_login import login_user, logout_user, current_user, login_required
+
+import users.views
 from users.forms import SignUpForm, LoginForm
 import bcrypt
 from flask import Blueprint, flash, render_template, session, redirect, url_for
@@ -43,8 +45,8 @@ def signup():
                 
                 # create session variable
                 session['email'] = new_user.email
-                # sends user to 2fa page
-                return render_template('main/login.html', current_user=new_user)
+                return redirect(url_for('users.login'))
+
     else:
         # if user is already logged in
         flash('You are already logged in.')
