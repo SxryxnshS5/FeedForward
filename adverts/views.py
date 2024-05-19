@@ -50,13 +50,16 @@ def advert_details(advert):
 
 
 @adverts_blueprint.route('/list_adverts')
+@login_required
 def list_adverts():
     adverts = Advert.query.filter_by(available=True)
     return render_template('main/listedadverts.html', current_advert=adverts)
 
 
 @adverts_blueprint.route('/collect_confirmation/<advert>')
+@login_required
 def collect_confirmation(advert):
+
     with app.app_context():
         current_advert = Advert.query.get(advert)
         current_advert.available = False
@@ -68,3 +71,4 @@ def collect_confirmation(advert):
         db.session.add(new_collection)
         db.session.commit()
         return render_template('main/collect-confirmation.html', current_advert=current_advert)
+
