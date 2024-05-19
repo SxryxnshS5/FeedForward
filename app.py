@@ -44,6 +44,10 @@ def create_admin_account():
 def collect_confirmation():
     return render_template('main/collect-confirmation.html')
 
+@app.route('/messages')
+def messages():
+    return render_template('main/messages.html')
+
 if __name__ == '__main__':
     # Import blueprints (imported here to avoid Circular Import Error)
     from users.views import users_blueprint
