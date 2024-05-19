@@ -3,6 +3,7 @@ from flask import Flask, render_template
 from dotenv import load_dotenv
 from extensions import init_app, db, login_manager, csrf
 
+
 app = Flask(__name__)
 
 # Configuring the secret key to sign and validate session cookies.
