@@ -67,3 +67,21 @@ def create_admin_account():
     # if request method is GET or form not valid re-render admin page
     return render_template('main/adminaccount.html', form=form)
 
+
+#CHECK IF BLUEPRINT ROUTE IS CORRECT WITH HTML
+@admin_blueprint.route('/current_adverts')
+@login_required
+@requires_roles('admin')
+def current_adverts():
+    current_adverts = Advert.query.filter_by(available=True).all()
+    return render_template('main/adminaccount.html', current_adverts=current_adverts)
+
+
+#CHECK IF BLUEPRINT ROUTE IS CORRECT WITH HTML
+@admin_blueprint.route('/users')
+@login_required
+@requires_roles('admin')
+def view_users():
+    current_users = User.query.filter_by(role='user').all()
+    return render_template('main/adminaccount.html', current_users=current_users)
+
