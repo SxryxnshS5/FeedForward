@@ -54,6 +54,10 @@ def list_adverts():
     return render_template('main/listedadverts.html', current_advert=adverts)
 
 
+@adverts_blueprint.route('/collect_confirmation/<advert>')
+def collect_confirmation(advert):
+    return render_template('main/collect-confirmation.html', current_advert=Advert.query.get(advert))
+
 @adverts_blueprint.route('/collect_advert')
 @login_required
 def collect_advert(advert):
@@ -61,3 +65,4 @@ def collect_advert(advert):
     #advert_collect.available = False
 
     return render_template('main/advert_details.html', current_advert=Advert.query.get(advert))
+
