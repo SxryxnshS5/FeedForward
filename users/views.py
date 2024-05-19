@@ -42,7 +42,7 @@ def signup():
 
                 db.session.add(new_user)
                 db.session.commit()
-                
+
                 # create session variable
                 session['email'] = new_user.email
                 return redirect(url_for('users.login'))
@@ -97,7 +97,6 @@ def login():
     return render_template('main/login.html', form=form)
 
 
-
 # View for user account information
 @users_blueprint.route('/account')
 @login_required
@@ -119,19 +118,16 @@ def account():
         'phone': current_user.phone,
         'role': current_user.role
     }
-    
-    adverts = Advert.query.filter_by(owner=current_user.id).all()
+
+    adverts = Advert.query.filter_by(owner=current_user.id, available=True).all()
     orders = Collection.query.filter_by(buyer=current_user.id).all()
 
     return render_template('main/account.html', current_user=user_details, adverts=adverts, orders=orders)
 
 
-
-
 @users_blueprint.route('/logout')
 @login_required
 def logout():
-
     """Function to log the user out"""
     # Log the user out
     logout_user()
@@ -140,5 +136,3 @@ def logout():
     # Redirect to the login page or home page
     flash('You have been logged out.')
     return redirect(url_for('users.login'))
-
-

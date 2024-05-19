@@ -78,3 +78,18 @@ def collect_confirmation(advert):
             db.session.commit()
             return render_template('main/collect-confirmation.html', current_advert=current_advert)
 
+
+@adverts_blueprint.route('/delete_advert/<advert>')
+@login_required
+def delete_advert(advert):
+    current_advert = Advert.query.get(advert)
+    if current_user.id == current_advert.owner:
+        with app.app_context():
+
+            datalink.set_advert_unavailable(current_advert.adID)
+            return redirect(url_for('users.account'))
+
+    else:
+        flash("You don't own this advert!")
+
+        return redirect(url_for('advert.advert_details'))
