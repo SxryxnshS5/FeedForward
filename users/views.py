@@ -1,4 +1,6 @@
 from flask_login import login_user, logout_user, current_user, login_required
+
+import users.views
 from users.forms import SignUpForm, LoginForm
 import bcrypt
 from flask import Blueprint, flash, render_template, session, redirect, url_for
@@ -43,8 +45,8 @@ def signup():
                 
                 # create session variable
                 session['email'] = new_user.email
-                # sends user to 2fa page
-                return render_template('main/account.html', current_user=new_user)
+                return redirect(url_for('users.login'))
+
     else:
         # if user is already logged in
         flash('You are already logged in.')
@@ -122,7 +124,7 @@ def account():
     }
     
     adverts = Advert.query.filter_by(owner=current_user.id).all()
-    orders = Collection.query.filter_by(seller=current_user.id).all()
+    orders = Collection.query.filter_by(buyer=current_user.id).all()
 
     return render_template('main/account.html', current_user=user_details, adverts=adverts, orders=orders)
 
