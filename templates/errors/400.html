@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" href="../static/css/errors.css">
+
+
+
+<div class="image-container">
+
+<img class="bubble-1" src="../static/images/base/bubble1.png" alt="Bubble 1" >
+</div>
+
+    {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="notification is-danger">
+                        {{ messages[0] }}.
+                    </div>
+                {% endif %}
+    {% endwith %}
+
+<div class="background-container">
+    <div class="container1">
+
+
+        <h2 class="error-text">Error: 400 Bad Request</h2>
+        <p class="error-body">Server cannot process request due to client error</p>
+
+
+    </div>
+
+
+    </div>
+
+<img class="bubble-2" src="../static/images/base/bubble2.png" alt="Bubble 2" >
+
+
+
+</div>
+
+
+
+
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}
