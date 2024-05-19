@@ -40,9 +40,7 @@ def newsletter():
 def create_admin_account():
     return render_template('main/create_admin_account.html')
 
-@app.route('/collect_confirmation')
-def collect_confirmation():
-    return render_template('main/collect-confirmation.html')
+
 
 @app.route('/messages')
 def messages():
