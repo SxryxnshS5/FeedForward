@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" href="../static/css/messages.css">
+
+<div class="image-container">
+    <img src="../static/images/base/uppershape.png" alt="Sticky Image" class="sticky-image">
+    <div class="image-text">
+        <h2 class="fjalla-one-regular">Messages</h2>
+    </div>
+</div>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="notification is-danger">
+    {{ messages[0] }}.
+</div>
+{% endif %}
+{% endwith %}
+
+<div class="background-container">
+    
+</div>
+
+{% endblock %}
