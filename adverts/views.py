@@ -53,6 +53,6 @@ def list_adverts():
     return render_template('main/listedadverts.html', current_advert=adverts)
 
 
-@adverts_blueprint.route('/collect_confirmation')
-def collect_confirmation():
-    return render_template('main/collect-confirmation.html')
+@adverts_blueprint.route('/collect_confirmation/<advert>')
+def collect_confirmation(advert):
+    return render_template('main/collect-confirmation.html', current_advert=Advert.query.get(advert))
