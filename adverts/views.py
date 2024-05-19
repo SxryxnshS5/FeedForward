@@ -55,4 +55,7 @@ def list_adverts():
 
 @adverts_blueprint.route('/collect_confirmation/<advert>')
 def collect_confirmation(advert):
-    return render_template('main/collect-confirmation.html', current_advert=Advert.query.get(advert))
+    current_advert = Advert.query.get(advert)
+    current_advert.available = False
+    db.session.commit()
+    return render_template('main/collect-confirmation.html', current_advert=current_advert)
