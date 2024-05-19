@@ -35,7 +35,7 @@
 
 .form-container {
     max-width: 500px;
-    margin: 0 auto;
+    margin: 0; /* Adjusted to align the form to the left */
     padding: 20px;
     border-radius: 5px;
 }
@@ -136,4 +136,13 @@ input[type="submit"]:hover {
 
 .button-container {
     padding-top: 20px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Aligns its children (the .col-lg-6 divs) to the center horizontally */
+}
+
+.col-lg-6 {
+    display: inline-block; /* Ensures that the divs containing the buttons are treated as inline-block elements */
 }

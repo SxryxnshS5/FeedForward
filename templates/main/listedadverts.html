@@ -11,36 +11,36 @@
     </div>
 </div>
 
-    {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <div class="notification is-danger">
-                        {{ messages[0] }}.
-                    </div>
-                {% endif %}
-    {% endwith %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}.
+        </div>
+    {% endif %}
+{% endwith %}
 
 <div class="background-container">
     <div class="container1">
         <table class="table"> <!-- Advert collection history table-->
-                        <thead>
-                        <tr>
-                            <th scope="col">Serial number</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Food description</th>
-                            <th scope="col">Best before</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for advert in current_advert %}
-                        <tr>
-                            <td>{{advert.adID}}</td>
-                            <td><a href="advert_details/{{advert.adID}}">{{advert.title}}</a></td>
-                            <td>{{advert.contents}}</td>
-                            <td>{{advert.expiry}}</td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+            <thead>
+                <tr>
+                    <th scope="col">Serial number</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Food description</th>
+                    <th scope="col">Best before</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for advert in current_advert %}
+                <tr>
+                    <td>{{ advert.adID }}</td>
+                    <td><a href="advert_details/{{ advert.adID }}">{{ advert.title }}</a></td>
+                    <td>{{ advert.contents }}</td>
+                    <td>{{ advert.expiry }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>
 
