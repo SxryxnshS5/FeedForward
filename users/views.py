@@ -44,7 +44,7 @@ def signup():
                 # create session variable
                 session['email'] = new_user.email
                 # sends user to 2fa page
-                return render_template('main/account.html', current_user=new_user)
+                return render_template('main/login.html', current_user=new_user)
     else:
         # if user is already logged in
         flash('You are already logged in.')
@@ -122,7 +122,7 @@ def account():
     }
     
     adverts = Advert.query.filter_by(owner=current_user.id).all()
-    orders = Collection.query.filter_by(seller=current_user.id).all()
+    orders = Collection.query.filter_by(buyer=current_user.id).all()
 
     return render_template('main/account.html', current_user=user_details, adverts=adverts, orders=orders)
 

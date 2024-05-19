@@ -2,6 +2,8 @@ import datetime
 import json
 
 from flask import Blueprint, render_template, redirect, url_for, session, request, flash
+
+import datalink
 from adverts.forms import AdvertForm
 from flask_login import current_user, login_required
 from app import db, app
@@ -66,7 +68,7 @@ def collect_confirmation(advert):
     else:
         with app.app_context():
 
-            current_advert.available = False
+            datalink.set_advert_unavailable(current_advert.adID)
             new_collection = Collection(advert=current_advert.adID,
                                         buyer=current_user.id,
                                         seller=current_advert.owner,
