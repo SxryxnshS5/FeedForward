@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="../static/css/advert_details.css">
+<link rel="stylesheet" href="../static/css/advert_details.css" xmlns="http://www.w3.org/1999/html">
 <script type="text\javascript" src="{{url_for('static', filename='base.js')}}"></script>
 
 <div class="image-container">
@@ -47,7 +47,7 @@
     </div>
     <div class="button-container row">
         <div class="col-lg-6">
-            <a class="btn btn1" href="../collect_confirmation/{{current_advert.adID}}">Collect</a>
+            <a class="btn btn1" href="../collect_confirmation/{{current_advert.adID}}" onclick="return confirm('Are you sure you want to collect this advert?')">Collect</a>
         </div>
         <div class="col-lg-6">
             <input type="submit" value="Message Advertiser" class="btn btn2">
