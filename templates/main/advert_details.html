@@ -46,12 +46,20 @@
         <button class="open-map-button">Open Map</button>
     </div>
     <div class="button-container row">
+        {% if current_user.id != current_advert.owner %}
         <div class="col-lg-6">
             <a class="btn btn1" href="../collect_confirmation/{{current_advert.adID}}" onclick="return confirm('Are you sure you want to collect this advert?')">Collect</a>
         </div>
+
         <div class="col-lg-6">
-            <input type="submit" value="Message Advertiser" class="btn btn2">
+            <input type="submit" value="Message Advertiser" class="btn btn3">
         </div>
+        {% endif %}
+        {% if current_user.id == current_advert.owner %}
+        <div class="col-lg-6">
+            <a class="btn btn2" href="../delete_advert/{{current_advert.adID}}" onclick="return confirm('Are you sure you want to delete this advert?')">Delete</a>
+        </div>
+        {% endif %}
     </div>
 </div>
 
