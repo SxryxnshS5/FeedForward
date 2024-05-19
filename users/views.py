@@ -83,13 +83,10 @@ def login():
                     # create user
                     login_user(user)
                     db.session.commit()
-                    # generate security log for user log in
-
-                    adverts = Advert.query.filter_by(owner=current_user.id).all()
 
                     # redirect to correct page depending on role
                     if current_user.role == 'user':
-                        return render_template('main/account.html', adverts=adverts)
+                        return redirect(url_for('users.account'))
                     else:
                         return render_template('main/adminaccount.html')
     else:
