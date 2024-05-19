@@ -92,4 +92,4 @@ def delete_advert(advert):
     else:
         flash("You don't own this advert!")
 
-        return redirect(url_for('advert.advert_details'))
+        return render_template('main/advert_details.html', current_advert=Advert.query.get(advert))
