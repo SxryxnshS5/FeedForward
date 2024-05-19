@@ -73,7 +73,8 @@ def create_admin_account():
 @login_required
 @requires_roles('admin')
 def current_adverts():
-    current_adverts = Advert.query.filter_by(available=True).all()
+    with app.app_context():
+        current_adverts = Advert.query.filter_by(available=True).all()
     return render_template('main/adminaccount.html', current_adverts=current_adverts)
 
 
@@ -82,6 +83,7 @@ def current_adverts():
 @login_required
 @requires_roles('admin')
 def view_users():
-    current_users = User.query.filter_by(role='user').all()
+    with app.app_context():
+        current_users = User.query.filter_by(role='user').all()
     return render_template('main/adminaccount.html', current_users=current_users)
 

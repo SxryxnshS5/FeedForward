@@ -2,7 +2,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from users.forms import SignUpForm, LoginForm
 import bcrypt
 from flask import Blueprint, flash, render_template, session, redirect, url_for
-from models import User, Advert
+from models import User, Advert, Collection
 from app import db, app
 from markupsafe import Markup
 
@@ -122,8 +122,9 @@ def account():
     }
     
     adverts = Advert.query.filter_by(owner=current_user.id).all()
+    orders = Collection.query.filter_by(seller=current_user.id).all()
 
-    return render_template('main/account.html', current_user=user_details, adverts=adverts)
+    return render_template('main/account.html', current_user=user_details, adverts=adverts, orders=orders)
 
 
 

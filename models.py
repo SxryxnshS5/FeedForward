@@ -180,9 +180,9 @@ class Collection(db.Model):
     __tablename__ = 'foodorder'
     advert = db.Column('adID', db.ForeignKey(Advert.adID), primary_key=True,
                        nullable=False)
-    buyer = db.Column('ordererID', db.ForeignKey(User.email), primary_key=True,
+    buyer = db.Column('buyerID', db.ForeignKey(User.id), primary_key=True,
                       nullable=False)
-    seller = db.Column('sellerID', db.ForeignKey(User.email), nullable=False)
+    seller = db.Column('sellerID', db.ForeignKey(User.id), nullable=False)
     date = db.Column('timestamp', db.DateTime, nullable=False)
 
     def __init__(self, advert, seller, buyer, date):

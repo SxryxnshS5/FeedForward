@@ -1,10 +1,12 @@
+import datetime
 import json
 
 from flask import Blueprint, render_template, redirect, url_for, session, request
 from adverts.forms import AdvertForm
 from flask_login import current_user, login_required
 from app import db, app
-from models import User, Advert
+from models import User, Advert, Collection
+from sqlalchemy.sql import func
 
 adverts_blueprint = Blueprint('adverts', __name__, template_folder='templates')
 
@@ -55,14 +57,18 @@ def list_adverts():
 
 
 @adverts_blueprint.route('/collect_confirmation/<advert>')
-def collect_confirmation(advert):
-    return render_template('main/collect-confirmation.html', current_advert=Advert.query.get(advert))
-
-@adverts_blueprint.route('/collect_advert')
 @login_required
-def collect_advert(advert):
-    #advert_collect = Advert.query.get(advert)
-    #advert_collect.available = False
+def collect_confirmation(advert):
 
-    return render_template('main/advert_details.html', current_advert=Advert.query.get(advert))
+    with app.app_context():
+        current_advert = Advert.query.get(advert)
+        current_advert.available = False
+        new_collection = Collection(advert=current_advert.adID,
+                                    buyer=current_user.id,
+                                    seller=current_advert.owner,
+                                    date=datetime.datetime.now())
+
+        db.session.add(new_collection)
+        db.session.commit()
+        return render_template('main/collect-confirmation.html', current_advert=current_advert)
 
