@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/confirmation.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='base.js') }}"></script>
+
+<div class="image-container">
+    <img src="{{ url_for('static', filename='images/base/uppershape.png') }}" alt="Sticky Image" class="sticky-image">
+    <div class="image-text">
+        <h2 class="fjalla-one-regular">Collection confirmation</h2>
+    </div>
+</div>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="notification is-danger">
+    {{ messages[0] }}.
+</div>
+{% endif %}
+{% endwith %}
+
+<div class="background-container">
+            <button class="collectbtn" id="collect">Collect</button>
+</div>
+{% endblock %}
