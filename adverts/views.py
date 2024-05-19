@@ -1,7 +1,9 @@
 import datetime
 import json
 
-from flask import Blueprint, render_template, redirect, url_for, session, request
+from flask import Blueprint, render_template, redirect, url_for, session, request, flash
+
+import datalink
 from adverts.forms import AdvertForm
 from flask_login import current_user, login_required
 from app import db, app
@@ -59,16 +61,20 @@ def list_adverts():
 @adverts_blueprint.route('/collect_confirmation/<advert>')
 @login_required
 def collect_confirmation(advert):
+    current_advert = Advert.query.get(advert)
+    if current_user.id == current_advert.owner:
+        flash('You own this advert!')
+        return render_template('main/advert_details.html', current_advert=current_advert)
+    else:
+        with app.app_context():
 
-    with app.app_context():
-        current_advert = Advert.query.get(advert)
-        current_advert.available = False
-        new_collection = Collection(advert=current_advert.adID,
-                                    buyer=current_user.id,
-                                    seller=current_advert.owner,
-                                    date=datetime.datetime.now())
+            datalink.set_advert_unavailable(current_advert.adID)
+            new_collection = Collection(advert=current_advert.adID,
+                                        buyer=current_user.id,
+                                        seller=current_advert.owner,
+                                        date=datetime.datetime.now())
 
-        db.session.add(new_collection)
-        db.session.commit()
-        return render_template('main/collect-confirmation.html', current_advert=current_advert)
+            db.session.add(new_collection)
+            db.session.commit()
+            return render_template('main/collect-confirmation.html', current_advert=current_advert)
 
