@@ -1,0 +1,56 @@
+.image-container {
+    position: relative;
+    width: 100%;
+}
+
+.sticky-image {
+    width: 100%;
+    display: block;
+}
+
+.image-text {
+    position: absolute;
+    top: 50%; /* Adjust vertically */
+    left: 50%; /* Adjust horizontally */
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+
+
+
+.background-container {
+    display: flex; /* Enable flexbox layout */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: 80%; /* Adjust the width as needed */
+    margin: 50px auto;
+    height: 200px;
+    background-color: rgba(217, 217, 217, 0.7); /* Translucent background color */
+    border-radius: 80px; /* Border radius for a softer square shape */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* Padding to ensure the content doesn't touch the edges */
+}
+
+.collectbtn {
+    width: 40%;
+    padding: 15px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+  .fjalla-one-regular {
+    font-family: "Fjalla One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 60px;
+  }
+
+/* styles.css */
+.button-container {
+    display: flex;
+}
