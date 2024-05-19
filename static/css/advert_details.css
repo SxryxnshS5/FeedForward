@@ -146,3 +146,13 @@ input[type="submit"]:hover {
 .col-lg-6 {
     display: inline-block; /* Ensures that the divs containing the buttons are treated as inline-block elements */
 }
+
+
+.notification {
+    background-color: #ff0000; /* Red background */
+    color: #ffffff; /* White text */
+    padding: 10px;
+    margin-bottom: 15px;
+    margin-top: 25px;
+    border-radius: 5px;
+}
