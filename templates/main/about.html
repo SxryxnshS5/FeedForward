@@ -4,6 +4,13 @@
     <!-- Include custom CSS file for about page -->
     <link rel="stylesheet" href="../static/css/about.css">
 
+<div class="image-container">
+    <img src="{{ url_for('static', filename='images/base/uppershape.png') }}" alt="Sticky Image" class="sticky-image">
+    <div class="image-text">
+        <h2 class="fjalla-one-regular">About Us !!</h2>
+    </div>
+</div>
+
     <!-- Flash messages handling -->
     {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -12,6 +19,8 @@
             </div>
         {% endif %}
     {% endwith %}
+
+
 
     <!-- Main content section -->
     <section class="main-sect">
@@ -52,7 +61,7 @@
     <section>
         <div class="title-container">
                     <!-- Title -->
-                    <h2 class="fjalla-one-regular">About Us !!</h2>
+
                 </div>
 
         <div class="row text-center body-text-1">

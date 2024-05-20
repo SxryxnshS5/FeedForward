@@ -43,24 +43,31 @@
 .account-title {
     text-align: center;
     font-family: "Fjalla One";
+    font-size: 50px;
 }
 
 .ad-history {
     margin-top: 50px;
+    margin-bottom: 30px;
     text-align: center;
     font-family: "Fjalla One";
 }
 
 .pfp{
-    height: 200px;
-    width: 200px;
+    height: 250px;
+    width: 250px;
+    margin-bottom: 50px;
+    margin-top: 30px;
+
+
+
 }
 
 
 .button-change {
     width: 40%;
     padding: 15px;
-
+    margin-top: 10px;
     background-color: #FFFFFF;
     color: #000000;
     border: none;
