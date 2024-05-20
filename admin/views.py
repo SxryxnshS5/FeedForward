@@ -22,6 +22,24 @@ def requires_roles(*roles):
     return wrapper
 
 
+@admin_blueprint.route('/adminaccount')
+@login_required
+@requires_roles('admin')
+def admin_account():
+    """ View function for viewing the admin account details. """
+
+    # get all collected adverts
+    collected_adverts = Advert.query.filter_by(available=False).all()
+    # get all available adverts
+    current_adverts = Advert.query.filter_by(available=True).all()
+    # get all users
+    current_users = User.query.filter_by(role='user').all()
+
+    # renders the admin account template
+    return render_template('main/adminaccount.html', current_adverts=current_adverts, current_users=current_users,
+                           collected_adverts=collected_adverts)
+
+
 @admin_blueprint.route('/create_admin_account', methods=['GET', 'POST'])
 @login_required
 @requires_roles('admin')
@@ -29,67 +47,37 @@ def create_admin_account():
     """ view function which is used to create an admin account"""
     # create signup form object
     form = AdminSignUpForm()
-    # Check if admin is logged out
-    if current_user.is_anonymous:
-        # if request method is POST or form is valid
-        if form.validate_on_submit():
-            with app.app_context():
-                admin = User.query.filter_by(email=form.email.data).first()
-                # if this returns a user, then the admin already exists in database
-                # if email already exists redirect user back to signup page with error message so user can try again
-                if admin:
-                    flash('Email address already exists')
-                    return render_template('main/adminaccount.html', form=form)
+    print("i am here")
+    # if request method is POST or form is valid
+    if form.validate_on_submit():
+        with app.app_context():
+            print('hereeeeee')
+            admin = User.query.filter_by(email=form.email.data).first()
+            # if this returns a user, then the admin already exists in database
+            # if email already exists redirect user back to signup page with error message so user can try again
+            if admin:
+                flash('Email address already exists')
+                return render_template('main/create_admin_account.html', form=form)
 
-                # create a new admin with the form data
-                new_admin = User(email=form.email.data,
-                                 first_name=form.first_name.data,
-                                 surname=form.last_name.data,
-                                 password=bcrypt.hashpw(form.password.data.encode('utf-8'), bcrypt.gensalt()),
-                                 role='admin',
-                                 dob=form.dob.data,
-                                 address=form.address.data,
-                                 phone=form.phone.data)
+            # create a new admin with the form data
+            new_admin = User(email=form.email.data,
+                             first_name=form.first_name.data,
+                             surname=form.last_name.data,
+                             password=bcrypt.hashpw(form.password.data.encode('utf-8'), bcrypt.gensalt()),
+                             role='admin',
+                             dob=form.dob.data,
+                             address=form.address.data,
+                             phone=form.phone.data)
 
-                # add the new user to the database
+            # add the new user to the database
 
-                db.session.add(new_admin)
-                db.session.commit()
+            db.session.add(new_admin)
+            db.session.commit()
 
-                # create session variable
-                session['email'] = new_admin.email
-                return render_template('main/adminaccount.html', current_user=new_admin)
-    else:
-        # if admin is already logged in
-        flash('You are already logged in.')
-        # send admin to account page
-        return render_template('main/adminaccount.html')
+            flash('New Admin added successfully.')
+            return redirect(url_for('admin.adminaccount'))
     # if request method is GET or form not valid re-render admin page
-    return render_template('main/adminaccount.html', form=form)
-
-
-#CHECK IF BLUEPRINT ROUTE IS CORRECT WITH HTML
-@admin_blueprint.route('/current_adverts')
-@login_required
-@requires_roles('admin')
-def current_adverts():
-    """ function to view all current adverts """
-    with app.app_context():
-        # get all adverts in the database which are available
-        current_adverts = Advert.query.filter_by(available=True).all()
-    return render_template('main/adminaccount.html', current_adverts=current_adverts)
-
-
-#CHECK IF BLUEPRINT ROUTE IS CORRECT WITH HTML
-@admin_blueprint.route('/users')
-@login_required
-@requires_roles('admin')
-def view_users():
-    """ function to view all the users of the system """
-    with app.app_context():
-        # get all the users in the database
-        current_users = User.query.filter_by(role='user').all()
-    return render_template('main/adminaccount.html', current_users=current_users)
+    return render_template('main/create_admin_account.html', form=form)
 
 
 @admin_blueprint.route('/logout')
