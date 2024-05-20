@@ -99,17 +99,17 @@ def update_details(database_user, updated_user):
     db.session.commit()
 
 
-def get_user_collections(collector_email):
+def get_user_collections(collector_id):
     """return collections made by a user"""
-    return Collection.query.filter_by(buyer=collector_email)
+    return Collection.query.filter_by(buyer=collector_id)
 
 
-def get_message_history(user_email1, user_email2):
+def get_message_history(user1_id, user2_id):
     """return all messages sent to between 2 users"""
     return Message.query.filter(
         or_(
-            and_(Message.sender == user_email1, Message.receiver == user_email2),
-            and_(Message.sender == user_email2, Message.receiver == user_email1),
+            and_(Message.sender == user1_id, Message.receiver == user2_id),
+            and_(Message.sender == user2_id, Message.receiver == user1_id),
         )
     ).order_by(Message.timestamp).all()
 

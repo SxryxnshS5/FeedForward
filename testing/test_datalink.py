@@ -19,27 +19,27 @@ tomorrow = datetime.today() + timedelta(days=1)
 yesterday = datetime.today() - timedelta(days=1)
 
 test_adverts = [
-    ["in date", "lorem ipsum", "lorem ipsum", "testemail1@gmail.com", tomorrow, True],
-    ["in date", "lorem ipsum", "lorem ipsum", "testemail2@gmail.com", tomorrow, True],
-    ["out of date", "lorem ipsum", "lorem ipsum", "testemail1@gmail.com", yesterday, True],
-    ["out of date", "lorem ipsum", "lorem ipsum", "testemail2@gmail.com", yesterday, True],
-    ["unavailable", "lorem ipsum", "lorem ipsum", "testemail2@gmail.com", tomorrow, False],
+    ["in date", "lorem ipsum", "lorem ipsum", 1, tomorrow, True],
+    ["in date", "lorem ipsum", "lorem ipsum", 2, tomorrow, True],
+    ["out of date", "lorem ipsum", "lorem ipsum", 1, yesterday, True],
+    ["out of date", "lorem ipsum", "lorem ipsum", 2, yesterday, True],
+    ["unavailable", "lorem ipsum", "lorem ipsum", 2, tomorrow, False],
 ]
 
 test_messages = [
-    ["testemail1@gmail.com", "testemail2@gmail.com",
+    [1, 2,
      datetime.strptime("01/01/2001 01:01:01", "%d/%m/%Y %H:%M:%S"), "1"],
-    ["testemail2@gmail.com", "testemail1@gmail.com",
+    [1, 2,
          datetime.strptime("01/01/2001 01:01:02", "%d/%m/%Y %H:%M:%S"), "2"],
-    ["testemail1@gmail.com", "testemail2@gmail.com",
+    [1, 2,
          datetime.strptime("01/01/2001 01:01:03", "%d/%m/%Y %H:%M:%S"), "3"],
-    ["testemail3@gmail.com", "testemail4@gmail.com",
+    [3, 4,
          datetime.strptime("01/01/2001 01:01:01", "%d/%m/%Y %H:%M:%S"), "hello world"],
 ]
 
 test_collections = [
-    # replace adIDs after they're auto generated
-    [1, "testemail1@gmail.com", "testemail2@gmail.com", datetime.now()],
+    # replace adIDs & userIDs after they're auto generated
+    [1, 1, 2, datetime.now()],
 ]
 
 class TestDatabase(unittest.TestCase):
@@ -53,6 +53,8 @@ class TestDatabase(unittest.TestCase):
             # remove any existing test rows
             for user in users:
                 datalink.delete_user(user)
+
+            print("count " + str(len(Advert.query.all())))
 
     def test_connect(self):
         """test datalink can connect to the database"""
@@ -78,6 +80,7 @@ class TestDatabase(unittest.TestCase):
             user = User(*test_users[0])
             datalink.create_user(user)
             advert = Advert(*test_adverts[0])
+            advert.owner = user.id
             datalink.create_advert(advert)
             id = advert.adID
 
@@ -101,18 +104,22 @@ class TestDatabase(unittest.TestCase):
             # test creation
             test_message = test_messages[0]
             message = Message(*test_message)
+            message.sender = user1.id
+            message.receiver = user2.id
             datalink.create_message(message)
-            q = Message.query.filter_by(sender=test_message[0], receiver=test_message[1],
+            q = Message.query.filter_by(sender=user1.id, receiver=user2.id,
                                         timestamp=test_message[2]).first()
             self.assertIsNotNone(q)
 
             # test deletion
             datalink.delete_message(message)
-            datalink.delete_user(user1)
-            datalink.delete_user(user2)
-            q = Message.query.filter_by(sender=test_message[0], receiver=test_message[1],
+            q = Message.query.filter_by(sender=user1.id, receiver=user2.id,
                                         timestamp=test_message[2]).first()
             self.assertIsNone(q)
+
+            datalink.delete_user(user1)
+            datalink.delete_user(user2)
+
 
     def test_create_delete_collection(self):
         with app.app_context():
@@ -123,23 +130,28 @@ class TestDatabase(unittest.TestCase):
             datalink.create_user(collector)
 
             advert = Advert(*test_adverts[0])
+            advert.owner = seller.id
             datalink.create_advert(advert)
 
             # test creation
             test_collect = test_collections[0]
             test_collect[0] = advert.adID
             collection = Collection(*test_collect)
+            collection.seller = seller.id
+            collection.buyer = collector.id
 
             datalink.create_order(collection)
-            q = Collection.query.filter_by(advert=test_collect[0], buyer=test_collect[2]).first()
+            q = Collection.query.filter_by(advert=advert.adID, buyer=collector.id).first()
             self.assertIsNotNone(q)
 
             # test deletion
             datalink.delete_order(collection)
+            q = Collection.query.filter_by(advert=advert.adID, buyer=collector.id).first()
+            self.assertIsNone(q)
+
             datalink.delete_user(seller)
             datalink.delete_user(collector)
-            q = Collection.query.filter_by(advert=test_collect[0], buyer=test_collect[2]).first()
-            self.assertIsNone(q)
+
 
     def test_check_expiry(self):
         """test if out of date ads can be marked as unavailable while leaving in date ones alone"""
@@ -149,10 +161,13 @@ class TestDatabase(unittest.TestCase):
             datalink.create_user(user1)
             user2 = User(*test_users[1])
             datalink.create_user(user2)
+            users = [user1, user2]
 
             ads = []
             for i in range(5):
                 ads.append(Advert(*test_adverts[i]))
+                # set owner with AA generated id, index 3 points to which test user to use
+                ads[i].owner = users[test_adverts[i][3] - 1].id
                 datalink.create_advert(ads[i])
 
             # check in date ads not set to unavailable
@@ -180,10 +195,12 @@ class TestDatabase(unittest.TestCase):
             datalink.create_user(user1)
             user2 = User(*test_users[1])
             datalink.create_user(user2)
+            users = [user1, user2]
 
             ads = []
             for i in range(5):
                 ads.append(Advert(*test_adverts[i]))
+                ads[i].owner = users[test_adverts[i][3] - 1].id
                 datalink.create_advert(ads[i])
 
             assert len(ads) == 5
@@ -204,10 +221,12 @@ class TestDatabase(unittest.TestCase):
             for u in users:
                 datalink.create_user(u)
             messages = [Message(*m) for m in test_messages]
-            for m in messages:
-                datalink.create_message(m)
+            for i in range(len(messages)):
+                messages[i].sender = users[test_messages[i][0] - 1].id
+                messages[i].receiver = users[test_messages[i][1] - 1].id
+                datalink.create_message(messages[i])
 
-            history = datalink.get_message_history("testemail1@gmail.com", "testemail2@gmail.com")
+            history = datalink.get_message_history(users[0].id, users[1].id)
             # check messages collected
             self.assertEqual(len(history), 3)
             # check messages in order - should be "1", "2", "3"
