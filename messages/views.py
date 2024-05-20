@@ -22,11 +22,12 @@ def view_messages():
     time_messages = dict()
     if recent_messages:
         # sort so most recent messages at top
-        recent_messages = sorted(recent_messages, key=lambda x: x.timestamp, reverse=True)
+        recent_messages = dict(sorted(recent_messages.items(),
+                                      key=lambda x: x[1].timestamp, reverse=True))
 
         for u in users:
             message = recent_messages[u]
-            time_diff = datetime.now - message.timestamp
+            time_diff = datetime.now() - message.timestamp
             # get how long ago message sent in mins
             time_diff = time_diff.total_seconds() // 60
             # find appropriate message in mins, hours or days
@@ -44,14 +45,11 @@ def view_messages():
                 time_msg = "%d min(s) ago" % time_diff
 
             time_messages.update({u: time_msg})
-    flash("debug")
-    flash(recent_messages)
-    flash(time_messages)
     return render_template('main/messages.html',
                            recent_messages=recent_messages, time_messages=time_messages)
 
 
 
 @messages_blueprint.route('/chat', methods=['GET', 'POST'])
-def conversations():
-    pass
+def chat():
+    return render_template('main/chat.html')

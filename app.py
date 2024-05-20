@@ -3,7 +3,6 @@ from flask import Flask, render_template
 from dotenv import load_dotenv
 from extensions import init_app, db, login_manager, csrf
 
-from messages.views import view_messages
 
 app = Flask(__name__)
 
@@ -47,7 +46,7 @@ def newsletter():
 def create_admin_account():
     return render_template('main/create_admin_account.html')
 
-
+"""
 @app.route('/messages')
 def messages():
     return render_template('main/messages.html')
@@ -56,6 +55,8 @@ def messages():
 @app.route('/chat')
 def chat():
     return render_template('main/chat.html')
+
+"""
 #Errors
 
 @app.errorhandler(400)

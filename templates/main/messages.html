@@ -21,7 +21,7 @@
 
 <div class="background-container">
     {% if recent_messages %}
-        {% for user in list(recent_messages.keys()) %}
+        {% for user, message in recent_messages.items() %}
             <div class="message-bg" onclick="redirectToChat()">
                 <div class="msg-content">
                     <div class="pfp">
@@ -30,7 +30,7 @@
 
                 <div class="username">
                     <h2>{{user.first_name}}</h2>
-                    <p>{{recent_messages[user].contents}}</p>
+                    <p>{{message.contents}}</p>
                 </div>
 
                 <div class="msg-time">
@@ -44,7 +44,7 @@
 
 <script>
     function redirectToChat() {
-        window.location.href = "{{ url_for('chat') }}";
+        window.location.href = "{{ url_for('messages.chat') }}";
     }
 </script>
 
