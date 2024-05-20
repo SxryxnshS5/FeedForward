@@ -70,10 +70,9 @@
     border-radius: 5px;
   }
 
-  button {
+  .custom-button {
     width: 40%;
     padding: 15px;
-
     background-color: #FFFFFF;
     color: #000000;
     border: none;
@@ -81,14 +80,23 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
-
-  button:hover {
+  
+  .custom-button:hover {
     background-color: #0056b3;
   }
-
+  
   .fjalla-one-regular {
     font-family: "Fjalla One", sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 60px;
   }
+
+  .notification {
+    background-color: #ff0000; /* Red background */
+    color: #ffffff; /* White text */
+    padding: 10px;
+    margin-bottom: 15px;
+    margin-top: 25px;
+    border-radius: 5px;
+}
