@@ -20,54 +20,26 @@
 {% endwith %}
 
 <div class="background-container">
-    <div class="message-bg" onclick="redirectToChat()">
-        <div class="msg-content">
-            <div class="pfp">
-                <img src="{{ url_for('static', filename='images/base/pfp.png') }}" alt="pfp" width="100%">
-            </div>
+    {% if recent_messages %}
+        {% for user in list(recent_messages.keys()) %}
+            <div class="message-bg" onclick="redirectToChat()">
+                <div class="msg-content">
+                    <div class="pfp">
+                        <img src="{{ url_for('static', filename='images/base/pfp.png') }}" alt="pfp" width="100%">
+                    </div>
 
-            <div class="username">
-                <h2>User 1</h2>
-                <p>Yeah the food is still available</p>
-            </div>
+                <div class="username">
+                    <h2>{{user.first_name}}</h2>
+                    <p>{{recent_messages[user].contents}}</p>
+                </div>
 
-            <div class="msg-time">
-                <p>sent 2 mins ago</p>
-            </div>
+                <div class="msg-time">
+                    <p>{{time_messages[user]}}</p>
+                </div>
         </div>
     </div>
-    <div class="message-bg" onclick="redirectToChat()">
-        <div class="msg-content">
-            <div class="pfp">
-                <img src="{{ url_for('static', filename='images/base/pfp.png') }}" alt="pfp" width="100%">
-            </div>
-
-            <div class="username">
-                <h2>User 2</h2>
-                <p>Yeah the food is still available</p>
-            </div>
-
-            <div class="msg-time">
-                <p>sent 2 mins ago</p>
-            </div>
-        </div>
-    </div>
-    <div class="message-bg" onclick="redirectToChat()">
-        <div class="msg-content">
-            <div class="pfp">
-                <img src="{{ url_for('static', filename='images/base/pfp.png') }}" alt="pfp" width="100%">
-            </div>
-
-            <div class="username">
-                <h2>User 3</h2>
-                <p>Yeah the food is still available</p>
-            </div>
-
-            <div class="msg-time">
-                <p>sent 2 mins ago</p>
-            </div>
-        </div>
-    </div>
+        {% endfor %}
+    {% endif %}
 </div>
 
 <script>
