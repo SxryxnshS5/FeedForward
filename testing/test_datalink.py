@@ -235,6 +235,9 @@ class TestDatabase(unittest.TestCase):
             emails = [c.email for c in conversations]
             self.assertIn("testemail2@gmail.com", emails)
             self.assertIn("testemail3@gmail.com", emails)
+
+            for u in users:
+                datalink.delete_user(u)
     def test_get_latest_message(self):
         with app.app_context():
             users = [User(*u) for u in test_users]
