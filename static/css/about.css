@@ -1,10 +1,44 @@
+.image-container {
+    position: relative;
+    width: 100%;
+}
+
+.sticky-image {
+    width: 100%;
+    display: block;
+}
+
+.image-text {
+    position: absolute;
+    top: 50%; /* Adjust vertically */
+    left: 50%; /* Adjust horizontally */
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 .main-sect {
     background-color: #4F6F52;
     position: relative;
     width: 100%;
     height: 600px;
-    padding-bottom: 50px;
+    padding-bottom: 20px;
+    padding-top: 70px;
     border-radius: 30px;
+    margin-top: 100px;
   }
   
   .title-container {
@@ -17,10 +51,12 @@
     font-family: "Fjalla One", sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 130px;
+    font-size: 120px;
     color: white;
-    margin-top: 100px;
+   <!-- margin-top: 100px;-->
   }
+
+
 
 
 .subpt1 {
@@ -28,11 +64,7 @@
     margin-left: 60px;
 }
 
-.sub-text {
-    font-family: "Inter tight", sans-serif;
-    font-size: 160%;
-    font-weight: 600;
-}
+
 
 .body-text-1 {
     color: white;
@@ -41,18 +73,30 @@
 
 .body-p {
     size: 100px;
+    font-family: "Inter tight", sans-serif;
 
 }
 
+.sub-text {
+    font-family: "Inter tight", sans-serif;
+    font-size: 160%;
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+}
+
 .sub-text-div {
-    background-color: #7B937D;
+    background-color: #E8DFCA;
     height: 150px;
-    width: 110%;
-    margin-top: 80px;
-    border-radius: 20px;
+    width: 80%;
+    margin-top: 145px;
+    margin-right: 200px;
+    border-radius: 50px;
     display: flex;
-    justify-content: center; /* Horizontal centering */
-    align-items: center; /* Vertical centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center; /* Center text within the container */
+
 }
 
 .donors-text {
@@ -105,6 +149,43 @@
 
 }
 
+.logo-image{
+    align-items: center;
+    height: 50%;
+    width: 50%;
+    display: block;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-left: 130px;
+    margin-right: auto;
+
+
+
+}
+
+
+.logo-text{
+    height: 70%;
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+
+
+
+}
+
+.container1 {
+  width: 80%;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 10px;
+
+}
+
 .notification {
     background-color: #ff0000; /* Red background */
     color: #ffffff; /* White text */
@@ -112,5 +193,25 @@
     margin-bottom: 15px;
     margin-top: 25px;
     border-radius: 5px;
+}
+
+.bubble-1, .bubble-2 {
+  position: absolute;
+  z-index: -1; /* Ensure the bubbles are behind the content */
+}
+
+
+.bubble-1 {
+  height: 300px;
+  width: 300px;
+  top: 600px;
+  left: -300px;
+}
+
+.bubble-2 {
+  height: 300px;
+  width: 300px;
+  top: 700px;
+  left: 1297px;
 }
 
