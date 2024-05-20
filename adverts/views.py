@@ -1,10 +1,14 @@
+import datetime
 import json
 
-from flask import Blueprint, render_template, redirect, url_for, session, request
+from flask import Blueprint, render_template, redirect, url_for, session, request, flash
+
+import datalink
 from adverts.forms import AdvertForm
 from flask_login import current_user, login_required
 from app import db, app
-from models import User, Advert
+from models import User, Advert, Collection
+from sqlalchemy.sql import func
 
 adverts_blueprint = Blueprint('adverts', __name__, template_folder='templates')
 
@@ -48,14 +52,44 @@ def advert_details(advert):
 
 
 @adverts_blueprint.route('/list_adverts')
+@login_required
 def list_adverts():
     adverts = Advert.query.filter_by(available=True)
     return render_template('main/listedadverts.html', current_advert=adverts)
 
 
-@adverts_blueprint.route('/collect_advert')
-def collect_advert(advert):
-    #advert_collect = Advert.query.get(advert)
-    #advert_collect.available = False
+@adverts_blueprint.route('/collect_confirmation/<advert>')
+@login_required
+def collect_confirmation(advert):
+    current_advert = Advert.query.get(advert)
+    if current_user.id == current_advert.owner:
+        flash('You own this advert!')
+        return render_template('main/advert_details.html', current_advert=current_advert)
+    else:
+        with app.app_context():
 
-    return render_template('main/advert_details.html', current_advert=Advert.query.get(advert))
+            datalink.set_advert_unavailable(current_advert.adID)
+            new_collection = Collection(advert=current_advert.adID,
+                                        buyer=current_user.id,
+                                        seller=current_advert.owner,
+                                        date=datetime.datetime.now())
+
+            db.session.add(new_collection)
+            db.session.commit()
+            return render_template('main/collect-confirmation.html', current_advert=current_advert)
+
+
+@adverts_blueprint.route('/delete_advert/<advert>')
+@login_required
+def delete_advert(advert):
+    current_advert = Advert.query.get(advert)
+    if current_user.id == current_advert.owner:
+        with app.app_context():
+
+            datalink.set_advert_unavailable(current_advert.adID)
+            return redirect(url_for('users.account'))
+
+    else:
+        flash("You don't own this advert!")
+
+        return render_template('main/advert_details.html', current_advert=Advert.query.get(advert))

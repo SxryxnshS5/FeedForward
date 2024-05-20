@@ -1,8 +1,10 @@
 from flask_login import login_user, logout_user, current_user, login_required
+
+import users.views
 from users.forms import SignUpForm, LoginForm
 import bcrypt
 from flask import Blueprint, flash, render_template, session, redirect, url_for
-from models import User, Advert
+from models import User, Advert, Collection
 from app import db, app
 from markupsafe import Markup
 
@@ -40,11 +42,11 @@ def signup():
 
                 db.session.add(new_user)
                 db.session.commit()
-                
+
                 # create session variable
                 session['email'] = new_user.email
-                # sends user to 2fa page
-                return render_template('main/account.html', current_user=new_user)
+                return redirect(url_for('users.login'))
+
     else:
         # if user is already logged in
         flash('You are already logged in.')
@@ -81,13 +83,10 @@ def login():
                     # create user
                     login_user(user)
                     db.session.commit()
-                    # generate security log for user log in
-
-                    adverts = Advert.query.filter_by(owner=current_user.id).all()
 
                     # redirect to correct page depending on role
                     if current_user.role == 'user':
-                        return render_template('main/account.html', adverts=adverts)
+                        return redirect(url_for('users.account'))
                     else:
                         return render_template('main/adminaccount.html')
     else:
@@ -96,7 +95,6 @@ def login():
         flash('You are already logged in.')
         return render_template('main/account.html', adverts=adverts)
     return render_template('main/login.html', form=form)
-
 
 
 # View for user account information
@@ -120,18 +118,16 @@ def account():
         'phone': current_user.phone,
         'role': current_user.role
     }
-    
-    adverts = Advert.query.filter_by(owner=current_user.id).all()
 
-    return render_template('main/account.html', current_user=user_details, adverts=adverts)
+    adverts = Advert.query.filter_by(owner=current_user.id, available=True).all()
+    orders = Collection.query.filter_by(buyer=current_user.id).all()
 
-
+    return render_template('main/account.html', current_user=user_details, adverts=adverts, orders=orders)
 
 
 @users_blueprint.route('/logout')
 @login_required
 def logout():
-
     """Function to log the user out"""
     # Log the user out
     logout_user()
@@ -140,5 +136,3 @@ def logout():
     # Redirect to the login page or home page
     flash('You have been logged out.')
     return redirect(url_for('users.login'))
-
-

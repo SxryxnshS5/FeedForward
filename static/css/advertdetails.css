@@ -127,3 +127,12 @@ input[type="submit"]:hover {
     justify-content: center;
     margin-top: 20px; /* Adjust the top margin as needed */
 }
+
+.notification {
+    background-color: #ff0000; /* Red background */
+    color: #ffffff; /* White text */
+    padding: 10px;
+    margin-bottom: 15px;
+    margin-top: 25px;
+    border-radius: 5px;
+}

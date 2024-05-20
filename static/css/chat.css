@@ -1,0 +1,153 @@
+.image-container {
+    position: relative;
+    width: 100%;
+}
+
+.sticky-image {
+    width: 100%;
+    display: block;
+}
+
+.image-text {
+    position: absolute;
+    top: 50%; /* Adjust vertically */
+    left: 50%; /* Adjust horizontally */
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+
+.background-container {
+    width: 80%; /* Adjust the width as needed */
+    margin: 50px auto;
+    background-color: rgba(217, 217, 217, 0.7); /* Translucent background color */
+    border-radius: 40px; /* Border radius for a softer square shape */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* Padding to ensure the content doesn't touch the edges */
+    height: 60vh;
+    position: relative; /* Added position relative */
+}
+
+.message-container {
+    height: calc(100% - 80px); /* Adjust height for message container */
+    overflow-y: scroll; /* Enable vertical scrolling if messages overflow */
+    padding: 30px; /* Add padding for messages */
+}
+
+/* Adjust the size of the scrollbar */
+.message-container::-webkit-scrollbar {
+    width: 6px; /* Set the width of the scrollbar */
+}
+
+/* Set the style of the scrollbar track */
+.message-container::-webkit-scrollbar-track {
+    background: transparent; /* Set the background color of the track */
+}
+
+/* Set the style of the scrollbar thumb */
+.message-container::-webkit-scrollbar-thumb {
+    background: #888; /* Set the color of the scrollbar thumb */
+    border-radius: 3px; /* Set the border radius of the scrollbar thumb */
+}
+
+/* Set the style of the scrollbar thumb on hover */
+.message-container::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Set the color of the scrollbar thumb on hover */
+}
+
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute; /* Changed to absolute positioning */
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    background-color: rgba(255, 255, 255, 0.7); /* Added background color */
+    padding: 10px; /* Added padding */
+    border-radius: 20px; /* Added border radius */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Added box shadow */
+}
+
+.input-container input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+}
+
+.input-container button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    margin-left: 10px;
+    background-color: black;
+    color: white;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.input-container button:hover {
+    background-color: #0056b3;
+}
+
+.profile {
+    text-align: center;
+    color: white;
+}
+
+/* Add styles for incoming messages */
+.incoming {
+    text-align: left;
+    background-color: #ffffff; /* Example background color */
+    padding: 10px; /* Adjust padding as needed */
+    border-radius: 10px; /* Rounded corners */
+    margin-bottom: 10px; /* Spacing between messages */
+}
+
+.incoming p {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.outgoing p {
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+/* Add styles for outgoing messages */
+.outgoing {
+    text-align: right;
+    background-color: #d9d9d9; /* Example background color */
+    padding: 10px; /* Adjust padding as needed */
+    border-radius: 10px; /* Rounded corners */
+    margin-bottom: 10px; /* Spacing between messages */
+}
+
+
+.fjalla-one-regular {
+    font-family: "Fjalla One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 60px;
+}
+
+.fjalla-one-regular1 {
+    font-family: "Fjalla One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 40px;
+}
+
+.notification {
+    background-color: #ff0000; /* Red background */
+    color: #ffffff; /* White text */
+    padding: 10px;
+    margin-bottom: 15px;
+    margin-top: 25px;
+    border-radius: 5px;
+}

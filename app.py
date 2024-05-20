@@ -3,6 +3,7 @@ from flask import Flask, render_template
 from dotenv import load_dotenv
 from extensions import init_app, db, login_manager, csrf
 
+
 app = Flask(__name__)
 
 # Configuring the secret key to sign and validate session cookies.
@@ -40,13 +41,35 @@ def newsletter():
 def create_admin_account():
     return render_template('main/create_admin_account.html')
 
-@app.route('/collect_confirmation')
-def collect_confirmation():
-    return render_template('main/collect-confirmation.html')
-
 @app.route('/messages')
 def messages():
     return render_template('main/messages.html')
+
+@app.route('/chat')
+def chat():
+    return render_template('main/chat.html')
+
+#Errors
+
+@app.errorhandler(400)
+def bad_request(error):
+    return render_template('errors/400.html'), 400
+
+@app.errorhandler(403)
+def forbidden(error):
+    return render_template('errors/403.html'), 403
+
+@app.errorhandler(404)
+def not_found(error):
+    return render_template('errors/404.html'), 404
+
+@app.errorhandler(500)
+def internal_error(error):
+    return render_template('errors/500.html'), 500
+
+@app.errorhandler(503)
+def service_unavailable(error):
+    return render_template('errors/503.html'), 503
 
 if __name__ == '__main__':
     # Import blueprints (imported here to avoid Circular Import Error)

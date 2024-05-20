@@ -1,0 +1,86 @@
+.image-container {
+    position: relative;
+    width: 100%;
+}
+
+.container1 {
+
+  justify-content: center;
+
+  width: 80%;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 10px;
+  margin-top: 300px;
+
+}
+
+
+
+
+.background-container {
+  width: 75%;
+  margin: 0 auto;
+  background-color: rgba(217, 217, 217, 0.7); /* Translucent background color */
+  border-radius: 80px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+
+
+
+  .fjalla-one-regular {
+    font-family: "Fjalla One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 60px;
+    text-align: center;
+
+  }
+
+
+  .error-text {
+
+    font-family: "Inter tight", sans-serif;
+    font-size: max(33px);
+    font-weight: 600;
+    max-width: 100%;
+    word-wrap: break-word;
+    text-align: center;
+
+
+}
+
+.error-body {
+
+    font-family: "Inter tight", sans-serif;
+    text-align: center;
+    font-weight: 400;
+    max-width: 100%;
+    word-wrap: break-word;
+
+
+
+}
+
+.bubble-1, .bubble-2 {
+  position: absolute;
+  z-index: -1; /* Ensure the bubbles are behind the content */
+}
+
+
+.bubble-1 {
+  height: 300px;
+  width: 300px;
+  top: -250px;
+  left: -175px;
+}
+
+.bubble-2 {
+  height: 300px;
+  width: 300px;
+  top: 500px;
+  right: 100px;
+}
