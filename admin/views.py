@@ -16,7 +16,7 @@ def requires_roles(*roles):
         def wrapped(*args, **kwargs):
             # if role of current user is not one of the authorised ones, redirect them to main page
             if current_user.role not in roles:
-                return redirect(url_for('main.index'))
+                return render_template('errors/403.html')
             return f(*args, **kwargs)
         return wrapped
     return wrapper
@@ -75,23 +75,9 @@ def create_admin_account():
             db.session.commit()
 
             flash('New Admin added successfully.')
-            return redirect(url_for('admin.adminaccount'))
+            return redirect(url_for('admin.admin_account'))
     # if request method is GET or form not valid re-render admin page
     return render_template('main/create_admin_account.html', form=form)
-
-
-@admin_blueprint.route('/logout')
-@login_required
-@requires_roles('admin')
-def logout():
-    """ function to log the admin out """
-    # log the admin out
-    logout_user()
-    # clear the session
-    session.clear()
-    # inform admin and redirect them to the main page
-    flash('You have been logged out.')
-    return redirect(url_for('users.index'))
 
 
 @admin_blueprint.route('/change_details')
