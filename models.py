@@ -199,9 +199,9 @@ class Message(db.Model):
     created and then added to that users Messages list"""
 
     __tablename__ = 'message'
-    sender = db.Column('senderID', db.ForeignKey(User.email), primary_key=True,
+    sender = db.Column('senderID', db.ForeignKey(User.id), primary_key=True,
                        nullable=False)
-    receiver = db.Column('receiverID', db.ForeignKey(User.email), primary_key=True,
+    receiver = db.Column('receiverID', db.ForeignKey(User.id), primary_key=True,
                          nullable=False)
     timestamp = db.Column(db.DateTime, primary_key=True, nullable=False)
     contents = db.Column(db.String(200), nullable=False)
