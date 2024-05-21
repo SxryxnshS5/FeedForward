@@ -64,13 +64,20 @@
 .username {
     margin-top: 7px;
     width: 60%; /* Increase width to accommodate username */
-    
+    word-wrap: break-word; /* Ensure long words break within the container */
+    overflow-wrap: break-word; /* Ensure long words break within the container */
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+    overflow: hidden; /* Hide the overflow text */
+    text-overflow: ellipsis; /* Display an ellipsis (...) to indicate overflow */
 }
+
 
 
 .msg-time {
     width: 25%;
     margin-top: 53px;
+    color: #1A4D2E;
+    padding-left: 60px;
 }
 
 .fjalla-one-regular {
