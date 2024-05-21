@@ -36,11 +36,6 @@ def newsletter():
     return render_template('main/newsletter.html')
 
 
-@app.route('/create_admin_account')
-def create_admin_account():
-    return render_template('main/create_admin_account.html')
-
-
 # Errors
 @app.errorhandler(400)
 def bad_request(error):
