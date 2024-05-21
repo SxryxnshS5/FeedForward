@@ -90,6 +90,10 @@ def delete_advert(advert):
         with app.app_context():
 
             datalink.set_advert_unavailable(current_advert.adID)
+            # if the advert is deleted by an admin, redirect them to admin account page
+            if current_user.role == 'admin':
+                return redirect(url_for('admin.admin_account'))
+            # else redirect them to user account page    
             return redirect(url_for('users.account'))
 
     else:
