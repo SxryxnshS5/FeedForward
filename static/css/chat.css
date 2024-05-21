@@ -31,7 +31,10 @@
 .message-container {
     height: calc(100% - 80px); /* Adjust height for message container */
     overflow-y: scroll; /* Enable vertical scrolling if messages overflow */
-    padding: 30px; /* Add padding for messages */
+    padding-bottom: 70px;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 /* Adjust the size of the scrollbar */
@@ -55,7 +58,6 @@
     background: #555; /* Set the color of the scrollbar thumb on hover */
 }
 
-
 .input-container {
     display: flex;
     justify-content: space-between;
@@ -69,6 +71,7 @@
     padding: 10px; /* Added padding */
     border-radius: 20px; /* Added border radius */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Added box shadow */
+    margin-top: 20px;
 }
 
 .input-container input[type="text"] {
@@ -107,16 +110,12 @@
     padding: 10px; /* Adjust padding as needed */
     border-radius: 10px; /* Rounded corners */
     margin-bottom: 10px; /* Spacing between messages */
+    word-wrap: break-word; /* Ensure long words break within the container */
+    overflow-wrap: break-word; /* Ensure long words break within the container */
 }
 
 .incoming p {
-    margin-left: 10px;
-    margin-top: 10px;
-}
-
-.outgoing p {
-    margin-right: 10px;
-    margin-top: 10px;
+    margin: 0; /* Remove default margin for paragraph */
 }
 
 /* Add styles for outgoing messages */
@@ -126,8 +125,13 @@
     padding: 10px; /* Adjust padding as needed */
     border-radius: 10px; /* Rounded corners */
     margin-bottom: 10px; /* Spacing between messages */
+    word-wrap: break-word; /* Ensure long words break within the container */
+    overflow-wrap: break-word; /* Ensure long words break within the container */
 }
 
+.outgoing p {
+    margin: 0; /* Remove default margin for paragraph */
+}
 
 .fjalla-one-regular {
     font-family: "Fjalla One", sans-serif;
@@ -151,3 +155,19 @@
     margin-top: 25px;
     border-radius: 5px;
 }
+
+.custom-button {
+    width: 100px;
+    padding: 15px;
+    margin-left: 20px;
+    background-color: #FFFFFF;
+    color: #000000;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .custom-button:hover {
+    background-color: #0056b3;
+  }

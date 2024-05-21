@@ -142,29 +142,29 @@
                     </div>
 
                     <div>
-                        <table class="table"> <!-- Users table-->
+                        <table class="table">
                             <thead>
-                            <tr>
-                                <th scope="col">User ID</th>
-                                <th scope="col">First Name</th>
-                                <th scope="col">Last Name</th>
-                                <th scope="col">Phone Number</th>
-                                <th scope="col">Email</th>
-                            </tr>
+                                <tr>
+                                    <th scope="col">User ID</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Phone Number</th>
+                                    <th scope="col">Email</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                 {% for user in current_users %}
-                        <tr>
-                            <td>{{ user.id }}</td>
-                            <td>{{ user.first_name }}<td>
-                            <td>{{ user.last_name }}</td>
-                            <td>{{ user.phone }}</td>
-                            <td>{{ user.email }}</td>
-                        </tr>
-                        {% endfor %}
+                                {% for user in current_users %}
+                                <tr>
+                                    <td>{{ user.id }}</td>
+                                    <td>{{ user.first_name }}</td>
+                                    <td>{{ user.last_name }}</td>
+                                    <td>{{ user.phone }}</td>
+                                    <td>{{ user.email }}</td>
+                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
+                        
 
 
                     </div>
