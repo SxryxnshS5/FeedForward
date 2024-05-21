@@ -58,6 +58,11 @@ def get_user(email):
     return User.query.filter_by(email=email).first()
 
 
+def get_user_from_id(id):
+    """returns a User object from the database using their username"""
+    return User.query.filter_by(id=id).first()
+
+
 def is_unique(email):
     """returns if a username isn't already in use"""
     return get_user(email) is None

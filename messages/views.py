@@ -2,9 +2,9 @@ from flask_login import login_user, logout_user, current_user, login_required
 
 import datalink
 from messages.forms import MessageForm
-import bcrypt
+
 from flask import Blueprint, flash, render_template, session, redirect, url_for
-from models import User, Advert
+from models import User, Message
 from app import db, app
 from markupsafe import Markup
 from datetime import datetime
@@ -38,11 +38,11 @@ def view_messages():
                 time_diff //= 60
                 if time_diff > 24:  # > 1 day
                     time_diff //= 24
-                    time_msg = "%d day(s) ago" % time_diff
+                    time_msg = "sent %d day(s) ago" % time_diff
                 else:
-                    time_msg = "%d hours(s) ago" % time_diff
+                    time_msg = "sent %d hours(s) ago" % time_diff
             else:
-                time_msg = "%d min(s) ago" % time_diff
+                time_msg = "sent %d min(s) ago" % time_diff
 
             time_messages.update({u: time_msg})
     return render_template('main/messages.html',
@@ -50,6 +50,16 @@ def view_messages():
 
 
 
-@messages_blueprint.route('/chat', methods=['GET', 'POST'])
-def chat():
-    return render_template('main/chat.html')
+@messages_blueprint.route('/<int:id>/chat', methods=['GET', 'POST'])
+def chat(id):
+    form = MessageForm()
+    # send new message if POST
+    if form.validate_on_submit():
+        new_msg = Message(current_user.id, id, datetime.now(), form.contents.data)
+        datalink.create_message(new_msg)
+
+    # show conversation
+    messages = datalink.get_message_history(current_user.id, id)
+    user = datalink.get_user_from_id(id)
+    name = user.first_name
+    return render_template('main/chat.html',form=form, conversation=messages, name=name)

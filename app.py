@@ -46,19 +46,8 @@ def newsletter():
 def create_admin_account():
     return render_template('main/create_admin_account.html')
 
-"""
-@app.route('/messages')
-def messages():
-    return render_template('main/messages.html')
 
-
-@app.route('/chat')
-def chat():
-    return render_template('main/chat.html')
-
-"""
-#Errors
-
+# Errors
 @app.errorhandler(400)
 def bad_request(error):
     return render_template('errors/400.html'), 400
