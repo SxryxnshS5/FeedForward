@@ -58,6 +58,11 @@ def get_user(email):
     return User.query.filter_by(email=email).first()
 
 
+def get_user_from_id(id):
+    """returns a User object from the database using their username"""
+    return User.query.filter_by(id=id).first()
+
+
 def is_unique(email):
     """returns if a username isn't already in use"""
     return get_user(email) is None
@@ -103,6 +108,22 @@ def get_user_collections(collector_id):
     """return collections made by a user"""
     return Collection.query.filter_by(buyer=collector_id)
 
+
+def get_conversations(user_id):
+    """returns list of users who a user has had a conversation with"""
+    q1 = User.query.join(Message, User.id == Message.receiver).filter_by(sender=user_id).distinct()
+    q2 = User.query.join(Message, User.id == Message.sender).filter_by(receiver=user_id).distinct()
+    return q1.union(q2).all()
+
+
+def get_latest_message(user1_id, user2_id):
+    """return message object most recently send between 2 users"""
+    return Message.query.filter(
+        or_(
+            and_(Message.sender == user1_id, Message.receiver == user2_id),
+            and_(Message.sender == user2_id, Message.receiver == user1_id),
+        )
+    ).order_by(Message.timestamp.desc()).first()
 
 def get_message_history(user1_id, user2_id):
     """return all messages sent to between 2 users"""
