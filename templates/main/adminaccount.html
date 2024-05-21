@@ -28,49 +28,45 @@
             <div class="row align-items-start">
 
                 <div> <!-- Profile image-->
-                    <img src="../static/images/base/pfp.png" alt="pfp" class="pfp">
+                    <img class="pfp" src="../static/images/base/pfp.png" alt="pfp" >
 
                 </div>
 
 
                 <div class="col">
                     <div class="form-floating mb-3">
-                        <input type="email" readonly class="form-control-plaintext" id="floatingPlaintextInputFirstName"
-                               placeholder="John" value="John">
-                        <label for="floatingPlaintextInputFirstName">First Name</label>
+                        <input type="text" readonly class="form-control-plaintext" id="firstName"
+                               value="{{ current_user.first_name }}">
+                        <label for="firstName">First Name</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="number" readonly class="form-control-plaintext" id="floatingPlaintextInputPhone"
-                               placeholder="phone" value="01274123456">
-                        <label for="floatingPlaintextInputPhone">Phone number</label>
+                        <input type="text" readonly class="form-control-plaintext" id="lastName"
+                               value="{{ current_user.surname }}">
+                        <label for="lastName">Last Name</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="email" readonly class="form-control-plaintext" id="floatingPlaintextInputDOB"
-                               placeholder="DOB" value="01/01/1970">
-                        <label for="floatingPlaintextInputDOB">DOB</label>
+                        <input type="text" readonly class="form-control-plaintext" id="dob"
+                               value="{{ current_user.dob }}">
+                        <label for="dob">Date of Birth</label>
                     </div>
-
-
                 </div>
                 <div class="col">
-
-
                     <div class="form-floating mb-3">
-                        <input type="email" readonly class="form-control-plaintext" id="floatingPlaintextInputLastName"
-                               placeholder="Smith" value="Smith">
-                        <label for="floatingPlaintextInputLastName">Last Name</label>
+                        <input type="email" readonly class="form-control-plaintext" id="email"
+                               value="{{ current_user.email }}">
+                        <label for="email">Email</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="email" readonly class="form-control-plaintext" id="floatingPlaintextInputEmail"
-                               placeholder="name@example.com" value="name@example.com">
-                        <label for="floatingPlaintextInputEmail">Phone number</label>
+                        <input type="text" readonly class="form-control-plaintext" id="address"
+                               value="{{ current_user.address }}">
+                        <label for="address">Address</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="email" readonly class="form-control-plaintext" id="floatingPlaintextInputAddress"
-                               placeholder="St. James Park" value="St. James Park">
-                        <label for="floatingPlaintextInputAddress">Address</label>
+                        <input type="tel" readonly class="form-control-plaintext" id="phone"
+                               value="{{ current_user.phone }}">
+                        <label for="phone">Phone</label>
                     </div>
-
+                </div>
 
                 </div>
 
@@ -81,7 +77,7 @@
 
                 <div>
                     <h2 class="ad-history">
-                        Advert Collection History
+                        Advert Collection History (All Collected Adverts)
                     </h2>
                 </div>
 
@@ -93,74 +89,24 @@
                             <th scope="col">Date Posted</th>
                             <th scope="col">Best Before</th>
                             <th scope="col">Food Description</th>
+                            <th scope="col">Contents</th>
                         </tr>
                         </thead>
                         <tbody>
+                         {% for advert in collected_adverts %}
                         <tr>
-                            <th scope="row">1</th>
-                            <td>2024-05-01</td>
-                            <td>2024-06-01</td>
-                            <td>Apples</td>
+                            <td><a href="advert_details/{{advert.adID}}">{{ advert.adID }}</a></td>
+                            <td>{{ advert.title }}</td>
+                            <td>{{ advert.address }}</td>
+                            <td>{{ advert.expiry }}</td>
+                            <td>{{ advert.contents }}</td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>2024-05-03</td>
-                            <td>2024-05-10</td>
-                            <td>Oranges</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>2024-05-05</td>
-                            <td>2024-05-20</td>
-                            <td>Bananas</td>
-                        </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
 
                 </div>
-
                 <div>
-                    <div>
-                        <h2 class="ad-history">
-                            Donation History
-                        </h2>
-                    </div>
-
-                    <div>
-                        <table class="table"> <!-- Donation history table-->
-                            <thead>
-                            <tr>
-                                <th scope="col">Serial Number</th>
-                                <th scope="col">Rating</th>
-                                <th scope="col">Best Before</th>
-                                <th scope="col">Food Description</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>4.5</td>
-                                <td>2024-06-01</td>
-                                <td>Apples</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>4.2</td>
-                                <td>2024-05-10</td>
-                                <td>Oranges</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>4.8</td>
-                                <td>2024-05-20</td>
-                                <td>Bananas</td>
-                            </tr>
-                            </tbody>
-                        </table>
-
-
-                    </div>
-
 
                     <div>
                         <h2 class="ad-history">Current adverts</h2>
@@ -173,37 +119,23 @@
                                 <th scope="col">Donor Name</th>
                                 <th scope="col">Best Before</th>
                                 <th scope="col">Food Description</th>
+                                <th scope="col">Contents</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>John Doe</td>
-                                <td>2024-06-01</td>
-                                <td>Apples</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jane Smith</td>
-                                <td>2024-05-10</td>
-                                <td>Oranges</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Michael Johnson</td>
-                                <td>2024-05-20</td>
-                                <td>Bananas</td>
-                            </tr>
+                             {% for advert in current_adverts %}
+                        <tr>
+                            <td><a href="advert_details/{{advert.adID}}">{{ advert.adID }}</a></td>
+                            <td>{{ advert.title }}</td>
+                            <td>{{ advert.address }}</td>
+                            <td>{{ advert.expiry }}</td>
+                            <td>{{ advert.contents }}</td>
+                        </tr>
+                        {% endfor %}
                             </tbody>
                         </table>
 
-
                     </div>
-
-                    <div>
-                        <button class="button-change">Delete advert</button> <!-- Delete advert button-->
-                    </div>
-
 
                     <div>
                         <h2 class="ad-history">Users</h2>
@@ -214,30 +146,23 @@
                             <thead>
                             <tr>
                                 <th scope="col">User ID</th>
-                                <th scope="col">Name</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
                                 <th scope="col">Phone Number</th>
                                 <th scope="col">Email</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <th scope="row">1</th>
-                                <td>John Doe</td>
-                                <td>123-456-7890</td>
-                                <td>john@example.com</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jane Smith</td>
-                                <td>987-654-3210</td>
-                                <td>jane@example.com</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Michael Johnson</td>
-                                <td>555-555-5555</td>
-                                <td>michael@example.com</td>
-                            </tr>
+                                 {% for user in current_users %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.first_name }}<td>
+                            <td>{{ user.last_name }}</td>
+                            <td>{{ user.phone }}</td>
+                            <td>{{ user.email }}</td>
+                        </tr>
+                        {% endfor %}
                             </tbody>
                         </table>
 
@@ -256,13 +181,10 @@
                     <h2 class="ad-history">Management</h2> <!-- Management buttons-->
 
                     <div>
-                        <button class="button-admin-create">Create Admin Account</button>
+                        <a href="{{ url_for('admin.create_admin_account') }}" class="button-change">Add New Admin</a>
                     </div>
 
-
-                    <div>
-                        <button class="button-log-out">Log Out Of Account</button>
-                    </div>
+                    
                 </div>
 
 

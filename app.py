@@ -32,15 +32,9 @@ def about():
     return render_template('main/about.html')
 
 
-@app.route('/adminaccount')
-def adminaccount():
-    return render_template('main/adminaccount.html')
-
-
 @app.route('/newsletter')
 def newsletter():
     return render_template('main/newsletter.html')
-
 
 @app.route('/create_admin_account')
 def create_admin_account():
