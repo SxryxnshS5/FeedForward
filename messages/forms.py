@@ -1,10 +1,9 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired, Length
 
 
 class MessageForm(FlaskForm):
-    """ Message form for a user to send a message"""
+    """ Login Form containing the required fields for a user to log in"""
 
-    contents = StringField(validators=[DataRequired(), Length(min=1, max=200)])
+    contents = StringField()
     submit = SubmitField()

@@ -20,34 +20,15 @@
 {% endwith %}
 
 <div class="background-container">
-    {% if conversation and name %}
-        <div class="profile"> <h4 class="fjalla-one-regular1">{{name}}</h4></div>
-        <div class="message-container">
-            {% for msg in conversation %}
-                {% if msg.sender == current_user.id %}
-                    <div class="outgoing"><p>{{msg.contents}}</p></div>
-                {% else %}
-                    <div class="incoming"><p>{{msg.contents}}</p></div>
-                {% endif %}
-            {% endfor %}
-        </div>
-        {% if form %}
-            <form method="POST">
-                <div class="input-container">
-                    {{ form.csrf_token() }}
-                    {% for error in form.contents.errors %}
-                        <div class="error">{{ error }}</div>
-                    {% endfor %}
-                    {{ form.contents(class="input", placeholder="Type your message...") }}
-                    <div class="form-group field">
-                        <div class="btn-section text-center">
-                            {{ form.submit(class="button is-info is-centered custom-button") }}
-                        </div>
-                    </div>
-                </div>
-            </form>
-        {% endif %}
-    {% endif %}
+    <div class="profile"> <h4 class="fjalla-one-regular1">Username</h4></div>
+    <div class="message-container">
+        <div class="incoming"><p>Incoming message</p></div>
+        <div class="outgoing"><p>Outgoing message</p></div>
+    </div>
+    <div class="input-container">
+        <input type="text" placeholder="Type your message...">
+        <button>Send</button>
+    </div>
 </div>
 
 {% endblock %}
