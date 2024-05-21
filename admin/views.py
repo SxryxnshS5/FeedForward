@@ -80,6 +80,13 @@ def create_admin_account():
     return render_template('main/create_admin_account.html', form=form)
 
 
+@admin_blueprint.route('/delete_advert')
+@login_required
+@requires_roles('admin')
+def delete_advert():
+    return render_template('main/advert_details.html')
+
+
 @admin_blueprint.route('/change_details')
 @login_required
 @requires_roles('admin')
