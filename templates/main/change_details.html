@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Include custom CSS file for signup page -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/changedetails.css') }}">
+
+<!-- Sticky Image with text -->
+<div class="image-container">
+    <img src="{{ url_for('static', filename='images/base/uppershape.png') }}" alt="Sticky Image" class="sticky-image">
+    <div class="image-text">
+        <h2 class="fjalla-one-regular">Change Details</h2>
+    </div>
+</div>
+
+<!-- Flash messages handling -->
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}.
+        </div>
+    {% endif %}
+{% endwith %}
+
+<div class="container">
+        <h2>Change DetailsA</h2>
+        <form method="POST" >
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.email.label }} {{ form.email(size=32) }}
+        </div>
+        <div>
+            {{ form.first_name.label }} {{ form.first_name(size=32) }}
+        </div>
+        <div>
+            {{ form.surname.label }} {{ form.surname(size=32) }}
+        </div>
+        <div>
+            {{ form.dob.label }} {{ form.dob() }}
+        </div>
+        <div>
+            {{ form.address.label }} {{ form.address(size=64) }}
+        </div>
+        <div>
+            {{ form.phone.label }} {{ form.phone(size=15) }}
+        </div>
+        <div class="form-group field">
+                <div>
+                    {{ form.submit(class="button is-info is-centered custom-button") }}
+                </div>
+            </div>
+    </form>
+
+
+
+<!-- Background container for signup form -->
+<div class="background-container">
+    <div class="container1">
+        <!-- Signup form -->
+
+    </div>
+</div>
+
+{% endblock %}
