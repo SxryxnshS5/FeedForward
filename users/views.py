@@ -88,7 +88,7 @@ def login():
                     if current_user.role == 'user':
                         return redirect(url_for('users.account'))
                     else:
-                        return render_template('main/adminaccount.html')
+                        return redirect(url_for('admin.admin_account'))
     else:
         # if user is already logged in
         adverts = Advert.query.filter_by(owner=current_user.id).all()

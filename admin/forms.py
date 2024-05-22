@@ -41,3 +41,17 @@ class AdminSignUpForm(FlaskForm):
     dob = DateField(validators=[DataRequired()])
     address = StringField(validators=[DataRequired()])
     submit = SubmitField()
+
+
+class AdminChangeDetailsForm(FlaskForm):
+    """ Form used for an admin to change their details"""
+    email = StringField(validators=[Email(), DataRequired()])
+    first_name = StringField(validators=[DataRequired(), validate_name])
+    last_name = StringField(validators=[DataRequired(), validate_name])
+    password = PasswordField(validators=[DataRequired(), Length(min=8), validate_password])
+    phone = StringField(validators=[DataRequired()])
+    confirm_password = PasswordField(validators=[DataRequired(), EqualTo('password', message='Both password fields '
+                                                                                             'must be equal')])
+    dob = DateField(validators=[DataRequired()])
+    address = StringField(validators=[DataRequired()])
+    submit = SubmitField()

@@ -91,3 +91,23 @@ input[type="date"] { /* Ensure the date input matches other inputs */
   margin-top: 25px;
   border-radius: 5px;
 }
+
+.bubble-1, .bubble-2 {
+  position: absolute;
+  z-index: -1; /* Ensure the bubbles are behind the content */
+}
+
+
+.bubble-1 {
+  height: 300px;
+  width: 300px;
+  top: 310px;
+  left: 20px;
+}
+
+.bubble-2 {
+  height: 300px;
+  width: 300px;
+  top: 830px;
+  left: 1150px;
+}
