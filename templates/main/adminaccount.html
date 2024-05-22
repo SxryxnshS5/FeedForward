@@ -130,7 +130,7 @@
                     <tbody>
                         {% for user in current_users %}
                         <tr>
-                            <td>{{ user.id }}</td>
+                            <td><a href="account_overview/{{user.id}}">{{ user.id }}</a></td>
                             <td>{{ user.first_name }}</td>
                             <td>{{ user.last_name }}</td>
                             <td>{{ user.phone }}</td>
