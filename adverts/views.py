@@ -27,6 +27,8 @@ def create_advert():
                                 address=form.address.data,
                                 contents=form.contents.data,
                                 expiry=form.expiry.data,
+                                latitude=form.latitude.data,
+                                longitude=form.longitude.data,
                                 owner=user.id)
 
             db.session.add(new_advert)
