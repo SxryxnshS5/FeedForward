@@ -24,32 +24,104 @@
 
 <div class="container">
         <h2>Change DetailsA</h2>
-        <form method="POST" >
-        {{ form.hidden_tag() }}
-        <div>
-            {{ form.email.label }} {{ form.email(size=32) }}
-        </div>
-        <div>
-            {{ form.first_name.label }} {{ form.first_name(size=32) }}
-        </div>
-        <div>
-            {{ form.surname.label }} {{ form.surname(size=32) }}
-        </div>
-        <div>
-            {{ form.dob.label }} {{ form.dob() }}
-        </div>
-        <div>
-            {{ form.address.label }} {{ form.address(size=64) }}
-        </div>
-        <div>
-            {{ form.phone.label }} {{ form.phone(size=15) }}
-        </div>
-        <div class="form-group field">
+        <form action="{{ url_for('users.change_details') }}" class="changedetails-form" method="POST">
+            {{ form.csrf_token }}
+
+            <!-- First Name -->
+            <div class="form-group field">
+                <div class="control">
+                    <label for="first-name">First Name</label>
+                    {{ form.first_name(class="input", placeholder="First Name") }}
+                    {% for error in form.first_name.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Last Name -->
+            <div class="form-group field">
+                <div class="control">
+                    <label for="last-name">Last Name</label>
+                    {{ form.last_name(class="input", placeholder="Last Name") }}
+                    {% for error in form.last_name.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group field">
+                <div class="control">
+                    <label for="email">Email</label>
+                    {{ form.email(class="input", placeholder="Email") }}
+                    {% for error in form.email.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="form-group field">
+                <div class="control">
+                    <label for="date-of-birth">Date of Birth</label>
+                    {{ form.dob(class="input", type="date") }}
+                    {% for error in form.dob.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="form-group field">
+                <div class="control">
+                    <label for="phone">Phone</label>
+                    {{ form.phone(class="input", placeholder="phone") }}
+                    {% for error in form.phone.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Address -->
+            <div class="form-group field">
+                <div class="control">
+                    <label for="address">Address</label>
+                    {{ form.address(class="input", placeholder="Address") }}
+                    {% for error in form.address.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group field">
+                <div class="control">
+                    <label for="password">Password</label>
+                    {{ form.password(class="input", placeholder="Password", type="password") }}
+                    {% for error in form.password.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-group field">
+                <div class="control">
+                    <label for="confirm_password">Confirm Password</label>
+                    {{ form.confirm_password(class="input", placeholder="Password", type="password") }}
+                    {% for error in form.confirm_password.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group field">
                 <div>
                     {{ form.submit(class="button is-info is-centered custom-button") }}
                 </div>
             </div>
-    </form>
+        </form>
 
 
 
