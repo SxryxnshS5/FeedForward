@@ -62,6 +62,11 @@
                     {% endfor %}
                 </div>
             </div>
+             <div class="form-group field" id="map">
+                <h3>Drop your location on the map:</h3>
+                <button class="open-map-button">Open Map</button>
+
+            </div>
             <div class="form-group field">
                 <div>
                 {{ form.submit(class="button is-info is-centered") }}
@@ -70,12 +75,45 @@
         </form>
 
     </div>
-    <div class="map-container">
-        <h3>Drop your location on the map:</h3>
-        <img src="../../static/images/create-advert/map.png" alt="Map Image" class="map-image">
-        <button class="open-map-button">Open Map</button>
-    </div>
+
 
 </div>
+<!-- Include Maplibre and map initialization script -->
+<link rel='stylesheet' href='https://unpkg.com/maplibre-gl@4.3.1/dist/maplibre-gl.css' />
+<script src='https://unpkg.com/maplibre-gl@4.3.1/dist/maplibre-gl.js'></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const map = new maplibregl.Map({
+            container: 'map',
+            style: 'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL',
+            center: [-1.6151, 54.9741],
+            zoom: 8
+        });
+
+        const marker = new maplibregl.Marker({draggable: true})
+            .setLngLat([-1.6151, 54.9741])
+            .addTo(map);
+
+        map.addControl(
+            new maplibregl.GeolocateControl({
+                positionOptions: {
+                    enableHighAccuracy: true
+                },
+                trackUserLocation: true
+            })
+        );
+        function onDragEnd() {
+            const lngLat = marker.getLngLat();
+            document.getElementById('latitude').value = lngLat.lat;
+            document.getElementById('longitude').value = lngLat.lng;
+        }
+
+        marker.on('dragend', onDragEnd);
+
+        // Set initial values
+        onDragEnd();
+
+    });
+</script>
 
 {% endblock %}
