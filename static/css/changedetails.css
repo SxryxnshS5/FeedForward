@@ -42,6 +42,7 @@
 
 .form-group {
   margin-bottom: 20px;
+
 }
 
 label {
@@ -70,6 +71,7 @@ input[type="date"] { /* Ensure the date input matches other inputs */
   border-radius: 15px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+
 }
 
 .custom-button:hover {

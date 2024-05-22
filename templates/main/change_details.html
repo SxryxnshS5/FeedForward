@@ -22,13 +22,17 @@
     {% endif %}
 {% endwith %}
 
-<div class="container">
-        <h2>Change DetailsA</h2>
+<!-- Background container for signup form -->
+<div class="background-container">
+    <div class="container1">
+
+
         <form action="{{ url_for('users.change_details') }}" class="changedetails-form" method="POST">
             {{ form.csrf_token }}
 
             <!-- First Name -->
             <div class="form-group field">
+
                 <div class="control">
                     <label for="first-name">First Name</label>
                     {{ form.first_name(class="input", placeholder="First Name") }}
@@ -125,10 +129,8 @@
 
 
 
-<!-- Background container for signup form -->
-<div class="background-container">
-    <div class="container1">
-        <!-- Signup form -->
+
+
 
     </div>
 </div>
