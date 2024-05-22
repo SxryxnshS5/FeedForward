@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, session
 from app import db, app
 from models import User, Advert, Message
-from admin.forms import AdminSignUpForm, AdminChangeDetailsForm
+from admin.forms import AdminSignUpForm
 from flask_login import current_user, login_required, logout_user
 from functools import wraps
 import bcrypt
@@ -78,36 +78,30 @@ def create_admin_account():
     return render_template('main/create_admin_account.html', form=form)
 
 
-@admin_blueprint.route('/change_details')
+@admin_blueprint.route('/account_overview/<user>')
 @login_required
 @requires_roles('admin')
-def change_details():
-    """ view function which is used to change the details of an admin account """
-    form = AdminChangeDetailsForm()
-    # check admin is logged in
-    if not current_user.anonymous:
-        if form.validate_on_submit():
-            with app.app_context():
-                # check new password is not the same as the current one
-                if current_user.verify_password(form.password.data):
-                    flash('The new password must not match the current one.')
-                    return render_template('main/adminaccount.html', form=form)
-                else:
-                    # update all the user details
-                    current_user.email = form.email.data
-                    current_user.first_name = form.first_name.data
-                    current_user.last_name = form.last_name.data
-                    current_user.dob = form.dob.data
-                    current_user.address = form.address.data
-                    current_user.phone = form.phone.data
-                    current_user.password = bcrypt.hashpw(form.password.data.encode('utf-8'), bcrypt.gensalt())
+def account_overview(user):
 
-                    # commit updates to database
-                    db.session.commit()
+    return render_template('main/account_overview.html', current_user=User.query.get(user), admin_overview=True)
 
-                    # inform admin about updated details
-                    flash ('Admin account details changes successfully.')
-                    return render_template('main/adminaccount.html')
-    # if request method is GET or form not valid re-render admin page
-    return render_template('main/change_details.html', form=form)
+
+@admin_blueprint.route('/delete_user/<int:user_id>', methods=["GET", "POST"])
+@login_required
+@requires_roles('admin')
+def delete_user(user_id):
+    # get user from database
+    active_user = User.query.filter_by(id=user_id).first()
+    print("HERE 1")
+    print(active_user.role)
+    if not active_user.role == 'off':
+        # change user role as offline
+        active_user.role = 'off'
+        # update role change
+        print("HERE 2")
+        print(active_user.role)
+        db.session.commit()
+        # inform admin and redirect to admin account page
+        flash("User successfully deleted.")
+        return redirect(url_for('admin.admin_account'))
 
