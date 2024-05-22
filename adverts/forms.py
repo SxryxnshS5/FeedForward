@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField, BooleanField, DateField
+from wtforms import StringField, SubmitField, PasswordField, BooleanField, DateField, IntegerField, FloatField
 from wtforms.validators import Email, ValidationError, DataRequired, Length, EqualTo
 
 
@@ -10,4 +10,6 @@ class AdvertForm(FlaskForm):
     address = StringField(validators=[DataRequired()])
     contents = StringField(validators=[DataRequired()])
     expiry = DateField(validators=[DataRequired()])
+    latitude = FloatField(validators=[DataRequired()])
+    longitude = FloatField(validators=[DataRequired()])
     submit = SubmitField()

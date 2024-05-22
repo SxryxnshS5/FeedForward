@@ -62,7 +62,27 @@
                     {% endfor %}
                 </div>
             </div>
+            <div class="form-group field">
+                <div class="control" hidden="true">
+                    <label for="longitude">Longitude</label>
+                    {{ form.longitude(class="input", placeholder="Longitude") }}
+                    {% for error in form.longitude.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="form-group field">
+                <div class="control" hidden="true" >
+                    <label for="latitude">Latitude</label>
+                    {{ form.latitude(class="input", placeholder="Latitude") }}
+                    {% for error in form.latitude.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+            <p><b>Drag the marker: </b></p>
              <div class="form-group field" id="map">
+                 <label>Drag the marker</label>
                 <h3>Drop your location on the map:</h3>
                 <button class="open-map-button">Open Map</button>
 
