@@ -67,15 +67,17 @@
 <script src='https://unpkg.com/maplibre-gl@4.3.1/dist/maplibre-gl.js'></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        const longitude = {{ current_advert.longitude | safe}};
+        const latitude = {{ current_advert.latitude | safe}};
         const map = new maplibregl.Map({
             container: 'map',
             style: 'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL',
-            center: [-1.6151, 54.9741],
+            center: [longitude, latitude],
             zoom: 8
         });
 
         const marker = new maplibregl.Marker()
-            .setLngLat([-1.6151, 54.9741])
+            .setLngLat([longitude, latitude])
             .addTo(map);
 
         map.addControl(

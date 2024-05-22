@@ -20,10 +20,42 @@
     {% endwith %}
 
 <div class="background-container">
-    <div class="container1">
+    <div class="container1" id="map" style="width: 80%; height: 400px;">
           <!-- Map image -->
-        <img src="../static/images/base/NewcastleMapBig.png" alt="Logo" height="100%" width="100%">
+            <p>Ignore</p>
     </div>
 </div>
+<!-- Include Maplibre and map initialization script -->
+<link rel='stylesheet' href='https://unpkg.com/maplibre-gl@4.3.1/dist/maplibre-gl.css' />
+<script src='https://unpkg.com/maplibre-gl@4.3.1/dist/maplibre-gl.js'></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const map = new maplibregl.Map({
+            container: 'map',
+            style: 'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL',
+            center: [-1.6, 54],
+            zoom: 8
+        });
+
+        {% for advert in current_adverts %}
+        const latitude{{ loop.index }} = {{ advert.latitude | safe }};
+        const longitude{{ loop.index }} = {{ advert.longitude | safe }};
+
+        const marker{{ loop.index }} = new maplibregl.Marker()
+            .setLngLat([longitude{{ loop.index }}, latitude{{ loop.index }}])
+            .addTo(map);
+        {% endfor %}
+
+        map.addControl(
+            new maplibregl.GeolocateControl({
+                positionOptions: {
+                    enableHighAccuracy: true
+                },
+                trackUserLocation: true
+            })
+        );
+    });
+</script>
 
 {% endblock %}
