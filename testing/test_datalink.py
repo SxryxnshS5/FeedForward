@@ -19,11 +19,11 @@ tomorrow = datetime.today() + timedelta(days=1)
 yesterday = datetime.today() - timedelta(days=1)
 
 test_adverts = [
-    ["in date", "lorem ipsum", "lorem ipsum", 1, tomorrow, True],
-    ["in date", "lorem ipsum", "lorem ipsum", 2, tomorrow, True],
-    ["out of date", "lorem ipsum", "lorem ipsum", 1, yesterday, True],
-    ["out of date", "lorem ipsum", "lorem ipsum", 2, yesterday, True],
-    ["unavailable", "lorem ipsum", "lorem ipsum", 2, tomorrow, False],
+    ["in date", "lorem ipsum", 55.0, 1.6, "lorem ipsum", 1, tomorrow, True],
+    ["in date", "lorem ipsum", 56.0, 1.4, "lorem ipsum", 2, tomorrow, True],
+    ["out of date", "lorem ipsum", 55.0, 1.6, "lorem ipsum", 1, yesterday, True],
+    ["out of date", "lorem ipsum", 56.0, 1.4, "lorem ipsum", 2, yesterday, True],
+    ["unavailable", "lorem ipsum", 55.0, 1.6, "lorem ipsum", 2, tomorrow, False],
 ]
 
 test_messages = [
@@ -167,7 +167,7 @@ class TestDatabase(unittest.TestCase):
             for i in range(5):
                 ads.append(Advert(*test_adverts[i]))
                 # set owner with AA generated id, index 3 points to which test user to use
-                ads[i].owner = users[test_adverts[i][3] - 1].id
+                ads[i].owner = users[test_adverts[i][5] - 1].id
                 datalink.create_advert(ads[i])
 
             # check in date ads not set to unavailable
@@ -200,7 +200,7 @@ class TestDatabase(unittest.TestCase):
             ads = []
             for i in range(5):
                 ads.append(Advert(*test_adverts[i]))
-                ads[i].owner = users[test_adverts[i][3] - 1].id
+                ads[i].owner = users[test_adverts[i][5] - 1].id
                 datalink.create_advert(ads[i])
 
             assert len(ads) == 5
