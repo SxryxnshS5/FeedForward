@@ -10,6 +10,7 @@ csrf = CSRFProtect()
 def init_app(app):
     # Setup database
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+    # app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://youruser:yourpassword@localhost:5432/yourdatabase"
     app.config['SQLALCHEMY_ECHO'] = os.getenv('SQLALCHEMY_ECHO') == 'True'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS') == 'True'
     db.init_app(app)

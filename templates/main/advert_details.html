@@ -46,7 +46,7 @@
         <button class="open-map-button">Open Map</button>
     </div>
     <div class="button-container row">
-        {% if current_user.id != current_advert.owner %}
+        {% if current_user.id != current_advert.owner and current_user.role == 'user' %}
         <div class="col-lg-6">
             <a class="btn btn1" href="../collect_confirmation/{{current_advert.adID}}" onclick="return confirm('Are you sure you want to collect this advert?')">Collect</a>
         </div>
@@ -55,12 +55,38 @@
             <input type="submit" value="Message Advertiser" class="btn btn3">
         </div>
         {% endif %}
-        {% if current_user.id == current_advert.owner %}
+        {% if current_user.id == current_advert.owner or current_user.role == 'admin' %}
         <div class="col-lg-6">
             <a class="btn btn2" href="../delete_advert/{{current_advert.adID}}" onclick="return confirm('Are you sure you want to delete this advert?')">Delete</a>
         </div>
         {% endif %}
     </div>
 </div>
+<!-- Include Maplibre and map initialization script -->
+<link rel='stylesheet' href='https://unpkg.com/maplibre-gl@4.3.1/dist/maplibre-gl.css' />
+<script src='https://unpkg.com/maplibre-gl@4.3.1/dist/maplibre-gl.js'></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const map = new maplibregl.Map({
+            container: 'map',
+            style: 'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL',
+            center: [-1.6151, 54.9741],
+            zoom: 8
+        });
+
+        const marker = new maplibregl.Marker()
+            .setLngLat([-1.6151, 54.9741])
+            .addTo(map);
+
+        map.addControl(
+            new maplibregl.GeolocateControl({
+                positionOptions: {
+                    enableHighAccuracy: true
+                },
+                trackUserLocation: true
+            })
+        );
+    });
+</script>
 
 {% endblock %}

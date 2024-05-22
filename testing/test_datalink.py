@@ -35,6 +35,8 @@ test_messages = [
          datetime.strptime("01/01/2001 01:01:03", "%d/%m/%Y %H:%M:%S"), "3"],
     [3, 4,
          datetime.strptime("01/01/2001 01:01:01", "%d/%m/%Y %H:%M:%S"), "hello world"],
+    [1, 3,
+         datetime.strptime("01/01/2001 01:01:01", "%d/%m/%Y %H:%M:%S"), "lorem ipsum"],
 ]
 
 test_collections = [
@@ -214,6 +216,45 @@ class TestDatabase(unittest.TestCase):
             # remove test rows
             datalink.delete_user(user1)
             datalink.delete_user(user2)
+
+
+    def test_get_conversations(self):
+        with app.app_context():
+            users = [User(*u) for u in test_users]
+            for u in users:
+                datalink.create_user(u)
+            messages = [Message(*m) for m in test_messages]
+            for i in range(len(messages)):
+                messages[i].sender = users[test_messages[i][0] - 1].id
+                messages[i].receiver = users[test_messages[i][1] - 1].id
+                datalink.create_message(messages[i])
+
+            conversations = datalink.get_conversations(users[0].id)
+            print(conversations)
+            self.assertEqual(len(conversations), 2)
+            emails = [c.email for c in conversations]
+            self.assertIn("testemail2@gmail.com", emails)
+            self.assertIn("testemail3@gmail.com", emails)
+
+            for u in users:
+                datalink.delete_user(u)
+    def test_get_latest_message(self):
+        with app.app_context():
+            users = [User(*u) for u in test_users]
+            for u in users:
+                datalink.create_user(u)
+            messages = [Message(*m) for m in test_messages]
+            for i in range(len(messages)):
+                messages[i].sender = users[test_messages[i][0] - 1].id
+                messages[i].receiver = users[test_messages[i][1] - 1].id
+                datalink.create_message(messages[i])
+
+            recent = datalink.get_latest_message(users[0].id, users[1].id)
+            self.assertIsNotNone(recent)
+            self.assertEqual(recent.contents, "3")
+
+            for u in users:
+                datalink.delete_user(u)
 
     def test_get_message_history(self):
         with app.app_context():
