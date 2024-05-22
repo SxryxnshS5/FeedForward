@@ -47,11 +47,9 @@ def create_admin_account():
     """ view function which is used to create an admin account"""
     # create signup form object
     form = AdminSignUpForm()
-    print("i am here")
     # if request method is POST or form is valid
     if form.validate_on_submit():
         with app.app_context():
-            print('hereeeeee')
             admin = User.query.filter_by(email=form.email.data).first()
             # if this returns a user, then the admin already exists in database
             # if email already exists redirect user back to signup page with error message so user can try again
@@ -80,13 +78,6 @@ def create_admin_account():
     return render_template('main/create_admin_account.html', form=form)
 
 
-@admin_blueprint.route('/delete_advert')
-@login_required
-@requires_roles('admin')
-def delete_advert():
-    return render_template('main/advert_details.html')
-
-
 @admin_blueprint.route('/change_details')
 @login_required
 @requires_roles('admin')
@@ -100,7 +91,6 @@ def change_details():
                 # check new password is not the same as the current one
                 if current_user.verify_password(form.password.data):
                     flash('The new password must not match the current one.')
-                    # SHOULD RENDER A CHANGE DETAILS HTML???
                     return render_template('main/adminaccount.html', form=form)
                 else:
                     # update all the user details
@@ -119,6 +109,5 @@ def change_details():
                     flash ('Admin account details changes successfully.')
                     return render_template('main/adminaccount.html')
     # if request method is GET or form not valid re-render admin page
-    # RENDER CHANGE DETAILS PAGE ??
     return render_template('main/change_details.html', form=form)
 

@@ -19,11 +19,11 @@ tomorrow = datetime.today() + timedelta(days=1)
 yesterday = datetime.today() - timedelta(days=1)
 
 test_adverts = [
-    ["in date", "lorem ipsum", "lorem ipsum", 1, tomorrow, True],
-    ["in date", "lorem ipsum", "lorem ipsum", 2, tomorrow, True],
-    ["out of date", "lorem ipsum", "lorem ipsum", 1, yesterday, True],
-    ["out of date", "lorem ipsum", "lorem ipsum", 2, yesterday, True],
-    ["unavailable", "lorem ipsum", "lorem ipsum", 2, tomorrow, False],
+    ["in date", "lorem ipsum", 55.0, 1.6, "lorem ipsum", 1, tomorrow, True],
+    ["in date", "lorem ipsum", 56.0, 1.4, "lorem ipsum", 2, tomorrow, True],
+    ["out of date", "lorem ipsum", 55.0, 1.6, "lorem ipsum", 1, yesterday, True],
+    ["out of date", "lorem ipsum", 56.0, 1.4, "lorem ipsum", 2, yesterday, True],
+    ["unavailable", "lorem ipsum", 55.0, 1.6, "lorem ipsum", 2, tomorrow, False],
 ]
 
 test_messages = [
@@ -35,6 +35,8 @@ test_messages = [
          datetime.strptime("01/01/2001 01:01:03", "%d/%m/%Y %H:%M:%S"), "3"],
     [3, 4,
          datetime.strptime("01/01/2001 01:01:01", "%d/%m/%Y %H:%M:%S"), "hello world"],
+    [1, 3,
+         datetime.strptime("01/01/2001 01:01:01", "%d/%m/%Y %H:%M:%S"), "lorem ipsum"],
 ]
 
 test_collections = [
@@ -167,7 +169,7 @@ class TestDatabase(unittest.TestCase):
             for i in range(5):
                 ads.append(Advert(*test_adverts[i]))
                 # set owner with AA generated id, index 3 points to which test user to use
-                ads[i].owner = users[test_adverts[i][3] - 1].id
+                ads[i].owner = users[test_adverts[i][5] - 1].id
                 datalink.create_advert(ads[i])
 
             # check in date ads not set to unavailable
@@ -200,7 +202,7 @@ class TestDatabase(unittest.TestCase):
             ads = []
             for i in range(5):
                 ads.append(Advert(*test_adverts[i]))
-                ads[i].owner = users[test_adverts[i][3] - 1].id
+                ads[i].owner = users[test_adverts[i][5] - 1].id
                 datalink.create_advert(ads[i])
 
             assert len(ads) == 5
@@ -214,6 +216,45 @@ class TestDatabase(unittest.TestCase):
             # remove test rows
             datalink.delete_user(user1)
             datalink.delete_user(user2)
+
+
+    def test_get_conversations(self):
+        with app.app_context():
+            users = [User(*u) for u in test_users]
+            for u in users:
+                datalink.create_user(u)
+            messages = [Message(*m) for m in test_messages]
+            for i in range(len(messages)):
+                messages[i].sender = users[test_messages[i][0] - 1].id
+                messages[i].receiver = users[test_messages[i][1] - 1].id
+                datalink.create_message(messages[i])
+
+            conversations = datalink.get_conversations(users[0].id)
+            print(conversations)
+            self.assertEqual(len(conversations), 2)
+            emails = [c.email for c in conversations]
+            self.assertIn("testemail2@gmail.com", emails)
+            self.assertIn("testemail3@gmail.com", emails)
+
+            for u in users:
+                datalink.delete_user(u)
+    def test_get_latest_message(self):
+        with app.app_context():
+            users = [User(*u) for u in test_users]
+            for u in users:
+                datalink.create_user(u)
+            messages = [Message(*m) for m in test_messages]
+            for i in range(len(messages)):
+                messages[i].sender = users[test_messages[i][0] - 1].id
+                messages[i].receiver = users[test_messages[i][1] - 1].id
+                datalink.create_message(messages[i])
+
+            recent = datalink.get_latest_message(users[0].id, users[1].id)
+            self.assertIsNotNone(recent)
+            self.assertEqual(recent.contents, "3")
+
+            for u in users:
+                datalink.delete_user(u)
 
     def test_get_message_history(self):
         with app.app_context():

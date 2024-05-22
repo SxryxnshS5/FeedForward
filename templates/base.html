@@ -61,7 +61,10 @@
                         <a class="nav-link" href="{{ url_for('adverts.create_advert') }}">Create Advert</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('adverts.list_adverts') }}">Listed adverts</a>
+                        <a class="nav-link" href="{{ url_for('adverts.list_adverts') }}">Listed Adverts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('adverts.advert_map') }}">Advert Map</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('about') }}">About Us</a>
@@ -70,7 +73,7 @@
                         <a class="nav-link" href="{{ url_for('users.account') }}">Account</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('messages') }}">Messages</a>
+                        <a class="nav-link" href="{{ url_for('messages.view_messages') }}">Messages</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('users.logout') }}">Logout</a>
@@ -81,11 +84,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('adverts.list_adverts') }}">Adverts</a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('about') }}">About Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('admin.admin_account') }}">Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('messages.view_messages') }}">Messages</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('users.logout') }}">Logout</a>
