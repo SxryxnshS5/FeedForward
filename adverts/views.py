@@ -102,3 +102,10 @@ def delete_advert(advert):
         flash("You don't own this advert!")
 
         return render_template('main/advert_details.html', current_advert=Advert.query.get(advert))
+
+
+@adverts_blueprint.route('/advert_map')
+@login_required
+def advert_map():
+    adverts = Advert.query.filter_by(available=True)
+    return render_template('main/advertmap.html', current_adverts=adverts)
