@@ -82,8 +82,10 @@ def create_admin_account():
 @login_required
 @requires_roles('admin')
 def account_overview(user):
-
-    return render_template('main/account_overview.html', current_user=User.query.get(user), admin_overview=True)
+    user = User.query.get(user)
+    adverts = Advert.query.filter_by(owner=user.id).all()
+    orders = Collection.query.filter_by(buyer=current_user.id).all()
+    return render_template('main/account_overview.html', user=user, adverts=adverts, oders=orders, admin_overview=True)
 
 
 @admin_blueprint.route('/delete_user/<int:user_id>', methods=["GET", "POST"])
@@ -92,14 +94,10 @@ def account_overview(user):
 def delete_user(user_id):
     # get user from database
     active_user = User.query.filter_by(id=user_id).first()
-    print("HERE 1")
-    print(active_user.role)
     if not active_user.role == 'off':
         # change user role as offline
         active_user.role = 'off'
         # update role change
-        print("HERE 2")
-        print(active_user.role)
         db.session.commit()
         # inform admin and redirect to admin account page
         flash("User successfully deleted.")
