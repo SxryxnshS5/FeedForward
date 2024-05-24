@@ -55,7 +55,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <!-- Navigation links (will be dynamic based on user authentication) -->
                 <!-- User authentication, will be implemented after current_user.role is implemented  -->
-                {% if current_user.role == 'user' %}
+                {% if current_user.role == 'user' and not admin_overview %}
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('adverts.create_advert') }}">Create Advert</a>
@@ -79,7 +79,7 @@
                         <a class="nav-link" href="{{ url_for('users.logout') }}">Logout</a>
                     </li>
                 </ul>
-                {% elif current_user.role == 'admin' %}
+                {% elif current_user.role == 'admin' or admin_overview%}
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('adverts.list_adverts') }}">Adverts</a>
