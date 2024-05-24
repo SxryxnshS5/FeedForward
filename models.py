@@ -113,15 +113,19 @@ class Advert(db.Model):
     adID = db.Column(db.Integer, primary_key=True, nullable=False)
     title = db.Column(db.String(30), nullable=False)
     address = db.Column(db.String(100), nullable=False)
+    latitude = db.Column(db.Float, nullable=False)
+    longitude = db.Column(db.Float, nullable=False)
     contents = db.Column(db.String(200), nullable=False)
     owner = db.Column(db.ForeignKey(User.id), nullable=False)
     expiry = db.Column(db.DateTime, nullable=False)
     available = db.Column(db.Boolean, nullable=False)
 
-    def __init__(self, title, address, contents, owner, expiry, available=True):
+    def __init__(self, title, address, latitude, longitude, contents, owner, expiry, available=True):
         """Constructor for Advert class"""
         self.title = title
         self.address = address
+        self.latitude = latitude
+        self.longitude = longitude
         self.contents = contents
         self.owner = owner
         self.expiry = expiry
@@ -142,6 +146,22 @@ class Advert(db.Model):
     def get_address(self):
         """Getter for address variable"""
         return self.address
+
+    def set_longitude(self, new_longitude):
+        """Setter for longitude variable"""
+        self.longitude = new_longitude
+
+    def get_longitude(self):
+        """Getter for longitude variable"""
+        return self.longitude
+
+    def set_latitude(self, new_latitude):
+        """Setter for latitude variable"""
+        self.latitude = new_latitude
+
+    def get_latitude(self):
+        """Getter for latitude variable"""
+        return self.latitude
 
     def set_contents(self, new_contents):
         """Setter for contents variable"""

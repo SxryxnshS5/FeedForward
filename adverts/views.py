@@ -27,6 +27,8 @@ def create_advert():
                                 address=form.address.data,
                                 contents=form.contents.data,
                                 expiry=form.expiry.data,
+                                latitude=form.latitude.data,
+                                longitude=form.longitude.data,
                                 owner=user.id)
 
             db.session.add(new_advert)
@@ -90,9 +92,20 @@ def delete_advert(advert):
         with app.app_context():
 
             datalink.set_advert_unavailable(current_advert.adID)
+            # if the advert is deleted by an admin, redirect them to admin account page
+            if current_user.role == 'admin':
+                return redirect(url_for('admin.admin_account'))
+            # else redirect them to user account page    
             return redirect(url_for('users.account'))
 
     else:
         flash("You don't own this advert!")
 
         return render_template('main/advert_details.html', current_advert=Advert.query.get(advert))
+
+
+@adverts_blueprint.route('/advert_map')
+@login_required
+def advert_map():
+    adverts = Advert.query.filter_by(available=True)
+    return render_template('main/advertmap.html', current_adverts=adverts)
