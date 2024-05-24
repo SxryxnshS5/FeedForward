@@ -84,8 +84,8 @@ def create_admin_account():
 def account_overview(user):
     user = User.query.get(user)
     adverts = Advert.query.filter_by(owner=user.id).all()
-    orders = Collection.query.filter_by(buyer=current_user.id).all()
-    return render_template('main/account_overview.html', user=user, adverts=adverts, oders=orders, admin_overview=True)
+    orders = Collection.query.filter_by(buyer=user.id).all()
+    return render_template('main/account_overview.html', user=user, adverts=adverts, orders=orders, admin_overview=True)
 
 
 @admin_blueprint.route('/delete_user/<int:user_id>', methods=["GET", "POST"])
