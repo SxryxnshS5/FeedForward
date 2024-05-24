@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, session
 from app import db, app
-from models import User, Advert, Message
+from models import User, Advert, Message, Collection
 from admin.forms import AdminSignUpForm
 from flask_login import current_user, login_required, logout_user
 from functools import wraps
