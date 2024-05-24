@@ -138,6 +138,16 @@
 
 
   }
+  .button-user-delete {
+    width: 40%;
+    padding: 15px;
+    background-color: #FFFFFF;
+    color: #FF0000;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
 
   .notification {
     background-color: #ff0000; /* Red background */
