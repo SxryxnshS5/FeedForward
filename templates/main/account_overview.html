@@ -34,34 +34,34 @@
                 <div class="col">
                     <div class="form-floating mb-3">
                         <input type="text" readonly class="form-control-plaintext" id="firstName"
-                               value="{{ current_user.first_name }}">
+                               value="{{ user.first_name }}">
                         <label for="firstName">First Name</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" readonly class="form-control-plaintext" id="lastName"
-                               value="{{ current_user.surname }}">
+                               value="{{ user.surname }}">
                         <label for="lastName">Last Name</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" readonly class="form-control-plaintext" id="dob"
-                               value="{{ current_user.dob }}">
+                               value="{{ user.dob }}">
                         <label for="dob">Date of Birth</label>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-floating mb-3">
                         <input type="email" readonly class="form-control-plaintext" id="email"
-                               value="{{ current_user.email }}">
+                               value="{{ user.email }}">
                         <label for="email">Email</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" readonly class="form-control-plaintext" id="address"
-                               value="{{ current_user.address }}">
+                               value="{{ user.address }}">
                         <label for="address">Address</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="tel" readonly class="form-control-plaintext" id="phone"
-                               value="{{ current_user.phone }}">
+                               value="{{ user.phone }}">
                         <label for="phone">Phone</label>
                     </div>
                 </div>
@@ -121,7 +121,9 @@
                     </table>
                 </div>
                 <div class="button-container row">
-                    <a class="btn btn2" href="../delete_user/{{current_user.id}}" onclick="return confirm('Are you sure you want to delete this user?')">Delete User</a>
+                    <div class="col-lg-6">
+                        <a href="../delete_user/{{current_user.id}}" class="button-user-delete" onclick="return confirm('Are you sure you want to delete this user?')">Delete User</a>
+                    </div>
                 </div>
             </div>
         </div>
