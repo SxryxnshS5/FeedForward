@@ -68,11 +68,9 @@ def admin_account():
     Created by Emmanouel.
 
     Returns:
-        flask.Response: Renders the admin account template with collected adverts, current adverts, current users and
-        current admins.
+        flask.Response: Renders the admin account template with collected adverts, current adverts, current users,
+        current admins and deleted adverts.
     """
-    # get all collected adverts
-    collected_adverts = Advert.query.filter_by(available=False).all()
     # get all available adverts
     current_adverts = Advert.query.filter_by(available=True).all()
     # get all users
@@ -80,9 +78,19 @@ def admin_account():
     # get all admins
     current_admins = User.query.filter_by(role='admin').all()
 
+    # get all unavailable adverts
+    unavailable_adverts = Advert.query.filter_by(available=False).all()
+    # get all collected advert IDs
+    collected_advert_ids = [collection.advert for collection in Collection.query.all()]
+    # find the deleted adverts (unavailable adverts not in collected adverts)
+    deleted_adverts = [advert for advert in unavailable_adverts if advert.adID not in collected_advert_ids]
+    # find the collected adverts (unavailable adverts in collected adverts)
+    collected_adverts = [advert for advert in unavailable_adverts if advert.adID in collected_advert_ids]
+
     # renders the admin account template
     return render_template('main/adminaccount.html', current_adverts=current_adverts, current_users=current_users,
-                           current_admins=current_admins, collected_adverts=collected_adverts)
+                           current_admins=current_admins, collected_adverts=collected_adverts,
+                           deleted_adverts=deleted_adverts)
 
 
 @admin_blueprint.route('/create_admin_account', methods=['GET', 'POST'])
