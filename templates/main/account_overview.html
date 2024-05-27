@@ -85,7 +85,7 @@
                         <tbody>
                         {% for advert in adverts %}
                         <tr>
-                            <td><a href="advert_details/{{advert.adID}}">{{ advert.adID }}</a></td>
+                            <td><a href="{{ url_for('adverts.advert_details', advert=advert.adID) }}">{{ advert.adID }}</a></td>
                             <td>{{ advert.title }}</td>
                             <td>{{ advert.address }}</td>
                             <td>{{ advert.expiry }}</td>

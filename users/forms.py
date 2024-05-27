@@ -35,7 +35,8 @@ class SignUpForm(FlaskForm):
     first_name = StringField(validators=[DataRequired(), validate_name])
     last_name = StringField(validators=[DataRequired(), validate_name])
     password = PasswordField(validators=[DataRequired(), Length(min=8), validate_password])
-    phone = StringField(validators=[DataRequired()])
+    phone = StringField(validators=[DataRequired(), Length(max=11, message='Phone number is too long. Should be 11 '
+                                                                           'digits max.')])
     confirm_password = PasswordField(validators=[DataRequired(), EqualTo('password', message='Both password fields '
                                                                                              'must be equal')])
     dob = DateField(validators=[DataRequired()])
