@@ -35,7 +35,7 @@
                     <!-- Map image -->
                     <img src="../static/images/base/map.png" alt="Map" class="map-img">
                     <!-- Button to open map -->
-                    <button class="open-map" onclick="" id="openMap">Open Map</button>
+                    <a href="{{ url_for('adverts.advert_map') }}"><button class="open-map" onclick="" id="openMap">Open Map</button></a>
                 </div>
             </div>
         </section>
@@ -48,7 +48,9 @@
                 <div class="cream-box text-center">
                     <!-- Donors section -->
                     <p class="donors-text">Donors</p>
-                    <p class="donors-text-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+                    <p class="donors-text-body">Our donors are the heart of our mission to reduce food waste and fight hunger. By creating adverts
+                        and donating surplus food, they help provide meals to those in need and promote sustainability. We are deeply grateful for
+                        their support and generosity. Together, we can achieve zero hunger.</p>
                     <button class="cream-box-button" onclick="location.href='{{ url_for('adverts.create_advert') }}'" id="Donate">Donate</button>
                 </div>
             </div>
@@ -56,7 +58,9 @@
                 <div class="cream-box text-center">
                     <!-- Those In Need section -->
                     <p class="donors-text">Those In Need</p>
-                    <p class="donors-text-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+                    <p class="donors-text-body">If you're in need, our app connects you with local donors who have surplus food. Browse through adverts
+                        to find meals available near you. Our goal is to ensure everyone has access to nutritious food while reducing waste. Together,
+                        we can work towards a hunger-free community.</p>
                     <button class="cream-box-button" onclick="location.href='{{ url_for('adverts.list_adverts') }}'" id="FindFood">Find Food</button>
                 </div>
             </div>
@@ -67,12 +71,13 @@
     <section>
         <div class="row text-center body-text-1">
             <h3>Our mission</h3>
-            <p class="body-p">Lorem ipsum dolor sit amet. Et officia eaque non quas cupiditate et officia modi? Eos
-                explicabo perspiciatis ut optio deleniti eum tenetur dolore. Aut earum voluptate qui <br>
-                ducimus officia et quidem dolorem ab voluptatem neque sed vitae eligendi et quos 
-                autem hic quis eveniet. Ut porro rerum ut quaerat labore ut magnam nobis id labore beatae <br>
-                ut repudiandae labore et modi doloremque.<br>
-                Est consectetur rerum et enim possimus et eaque error obcaecati.</p>
+            <p class="body-p">Our mission is to eliminate food waste and combat hunger by seamlessly
+                connecting generous food donors with individuals and organizations in need. We aim to
+                build a sustainable and supportive community where surplus food is redistributed to
+                those who need it most, ensuring everyone has access to nutritious meals. By fostering
+                a culture of sharing and responsibility, we strive to reduce the environmental impact
+                of food waste while addressing food insecurity. Together, we can create a more equitable
+                and sustainable world.</p>
         </div>
     </section>
 
@@ -83,7 +88,12 @@
                 <div>
                     <div class="cream-box1 text-center">
                         <h3>Monthly Newsletter</h3>
-                        <p class="donors-text-body">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+                        <p class="donors-text-body">Sign up for our monthly newsletter to stay
+                            updated on our latest efforts to reduce food waste and combat hunger.
+                            Get insights into the impact we've made, stories from our community,
+                            tips on how to minimize food waste, and updates on new features and
+                            initiatives. Join our community of supporters and be part of the
+                            solution. Together, we can create a more sustainable and hunger-free world.</p>
                         <!-- Button to sign up for newsletter -->
                         <button class="cream-box-button1" id="Newsletterbtn">Sign-up</button>
                     </div>

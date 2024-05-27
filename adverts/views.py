@@ -18,7 +18,15 @@ adverts_blueprint = Blueprint('adverts', __name__, template_folder='templates')
 @login_required
 @requires_roles('user')
 def create_advert():
-    """Function that provides the functionality of the advert form"""
+    """Function that provides the functionality of the advert form. Allows an advert to be created and added to the
+    database
+    Requires user to be logged in and of 'user' role
+    Created by Alex
+
+    Returns:
+        flask.Response: returns the advert_details.html template with the correct advert details if successful,
+        or the createadvert.html template if unsuccessful
+    """
     form = AdvertForm()
     if form.validate_on_submit():
         with app.app_context():
@@ -46,6 +54,7 @@ def advert_details(advert):
     """
     View function for displaying advert information.
     Requires the user to be logged in.
+    Created by Alex
 
     Returns:
         flask.Response: Renders the advert_details.html template with advert details.
@@ -58,6 +67,13 @@ def advert_details(advert):
 @adverts_blueprint.route('/list_adverts')
 @login_required
 def list_adverts():
+    """Function that displays all the currently available adverts in a table
+    Requires the user to be logged in
+    Created by Alex
+
+    Returns:
+        flask.Response: returns listedadverts.html template with the details of all the relevant adverts
+    """
     adverts = Advert.query.filter_by(available=True)
     return render_template('main/listedadverts.html', current_advert=adverts)
 
@@ -66,11 +82,19 @@ def list_adverts():
 @login_required
 @requires_roles('user')
 def collect_confirmation(advert):
+    """Function that allows a user to collect an advert. Creates a new Collection object and saves it to the database
+    Requires user to be logged in and of role 'user'
+
+    Returns:
+        flask.Response: returns the collect_confirmation.html template
+        """
     current_advert = Advert.query.get(advert)
+    # check if current user is the owner of the advert
     if current_user.id == current_advert.owner:
         flash('You own this advert!')
         return render_template('main/advert_details.html', current_advert=current_advert)
     else:
+        # create a new collection object
         with app.app_context():
 
             datalink.set_advert_unavailable(current_advert.adID)
@@ -79,6 +103,7 @@ def collect_confirmation(advert):
                                         seller=current_advert.owner,
                                         date=datetime.datetime.now())
 
+            # save collection object to database
             db.session.add(new_collection)
             db.session.commit()
             return render_template('main/collect-confirmation.html', current_advert=current_advert)
@@ -87,6 +112,13 @@ def collect_confirmation(advert):
 @adverts_blueprint.route('/delete_advert/<advert>')
 @login_required
 def delete_advert(advert):
+    """Function that allows a user to delete their advert
+    Requires a user to be logged in
+    Created by Alex, amended by Emmanouel
+
+    Returns:
+        flask.Response: returns a user's account page if successful, or advert_details.html template if unsuccessful
+        """
     current_advert = Advert.query.get(advert)
     if current_user.id == current_advert.owner or current_user.role == 'admin':
         with app.app_context():
@@ -107,5 +139,12 @@ def delete_advert(advert):
 @adverts_blueprint.route('/advert_map')
 @login_required
 def advert_map():
+    """Function that displays the advertmap.html template
+    Requires the user to be logged in
+    Created by Alex
+
+    Returns:
+        flask.Response: returns the advertmap.html template
+        """
     adverts = Advert.query.filter_by(available=True)
     return render_template('main/advertmap.html', current_adverts=adverts)
