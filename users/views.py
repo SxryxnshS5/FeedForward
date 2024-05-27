@@ -1,7 +1,7 @@
 from flask_login import login_user, logout_user, current_user, login_required
 
 import users.views
-from users.forms import SignUpForm, LoginForm
+from users.forms import SignUpForm, LoginForm, ChangeCredentialsForm
 import bcrypt
 from flask import Blueprint, flash, render_template, session, redirect, url_for
 from models import User, Advert, Collection
@@ -142,6 +142,28 @@ def account():
     orders = Collection.query.filter_by(buyer=current_user.id).all()
 
     return render_template('main/account.html', current_user=user_details, adverts=adverts, orders=orders)
+
+@users_blueprint.route('/changedetails', methods=['GET', 'POST'])
+@login_required
+def change_details():
+    """Function that allows users to change their details"""
+    form = ChangeCredentialsForm(object=current_user)
+    if form.validate_on_submit():
+        with app.app_context():
+            current_user.email = form.email.data
+            current_user.first_name = form.first_name.data
+            current_user.last_name = form.last_name.data
+            current_user.dob = form.dob.data
+            current_user.address = form.address.data
+            current_user.phone = form.phone.data
+            db.session.commit()
+            return redirect(url_for('users.account'))
+
+
+    return render_template('main/change_details.html', form=form)
+
+
+
 
 
 @users_blueprint.route('/logout')
