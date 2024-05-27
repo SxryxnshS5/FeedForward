@@ -68,7 +68,8 @@ def admin_account():
     Created by Emmanouel.
 
     Returns:
-        flask.Response: Renders the admin account template with collected adverts, current adverts, and current users.
+        flask.Response: Renders the admin account template with collected adverts, current adverts, current users and
+        current admins.
     """
     # get all collected adverts
     collected_adverts = Advert.query.filter_by(available=False).all()
@@ -76,10 +77,12 @@ def admin_account():
     current_adverts = Advert.query.filter_by(available=True).all()
     # get all users
     current_users = User.query.filter_by(role='user').all()
+    # get all admins
+    current_admins = User.query.filter_by(role='admin').all()
 
     # renders the admin account template
     return render_template('main/adminaccount.html', current_adverts=current_adverts, current_users=current_users,
-                           collected_adverts=collected_adverts)
+                           current_admins=current_admins, collected_adverts=collected_adverts)
 
 
 @admin_blueprint.route('/create_admin_account', methods=['GET', 'POST'])
