@@ -16,8 +16,9 @@ def signup():
     """Function that provides the functionality of the signup form.
     Created by Alex, amended by Suryansh and Rebecca
 
-    Returns: flask.Response: Returns either the login.html template if the sign up is successful, the account.html
-    template if the user is logged in, or the signup.html template if unsuccessful
+    Returns:
+        flask.Response: Returns either the login.html template if the sign up is successful, the account.html
+        template if the user is logged in, or the signup.html template if unsuccessful
     """
     # create signup form object
     form = SignUpForm()
@@ -67,8 +68,9 @@ def login():
     """Function that provides the functionality of the login form.
     Created by Alex, amended by Suryansh and Emmanouel
 
-    Returns: flask.Response: Renders either the login.html template or the account.html template with the correct
-    user details
+    Returns:
+        flask.Response: Renders either the login.html template or the account.html template with the correct
+        user details
     """
     # set authentication attempts to 0 if there is no authentication attempts yet
     form = LoginForm()
