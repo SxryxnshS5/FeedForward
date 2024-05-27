@@ -56,8 +56,8 @@
                     </div>
                 </div>
             </div>
-            <div>
-                <button class="button-change">Change Details</button>
+            <div><!-- Change details button-->
+                <a class="button-change"  href="{{ url_for('users.change_details') }}">Change Details</a>
             </div>
             <div>
                 <h2 class="ad-history">Advert Collection History (All Collected Adverts)</h2>
@@ -94,9 +94,9 @@
                     <thead>
                         <tr>
                             <th scope="col">Serial Number</th>
-                            <th scope="col">Donor Name</th>
-                            <th scope="col">Best Before</th>
-                            <th scope="col">Food Description</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Expiry</th>
                             <th scope="col">Contents</th>
                         </tr>
                     </thead>
