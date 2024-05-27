@@ -250,6 +250,6 @@ def init_db():
     with app.app_context():
         db.drop_all()
         db.create_all()
-        new_user = User("a","a","b","c", datetime.strptime("08/01/2004", "%d/%m/%Y"), "a", "1","user")
+        new_user = User("a", "a", "b", "c", datetime.strptime("08/01/2004", "%d/%m/%Y"), "a", "1", "user")
         db.session.add(new_user)
         db.session.commit()

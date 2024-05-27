@@ -15,12 +15,12 @@ This document contains all of the coding guidelines that we have followed in the
 ## Code layout
 - Top level functions and classes should be surrounded by two blank lines
 - Methods inside classes should be surrounded by a single blank line
-- Lines shouldn't be more than 79 characters long
+- Lines shouldn't be more than 120 characters long
 - Indentations should be equal to 4 spaces
 
 ## Comments
 - Use block comments to document a small section of code
-- Docstrings should be used for all public modules, functions, classes and methods. Docstrings should contain the author and a high-level summary
+- Docstrings should be used for all public modules, functions, classes and methods. Docstrings should contain the author, what it returns, and a high-level summary
 
 ## Whitespace
 - Whitespace should not be used around comparisons E.g. x<3, not x < 3
