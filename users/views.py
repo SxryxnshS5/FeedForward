@@ -78,6 +78,10 @@ def login():
                 if not user or not user.verify_password(form.password.data):
                     flash('Incorrect details')
                     return render_template('main/login.html', form=form)
+                # check if user account is still active
+                if user.role == 'off':
+                    flash('This account no longer exists')
+                    return render_template('main/login.html', form=form)
 
                 else:
                     # create user
