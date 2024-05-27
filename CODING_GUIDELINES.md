@@ -8,7 +8,7 @@ This document contains all of the coding guidelines that we have followed in the
 
 - Methods will be named appropriately and use a lowercase word or words. Words will be seperated with underscores. E.g. method, method_example
 
-- Classes will be named appropriately and start with a capital letter. Words will not be sperated. E.g. Class, ClassExample
+- Classes will be named appropriately and start with a capital letter. Words will not be seperated. E.g. Class, ClassExample
 
 - Constants will be named appropriately and will be uppercase. Words will be seperated with underscores. E.g. CONSTANT, CONSTANT_EXAMPLE
 
@@ -20,7 +20,7 @@ This document contains all of the coding guidelines that we have followed in the
 
 ## Comments
 - Use block comments to document a small section of code
-- Docstrings should be used for all public modules, functions, classes and methods. Docstrings should contain the date of creation, the author and a high-level summary
+- Docstrings should be used for all public modules, functions, classes and methods. Docstrings should contain the author and a high-level summary
 
 ## Whitespace
 - Whitespace should not be used around comparisons E.g. x<3, not x < 3
