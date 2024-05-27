@@ -9,7 +9,7 @@ import bcrypt
 class User(db.Model, UserMixin):
     """User class that acts as a template for all User objects, and contains
     all of a user's attributes and methods, as well as the constructor
-    for a User object"""
+    for a User object. Created by Alex, amended by Rebecca and Suryansh"""
 
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
@@ -33,7 +33,7 @@ class User(db.Model, UserMixin):
                                   cascade="all,delete")
 
     def __init__(self, email, password, first_name, surname, dob, address, phone, role):
-        """Constructor for User class"""
+        """Constructor for User class. Created by Alex"""
         self.email = email
         self.password = password
         self.first_name = first_name
@@ -45,60 +45,60 @@ class User(db.Model, UserMixin):
         self.messages = []
 
     def set_email(self, new_email):
-        """Setter for email variable"""
+        """Setter for email variable. Created by Alex"""
         self.email = new_email
 
     def get_email(self):
-        """Getter for email variable"""
+        """Getter for email variable. Created by Alex"""
         return self.email
 
     def set_password(self, new_password):
-        """Setter for password variable"""
+        """Setter for password variable. Created by Alex"""
         self.password = new_password
 
     def get_password(self):
-        """Getter for password variable"""
+        """Getter for password variable. Created by Alex"""
         return self.password
 
     def set_first_name(self, new_name):
-        """Setter for first name variable"""
+        """Setter for first name variable. Created by Alex"""
         self.first_name = new_name
 
     def get_first_name(self):
-        """Getter for first name variable"""
+        """Getter for first name variable. Created by Alex"""
         return self.first_name
 
     def set_surname(self, new_surname):
-        """Setter for surname variable"""
+        """Setter for surname variable. Created by Alex"""
         self.surname = new_surname
 
     def get_surname(self):
-        """Getter for surname variable"""
+        """Getter for surname variable. Created by Alex"""
         return self.surname
 
     def set_dob(self, new_dob):
-        """Setter for dob variable"""
+        """Setter for dob variable. Created by Alex"""
         self.dob = new_dob
 
     def get_dob(self):
-        """Getter for dob variable"""
+        """Getter for dob variable. Created by Alex"""
         return self.dob
 
     def set_address(self, new_address):
-        """Setter for address variable"""
+        """Setter for address variable. Created by Alex"""
         self.address = new_address
 
     def get_address(self):
-        """Getter for address variable"""
+        """Getter for address variable. Created by Alex"""
         return self.address
 
     def get_role(self):
-        """Getter for role variable"""
+        """Getter for role variable. Created by Alex"""
         return self.role
 
     def verify_password(self, plain_password):
         """Function to check submitted password matches with the database password (compared after encrypting the
-        submitted password) """
+        submitted password). Created by Emmanouel"""
         password_byte_enc = plain_password.encode('utf-8')
         hashed_password = self.password.encode('utf-8')
         return bcrypt.checkpw(password_byte_enc, hashed_password)
@@ -107,7 +107,7 @@ class User(db.Model, UserMixin):
 class Advert(db.Model):
     """Advert class that acts as a template for all Advert objects, and contains
     all of an Advert's attributes and methods, as well as the constructor
-    for an Advert object"""
+    for an Advert object. Created by Alex, amended by Rebecca"""
 
     __tablename__ = 'advert'
     adID = db.Column(db.Integer, primary_key=True, nullable=False)
@@ -121,7 +121,7 @@ class Advert(db.Model):
     available = db.Column(db.Boolean, nullable=False)
 
     def __init__(self, title, address, latitude, longitude, contents, owner, expiry, available=True):
-        """Constructor for Advert class"""
+        """Constructor for Advert class. Created by Alex, amended by Rebecca"""
         self.title = title
         self.address = address
         self.latitude = latitude
@@ -132,70 +132,70 @@ class Advert(db.Model):
         self.available = available
 
     def set_title(self, new_title):
-        """Setter for title variable"""
+        """Setter for title variable. Created by Alex"""
         self.title = new_title
 
     def get_title(self):
-        """Getter for title variable"""
+        """Getter for title variable. Created by Alex"""
         return self.title
 
     def set_address(self, new_address):
-        """Setter for address variable"""
+        """Setter for address variable. Created by Alex"""
         self.address = new_address
 
     def get_address(self):
-        """Getter for address variable"""
+        """Getter for address variable. Created by Alex"""
         return self.address
 
     def set_longitude(self, new_longitude):
-        """Setter for longitude variable"""
+        """Setter for longitude variable. Created by Rebecca"""
         self.longitude = new_longitude
 
     def get_longitude(self):
-        """Getter for longitude variable"""
+        """Getter for longitude variable. Created by Rebecca"""
         return self.longitude
 
     def set_latitude(self, new_latitude):
-        """Setter for latitude variable"""
+        """Setter for latitude variable. Created by Rebecca"""
         self.latitude = new_latitude
 
     def get_latitude(self):
-        """Getter for latitude variable"""
+        """Getter for latitude variable. Created by Rebecca"""
         return self.latitude
 
     def set_contents(self, new_contents):
-        """Setter for contents variable"""
+        """Setter for contents variable. Created by Alex"""
         self.contents = new_contents
 
     def get_contents(self):
-        """Getter for contents variable"""
+        """Getter for contents variable. Created by Alex"""
         return self.contents
 
     def get_owner(self):
-        """Getter for owner variable"""
+        """Getter for owner variable. Created by Alex"""
         return self.owner
 
     def set_expiry(self, new_expiry):
-        """Setter for expiry variable"""
+        """Setter for expiry variable. Created by Alex"""
         self.expiry = new_expiry
 
     def get_expiry(self):
-        """Getter for expiry variable"""
+        """Getter for expiry variable. Created by Alex"""
         return self.expiry
 
     def set_available(self, new_available):
-        """Setter for available variable"""
+        """Setter for available variable. Created by Alex"""
         self.available = new_available
 
     def get_available(self):
-        """Getter for available variable"""
+        """Getter for available variable. Created by Alex"""
         return self.available
 
 
 class Collection(db.Model):
     """Collection class that acts as a template for all Collection objects.
     When an order is reserved, a collection object is made that
-    contains all the details of the transaction"""
+    contains all the details of the transaction. Created by Alex, amended by Rebecca"""
 
     __tablename__ = 'foodorder'
     advert = db.Column('adID', db.ForeignKey(Advert.adID), primary_key=True,
@@ -206,7 +206,7 @@ class Collection(db.Model):
     date = db.Column('timestamp', db.DateTime, nullable=False)
 
     def __init__(self, advert, seller, buyer, date):
-        """Constructor for Collection class"""
+        """Constructor for Collection class. Created by Alex"""
         self.advert = advert
         self.seller = seller
         self.buyer = buyer
@@ -216,7 +216,7 @@ class Collection(db.Model):
 class Message(db.Model):
     """Message class that acts as a template for all Message objects.
     When a user sends a message to another user, a message object is
-    created and then added to that users Messages list"""
+    created and then added to that users Messages list. Created by Alex, amended by Rebecca"""
 
     __tablename__ = 'message'
     sender = db.Column('senderID', db.ForeignKey(User.id), primary_key=True,
@@ -227,7 +227,7 @@ class Message(db.Model):
     contents = db.Column(db.String(200), nullable=False)
 
     def __init__(self, sender, receiver, timestamp, contents):
-        """Constructor for Message class"""
+        """Constructor for Message class. Created by Alex"""
         self.sender = sender
         self.receiver = receiver
         self.timestamp = timestamp
@@ -237,10 +237,10 @@ class Message(db.Model):
 class Email():
     """Email class that acts as a template for all Email objects
     When we want to send an email, we create an Email object that
-    contains all the data for the email"""
+    contains all the data for the email. Created by Alex"""
 
     def __init__(self, users, title, contents):
-        """Constructor for email class"""
+        """Constructor for email class. Created by Alex"""
         self.users = users
         self.title = title
         self.contents = contents
@@ -250,6 +250,6 @@ def init_db():
     with app.app_context():
         db.drop_all()
         db.create_all()
-        new_user = User("a","a","b","c", datetime.strptime("08/01/2004", "%d/%m/%Y"), "a", "1","user")
+        new_user = User("a", "a", "b", "c", datetime.strptime("08/01/2004", "%d/%m/%Y"), "a", "1", "user")
         db.session.add(new_user)
         db.session.commit()

@@ -161,26 +161,7 @@
             document.body.scrollTop = 0; // For Safari
             document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
         }
-        const map = new maplibregl.Map({
-        container: 'map',
-        style:
-            'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL',
-        center: [-1.6151,54.9741],
-        zoom: 8
-    });
 
-    const marker = new maplibregl.Marker()
-        .setLngLat([-1.6151,54.9741])
-        .addTo(map);
-
-    map.addControl(
-        new maplibregl.GeolocateControl({
-            positionOptions: {
-                enableHighAccuracy: true
-            },
-            trackUserLocation: true
-        })
-    );
     </script>
 </body>
 

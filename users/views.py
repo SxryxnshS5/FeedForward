@@ -13,7 +13,12 @@ users_blueprint = Blueprint('users', __name__, template_folder='templates')
 
 @users_blueprint.route('/signup', methods=['GET', 'POST'])
 def signup():
-    """Function that provides the functionality of the signup form"""
+    """Function that provides the functionality of the signup form.
+    Created by Alex, amended by Suryansh and Rebecca
+
+    Returns: flask.Response: Returns either the login.html template if the sign up is successful, the account.html
+    template if the user is logged in, or the signup.html template if unsuccessful
+    """
     # create signup form object
     form = SignUpForm()
     # Check if user is logged out
@@ -59,7 +64,12 @@ def signup():
 # view user login
 @users_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
-    """Function that provides the functionality of the login form"""
+    """Function that provides the functionality of the login form.
+    Created by Alex, amended by Suryansh and Emmanouel
+
+    Returns: flask.Response: Renders either the login.html template or the account.html template with the correct
+    user details
+    """
     # set authentication attempts to 0 if there is no authentication attempts yet
     form = LoginForm()
     print("1")
@@ -108,6 +118,7 @@ def account():
     """
     View function for displaying user account information.
     Requires the user to be logged in.
+    Created by Suryansh, amended by Alex
 
     Returns:
         flask.Response: Renders the account.html template with user details.

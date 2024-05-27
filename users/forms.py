@@ -7,7 +7,7 @@ from wtforms.validators import Email, ValidationError, DataRequired, Length, Equ
 
 
 def validate_name(form, name):
-    """ Validator to check forbidden characters in names """
+    """ Validator to check forbidden characters in names. Created by Emmanouel """
 
     excluded_chars = "*?!'^+%&/()=}][{$#@<>"
 
@@ -17,7 +17,7 @@ def validate_name(form, name):
 
 
 def validate_password(form, password):
-    """ Validator to check password format """
+    """ Validator to check password format. Created by Emmanouel """
 
     pattern = re.compile(r'(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-z0-9])')
 
@@ -29,13 +29,15 @@ def validate_password(form, password):
 
 #
 class SignUpForm(FlaskForm):
-    """ Signup Form containing all the details needed for a user to create an account"""
+    """ Signup Form containing all the details needed for a user to create an account. Created by Emmanouel,
+    amended by Alex"""
 
     email = StringField(validators=[Email(), DataRequired()])
     first_name = StringField(validators=[DataRequired(), validate_name])
     last_name = StringField(validators=[DataRequired(), validate_name])
     password = PasswordField(validators=[DataRequired(), Length(min=8), validate_password])
-    phone = StringField(validators=[DataRequired()])
+    phone = StringField(validators=[DataRequired(), Length(max=11, message='Phone number is too long. Should be 11 '
+                                                                           'digits max.')])
     confirm_password = PasswordField(validators=[DataRequired(), EqualTo('password', message='Both password fields '
                                                                                              'must be equal')])
     dob = DateField(validators=[DataRequired()])
@@ -44,7 +46,7 @@ class SignUpForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    """ Login Form containing the required fields for a user to log in"""
+    """ Login Form containing the required fields for a user to log in. Created by Emmanouel"""
 
     email = StringField(validators=[DataRequired(), Email()])
     password = PasswordField(validators=[DataRequired()])
