@@ -21,6 +21,7 @@ class User(db.Model, UserMixin):
     address = db.Column(db.String(100), nullable=False)
     role = db.Column(db.String(5), nullable=False, default='user')
     phone = db.Column(db.String(11), nullable=False)
+    newsletter = db.Column(db.Boolean, nullable=False)
 
     adverts = db.relationship('Advert', cascade="all,delete")
     sent_messages = db.relationship('Message', foreign_keys='[Message.sender]',
@@ -32,7 +33,7 @@ class User(db.Model, UserMixin):
     sold_orders = db.relationship('Collection', foreign_keys='[Collection.seller]',
                                   cascade="all,delete")
 
-    def __init__(self, email, password, first_name, surname, dob, address, phone, role):
+    def __init__(self, email, password, first_name, surname, dob, address, phone, role="user", newsletter=False):
         """Constructor for User class. Created by Alex"""
         self.email = email
         self.password = password
@@ -42,6 +43,7 @@ class User(db.Model, UserMixin):
         self.address = address
         self.role = role
         self.phone = phone
+        self.newsletter = newsletter
         self.messages = []
 
     def set_email(self, new_email):
@@ -95,6 +97,14 @@ class User(db.Model, UserMixin):
     def get_role(self):
         """Getter for role variable. Created by Alex"""
         return self.role
+
+    def set_newsletter_subscribed(self, subscribed):
+        """Setter for newsletter variable. Created by Rebecca"""
+        self.newsletter = subscribed
+
+    def is_subscribed(self):
+        """Returns if a user is subscribed to the newsletter. Created by Rebecca"""
+        return self.surname
 
     def verify_password(self, plain_password):
         """Function to check submitted password matches with the database password (compared after encrypting the
@@ -250,6 +260,6 @@ def init_db():
     with app.app_context():
         db.drop_all()
         db.create_all()
-        new_user = User("a", "a", "b", "c", datetime.strptime("08/01/2004", "%d/%m/%Y"), "a", "1", "user")
+        new_user = User("a", "a", "b", "c", datetime.strptime("08/01/2004", "%d/%m/%Y"), "a", "1", "user", False)
         db.session.add(new_user)
         db.session.commit()
