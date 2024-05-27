@@ -87,6 +87,33 @@
                 </table>
             </div>
             <div>
+                <h2 class="ad-history">Deleted Adverts</h2>
+            </div>
+            <div>
+                <table class="table"> <!-- Deleted Adverts  table-->
+                    <thead>
+                        <tr>
+                            <th scope="col">Serial Number</th>
+                            <th scope="col">Date Posted</th>
+                            <th scope="col">Best Before</th>
+                            <th scope="col">Food Description</th>
+                            <th scope="col">Contents</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for advert in deleted_adverts %}
+                        <tr>
+                            <td><a href="advert_details/{{advert.adID}}">{{ advert.adID }}</a></td>
+                            <td>{{ advert.title }}</td>
+                            <td>{{ advert.address }}</td>
+                            <td>{{ advert.expiry }}</td>
+                            <td>{{ advert.contents }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div>
                 <h2 class="ad-history">Current adverts</h2>
             </div>
             <div>
