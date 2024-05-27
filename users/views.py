@@ -6,6 +6,7 @@ import bcrypt
 from flask import Blueprint, flash, render_template, session, redirect, url_for
 from models import User, Advert, Collection
 from app import db, app
+from email_folder.views import send_welcome_email
 from markupsafe import Markup
 
 users_blueprint = Blueprint('users', __name__, template_folder='templates')
@@ -51,6 +52,7 @@ def signup():
 
                 # create session variable
                 session['email'] = new_user.email
+                send_welcome_email(new_user)
                 return redirect(url_for('users.login'))
 
     else:
