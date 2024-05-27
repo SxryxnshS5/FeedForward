@@ -157,6 +157,10 @@ def change_details():
             current_user.address = form.address.data
             current_user.phone = form.phone.data
             db.session.commit()
+            if current_user.role == 'admin':
+                # if current user changing details is an admin, redirect them to the admin account page
+                return redirect(url_for('admin.admin_account'))
+            # redirect user to account page
             return redirect(url_for('users.account'))
 
 
