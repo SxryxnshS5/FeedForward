@@ -47,10 +47,11 @@
     </div>
     <div class="button-container row">
         {% if current_user.id != current_advert.owner and current_user.role == 'user' %}
-        <div class="col-lg-6">
-            <a class="btn btn1" href="../collect_confirmation/{{current_advert.adID}}" onclick="return confirm('Are you sure you want to collect this advert?')">Collect</a>
-        </div>
-
+            {% if current_advert.available == 1 %}
+            <div class="col-lg-6">
+                <a class="btn btn1" href="../collect_confirmation/{{current_advert.adID}}" onclick="return confirm('Are you sure you want to collect this advert?')">Collect</a>
+            </div>
+            {% endif %}
         <div class="col-lg-6">
             <input type="submit" value="Message Advertiser" class="btn btn3">
         </div>
