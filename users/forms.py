@@ -65,7 +65,7 @@ def validate_password(form, password):
 #
 class SignUpForm(FlaskForm):
     """
-    Form for creating a new admin account.
+    Form for creating a new user account.
     Created by Emmanouel, amended by Alex.
 
     This form includes fields for email, first name, last name, password, phone, confirm password, date of birth, and
