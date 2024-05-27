@@ -8,7 +8,8 @@ password = "okgx wpwq xvio ncei"
 
 
 def send_welcome_email(User):
-    """Function to send a welcome email when a user registers"""
+    """Function to send a welcome email when a user registers
+    Created by Alex"""
     contents = "Hi " + User.get_first_name()
     contents += "\n Welcome to FeedForward! Thank you for signing up."
 

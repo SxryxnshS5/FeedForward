@@ -4,7 +4,8 @@ from wtforms.validators import Email, ValidationError, DataRequired, Length, Equ
 
 
 class AdvertForm(FlaskForm):
-    """ Advert Form with the required fields for a user to create an advert"""
+    """ Advert Form with the required fields for a user to create an advert.
+    Created by Emmanouel, amended by Alex"""
 
     name = StringField(validators=[DataRequired()])
     address = StringField(validators=[DataRequired()])
