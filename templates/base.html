@@ -39,6 +39,12 @@
 </head>
 
 <body>
+     <!-- Loader overlay -->
+ <div class="overlay">
+    <div class="loader">
+        <div class="loader-content"></div>
+    </div>
+</div>
 
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
@@ -163,6 +169,33 @@
         }
 
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var loader = document.querySelector('.loader');
+            var overlay = document.querySelector('.overlay');
+    
+            // Hide the loader after animation completes
+            loader.addEventListener("animationend", function() {
+                overlay.style.display = 'none';
+            });
+    
+            // Hide the loader and overlay after 5-6 seconds even if animation doesn't complete
+            setTimeout(function() {
+                loader.style.display = 'none';
+                overlay.style.display = 'none';
+            }, 900); // Change the time in milliseconds as needed
+        });
+    </script>
+    <script>
+        function fadeOutOverlay() {
+            const overlay = document.querySelector('.overlay');
+            overlay.style.animation = 'fadeOut 0.5s forwards';
+        }
+    
+        // Example usage: Fade out the overlay after 3 seconds
+        setTimeout(fadeOutOverlay, 3000);
+    </script>
+    
 </body>
 
 </html>
