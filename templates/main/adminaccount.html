@@ -27,7 +27,7 @@
                 <div>
                     <img class="pfp" src="../static/images/base/pfp.png" alt="pfp">
                 </div>
-                <div class="col">
+                <div class="col textbox-section">
                     <div class="form-floating mb-3">
                         <input type="text" readonly class="form-control-plaintext" id="firstName" value="{{ current_user.first_name }}">
                         <label for="firstName">First Name</label>
@@ -41,7 +41,7 @@
                         <label for="dob">Date of Birth</label>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col textbox-section">
                     <div class="form-floating mb-3">
                         <input type="email" readonly class="form-control-plaintext" id="email" value="{{ current_user.email }}">
                         <label for="email">Email</label>
@@ -56,8 +56,8 @@
                     </div>
                 </div>
             </div>
-            <div>
-                <button class="button-change">Change Details</button>
+            <div><!-- Change details button-->
+                <a class="button-change"  href="{{ url_for('users.change_details') }}">Change Details</a>
             </div>
             <div>
                 <h2 class="ad-history">Advert Collection History (All Collected Adverts)</h2>
@@ -94,14 +94,41 @@
                     <thead>
                         <tr>
                             <th scope="col">Serial Number</th>
-                            <th scope="col">Donor Name</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Expiry</th>
+                            <th scope="col">Contents</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for advert in current_adverts %}
+                        <tr>
+                            <td><a href="advert_details/{{advert.adID}}">{{ advert.adID }}</a></td>
+                            <td>{{ advert.title }}</td>
+                            <td>{{ advert.address }}</td>
+                            <td>{{ advert.expiry }}</td>
+                            <td>{{ advert.contents }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <h2 class="ad-history">Deleted Adverts</h2>
+            </div>
+            <div>
+                <table class="table"> <!-- Deleted Adverts  table-->
+                    <thead>
+                        <tr>
+                            <th scope="col">Serial Number</th>
+                            <th scope="col">Date Posted</th>
                             <th scope="col">Best Before</th>
                             <th scope="col">Food Description</th>
                             <th scope="col">Contents</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for advert in current_adverts %}
+                        {% for advert in deleted_adverts %}
                         <tr>
                             <td><a href="advert_details/{{advert.adID}}">{{ advert.adID }}</a></td>
                             <td>{{ advert.title }}</td>
@@ -132,9 +159,36 @@
                         <tr>
                             <td><a href="account_overview/{{user.id}}">{{ user.id }}</a></td>
                             <td>{{ user.first_name }}</td>
-                            <td>{{ user.last_name }}</td>
+                            <td>{{ user.surname }}</td>
                             <td>{{ user.phone }}</td>
                             <td>{{ user.email }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <h2 class="ad-history">Admins</h2>
+            </div>
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">User ID</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Phone Number</th>
+                            <th scope="col">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for admin in current_admins %}
+                        <tr>
+                            <td><a href="account_overview/{{admin.id}}">{{ admin.id }}</a></td>
+                            <td>{{ admin.first_name }}</td>
+                            <td>{{ admin.surname }}</td>
+                            <td>{{ admin.phone }}</td>
+                            <td>{{ admin.email }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>

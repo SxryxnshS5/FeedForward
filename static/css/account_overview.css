@@ -1,145 +1,154 @@
 .image-container {
-    position: relative;
-    width: 100%;
+  position: relative;
+  width: 100%;
 }
 
 .sticky-image {
-    width: 100%;
-    display: block;
-
+  width: 100%;
+  display: block;
 }
 
 .image-text {
-    position: absolute;
-    top: 50%; /* Adjust vertically */
-    left: 50%; /* Adjust horizontally */
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-    padding-bottom: 20px;
+  position: absolute;
+  top: 50%; /* Adjust vertically */
+  left: 50%; /* Adjust horizontally */
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  padding-bottom: 20px;
 }
 
 .container1 {
-  width: 80%; /* Change the width as per your requirement */
-  max-width: 500px; /* Increase the maximum width */
+  width: 90%; /* Change the width as per your requirement */
+  max-width: 1200px; /* Increase the maximum width */
   margin: 50px auto;
   padding: 20px;
   border-radius: 10px; /* Increased border radius for a softer square shape */
-
 }
 
 .background-container {
-    width: 80%; /* Adjust the width as needed */
-    margin: 50px auto;
-    background-color: rgba(217, 217, 217, 0.7); /* Translucent background color */
-    border-radius: 80px; /* Border radius for a softer square shape */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 5px; /* Padding to ensure the content doesn't touch the edges */
+  width: 90%; /* Adjust the width as needed */
+  margin: 50px auto;
+  background-color: rgba(217, 217, 217, 0.7); /* Translucent background color */
+  border-radius: 80px; /* Border radius for a softer square shape */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px; /* Padding to ensure the content doesn't touch the edges */
 }
 
 .form-floating.mb-3 {
-    background-color: #FFFFFF;
-    border-radius: 5px;
-
+  background-color: #FFFFFF;
+  border-radius: 5px;
 }
 
 .account-title {
-    text-align: center;
-    font-family: "Fjalla One";
-    font-size: 50px;
-    margin-bottom: 50px;
-
+  text-align: center;
+  font-family: "Fjalla One";
+  font-size: 50px;
+  margin-bottom: 50px;
 }
 
 .ad-history {
-    margin-top: 50px;
-    margin-bottom: 20px;
-    text-align: center;
-    font-family: "Fjalla One";
+  margin-top: 50px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: "Fjalla One";
 }
 
-.pfp{
-    height: 200px;
-    width: 200px;
-    margin-bottom: 50px;
+.pfp {
+  height: 200px;
+  width: 200px;
+  margin-bottom: 50px;
 }
 
 
-.button-change {
-    width: 40%;
-    padding: 15px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    background-color: #FFFFFF;
-    color: #000000;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+
+.textbox-section {
+  padding-bottom: 20px;
+}
 
 .button:hover {
-    background-color: #0056b3;
-  }
+  background-color: #0056b3;
+}
 
-  .signup-form {
-    text-align: center;
-  }
+.signup-form {
+  text-align: center;
+}
 
-  .form-group {
-    margin-bottom: 20px;
-  }
+.form-group {
+  margin-bottom: 20px;
+}
 
-  label {
-    display: block;
-    margin-bottom: 5px;
-  }
+label {
+  display: block;
+  margin-bottom: 5px;
+}
 
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="address"],
-  input[type="dob"],
-  input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="address"],
+input[type="dob"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 
-  button {
-    width: 40%;
-    padding: 15px;
+button:hover {
+  background-color: #0056b3;
+}
 
-    background-color: #FFFFFF;
-    color: #000000;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+.fjalla-one-regular {
+  font-family: "Fjalla One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 60px;
+}
 
-  button:hover {
-    background-color: #0056b3;
-  }
+.notification {
+  background-color: #ff0000; /* Red background */
+  color: #ffffff; /* White text */
+  padding: 10px;
+  margin-bottom: 15px;
+  margin-top: 25px;
+  border-radius: 5px;
+}
 
-  .fjalla-one-regular {
-    font-family: "Fjalla One", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 60px;
-  }
+/* Table Styles */
+.table {
+  width: 100%;
+  margin-bottom: 20px;
+  border-collapse: collapse;
+}
 
-  table, th, td {
-      border: 1px solid black;
-      border-collapse: collapse;
-      padding: 15px;
-      text-align: center;
+.table th, .table td {
+  padding: 15px; /* Increased padding for better readability */
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 18px; /* Increased font size */
+}
 
+.table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
 
-  }
+.table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.table td a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.table td a:hover {
+  text-decoration: underline;
+}
+
   .button-user-delete {
-    width: 40%;
+    width: 160px;
     padding: 15px;
     background-color: #FFFFFF;
     color: #FF0000;
@@ -147,6 +156,11 @@
     border-radius: 15px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    text-decoration: none;
+  }
+
+  .button-user-delete:hover {
+    background-color: #620303;
   }
 
   .notification {
