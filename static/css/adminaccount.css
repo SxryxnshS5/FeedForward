@@ -62,13 +62,21 @@
 .button-change {
   width: 160px;
   padding: 15px;
-  margin-top: 10px;
   background-color: #FFFFFF;
-  color: #000000;
+  color: #FF0000;
   border: none;
   border-radius: 15px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.button-change:hover {
+  background-color: #620303;
+}
+
+.textbox-section {
+  padding-bottom: 20px;
 }
 
 .button-admin-create {
