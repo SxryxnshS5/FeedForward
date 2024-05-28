@@ -38,7 +38,7 @@ admin_blueprint = Blueprint('admin', __name__, template_folder='templates')
 def requires_roles(*roles):
     """
     Custom decorator for role-based access control.
-    Created by Emmanouel, ammended by Suryansh
+    Created by Emmanouel, amended by Suryansh.
 
     Args:
         *roles: The roles that are authorized to access the decorated route.
@@ -132,7 +132,7 @@ def create_admin_account():
             db.session.add(new_admin)
             db.session.commit()
 
-            flash('New Admin added successfully.')
+            flash('New Admin added successfully')
             return redirect(url_for('admin.admin_account'))
     # if request method is GET or form not valid re-render admin page
     return render_template('main/create_admin_account.html', form=form)
@@ -187,6 +187,6 @@ def delete_user(user_id):
         # update role change
         db.session.commit()
         # inform admin and redirect to admin account page
-        flash("User successfully deleted.")
+        flash("User successfully deleted")
         return redirect(url_for('admin.admin_account'))
 
