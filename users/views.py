@@ -167,9 +167,6 @@ def change_details():
     return render_template('main/change_details.html', form=form)
 
 
-
-
-
 @users_blueprint.route('/logout')
 @login_required
 def logout():
@@ -181,3 +178,25 @@ def logout():
     # Redirect to the login page or home page
     flash('You have been logged out.')
     return redirect(url_for('users.login'))
+
+
+@users_blueprint.route('/delete_account')
+@login_required
+def delete_account():
+    """
+    Function that allows users to delete their account.
+    Requires the user to be logged in.
+    Created by Emmanouel.
+
+    Returns:
+        flask.Response: Redirects to the index page after account deletion.
+    """
+    # set the user's role to off
+    current_user.role = 'off'
+    # update the database
+    db.session.commit()
+    # log the user out
+    logout_user()
+    # inform user about account deletion and redirect them to main page.
+    flash('Your account has been deleted')
+    return redirect(url_for('index'))
