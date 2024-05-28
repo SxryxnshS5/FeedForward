@@ -44,7 +44,7 @@ def create_advert():
 
             return redirect(url_for('adverts.advert_details', advert=new_advert.adID))
     else:
-        return render_template('main/createadvert.html', form=form)
+        return render_template('main/createadvert.html', form=form, current_page='create_advert')
 
 
 # View for user account information
@@ -75,7 +75,7 @@ def list_adverts():
         flask.Response: returns listedadverts.html template with the details of all the relevant adverts
     """
     adverts = Advert.query.filter_by(available=True)
-    return render_template('main/listedadverts.html', current_advert=adverts)
+    return render_template('main/listedadverts.html', current_advert=adverts, current_page='list_adverts')
 
 
 @adverts_blueprint.route('/collect_confirmation/<advert>')
@@ -147,4 +147,4 @@ def advert_map():
         flask.Response: returns the advertmap.html template
         """
     adverts = Advert.query.filter_by(available=True)
-    return render_template('main/advertmap.html', current_adverts=adverts)
+    return render_template('main/advertmap.html', current_adverts=adverts, current_page='advert_map')

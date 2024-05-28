@@ -4,6 +4,8 @@
 
 <link rel="stylesheet" href="../static/css/advertmap.css">
 
+
+
 <div class="image-container">
     <img src="../static/images/base/uppershape.png" alt="Sticky Image" class="sticky-image">
     <div class="image-text">
@@ -23,11 +25,18 @@
     <div><h3 class="h3-heading text-center">This map contains active listed adverts:</h3></div>
     <div class="container1" id="map" style="width: 80%; height: 400px;">
           <!-- Map image -->
-            <p>Ignore</p>
+            <p></p>
     </div>
 </div>
 <!-- Include Maplibre and map initialization script -->
 <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@4.3.1/dist/maplibre-gl.css' />
+<style>
+    .maplibregl-popup {
+        width: 300px;
+        height: auto;
+        padding: 10px;
+    }
+</style>
 <script src='https://unpkg.com/maplibre-gl@4.3.1/dist/maplibre-gl.js'></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -42,9 +51,16 @@
         {% for advert in current_adverts %}
         const latitude{{ loop.index }} = {{ advert.latitude | safe }};
         const longitude{{ loop.index }} = {{ advert.longitude | safe }};
+        const advertId{{ loop.index }} = {{ advert.adID | safe }};
 
-        const marker{{ loop.index }} = new maplibregl.Marker()
+        const popup{{ loop.index }} = new maplibregl.Popup({offset: 50}).setHTML(
+            "<a href='advert_details/{{ advert.adID | safe }}'><strong>{{ advert.title }}</strong></a><p>{{ advert.contents}}</p>"
+        );
+
+
+        new maplibregl.Marker()
             .setLngLat([longitude{{ loop.index }}, latitude{{ loop.index }}])
+            .setPopup(popup{{ loop.index }})
             .addTo(map);
         {% endfor %}
 
@@ -56,6 +72,8 @@
                 trackUserLocation: true
             })
         );
+
+
     });
 </script>
 

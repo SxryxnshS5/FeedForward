@@ -30,19 +30,20 @@ test_messages = [
     [1, 2,
      datetime.strptime("01/01/2001 01:01:01", "%d/%m/%Y %H:%M:%S"), "1"],
     [1, 2,
-         datetime.strptime("01/01/2001 01:01:02", "%d/%m/%Y %H:%M:%S"), "2"],
+     datetime.strptime("01/01/2001 01:01:02", "%d/%m/%Y %H:%M:%S"), "2"],
     [1, 2,
-         datetime.strptime("01/01/2001 01:01:03", "%d/%m/%Y %H:%M:%S"), "3"],
+     datetime.strptime("01/01/2001 01:01:03", "%d/%m/%Y %H:%M:%S"), "3"],
     [3, 4,
-         datetime.strptime("01/01/2001 01:01:01", "%d/%m/%Y %H:%M:%S"), "hello world"],
+     datetime.strptime("01/01/2001 01:01:01", "%d/%m/%Y %H:%M:%S"), "hello world"],
     [1, 3,
-         datetime.strptime("01/01/2001 01:01:01", "%d/%m/%Y %H:%M:%S"), "lorem ipsum"],
+     datetime.strptime("01/01/2001 01:01:01", "%d/%m/%Y %H:%M:%S"), "lorem ipsum"],
 ]
 
 test_collections = [
     # replace adIDs & userIDs after they're auto generated
     [1, 1, 2, datetime.now()],
 ]
+
 
 class TestDatabase(unittest.TestCase):
 
@@ -122,7 +123,6 @@ class TestDatabase(unittest.TestCase):
             datalink.delete_user(user1)
             datalink.delete_user(user2)
 
-
     def test_create_delete_collection(self):
         with app.app_context():
             # setup
@@ -154,7 +154,6 @@ class TestDatabase(unittest.TestCase):
             datalink.delete_user(seller)
             datalink.delete_user(collector)
 
-
     def test_check_expiry(self):
         """test if out of date ads can be marked as unavailable while leaving in date ones alone"""
         with app.app_context():
@@ -184,7 +183,6 @@ class TestDatabase(unittest.TestCase):
             for ad in unavailables:
                 self.assertEqual(ad.available, False)
 
-
             # remove test rows
             datalink.delete_user(user1)
             datalink.delete_user(user2)
@@ -209,14 +207,13 @@ class TestDatabase(unittest.TestCase):
 
             # check only the 2 available ads were returned
             availables = datalink.get_available_ads()
-            self.assertEquals(len(availables), 2) # only 2 should be available in first 5 test ads
+            self.assertEquals(len(availables), 2)  # only 2 should be available in first 5 test ads
             self.assertEqual(availables[0].title, "in date")
             self.assertEqual(availables[1].title, "in date")
 
             # remove test rows
             datalink.delete_user(user1)
             datalink.delete_user(user2)
-
 
     def test_get_conversations(self):
         with app.app_context():
@@ -238,6 +235,7 @@ class TestDatabase(unittest.TestCase):
 
             for u in users:
                 datalink.delete_user(u)
+
     def test_get_latest_message(self):
         with app.app_context():
             users = [User(*u) for u in test_users]
@@ -272,10 +270,11 @@ class TestDatabase(unittest.TestCase):
             self.assertEqual(len(history), 3)
             # check messages in order - should be "1", "2", "3"
             for i in range(3):
-                self.assertEquals(history[i].contents, str(i+1))
+                self.assertEquals(history[i].contents, str(i + 1))
 
             for u in users:
                 datalink.delete_user(u)
+
 
 if __name__ == '__main__':
     unittest.main()
