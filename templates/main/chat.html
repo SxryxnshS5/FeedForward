@@ -20,9 +20,9 @@
 {% endwith %}
 
 <div class="background-container">
-    {% if conversation and name %}
-        <div class="profile"> <h4 class="fjalla-one-regular1">{{name}}</h4></div>
-        <div class="message-container">
+    <div class="profile"> <h4 class="fjalla-one-regular1">{{name}}</h4></div>
+    <div class="message-container" id="msgs" onload="start_updating()">
+        {% if conversation and name %}
             {% for msg in conversation %}
                 {% if msg.sender == current_user.id %}
                     <div class="outgoing"><p>{{msg.contents}}</p></div>
@@ -30,7 +30,8 @@
                     <div class="incoming"><p>{{msg.contents}}</p></div>
                 {% endif %}
             {% endfor %}
-        </div>
+        {% endif %}
+    </div>
         {% if form %}
             <form method="POST">
                 <div class="input-container">
@@ -47,7 +48,26 @@
                 </div>
             </form>
         {% endif %}
-    {% endif %}
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+    //update messages every second
+    function start_updating() {
+        setInterval(update_messages, 1000)
+    }
+    //update messages by pinging the update_chat view func
+    //then replace current list of messages with reponse
+    function update_messages() {
+        $.ajax({
+            url: "/update_chat/",
+            type: "POST",
+            success: (response) => {
+                document.getElementById("msgs").html(response.messages)
+            }
+        })
+    }
+</script>
 
 {% endblock %}

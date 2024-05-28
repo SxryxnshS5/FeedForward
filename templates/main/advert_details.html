@@ -53,7 +53,7 @@
             </div>
             {% endif %}
         <div class="col-lg-6">
-            <input type="submit" value="Message Advertiser" class="btn btn3">
+            <input type="submit" value="Message Advertiser" class="btn btn3" onclick="window.location.href = '{{ url_for('messages.chat', id=current_advert.owner) }}'";>
         </div>
         {% endif %}
         {% if current_user.id == current_advert.owner or current_user.role == 'admin' %}
