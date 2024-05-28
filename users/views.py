@@ -61,7 +61,7 @@ def signup():
         # send user to account page
         return render_template('main/account.html')
     # if request method is GET or form not valid re-render signup page
-    return render_template('main/signup.html', form=form)
+    return render_template('main/signup.html', form=form, current_page='signup')
 
 
 # view user login
@@ -112,7 +112,7 @@ def login():
         adverts = Advert.query.filter_by(owner=current_user.id).all()
         flash('You are already logged in.')
         return render_template('main/account.html', adverts=adverts)
-    return render_template('main/login.html', form=form)
+    return render_template('main/login.html', form=form, current_page='login')
 
 
 # View for user account information
@@ -141,7 +141,7 @@ def account():
     adverts = Advert.query.filter_by(owner=current_user.id, available=True).all()
     orders = Collection.query.filter_by(buyer=current_user.id).all()
 
-    return render_template('main/account.html', current_user=user_details, adverts=adverts, orders=orders)
+    return render_template('main/account.html', current_user=user_details, adverts=adverts, orders=orders, current_page='account')
 
 @users_blueprint.route('/changedetails', methods=['GET', 'POST'])
 @login_required
