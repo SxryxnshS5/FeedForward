@@ -139,3 +139,27 @@ button:hover {
         inset: 0 35px 35px 0;
     }
   }
+
+nav .navbar-nav .nav-item.custom-active-nav .nav-link {
+    color: #1A4D2E !important; /* Use !important to ensure the color is applied */
+    border-bottom: 3px solid #1A4D2E;
+    border-radius: 2px;
+}
+
+nav .nav-link {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+/* Hover effect */
+nav .nav-link:hover {
+    color: #fff; /* Change text color on hover */
+    background-color: #1A4D2E; /* Change background color on hover */
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+/* Hover effect */
+nav .navbar-nav .nav-item.custom-active-nav .nav-link:hover {
+    color: #fff !important; /* Change text color on hover */
+    background-color: #1A4D2E; /* Change background color on hover */
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}

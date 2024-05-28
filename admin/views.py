@@ -90,7 +90,7 @@ def admin_account():
     # renders the admin account template
     return render_template('main/adminaccount.html', current_adverts=current_adverts, current_users=current_users,
                            current_admins=current_admins, collected_adverts=collected_adverts,
-                           deleted_adverts=deleted_adverts)
+                           deleted_adverts=deleted_adverts, current_page='admin_account')
 
 
 @admin_blueprint.route('/create_admin_account', methods=['GET', 'POST'])
