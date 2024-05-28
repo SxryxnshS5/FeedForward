@@ -101,9 +101,22 @@
     border-radius: 5px;
 }
 
+@keyframes bubble-animation {
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+}
+
 .bubble-1, .bubble-2 {
   position: absolute;
   z-index: -1; /* Ensure the bubbles are behind the content */
+  animation: bubble-animation 3s ease-in-out infinite; /* Adjust timing as needed */
 }
 
 
