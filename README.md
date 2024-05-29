@@ -1,9 +1,12 @@
 # FeedForward
 
-FeedForward is a food sharing website with the aim to reduce food waste and fight hunger.
+_FeedForward is a food sharing website with the aim to reduce food waste and fight hunger.
 The goal is hoped to be achieved through the main functionality of creating and collecting food adverts.
+Created by Team 14.
+Members: Alex Lines, Emmanouel Constantinou, Rebecca Picken, Suryansh Singh, Toby Dook, Tariq Bagaar
+Repository URL: https://github.com/newcastleuniversity-computing/CSC2033_Team14_23-24_
 
-Functionality:
+**Main Functionality:**
 - The user can create an account using their personal details
 - The user can log in to their account, provided that they have created one.
 - Adverts can be created by each user, containing details about their contents, expiry date and location.
@@ -21,7 +24,7 @@ Functionality:
 ## Running the program
 
 ### Dependencies:
-All the dependencies can be installed using the 'requirements.txt' file.
+All the dependencies can be installed using the **requirements.txt** file.
   
 ### Database:      
 The device running the program should be hosting a mySQL server. mySQL should be downloaded and installed on the 
