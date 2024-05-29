@@ -39,9 +39,9 @@ contents, replacing the 'user' and 'password' placeholders with the appropriate 
 
 The database must be built using the Python Console and the following commands:
 
-        - from app import db
-        - from models import init_db
-        - init_db()
+        from app import db
+        from models import init_db
+        init_db()
 
 If the above commands are executed successfully, the database will be built and should contain one user with the 'admin' role.
 
@@ -88,7 +88,7 @@ or issue on how to use the website, this guide can be helpful.
 
    To update your account information:
 
-   1. Navigate to the Account Page (#3)
+   1. Navigate to the [Account Information (Account Page)](#account-information-account-page)
    2. Click on the 'Change Details' button underneath the Personal Information table.
    3. You will be redirected to a Change Details Form.
    4. You need to fill out the whole form, including the modified and unmodified details.
