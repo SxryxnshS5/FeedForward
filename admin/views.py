@@ -181,6 +181,10 @@ def delete_user(user_id):
     """
     # get user from database
     active_user = User.query.filter_by(id=user_id).first()
+    # check if the admin is trying to delete their own account
+    if active_user.id == current_user.id:
+        flash('To delete your own account, go need to do so through the Account page. You have just been redirected')
+        return redirect(url_for('admin.admin_account'))
     if not active_user.role == 'off':
         # change user role as offline
         active_user.role = 'off'
