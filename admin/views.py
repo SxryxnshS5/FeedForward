@@ -25,6 +25,8 @@ Functions:
 """
 
 from flask import Blueprint, render_template, flash, redirect, url_for
+
+import admin
 from app import db, app
 from models import User, Advert, Collection
 from admin.forms import AdminSignUpForm
@@ -156,6 +158,10 @@ def account_overview(user):
     """
     # get user from database
     user = User.query.get(user)
+    # check if user exists
+    if not user:
+        flash('User does not exist')
+        return redirect(url_for('admin.admin_account'))
     # get all adverts created by specific user
     adverts = Advert.query.filter_by(owner=user.id).all()
     # get all orders collected from specific user
@@ -181,6 +187,14 @@ def delete_user(user_id):
     """
     # get user from database
     active_user = User.query.filter_by(id=user_id).first()
+    # check if user exists
+    if not active_user:
+        flash('User does not exist')
+        return redirect(url_for('admin.admin_account'))
+    # check if the admin is trying to delete their own account
+    if active_user.id == current_user.id:
+        flash('To delete your own account, go need to do so through the Account page. You have just been redirected')
+        return redirect(url_for('admin.admin_account'))
     if not active_user.role == 'off':
         # change user role as offline
         active_user.role = 'off'
