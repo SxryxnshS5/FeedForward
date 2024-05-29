@@ -54,7 +54,7 @@ The interface of the website is considered to be straight-forward and clear to u
 or issue on how to use the website, this guide can be helpful.
 
 ### Account Related Actions
-1. Sign Up
+1. **Sign Up**
 
     To create a new account on the website, follow these steps:
     
@@ -65,7 +65,7 @@ or issue on how to use the website, this guide can be helpful.
     
     If the sign-up is successful, you will be redirected to the login page.
 
-2. Log In
+2. **Log In**
 
     To access your account, you need to log in:
     
@@ -75,7 +75,7 @@ or issue on how to use the website, this guide can be helpful.
     
     If the login is successful, you will be redirected to your account page.
 
-3. Account Information (Account Page)
+3. **Account Page (Account Information)**
 
     To view you account details, you need to be logged in.
 
@@ -84,11 +84,11 @@ or issue on how to use the website, this guide can be helpful.
     The Account page provides all the personal information you signed up with, as well as all the adverts you have created
     and collected.
 
-4. Change Account Details
+4. **Change Account Details**
 
    To update your account information:
 
-   1. Navigate to the [Account Information (Account Page)](#account-information-account-page)
+   1. Navigate to the Account Page (#3)
    2. Click on the 'Change Details' button underneath the Personal Information table.
    3. You will be redirected to a Change Details Form.
    4. You need to fill out the whole form, including the modified and unmodified details.
@@ -96,7 +96,7 @@ or issue on how to use the website, this guide can be helpful.
 
    Your account details will be updated, and you will be redirected to your account page.
 
-5. Log Out
+5. **Log Out**
 
     To log out of your account:
     
@@ -104,7 +104,7 @@ or issue on how to use the website, this guide can be helpful.
     
     You will be logged out, and you will be redirected to the login page, along with a message confirming that you have been logged out.
 
-6. Delete Account
+6. **Delete Account**
 
     If you wish to delete your account:
     
@@ -117,7 +117,7 @@ or issue on how to use the website, this guide can be helpful.
 
 ### Advert Related Actions
 
-7. Create an advert.
+7. **Create an advert**
 
     To create an advert follow these steps:
     
@@ -128,14 +128,14 @@ or issue on how to use the website, this guide can be helpful.
 
     The advert will be created, and you will be redirected to the Advert Details page, where the details of it will be displayed.
 
-8. Listed Adverts:
+8. **Listed Adverts**
     
     To view the available adverts:
     1. Click on the 'Listed Adverts' button at the top of the website.
     
     You will be directed to the Listed Adverts page, where all the available adverts are displayed
 
-9. Advert Details
+9. **Advert Details**
     
     To view the details of an advert:
    1. Find the advert you want the details for, by going to the Listed Adverts page (#8)
@@ -143,7 +143,7 @@ or issue on how to use the website, this guide can be helpful.
    
     You will be directed to the Advert Details page, where the information regarding the specific advert will be displayed.
 
-10. Delete an advert.
+10. **Delete an advert**
 
     To delete an advert:
     1. Navigate to the Advert Details page. You can do so in two ways: either by navigating to your Account page (#3), 
@@ -154,7 +154,7 @@ or issue on how to use the website, this guide can be helpful.
    
         The advert will be deleted, and you will be redirected to your account page.
 
-11. Collect an advert:
+11. **Collect an advert**
 
     To collect an advert:
     1. Navigate to the Listed Adverts page (#8)
@@ -165,7 +165,7 @@ or issue on how to use the website, this guide can be helpful.
     A confirmation of your collection will be displayed.
     Keep in mind you can collect adverts created by other users and not yourself.
 
-12. Advert Map
+12. **Advert Map**
 
     You can view a map containing all the adverts, represented by a drop pin.
     
@@ -174,7 +174,7 @@ or issue on how to use the website, this guide can be helpful.
     
     The drop pins are clickable, so if you wish to see the details of any advert, just click on the pin and then the adverts name.
 
-13. Messages
+13. **Messages**
 
     You can message the creator of an advert, if the information provided is insufficient, and you wish to know more.
     You can do so by:
@@ -185,15 +185,16 @@ or issue on how to use the website, this guide can be helpful.
 
     Your message will be sent to the advertiser, and you can respond to them in the same way when you get an answer from them.
     You can view all your messages by clicking on the 'Messages' button, on the navigation bar at the top of the website.
+    Be aware that if you have no messages, the 'Messages' page will be empty.
 
 ### Admin Related Actions
 
-14. Log in (Admin)
+14. **Log in (Admin)**
 
     To log in to an admin account, you can use the same steps as a user would (#2).
     When you successfully log in, you will be redirected to the Admin Account Page.
 
-15. Account and Website Information (Admin Account Page)
+15. **Admin Account Page (Account and Website Information)**
     
     To view account information, you can follow the same steps as a user would (#3).
     When you are successfully to the Account Page, your personal information will be displayed at the beginning of the website.
@@ -205,12 +206,12 @@ or issue on how to use the website, this guide can be helpful.
     4. Users - All active users and their main details. (for all details for a specific user refer to #)
     5. Admins - All active admins and their main details. (for all details for a specific admin refer to #)
     
-16. Change Account Details (Admin)
+16. **Change Account Details (Admin)**
 
     To change account details, you can use the same steps as a user would (#4)
     When you successfully change your details, you will be redirected to the Admin Account page.
 
-17. Create new Admin
+17. **Create new Admin**
 
     To create a new admin account:
     1. Navigate to Admin Account page (#15).
@@ -221,7 +222,7 @@ or issue on how to use the website, this guide can be helpful.
     If you successfully created a new admin account, you will be redirected to the Admin Account page, wher eyou can see the new admin
     in the 'Admins' table.
 
-18. User Details
+18. **User Details**
 
     To see all the details of a specific user:
     1. Navigate to the Admin Account page (#15).
@@ -231,7 +232,7 @@ or issue on how to use the website, this guide can be helpful.
     You will be redirected to the Account Overview page, where you can see their personal information, the adverts they have created
     and their orders (collected adverts).
 
-19. Delete a User
+19. **Delete a User**
 
     To delete a user:
     1. Navigate to the Account Overview page (#18).
@@ -241,7 +242,7 @@ or issue on how to use the website, this guide can be helpful.
 
     You will be redirected to the Admin Account page with a confirmation message saying the account was successfully deleted.
 
-20. Advert Details (Admin)
+20. **Advert Details (Admin)**
 
     You can view listed adverts (#8) and their specific details (#9) in the same way a user would.
     As an admin, you can also view listed, collected and deleted adverts through the Admin Account page (#15)
@@ -252,7 +253,7 @@ or issue on how to use the website, this guide can be helpful.
 
     You will be redirected to the Advert Details page, containing the information of the specific advert.
 
-21. Delete an advert.
+21. **Delete an advert**
 
     To delete any advert created by any user:
     1. Navigate to the Advert Details page of the advert you wish to delete (#20).
@@ -262,7 +263,7 @@ or issue on how to use the website, this guide can be helpful.
 
     You will be redirected to the Admin Account page, where you can see the deleted advert in the Deleted Adverts table.
 
-22. Delete Admin Account.
+22. **Delete Admin Account**
 
     To delete an admin account:
     1. Navigate to the Admin Account Page (#15).
