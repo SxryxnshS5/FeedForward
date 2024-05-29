@@ -56,8 +56,14 @@
                     <a href="../advert_details/{{ current_advert.adID }}">More details</a>
                 </div>
             </form>
+          </div>
+
+
+
+        <div class="button-container">
+            <!-- Button to go back to the user's account -->
+            <a class="collectbtn" href="{{ url_for('users.account') }}">Back to account</a>
         </div>
-        <!-- Button to go back to the user's account -->
-        <a class="button" href="{{ url_for('users.account') }}"><button>Back to account</button></a>
     </div>
 {% endblock %}
+
