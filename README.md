@@ -1,9 +1,13 @@
 # FeedForward
 
 _FeedForward is a food sharing website with the aim to reduce food waste and fight hunger._
+
 _The goal is hoped to be achieved through the main functionality of creating and collecting food adverts._
+
 _Created by Team 14._
+
 _Members: Alex Lines, Emmanouel Constantinou, Rebecca Picken, Suryansh Singh, Toby Dook, Tariq Bagaar_
+
 _Repository URL: https://github.com/newcastleuniversity-computing/CSC2033_Team14_23-24_
 
 **Main Functionality:**
