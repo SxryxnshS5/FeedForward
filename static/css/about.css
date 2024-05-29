@@ -253,13 +253,16 @@
   }
   
   .bubble-1 {
-    top: 810px;
-    left: 50px;
+    top: 802px;
+    left: 10px;
+    width: 20%;
+    height: 18%;
   }
   
   .bubble-2 {
-    top: 1280px;
-    left: 20px;
-
+    top: 423px;
+    left: 250px;
+    width: 20%;
+    height: 18%;
   }
 }
