@@ -157,3 +157,10 @@ nav .navbar-nav .nav-item.custom-active-nav .nav-link:hover {
     background-color: #1A4D2E; 
     transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
+
+@media (max-width: 767px) {
+    .back-to-top {
+        width: 90px;
+    }
+
+}    
