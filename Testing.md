@@ -15,16 +15,17 @@ performance, ensuring that it met user requirements and functioned intuitively. 
 detection of usability issues and allowed for iterative improvements to enhance the overall user experience. This is an
 overview of how key parts of the system were manually tested.
 
-## Front-End 
+### Front-End 
 
-Black-box testing was particularly helpful for testing the graphical user interface (GUI) of the website. Since it focuses
+Manual testing was particularly helpful for testing the Graphical User Interface of the website. Since it focuses
 on testing how software functions from a user's perspective, it allowed us to interact with the website just like a regular user would. 
 This meant we could check if buttons, forms, and menus worked as expected without having necessarily had implemented the full features yet.
 By clicking around and trying different actions, we could ensure that the website looked and behaved correctly for users, helping us catch any glitches 
-or usability issues early on. This approach ensured that the website provided a smooth and intuitive experience for visitors, improving overall user satisfaction.
+or usability issues early on. The front end was also manually tested whenever adjustments to templates were made, such as adding tables or making 
+them dynamic with the back end code. This approach ensured that the website provided a smooth and intuitive experience for visitors, improving overall user satisfaction.
 
 
-## Back-end
+### Back-end
 Manual testing played a crucial role in ensuring the reliability and functionality of the website, especially during the implementation 
 of key features facilitated by various view functions. It helped with quickly establishing whether a feature was correctly implemented or not.
 
@@ -73,10 +74,10 @@ The tests are written using the unittest framework. In automating the testing of
 test environment. This involved ensuring that the database was empty at the beginning of each test to prevent interference from any 
 residual data that might have been left behind by failed tests. 
 Each test method focused on validating a specific aspect of the database operations:
--Testing the connection to the database.
--Verifying the creation and deletion of users, adverts, messages, and collections.
--Checking the functionality to mark advertisements as unavailable when they expire.
--Testing the retrieval of available adverts, conversations, and message history.
+- Testing the connection to the database.
+- Verifying the creation and deletion of users, adverts, messages, and collections.
+- Checking the functionality to mark advertisements as unavailable when they expire.
+- Testing the retrieval of available adverts, conversations, and message history.
 The test cases covered various scenarios, including creating and deleting database records, handling valid and invalid data inputs,
 and ensuring the correct behavior of database queries and operations. The setup method ensured that the database was properly 
 initialized before each test, while the teardown method cleaned up any test data after each test, ensuring the test environment remained consistent.
@@ -86,10 +87,10 @@ initialized before each test, while the teardown method cleaned up any test data
 In automating the testing of admin views, the unittest and flask testing frameworks were used. We began by setting up the Flask application instance for testing,
 configuring it to use an SQLite in-memory database. This setup ensured that tests could be run in isolation without affecting the production database.
 Each test method focused on a specific aspect of the admin views:
--Testing access control for different user roles, including admins and regular users.
--Verifying functionality related to creating and managing admin accounts.
--Checking the behavior of the account overview page for both existing and nonexistent users.
--Ensuring that admin users can delete other users' accounts successfully.
+- Testing access control for different user roles, including admins and regular users.
+- Verifying functionality related to creating and managing admin accounts.
+- Checking the behavior of the account overview page for both existing and nonexistent users.
+- Ensuring that admin users can delete other users' accounts successfully.
 The tests were structured to cover various scenarios, such as accessing pages without logging in, attempting actions with different user roles, 
 handling valid and invalid data inputs, and managing user accounts. This approach provided comprehensive coverage of the admin views' behavior 
 under different conditions. The use of setup and teardown methods ensured that the test environment was properly initialized 
