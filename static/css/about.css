@@ -59,6 +59,7 @@
   font-weight: 600;
   text-align: center;
   margin: 0;
+  color: #4F6F52;
 }
 
 .sub-text-div {
@@ -172,4 +173,96 @@
   width: 300px;
   top: 790px;
   left: 1067px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 767px) {
+  .image-container {
+
+  }
+  
+  .sticky-image {
+
+  }
+  
+  .image-text {
+
+  }
+  
+  .main-sect {
+    height: 400px;
+  }
+  
+  .title-container {
+
+  }
+  
+  .fjalla-one-regular {
+    font-size: 35px;
+  }
+  
+  .body-text-1 {
+
+  }
+  
+  .body-p {
+
+  }
+  
+  .sub-text {
+    font-size: 18px;
+  }
+  
+  .sub-text-div {
+    margin: 0 auto;
+  }
+  
+  .donors-text {
+
+  }
+  
+  .donors-text-body {
+    font-size: 10px;
+  }
+  
+  .cream-box1 {
+    height: 260px;
+  }
+  
+  .cream-box2 {
+    height: 260px;
+  }
+  
+  .logo-image {
+    width: 18%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+  
+  .logo-text {
+    width: 88%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+
+
+    
+  }
+  
+  .notification {
+
+  }
+  
+  .bubble-1 {
+    top: 802px;
+    left: 10px;
+    width: 20%;
+    height: 18%;
+  }
+  
+  .bubble-2 {
+    top: 423px;
+    left: 250px;
+    width: 20%;
+    height: 18%;
+  }
 }

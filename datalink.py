@@ -1,11 +1,13 @@
-import sqlalchemy
 import os
+from datetime import datetime
+
+from dotenv import load_dotenv
+import sqlalchemy
 from sqlalchemy import and_, or_
 from sqlalchemy.exc import SQLAlchemyError
+
 from app import db
 from models import User, Advert, Message, Collection
-from datetime import datetime
-from dotenv import load_dotenv
 
 
 def _connect():
@@ -58,9 +60,9 @@ def get_user(email):
     return User.query.filter_by(email=email).first()
 
 
-def get_user_from_id(id):
+def get_user_from_id(user_id):
     """returns a User object from the database using their username"""
-    return User.query.filter_by(id=id).first()
+    return User.query.filter_by(id=user_id).first()
 
 
 def is_unique(email):
@@ -68,9 +70,9 @@ def is_unique(email):
     return get_user(email) is None
 
 
-def set_advert_unavailable(adID):
+def set_advert_unavailable(ad_id):
     """marks advert as unavailable using its ID"""
-    ad = Advert.query.filter_by(adID=adID).first()
+    ad = Advert.query.filter_by(adID=ad_id).first()
     ad.available = False
     db.session.commit()
 

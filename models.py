@@ -1,9 +1,10 @@
 """python file that contains all the models for the project"""
 from datetime import datetime
 
-from app import db, app
 from flask_login import UserMixin
 import bcrypt
+
+from app import db, app
 
 
 class User(db.Model, UserMixin):
@@ -33,7 +34,8 @@ class User(db.Model, UserMixin):
     sold_orders = db.relationship('Collection', foreign_keys='[Collection.seller]',
                                   cascade="all,delete")
 
-    def __init__(self, email, password, first_name, surname, dob, address, phone, role="user", newsletter=False):
+    def __init__(self, email, password, first_name, surname, dob, address, phone,
+                 role="user", newsletter=False):
         """Constructor for User class. Created by Alex"""
         self.email = email
         self.password = password
@@ -107,8 +109,8 @@ class User(db.Model, UserMixin):
         return self.surname
 
     def verify_password(self, plain_password):
-        """Function to check submitted password matches with the database password (compared after encrypting the
-        submitted password). Created by Emmanouel"""
+        """Function to check submitted password matches with the database password
+        (compared after encrypting the submitted password). Created by Emmanouel"""
         password_byte_enc = plain_password.encode('utf-8')
         hashed_password = self.password.encode('utf-8')
         return bcrypt.checkpw(password_byte_enc, hashed_password)
@@ -130,7 +132,8 @@ class Advert(db.Model):
     expiry = db.Column(db.DateTime, nullable=False)
     available = db.Column(db.Boolean, nullable=False)
 
-    def __init__(self, title, address, latitude, longitude, contents, owner, expiry, available=True):
+    def __init__(self, title, address, latitude, longitude, contents, owner,
+                 expiry, available=True):
         """Constructor for Advert class. Created by Alex, amended by Rebecca"""
         self.title = title
         self.address = address
@@ -257,9 +260,17 @@ class Email():
 
 
 def init_db():
+    """Function to reset and initialise the database.
+    To use run in python console:
+        from app import app, db
+        from models import init_db
+        init_db()
+    Created by Rebecca
+    """
     with app.app_context():
         db.drop_all()
         db.create_all()
-        new_user = User("a", "a", "b", "c", datetime.strptime("08/01/2004", "%d/%m/%Y"), "a", "1", "user", False)
+        new_user = User("a", "a", "b", "c", datetime.strptime("08/01/2004", "%d/%m/%Y"),
+                        "a", "1", "user", False)
         db.session.add(new_user)
         db.session.commit()
