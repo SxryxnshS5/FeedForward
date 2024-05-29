@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Include custom CSS file for chat page -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+
+{% for msg in conversation %}
+    {% if msg.sender == current_user.id %}
+        <!-- Outgoing message -->
+        <div class="outgoing"><p>{{ msg.contents }}</p></div>
+    {% else %}
+        <!-- Incoming message -->
+        <div class="incoming"><p>{{ msg.contents }}</p></div>
+    {% endif %}
+{% endfor %}
+
+{% endblock %}

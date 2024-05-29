@@ -2,32 +2,39 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="../static/css/adminaccount.css">
+<!-- Include CSS -->
+<link rel="stylesheet" href="../static/css/admin_account.css">
 
+<!-- Image container -->
 <div class="image-container">
     <img src="../static/images/base/uppershape.png" alt="Sticky Image" class="sticky-image">
     <div class="image-text">
-        <h2 class="fjalla-one-regular">Admin Account overview</h2>
+        <h2 class="fjalla-one-regular">Admin Account Overview</h2>
     </div>
 </div>
 
 {% with messages = get_flashed_messages() %}
-{% if messages %}
-<div class="notification is-danger">
-    {{ messages[0] }}.
-</div>
-{% endif %}
+    {% if messages %}
+        <!-- Display flash messages -->
+        <div class="notification is-danger">
+            {{ messages[0] }}.
+        </div>
+    {% endif %}
 {% endwith %}
 
+<!-- Background container -->
 <div class="background-container">
     <div class="container1">
-        <h2 class="account-title">Personal information</h2>
+        <!-- Personal information section -->
+        <h2 class="account-title">Personal Information</h2>
         <div class="container text-center">
             <div class="row align-items-start">
                 <div>
-                    <img class="pfp" src="../static/images/base/pfp.png" alt="pfp">
+                    <!-- User profile picture -->
+                    <img class="pfp" src="../static/images/base/pfp.png" alt="Profile Picture">
                 </div>
                 <div class="col textbox-section">
+                    <!-- Display user details -->
                     <div class="form-floating mb-3">
                         <input type="text" readonly class="form-control-plaintext" id="firstName" value="{{ current_user.first_name }}">
                         <label for="firstName">First Name</label>
@@ -56,41 +63,46 @@
                     </div>
                 </div>
             </div>
-            <div><!-- Change details button-->
-                <a class="button-change"  href="{{ url_for('users.change_details') }}">Change Details</a>
+            <!-- Change details button -->
+            <div>
+                <a class="button-change" href="{{ url_for('users.change_details') }}">Change Details</a>
             </div>
+            <!-- Advert Collection History Section -->
             <div>
                 <h2 class="ad-history">Advert Collection History (All Collected Adverts)</h2>
             </div>
             <div>
-                <table class="table"> <!-- Advert collection history table-->
+                <!-- Advert collection history table -->
+                <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">Serial Number</th>
-                            <th scope="col">Date Posted</th>
-                            <th scope="col">Best Before</th>
-                            <th scope="col">Food Description</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Expiry</th>
                             <th scope="col">Contents</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for advert in collected_adverts %}
-                        <tr>
-                            <td><a href="advert_details/{{advert.adID}}">{{ advert.adID }}</a></td>
-                            <td>{{ advert.title }}</td>
-                            <td>{{ advert.address }}</td>
-                            <td>{{ advert.expiry }}</td>
-                            <td>{{ advert.contents }}</td>
-                        </tr>
+                            <tr>
+                                <td><a href="advert_details/{{advert.adID}}">{{ advert.adID }}</a></td>
+                                <td>{{ advert.title }}</td>
+                                <td>{{ advert.address }}</td>
+                                <td>{{ advert.expiry }}</td>
+                                <td>{{ advert.contents }}</td>
+                            </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
+            <!-- Current adverts section -->
             <div>
-                <h2 class="ad-history">Current adverts</h2>
+                <h2 class="ad-history">Current Adverts</h2>
             </div>
             <div>
-                <table class="table"> <!-- Current advert table-->
+                <!-- Current advert table -->
+                <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">Serial Number</th>
@@ -102,48 +114,52 @@
                     </thead>
                     <tbody>
                         {% for advert in current_adverts %}
-                        <tr>
-                            <td><a href="advert_details/{{advert.adID}}">{{ advert.adID }}</a></td>
-                            <td>{{ advert.title }}</td>
-                            <td>{{ advert.address }}</td>
-                            <td>{{ advert.expiry }}</td>
-                            <td>{{ advert.contents }}</td>
-                        </tr>
+                            <tr>
+                                <td><a href="advert_details/{{advert.adID}}">{{ advert.adID }}</a></td>
+                                <td>{{ advert.title }}</td>
+                                <td>{{ advert.address }}</td>
+                                <td>{{ advert.expiry }}</td>
+                                <td>{{ advert.contents }}</td>
+                            </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
+            <!-- Deleted adverts section -->
             <div>
                 <h2 class="ad-history">Deleted Adverts</h2>
             </div>
             <div>
-                <table class="table"> <!-- Deleted Adverts  table-->
+                <!-- Deleted adverts table -->
+                <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">Serial Number</th>
-                            <th scope="col">Date Posted</th>
-                            <th scope="col">Best Before</th>
-                            <th scope="col">Food Description</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Expiry</th>
                             <th scope="col">Contents</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for advert in deleted_adverts %}
-                        <tr>
-                            <td><a href="advert_details/{{advert.adID}}">{{ advert.adID }}</a></td>
-                            <td>{{ advert.title }}</td>
-                            <td>{{ advert.address }}</td>
-                            <td>{{ advert.expiry }}</td>
-                            <td>{{ advert.contents }}</td>
-                        </tr>
+                            <tr>
+                                <td><a href="advert_details/{{advert.adID}}">{{ advert.adID }}</a></td>
+                                <td>{{ advert.title }}</td>
+                                <td>{{ advert.address }}</td>
+                                <td>{{ advert.expiry }}</td>
+                                <td>{{ advert.contents }}</td>
+                            </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
+            <!-- Users section -->
             <div>
                 <h2 class="ad-history">Users</h2>
             </div>
             <div>
+                <!-- Users table -->
                 <table class="table">
                     <thead>
                         <tr>
@@ -156,21 +172,23 @@
                     </thead>
                     <tbody>
                         {% for user in current_users %}
-                        <tr>
-                            <td><a href="account_overview/{{user.id}}">{{ user.id }}</a></td>
-                            <td>{{ user.first_name }}</td>
-                            <td>{{ user.surname }}</td>
-                            <td>{{ user.phone }}</td>
-                            <td>{{ user.email }}</td>
-                        </tr>
+                            <tr>
+                                <td><a href="account_overview/{{user.id}}">{{ user.id }}</a></td>
+                                <td>{{ user.first_name }}</td>
+                                <td>{{ user.surname }}</td>
+                                <td>{{ user.phone }}</td>
+                                <td>{{ user.email }}</td>
+                            </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
+            <!-- Admins section -->
             <div>
                 <h2 class="ad-history">Admins</h2>
             </div>
             <div>
+                <!-- Admins table -->
                 <table class="table">
                     <thead>
                         <tr>
@@ -183,19 +201,21 @@
                     </thead>
                     <tbody>
                         {% for admin in current_admins %}
-                        <tr>
-                            <td><a href="account_overview/{{admin.id}}">{{ admin.id }}</a></td>
-                            <td>{{ admin.first_name }}</td>
-                            <td>{{ admin.surname }}</td>
-                            <td>{{ admin.phone }}</td>
-                            <td>{{ admin.email }}</td>
-                        </tr>
+                            <tr>
+                                <td><a href="account_overview/{{admin.id}}">{{ admin.id }}</a></td>
+                                <td>{{ admin.first_name }}</td>
+                                <td>{{ admin.surname }}</td>
+                                <td>{{ admin.phone }}</td>
+                                <td>{{ admin.email }}</td>
+                            </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
+            <!-- Management section -->
             <div>
-                <h2 class="ad-history">Management</h2> <!-- Management buttons-->
+                <h2 class="ad-history">Management</h2>
+                <!-- Management buttons -->
                 <div>
                     <a href="{{ url_for('admin.create_admin_account') }}" class="button-admin-create">Add New Admin</a>
                 </div>
@@ -205,3 +225,4 @@
 </div>
 
 {% endblock %}
+          

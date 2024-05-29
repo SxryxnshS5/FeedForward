@@ -1,219 +1,201 @@
 .main-sect {
-    background-color: #4F6F52;
-    position: relative;
-    width: 100%;
-    height: 600px;
-    padding-bottom: 30px;
-    padding-top: 50px;
-    border-radius: 30px;
-    margin-top: 50px;
+  background-color: #4F6F52;
+  position: relative;
+  width: 100%;
+  height: 600px;
+  padding-bottom: 30px;
+  padding-top: 50px;
+  border-radius: 30px;
+  margin-top: 50px;
 
-  }
+}
   
-  .map-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-  
-  .map-img {
-    height: 60%;
-    width: 60%;
-    margin-top: 40px;
-    margin-right: 80px;
-    border-radius: 10%;
-  }
+.map-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
 
-  
+.map-img {
+  height: 60%;
+  width: 60%;
+  margin-top: 40px;
+  margin-right: 80px;
+  border-radius: 10%;
+}
+
+
 .open-map {
-    width: 30%;
-    padding: 15px;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-right: 200px;
-    margin-top: 20px;
+  width: 30%;
+  padding: 15px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 200px;
+  margin-top: 20px;
 }
 
 .subpt1 {
-    margin-top: 70px;
-    margin-left: 60px;
+  margin-top: 70px;
+  margin-left: 60px;
 }
 
 .sub-text {
-    font-family: "Inter tight", sans-serif;
-    font-size: 270%;
-    font-weight: 600;
+  font-family: "Inter tight", sans-serif;
+  font-size: 270%;
+  font-weight: 600;
 }
 
 .sub-text-div {
-    background-color: #7B937D;
-    height: 150px;
-    width: 110%;
-    margin-left: 40px;
-    margin-top: 80px;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center; /* Horizontal centering */
-    align-items: center; /* Vertical centering */
+  background-color: #7B937D;
+  height: 150px;
+  width: 110%;
+  margin-left: 40px;
+  margin-top: 80px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
 }
 
 .body-text-1 {
-    color: white;
-    margin-top: 10px;
-    margin-bottom: 60px;
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 60px;
 }
 
 .body-p {
-    size: 100px;
-    font-family: "Inter tight", sans-serif;
+  size: 100px;
+  font-family: "Inter tight", sans-serif;
 
 }
 
 .donors-text {
-
-    font-family: "Inter tight", sans-serif;
-    font-size: max(33px);
-    font-weight: 600;
-    max-width: 100%;
-    word-wrap: break-word;
-
-
+  font-family: "Inter tight", sans-serif;
+  font-size: max(33px);
+  font-weight: 600;
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 .logo-image-index {
-
-    height: 125%;
-    width: 125%;
-
+  height: 125%;
+  width: 125%;
 }
 
 .donors-text-body {
-
-    font-family: "Inter tight", sans-serif;
-
-    font-weight: 400;
-    max-width: 100%;
-    word-wrap: break-word;
-
-
+  font-family: "Inter tight", sans-serif;
+  font-weight: 400;
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 .cream-box {
-    background-color: #E8DFCA;
-    padding: 40px;
-    border: 1px solid #ccc;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    border-radius: 30px;
-    height: 300px;
-    max-width: 100%;
-    overflow: hidden;
-    word-wrap: break-word;
-
+  background-color: #E8DFCA;
+  padding: 40px;
+  border: 1px solid #ccc;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-radius: 30px;
+  height: 300px;
+  max-width: 100%;
+  overflow: hidden;
+  word-wrap: break-word;
 }
 
 .cream-box1 {
-    background-color: #E8DFCA;
-    padding: 20px;
-    border: 1px solid #ccc;
-
-    margin-bottom: 60px;
-    border-radius: 30px;
-    height: 240px;
-    max-width: 100%;
-    overflow: hidden;
-    word-wrap: break-word;
-
+  background-color: #E8DFCA;
+  padding: 20px;
+  border: 1px solid #ccc;
+  margin-bottom: 60px;
+  border-radius: 30px;
+  height: 240px;
+  max-width: 100%;
+  overflow: hidden;
+  word-wrap: break-word;
 }
 
 .cream-box-button {
-    width: 40%;
-    padding: 15px;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  width: 40%;
+  padding: 15px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .cream-box-button1 {
-    width: 20%;
-    padding: 15px;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  width: 20%;
+  padding: 15px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 .donors-div {
-    background-color: #E8DFCA;
-    height: 700px;
-    width: 1000px;
-    transform: translateY(100%); /* Adjust vertical position to center it vertically */
-    margin-left: 150px;
-    padding-right: 100px;
-
-
-
+  background-color: #E8DFCA;
+  height: 700px;
+  width: 1000px;
+  transform: translateY(100%); 
+  margin-left: 150px;
+  padding-right: 100px;
 }
 
 .in-need-div {
-    background-color: #E8DFCA;
-    height: 700px;
-    width: 1000px;
-    transform: translateY(100%); /* Adjust vertical position to center it vertically */
-    margin-right: 150px;
-    padding-left: 100px;
-    right: 0;
-
-
-
+  background-color: #E8DFCA;
+  height: 700px;
+  width: 1000px;
+  transform: translateY(100%); 
+  margin-right: 150px;
+  padding-left: 100px;
+  right: 0;
 }
 
 .notification {
-    background-color: #ff0000; /* Red background */
-    color: #ffffff; /* White text */
-    padding: 10px;
-    margin-bottom: 15px;
-    margin-top: 25px;
-    border-radius: 5px;
+  background-color: #ff0000; 
+  color: #ffffff; 
+  padding: 10px;
+  margin-bottom: 15px;
+  margin-top: 25px;
+  border-radius: 5px;
 }
 
 @keyframes bubble-animation {
-    0% {
-      transform: translateY(0) rotate(0);
-    }
-    50% {
-      transform: translateY(-20px) rotate(5deg);
-    }
-    100% {
-      transform: translateY(0) rotate(0);
-    }
+  0% {
+    transform: translateY(0) rotate(0);
   }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+}
+
+.bubble-1, .bubble-2 {
+  position: absolute;
+  z-index: -1;
+  animation: bubble-animation 3s ease-in-out infinite; 
+}
+
+.bubble-1 {
+  height: 300px;
+  width: 300px;
+  top: 760px;
+  left: -110px;
   
-  .bubble-1, .bubble-2 {
-    position: absolute;
-    z-index: -1;
-    animation: bubble-animation 3s ease-in-out infinite; /* Adjust timing as needed */
-  }
-  
-  .bubble-1 {
-    height: 300px;
-    width: 300px;
-    top: 760px;
-    left: -110px;
-    
-  }
-  
-  .bubble-2 {
-    height: 300px;
-    width: 300px;
-    top: 1148px;
-    left: 1067px;
-  }
+}
+
+.bubble-2 {
+  height: 300px;
+  width: 300px;
+  top: 1148px;
+  left: 1085px;
+}

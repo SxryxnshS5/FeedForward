@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- Include custom CSS file for advert map page -->
+    <link rel="stylesheet" href="../static/css/advert_map.css">
+
+    <!-- Sticky Image with text -->
+    <div class="image-container">
+        <img src="../static/images/base/uppershape.png" alt="Sticky Image" class="sticky-image">
+        <div class="image-text">
+            <!-- Title -->
+            <h2 class="fjalla-one-regular">Advert Map</h2>
+        </div>
+    </div>
+
+    <!-- Flash messages handling -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }}.
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Background container for map -->
+    <div class="background-container">
+        <!-- Heading for the map -->
+        <div><h3 class="h3-heading text-center">This map contains active listed adverts:</h3></div>
+        <!-- Map container -->
+        <div class="container1" id="map" style="width: 80%; height: 400px;">
+            <!-- Map will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Include Maplibre and map initialization script -->
+    <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@4.3.1/dist/maplibre-gl.css' />
+    <style>
+        /* Custom styling for map popup */
+        .maplibregl-popup {
+            width: 300px;
+            height: auto;
+            padding: 10px;
+        }
+    </style>
+    <script src='https://unpkg.com/maplibre-gl@4.3.1/dist/maplibre-gl.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Maplibre map
+            const map = new maplibregl.Map({
+                container: 'map',
+                style: 'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL',
+                center: [-1.6151, 54.9741],
+                zoom: 8
+            });
+
+            // Loop through each current advert and add a marker on the map
+            {% for advert in current_adverts %}
+                const latitude{{ loop.index }} = {{ advert.latitude | safe }};
+                const longitude{{ loop.index }} = {{ advert.longitude | safe }};
+                const advertId{{ loop.index }} = {{ advert.adID | safe }};
+
+                // Create popup for each advert marker
+                const popup{{ loop.index }} = new maplibregl.Popup({offset: 50}).setHTML(
+                    "<a href='advert_details/{{ advert.adID | safe }}'><strong>{{ advert.title }}</strong></a><p>{{ advert.contents}}</p>"
+                );
+
+                // Add marker to the map
+                new maplibregl.Marker()
+                    .setLngLat([longitude{{ loop.index }}, latitude{{ loop.index }}])
+                    .setPopup(popup{{ loop.index }})
+                    .addTo(map);
+            {% endfor %}
+
+            // Add geolocation control to the map
+            map.addControl(
+                new maplibregl.GeolocateControl({
+                    positionOptions: {
+                        enableHighAccuracy: true
+                    },
+                    trackUserLocation: true
+                })
+            );
+        });
+    </script>
+{% endblock %}
