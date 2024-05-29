@@ -78,6 +78,7 @@ Each test method focused on validating a specific aspect of the database operati
 - Verifying the creation and deletion of users, adverts, messages, and collections.
 - Checking the functionality to mark advertisements as unavailable when they expire.
 - Testing the retrieval of available adverts, conversations, and message history.
+
 The test cases covered various scenarios, including creating and deleting database records, handling valid and invalid data inputs,
 and ensuring the correct behavior of database queries and operations. The setup method ensured that the database was properly 
 initialized before each test, while the teardown method cleaned up any test data after each test, ensuring the test environment remained consistent.
@@ -91,6 +92,7 @@ Each test method focused on a specific aspect of the admin views:
 - Verifying functionality related to creating and managing admin accounts.
 - Checking the behavior of the account overview page for both existing and nonexistent users.
 - Ensuring that admin users can delete other users' accounts successfully.
+
 The tests were structured to cover various scenarios, such as accessing pages without logging in, attempting actions with different user roles, 
 handling valid and invalid data inputs, and managing user accounts. This approach provided comprehensive coverage of the admin views' behavior 
 under different conditions. The use of setup and teardown methods ensured that the test environment was properly initialized 
