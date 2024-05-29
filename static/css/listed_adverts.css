@@ -10,8 +10,8 @@
 
 .image-text {
   position: absolute;
-  top: 50%; /* Adjust vertically */
-  left: 50%; /* Adjust horizontally */
+  top: 50%; 
+  left: 50%; 
   transform: translate(-50%, -50%);
   text-align: center;
   color: white;
@@ -24,7 +24,7 @@
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin: 30px auto; /* Margin for all sides and auto for horizontal centering */
+  margin: 30px auto; 
 }
 
 .background-container {
@@ -34,10 +34,10 @@
   border-radius: 80px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 0px;
-  text-align: center; /* Center aligning content horizontally */
+  text-align: center; 
   display: flex;
-  justify-content: center; /* Centering horizontally */
-  align-items: center; /* Centering vertically */
+  justify-content: center;
+  align-items: center; 
 }
 
 .table {
@@ -46,22 +46,22 @@
 }
 
 .table th, .table td {
-  padding: 12px; /* Increased padding for better spacing */
-  border: 1px solid #ddd; /* Border for table cells */
-  text-align: left; /* Left-align text */
+  padding: 12px; 
+  border: 1px solid #ddd; 
+  text-align: left; 
 }
 
 .table th {
-  background-color: #f4f4f4; /* Light background for header cells */
+  background-color: #f4f4f4;
   font-weight: bold;
 }
 
 .table tr:nth-child(even) {
-  background-color: #f9f9f9; /* Zebra striping for rows */
+  background-color: #f9f9f9; 
 }
 
 .table tr:hover {
-  background-color: #f1f1f1; /* Hover effect for rows */
+  background-color: #f1f1f1; 
 }
 
 .table a {
@@ -83,7 +83,6 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
 
 .signup-form {
   text-align: center;
@@ -131,8 +130,8 @@ button:hover {
 }
 
 .notification {
-  background-color: #ff0000; /* Red background */
-  color: #ffffff; /* White text */
+  background-color: #ff0000; 
+  color: #ffffff; 
   padding: 10px;
   margin-bottom: 15px;
   margin-top: 25px;

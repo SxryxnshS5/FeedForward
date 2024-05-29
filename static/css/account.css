@@ -10,8 +10,8 @@
 
 .image-text {
   position: absolute;
-  top: 50%; /* Adjust vertically */
-  left: 50%; /* Adjust horizontally */
+  top: 50%; 
+  left: 50%; 
   transform: translate(-50%, -50%);
   text-align: center;
   color: white;
@@ -19,20 +19,20 @@
 }
 
 .container1 {
-  width: 90%; /* Change the width as per your requirement */
-  max-width: 1200px; /* Increase the maximum width */
+  width: 90%; 
+  max-width: 1200px; 
   margin: 50px auto;
   padding: 20px;
-  border-radius: 10px; /* Increased border radius for a softer square shape */
+  border-radius: 10px; 
 }
 
 .background-container {
-  width: 90%; /* Adjust the width as needed */
+  width: 90%; 
   margin: 50px auto;
-  background-color: rgba(217, 217, 217, 0.7); /* Translucent background color */
-  border-radius: 80px; /* Border radius for a softer square shape */
+  background-color: rgba(217, 217, 217, 0.7); 
+  border-radius: 80px; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px; /* Padding to ensure the content doesn't touch the edges */
+  padding: 20px; 
 }
 
 .form-floating.mb-3 {
@@ -121,15 +121,14 @@ button:hover {
 }
 
 .notification {
-  background-color: #ff0000; /* Red background */
-  color: #ffffff; /* White text */
+  background-color: #ff0000; 
+  color: #ffffff; 
   padding: 10px;
   margin-bottom: 15px;
   margin-top: 25px;
   border-radius: 5px;
 }
 
-/* Table Styles */
 .table {
   width: 100%;
   margin-bottom: 20px;
@@ -137,10 +136,10 @@ button:hover {
 }
 
 .table th, .table td {
-  padding: 15px; /* Increased padding for better readability */
+  padding: 15px; 
   text-align: left;
   border-bottom: 1px solid #ddd;
-  font-size: 18px; /* Increased font size */
+  font-size: 18px; 
 }
 
 .table th {

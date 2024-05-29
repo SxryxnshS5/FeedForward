@@ -43,7 +43,7 @@ def view_messages():
                 time_msg = "sent %d min(s) ago" % time_diff
 
             time_messages.update({u: time_msg})
-    return render_template('main/messages.html',
+    return render_template('messages/messages.html',
                            recent_messages=recent_messages, time_messages=time_messages, current_page='view_messages')
 
 
@@ -61,10 +61,10 @@ def chat(id):
     messages = datalink.get_message_history(current_user.id, id)
     user = datalink.get_user_from_id(id)
     name = user.first_name
-    return render_template('main/chat.html', form=form, conversation=messages, name=name, current_page='view_messages')
+    return render_template('messages/chat.html', form=form, conversation=messages, name=name, current_page='view_messages')
 
 @messages_blueprint.route('/update_chat', methods=['POST'])
 def update_chat():
     id = session['messager']
     messages = datalink.get_message_history(current_user.id, id)
-    return jsonify({'messages': render_template('update_message.html', conversation=messages)})
+    return jsonify({'messages': render_template('messages.html', conversation=messages)})

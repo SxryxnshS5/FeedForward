@@ -10,67 +10,63 @@
 
 .image-text {
     position: absolute;
-    top: 50%; /* Adjust vertically */
-    left: 50%; /* Adjust horizontally */
+    top: 50%; 
+    left: 50%; 
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
 }
 
 .background-container {
-    width: 80%; /* Adjust the width as needed */
+    width: 80%; 
     margin: 50px auto;
-    background-color: rgba(217, 217, 217, 0.7); /* Translucent background color */
-    border-radius: 40px; /* Border radius for a softer square shape */
+    background-color: rgba(217, 217, 217, 0.7); 
+    border-radius: 40px; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px; /* Padding to ensure the content doesn't touch the edges */
+    padding: 20px; 
     height: 60vh;
-    position: relative; /* Added position relative */
+    position: relative; 
 }
 
 .message-container {
-    height: calc(100% - 80px); /* Adjust height for message container */
-    overflow-y: scroll; /* Enable vertical scrolling if messages overflow */
+    height: calc(100% - 80px); 
+    overflow-y: scroll; 
     padding-bottom: 70px;
     padding-top: 30px;
     padding-left: 30px;
     padding-right: 30px;
 }
 
-/* Adjust the size of the scrollbar */
 .message-container::-webkit-scrollbar {
-    width: 6px; /* Set the width of the scrollbar */
+    width: 6px;
 }
 
-/* Set the style of the scrollbar track */
 .message-container::-webkit-scrollbar-track {
-    background: transparent; /* Set the background color of the track */
+    background: transparent;
 }
 
-/* Set the style of the scrollbar thumb */
 .message-container::-webkit-scrollbar-thumb {
-    background: #888; /* Set the color of the scrollbar thumb */
-    border-radius: 3px; /* Set the border radius of the scrollbar thumb */
+    background: #888; 
+    border-radius: 3px; 
 }
 
-/* Set the style of the scrollbar thumb on hover */
 .message-container::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Set the color of the scrollbar thumb on hover */
+    background: #555; 
 }
 
 .input-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: absolute; /* Changed to absolute positioning */
+    position: absolute; 
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 40px);
-    background-color: rgba(255, 255, 255, 0.7); /* Added background color */
-    padding: 10px; /* Added padding */
-    border-radius: 20px; /* Added border radius */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Added box shadow */
+    background-color: rgba(255, 255, 255, 0.7); 
+    padding: 10px; 
+    border-radius: 20px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
     margin-top: 20px;
 }
 
@@ -103,34 +99,32 @@
     color: white;
 }
 
-/* Add styles for incoming messages */
 .incoming {
     text-align: left;
-    background-color: #ffffff; /* Example background color */
-    padding: 10px; /* Adjust padding as needed */
-    border-radius: 10px; /* Rounded corners */
-    margin-bottom: 10px; /* Spacing between messages */
-    word-wrap: break-word; /* Ensure long words break within the container */
-    overflow-wrap: break-word; /* Ensure long words break within the container */
+    background-color: #ffffff; 
+    padding: 10px; 
+    border-radius: 10px; 
+    margin-bottom: 10px; 
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
 }
 
 .incoming p {
-    margin: 0; /* Remove default margin for paragraph */
+    margin: 0; 
 }
 
-/* Add styles for outgoing messages */
 .outgoing {
     text-align: right;
-    background-color: #d9d9d9; /* Example background color */
-    padding: 10px; /* Adjust padding as needed */
-    border-radius: 10px; /* Rounded corners */
-    margin-bottom: 10px; /* Spacing between messages */
-    word-wrap: break-word; /* Ensure long words break within the container */
-    overflow-wrap: break-word; /* Ensure long words break within the container */
+    background-color: #d9d9d9; 
+    padding: 10px; 
+    border-radius: 10px; 
+    margin-bottom: 10px; 
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
 }
 
 .outgoing p {
-    margin: 0; /* Remove default margin for paragraph */
+    margin: 0; 
 }
 
 .fjalla-one-regular {
@@ -148,8 +142,8 @@
 }
 
 .notification {
-    background-color: #ff0000; /* Red background */
-    color: #ffffff; /* White text */
+    background-color: #ff0000; 
+    color: #ffffff; 
     padding: 10px;
     margin-bottom: 15px;
     margin-top: 25px;
@@ -166,8 +160,8 @@
     border-radius: 15px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
+}
   
-  .custom-button:hover {
+.custom-button:hover {
     background-color: #0056b3;
-  }
+}

@@ -10,26 +10,24 @@
 
 .image-text {
     position: absolute;
-    top: 50%; /* Adjust vertically */
-    left: 50%; /* Adjust horizontally */
+    top: 50%; 
+    left: 50%; 
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
 }
 
-
-
 .background-container {
-    display: flex; /* Enable flexbox layout */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    width: 80%; /* Adjust the width as needed */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 80%; 
     margin: 50px auto;
     height: 200px;
-    background-color: rgba(217, 217, 217, 0.7); /* Translucent background color */
-    border-radius: 80px; /* Border radius for a softer square shape */
+    background-color: rgba(217, 217, 217, 0.7); 
+    border-radius: 80px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px; /* Padding to ensure the content doesn't touch the edges */
+    padding: 20px; 
 }
 
 .collectbtn {
@@ -43,21 +41,20 @@
     transition: background-color 0.3s ease;
 }
 
-  .fjalla-one-regular {
+.fjalla-one-regular {
     font-family: "Fjalla One", sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 60px;
-  }
+ }
 
-/* styles.css */
 .button-container {
     display: flex;
 }
 
 .notification {
-    background-color: #ff0000; /* Red background */
-    color: #ffffff; /* White text */
+    background-color: #ff0000; 
+    color: #ffffff; 
     padding: 10px;
     margin-bottom: 15px;
     margin-top: 25px;
