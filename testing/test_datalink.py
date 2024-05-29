@@ -1,16 +1,20 @@
-import datalink
-import unittest
 from datetime import datetime, timedelta
+import unittest
+
 from models import User, Advert, Collection, Message
-from app import app, db
-from sqlalchemy import or_
+from app import app
+import datalink
 
 # test values for each table
 test_users = [
-    ["testemail1@gmail.com", "password", "John", "Smith", datetime.now(), "lorem ipsum", "1", "user"],
-    ["testemail2@gmail.com", "password", "Eva", "Smith", datetime.now(), "lorem ipsum", "1", "user"],
-    ["testemail3@gmail.com", "password", "Alex", "Smith", datetime.now(), "lorem ipsum", "1", "user"],
-    ["testemail4@gmail.com", "password", "Bob", "Smith", datetime.now(), "lorem ipsum", "1", "user"],
+    ["testemail1@gmail.com", "password", "John", "Smith", datetime.now(),
+     "lorem ipsum", "1", "user"],
+    ["testemail2@gmail.com", "password", "Eva", "Smith", datetime.now(),
+     "lorem ipsum", "1", "user"],
+    ["testemail3@gmail.com", "password", "Alex", "Smith", datetime.now(),
+     "lorem ipsum", "1", "user"],
+    ["testemail4@gmail.com", "password", "Bob", "Smith", datetime.now(),
+     "lorem ipsum", "1", "user"],
 ]
 
 # ads with this use by will always be in date
@@ -46,9 +50,11 @@ test_collections = [
 
 
 class TestDatabase(unittest.TestCase):
-
+    """Test suite for datalink.py functions"""
     def setUp(self):
-        """remove any test rows from the database if they are still there from failed tests"""
+        """remove any test rows from the database if they are still there from failed tests
+            Runs before all other tests
+        """
         with app.app_context():
             # get test user emails
             emails = [user[0] for user in test_users]
@@ -65,6 +71,7 @@ class TestDatabase(unittest.TestCase):
         self.assertIsNotNone(connection)
 
     def test_create_delete_user(self):
+        """test a user object can be added and then removed from the database"""
         with app.app_context():
             test_email = test_users[0][0]
             user = User(*test_users[0])
@@ -78,6 +85,7 @@ class TestDatabase(unittest.TestCase):
             self.assertIsNone(q)
 
     def test_create_delete_advert(self):
+        """test an advert object can be added and then removed from the database"""
         with app.app_context():
             # setup
             user = User(*test_users[0])
@@ -97,6 +105,7 @@ class TestDatabase(unittest.TestCase):
             self.assertIsNone(q)
 
     def test_create_delete_message(self):
+        """test a message object can be added and then removed from the database"""
         with app.app_context():
             # setup
             user1 = User(*test_users[0])
@@ -124,6 +133,7 @@ class TestDatabase(unittest.TestCase):
             datalink.delete_user(user2)
 
     def test_create_delete_collection(self):
+        """test a collection object can be added and then removed from the database"""
         with app.app_context():
             # setup
             seller = User(*test_users[0])
@@ -216,6 +226,7 @@ class TestDatabase(unittest.TestCase):
             datalink.delete_user(user2)
 
     def test_get_conversations(self):
+        """test if get conversations returns only users who have messages with the user"""
         with app.app_context():
             users = [User(*u) for u in test_users]
             for u in users:
@@ -237,6 +248,7 @@ class TestDatabase(unittest.TestCase):
                 datalink.delete_user(u)
 
     def test_get_latest_message(self):
+        """test that get_latest_message returns the true most recent message from another user"""
         with app.app_context():
             users = [User(*u) for u in test_users]
             for u in users:
@@ -255,6 +267,7 @@ class TestDatabase(unittest.TestCase):
                 datalink.delete_user(u)
 
     def test_get_message_history(self):
+        """test if get_message history returns the correct messages and in the correct order"""
         with app.app_context():
             users = [User(*u) for u in test_users]
             for u in users:
