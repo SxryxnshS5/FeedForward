@@ -50,7 +50,9 @@ test_collections = [
 
 
 class TestDatabase(unittest.TestCase):
-    """Test suite for datalink.py functions"""
+    """Test suite for datalink.py functions
+        Created by Rebecca
+    """
     def setUp(self):
         """remove any test rows from the database if they are still there from failed tests
             Runs before all other tests
