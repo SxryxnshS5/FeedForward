@@ -137,3 +137,65 @@ button:hover {
   margin-top: 25px;
   border-radius: 5px;
 }
+
+@media (max-width: 767px) {
+  .image-container {
+    width: 100%;
+  }
+
+  .sticky-image {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  .image-text {
+    font-size: 24px; /* Adjust font size for mobile */
+  }
+
+  .container1 {
+    width: 90%; /* Make the container wider */
+    padding: 10px; /* Adjust padding for mobile */
+    margin: 20px auto; /* Adjust margin for mobile */
+  }
+
+  .background-container {
+    width: 90%; /* Make the background container wider */
+    margin: 20px auto; /* Adjust margin for mobile */
+    padding: 10px; /* Adjust padding for mobile */
+    border-radius: 10px; /* Reduce border radius for mobile */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Reduce shadow for mobile */
+  }
+
+  .table th, .table td {
+    padding: 8px; /* Adjust padding for table cells */
+    font-size: 14px; /* Adjust font size for table cells */
+  }
+
+  .table th {
+    background-color: #f4f4f4; /* Ensure table header is readable */
+  }
+
+  .table {
+    width: 100%; /* Ensure table fits within container */
+  }
+
+  .signupbtn, button {
+    width: 80%; /* Make buttons wider */
+    padding: 10px; /* Adjust padding for buttons */
+  }
+
+  .notification {
+    padding: 10px; /* Adjust padding for notification */
+    font-size: 14px; /* Adjust font size for notification */
+  }
+
+  .fjalla-one-regular {
+    font-size: 32px; /* Adjust font size for title */
+  }
+
+  .form-group {
+    margin-bottom: 15px; /* Adjust margin for form group */
+  }
+
+  input[type="text"],
+  input[type="em

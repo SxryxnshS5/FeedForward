@@ -159,8 +159,28 @@ nav .navbar-nav .nav-item.custom-active-nav .nav-link:hover {
 }
 
 @media (max-width: 767px) {
-    .back-to-top {
-        width: 90px;
-    }
+
+
+    /* Footer adjustments */
+  .custom-footer {
+    width: 100%; /* Ensure the footer spans full width */
+    padding: 20px; /* Adjust padding for mobile view */
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center align items */
+    border-top-right-radius: 0; /* Remove border radius on mobile */
+  }
+
+  .footer-section {
+    width: 90%; /* Make the footer sections wider */
+    margin: 10px 0; /* Add margin for spacing */
+  }
+
+  .footer-section img.logo {
+    margin-bottom: 10px; /* Adjust margin for logo */
+  }
+
+  .back-to-top {
+    width: 90px; /* Ensure the back-to-top button is appropriately sized */
+  }
 
 }    
