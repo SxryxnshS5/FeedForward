@@ -1,10 +1,10 @@
 # FeedForward
 
-_FeedForward is a food sharing website with the aim to reduce food waste and fight hunger.
-The goal is hoped to be achieved through the main functionality of creating and collecting food adverts.
-Created by Team 14.
-Members: Alex Lines, Emmanouel Constantinou, Rebecca Picken, Suryansh Singh, Toby Dook, Tariq Bagaar
-Repository URL: https://github.com/newcastleuniversity-computing/CSC2033_Team14_23-24_
+_FeedForward is a food sharing website with the aim to reduce food waste and fight hunger._
+_The goal is hoped to be achieved through the main functionality of creating and collecting food adverts._
+_Created by Team 14._
+_Members: Alex Lines, Emmanouel Constantinou, Rebecca Picken, Suryansh Singh, Toby Dook, Tariq Bagaar_
+_Repository URL: https://github.com/newcastleuniversity-computing/CSC2033_Team14_23-24_
 
 **Main Functionality:**
 - The user can create an account using their personal details
@@ -66,7 +66,7 @@ or issue on how to use the website, this guide can be helpful.
           3. Enter your email, first name, last name, password, date of birth, address, and phone number.
           4. When finished, click the 'Submit' button at the bottom of the form.
     
-    If the sign-up is successful, you will be redirected to the login page.
+    If the sign-up is successful, you will be redirected to the **Login** page.
 
 2. **Log In**
 
@@ -76,7 +76,7 @@ or issue on how to use the website, this guide can be helpful.
        2. Enter your registered email and password.
        3. Click the 'Log In' button.
     
-    If the login is successful, you will be redirected to your account page.
+    If the login is successful, you will be redirected to the **Account** page.
 
 3. **Account Page (Account Information)**
 
@@ -84,7 +84,7 @@ or issue on how to use the website, this guide can be helpful.
 
         1. Click on the 'Account' button at the top of the website.
 
-    The Account page provides all the personal information you signed up with, as well as all the adverts you have created
+    The **Account** page provides all the personal information you signed up with, as well as all the adverts you have created
     and collected.
 
 4. **Change Account Details**
@@ -97,7 +97,7 @@ or issue on how to use the website, this guide can be helpful.
         4. You need to fill out the whole form, including the modified and unmodified details.
         5. Click the 'Submit' button.
 
-   Your account details will be updated, and you will be redirected to your account page.
+   Your account details will be updated, and you will be redirected the **Account** page.
 
 5. **Log Out**
 
@@ -105,7 +105,7 @@ or issue on how to use the website, this guide can be helpful.
     
         1. Click the 'Logout' button at the top of the screen
     
-    You will be logged out, and you will be redirected to the login page, along with a message confirming that you have been logged out.
+    You will be logged out, and you will be redirected to the **Login** page, along with a message confirming that you have been logged out.
 
 6. **Delete Account**
 
@@ -129,7 +129,7 @@ or issue on how to use the website, this guide can be helpful.
         3. For the exact location of the advert, use the map to drop a pin on where it is located
         4. Click on the 'Submit' button once finished
 
-    The advert will be created, and you will be redirected to the Advert Details page, where the details of it will be displayed.
+    The advert will be created, and you will be redirected to the **Advert Details** page, where the details of it will be displayed.
 
 8. **Listed Adverts**
     
@@ -137,7 +137,7 @@ or issue on how to use the website, this guide can be helpful.
 
         1. Click on the 'Listed Adverts' button at the top of the website.
     
-    You will be directed to the Listed Adverts page, where all the available adverts are displayed
+    You will be directed to the **Listed Adverts** page, where all the available adverts are displayed
 
 9. **Advert Details**
     
@@ -146,7 +146,7 @@ or issue on how to use the website, this guide can be helpful.
         1. Find the advert you want the details for, by going to the Listed Adverts page (#8)
         2. Click on the id of the advert.
    
-    You will be directed to the Advert Details page, where the information regarding the specific advert will be displayed.
+    You will be directed to the **Advert Details** page, where the information regarding the specific advert will be displayed.
 
 10. **Delete an advert**
 
@@ -158,7 +158,7 @@ or issue on how to use the website, this guide can be helpful.
         2. Click the 'Delete' button at the bottom of the page.
         3. You will be asked if you wish to delete the advert, click 'OK'
    
-    The advert will be deleted, and you will be redirected to your account page.
+    The advert will be deleted, and you will be redirected to the **Account** page.
 
 11. **Collect an advert**
 
@@ -192,20 +192,20 @@ or issue on how to use the website, this guide can be helpful.
         4. Click the 'Submit' button.
 
     Your message will be sent to the advertiser, and you can respond to them in the same way when you get an answer from them.
-    You can view all your messages by clicking on the 'Messages' button, on the navigation bar at the top of the website.
-    Be aware that if you have no messages, the 'Messages' page will be empty.
+    You can view all your messages by clicking on the **Messages** button, on the navigation bar at the top of the website.
+    Be aware that if you have no messages, the **Messages** page will be empty.
 
 ### Admin Related Actions
 
 14. **Log in (Admin)**
 
-    To log in to an admin account, you can use the same steps as a user would (#2).
-    When you successfully log in, you will be redirected to the Admin Account Page.
+    To log in to an admin account, you can use the same steps as a user would **(#2)**.
+    When you successfully log in, you will be redirected to the **Admin Account** page.
 
 15. **Admin Account Page (Account and Website Information)**
     
-    To view account information, you can follow the same steps as a user would (#3).
-    When you are successfully to the Account Page, your personal information will be displayed at the beginning of the website.
+    To view account information, you can follow the same steps as a user would **(#3)**.
+    When you are successfully to the **Account Page**, your personal information will be displayed at the beginning of the website.
     Underneath the personal information, you will find Website information. 
     These include:
 
@@ -217,8 +217,8 @@ or issue on how to use the website, this guide can be helpful.
     
 16. **Change Account Details (Admin)**
 
-    To change account details, you can use the same steps as a user would (#4)
-    When you successfully change your details, you will be redirected to the Admin Account page.
+    To change account details, you can use the same steps as a user would **(#4)**
+    When you successfully change your details, you will be redirected to the **Admin Account page**.
 
 17. **Create new Admin**
 
@@ -229,8 +229,8 @@ or issue on how to use the website, this guide can be helpful.
         3. You will be redirected to an Admin Sign up page, where you need to fill the form with the details of the new admin.
         4. Click submit once the form is filled.
     
-    If you successfully created a new admin account, you will be redirected to the Admin Account page, wher eyou can see the new admin
-    in the 'Admins' table.
+    If you successfully created a new admin account, you will be redirected to the **Admin Account** page, where you can see the new admin
+    in the **Admins** table.
 
 18. **User Details**
 
@@ -240,7 +240,7 @@ or issue on how to use the website, this guide can be helpful.
         2. Find the 'Users' table, and search for the specific user.
         3. Click on their id.
 
-    You will be redirected to the Account Overview page, where you can see their personal information, the adverts they have created
+    You will be redirected to the **Account Overview** page, where you can see their personal information, the adverts they have created
     and their orders (collected adverts).
 
 19. **Delete a User**
@@ -252,19 +252,19 @@ or issue on how to use the website, this guide can be helpful.
         3. A confirmation message will appear asking you if you are sure youwish to delete the account.
         4. Click 'OK'.
 
-    You will be redirected to the Admin Account page with a confirmation message saying the account was successfully deleted.
+    You will be redirected to the **Admin Account** page with a confirmation message saying the account was successfully deleted.
 
 20. **Advert Details (Admin)**
 
-    You can view listed adverts (#8) and their specific details (#9) in the same way a user would.
-    As an admin, you can also view listed, collected and deleted adverts through the Admin Account page (#15)
-    Through the Admin Account page, you can view specific details of any advert by:
+    You can view listed adverts **(#8)** and their specific details **(#9)** in the same way a user would.
+    As an admin, you can also view listed, collected and deleted adverts through the **Admin Account** page **(#15)**
+    Through the **Admin Account** page, you can view specific details of any advert by:
 
         1. Finding the specific advert you want details about in any of the advert tables (Advert Collection History, 
         Current Adverts, Deleted Adverts).
         2. Click on its id.
 
-    You will be redirected to the Advert Details page, containing the information of the specific advert.
+    You will be redirected to the **Advert Details** page, containing the information of the specific advert.
 
 21. **Delete an advert**
 
@@ -275,7 +275,7 @@ or issue on how to use the website, this guide can be helpful.
         3. A confirmation message will ask you if you are sure you want to delete the avdert.
         4. Clcik 'OK'.
 
-    You will be redirected to the Admin Account page, where you can see the deleted advert in the Deleted Adverts table.
+    You will be redirected to the **Admin Account** page, where you can see the deleted advert in the **Deleted Adverts** table.
 
 22. **Delete Admin Account**
 
