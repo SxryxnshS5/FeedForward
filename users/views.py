@@ -33,7 +33,7 @@ def signup():
                 # if email already exists redirect user back to signup page with error message so user can try again
                 if user:
                     flash('Email address already exists')
-                    return render_template('main/signup.html', form=form)
+                    return render_template('users/signup.html', form=form)
 
                 # create a new user with the form data
                 new_user = User(email=form.email.data,
@@ -59,9 +59,9 @@ def signup():
         # if user is already logged in
         flash('You are already logged in.')
         # send user to account page
-        return render_template('main/account.html')
+        return render_template('users/account.html')
     # if request method is GET or form not valid re-render signup page
-    return render_template('main/signup.html', form=form, current_page='signup')
+    return render_template('users/signup.html', form=form, current_page='signup')
 
 
 # view user login
@@ -76,26 +76,22 @@ def login():
     """
     # set authentication attempts to 0 if there is no authentication attempts yet
     form = LoginForm()
-    print("1")
     # check if user is logged in
     if current_user.is_anonymous:
-        print("2")
         # if request method is POST or form is valid
         if form.validate_on_submit():
-            print("3")
             with app.app_context():
                 from models import User
                 user = User.query.filter_by(email=form.email.data).first()
-                print("4")
 
                 # check user exists, password/pin/postcode are all correct
                 if not user or not user.verify_password(form.password.data):
                     flash('Incorrect details')
-                    return render_template('main/login.html', form=form)
+                    return render_template('users/login.html', form=form)
                 # check if user account is still active
                 if user.role == 'off':
                     flash('This account no longer exists')
-                    return render_template('main/login.html', form=form)
+                    return render_template('users/login.html', form=form)
 
                 else:
                     # create user
@@ -111,8 +107,8 @@ def login():
         # if user is already logged in
         adverts = Advert.query.filter_by(owner=current_user.id).all()
         flash('You are already logged in.')
-        return render_template('main/account.html', adverts=adverts)
-    return render_template('main/login.html', form=form, current_page='login')
+        return render_template('users/account.html', adverts=adverts)
+    return render_template('users/login.html', form=form, current_page='login')
 
 
 # View for user account information
@@ -141,7 +137,7 @@ def account():
     adverts = Advert.query.filter_by(owner=current_user.id, available=True).all()
     orders = Collection.query.filter_by(buyer=current_user.id).all()
 
-    return render_template('main/account.html', current_user=user_details, adverts=adverts, orders=orders, current_page='account')
+    return render_template('users/account.html', current_user=user_details, adverts=adverts, orders=orders, current_page='account')
 
 @users_blueprint.route('/changedetails', methods=['GET', 'POST'])
 @login_required
@@ -164,7 +160,7 @@ def change_details():
             return redirect(url_for('users.account'))
 
 
-    return render_template('main/change_details.html', form=form)
+    return render_template('users/change_details.html', form=form)
 
 
 @users_blueprint.route('/logout')

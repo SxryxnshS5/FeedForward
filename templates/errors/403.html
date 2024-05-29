@@ -1,49 +1,36 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <!-- Include custom CSS file for error pages -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/errors.css') }}">
 
-<link rel="stylesheet" href="../static/css/errors.css">
+    <!-- Bubble 1 image -->
+    <div class="image-container">
+        <img class="bubble-1" src="{{ url_for('static', filename='images/base/bubble1.png') }}" alt="Bubble 1">
+    </div>
 
-
-
-<div class="image-container">
-
-<img class="bubble-1" src="../static/images/base/bubble1.png" alt="Bubble 1" >
-</div>
-
+    <!-- Flash messages handling -->
     {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <div class="notification is-danger">
-                        {{ messages[0] }}.
-                    </div>
-                {% endif %}
+        {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }}.
+            </div>
+        {% endif %}
     {% endwith %}
 
-<div class="background-container">
-    <div class="container1">
-
-
-        <h2 class="error-text">Error: 403 Forbidden</h2>
-        <p class="error-body">You do not have the proper privileges to access this page.</p>
-
-
+    <div class="background-container">
+        <div class="container1">
+            <!-- Error message -->
+            <h2 class="error-text">Error: 403 Forbidden</h2>
+            <!-- Error description -->
+            <p class="error-body">You do not have the proper privileges to access this page.</p>
+        </div>
     </div>
 
-
-    </div>
-
-<img class="bubble-2" src="../static/images/base/bubble2.png" alt="Bubble 2" >
-
-
-
-</div>
-
-
-
-
-
+    <!-- Bubble 2 image -->
+    <img class="bubble-2" src="{{ url_for('static', filename='images/base/bubble2.png') }}" alt="Bubble 2">
 {% endblock %}
 
 {% block footer %}
-
+    <!-- Footer content -->
 {% endblock %}

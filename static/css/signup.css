@@ -12,28 +12,28 @@
 
 .image-text {
   position: absolute;
-  top: 50%; /* Adjust vertically */
-  left: 50%; /* Adjust horizontally */
+  top: 50%; 
+  left: 50%; 
   transform: translate(-50%, -50%);
   text-align: center;
   color: white;
 }
 
 .container1 {
-  width: 80%; /* Change the width as per your requirement */
-  max-width: 500px; /* Increase the maximum width */
+  width: 80%; 
+  max-width: 500px; 
   margin: 50px auto;
   padding: 20px;
-  border-radius: 10px; /* Increased border radius for a softer square shape */
+  border-radius: 10px; 
 }
 
 .background-container {
-  width: 75%; /* Adjust the width as needed */
+  width: 75%; 
   margin: 50px auto;
-  background-color: rgba(217, 217, 217, 0.7); /* Translucent background color */
-  border-radius: 80px; /* Border radius for a softer square shape */
+  background-color: rgba(217, 217, 217, 0.7); 
+  border-radius: 80px; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px; /* Padding to ensure the content doesn't touch the edges */
+  padding: 20px; 
 }
 
 .signup-form {
@@ -54,7 +54,7 @@ input[type="email"],
 input[type="tel"],
 input[type="address"],
 input[type="password"],
-input[type="date"] { /* Ensure the date input matches other inputs */
+input[type="date"] {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -84,17 +84,30 @@ input[type="date"] { /* Ensure the date input matches other inputs */
 }
 
 .notification {
-  background-color: #ff0000; /* Red background */
-  color: #ffffff; /* White text */
+  background-color: #ff0000;
+  color: #ffffff;
   padding: 10px;
   margin-bottom: 15px;
   margin-top: 25px;
   border-radius: 5px;
 }
 
+@keyframes bubble-animation {
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+}
+
 .bubble-1, .bubble-2 {
   position: absolute;
-  z-index: -1; /* Ensure the bubbles are behind the content */
+  z-index: -1;
+  animation: bubble-animation 3s ease-in-out infinite;
 }
 
 
