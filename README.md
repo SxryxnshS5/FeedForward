@@ -58,10 +58,10 @@ or issue on how to use the website, this guide can be helpful.
 
     To create a new account on the website, follow these steps:
     
-   1. Navigate to the Sign-Up Page (can be done by clicking on the 'Sign Up' button at the top of the website)
-   2. Fill Out the Form:
-   3. Enter your email, first name, last name, password, date of birth, address, and phone number.
-   4. When finished, click the 'Submit' button at the bottom of the form.
+          1. Navigate to the Sign-Up Page (can be done by clicking on the 'Sign Up' button at the top of the website)
+          2. Fill Out the Form:
+          3. Enter your email, first name, last name, password, date of birth, address, and phone number.
+          4. When finished, click the 'Submit' button at the bottom of the form.
     
     If the sign-up is successful, you will be redirected to the login page.
 
