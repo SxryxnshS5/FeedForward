@@ -70,6 +70,7 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   text-decoration: none;
+  margin: 0 auto;
 }
 
 .button-change:hover {
@@ -158,4 +159,134 @@ button:hover {
 
 .table td a:hover {
   text-decoration: underline;
+}
+
+.table-2 {
+  margin-bottom: 50px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 767px) {
+  .image-container {
+
+  }
+  
+  .sticky-image {
+
+  }
+  
+  .image-text h2 {
+
+  }
+  
+  .main-sect {
+    height: 400px;
+  }
+  
+  .title-container {
+
+  }
+  
+  .fjalla-one-regular {
+    font-size: 24px;
+    margin-top: 10px;
+    padding-top: 10px;
+  }
+  
+  .body-text-1 {
+
+  }
+  
+  .body-p {
+
+  }
+  
+  .sub-text {
+    font-size: 18px;
+  }
+  
+  .sub-text-div {
+    margin: 0 auto;
+  }
+  
+  .donors-text {
+
+  }
+  
+  .donors-text-body {
+    font-size: 10px;
+  }
+  
+  .cream-box1 {
+    height: 260px;
+  }
+  
+  .cream-box2 {
+    height: 260px;
+  }
+  
+  .logo-image {
+    width: 18%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+  
+  .logo-text {
+    width: 88%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+
+
+    
+  }
+  
+  .notification {
+
+  }
+
+  .table {
+    width: 250px;
+    margin: 0 auto;
+    border-collapse: collapse;
+  }
+  
+  .table th, .table td {
+    padding: 5px; 
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 10px; 
+  }
+
+  .background-container {
+    padding: 0px;
+    height: 1200px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="address"],
+  input[type="dob"],
+  input[type="password"] {
+    width: 100%;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.container1 {
+  padding: 0px;
+  margin: 0 auto;
+}
+
+.table-2 {
+  margin-bottom: 40px;
+}
+
+.account-title {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-top: 20px;
+}
+
 }
