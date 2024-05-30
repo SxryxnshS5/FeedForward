@@ -23,11 +23,11 @@ tomorrow = datetime.today() + timedelta(days=1)
 yesterday = datetime.today() - timedelta(days=1)
 
 test_adverts = [
-    ["in date", "lorem ipsum", 55.0, 1.6, "lorem ipsum", 1, tomorrow, True],
-    ["in date", "lorem ipsum", 56.0, 1.4, "lorem ipsum", 2, tomorrow, True],
-    ["out of date", "lorem ipsum", 55.0, 1.6, "lorem ipsum", 1, yesterday, True],
-    ["out of date", "lorem ipsum", 56.0, 1.4, "lorem ipsum", 2, yesterday, True],
-    ["unavailable", "lorem ipsum", 55.0, 1.6, "lorem ipsum", 2, tomorrow, False],
+    ["in date", "Test Ad", 55.0, 1.6, "lorem ipsum", 1, tomorrow, True],
+    ["in date", "Test Ad", 56.0, 1.4, "lorem ipsum", 2, tomorrow, True],
+    ["out of date", "Test Ad", 55.0, 1.6, "lorem ipsum", 1, yesterday, True],
+    ["out of date", "Test Ad", 56.0, 1.4, "lorem ipsum", 2, yesterday, True],
+    ["unavailable", "Test Ad", 55.0, 1.6, "lorem ipsum", 2, tomorrow, False],
 ]
 
 test_messages = [
@@ -219,6 +219,8 @@ class TestDatabase(unittest.TestCase):
 
             # check only the 2 available ads were returned
             availables = datalink.get_available_ads()
+            # remove non test data
+            availables = [x for x in availables if x.address == "Test Ad"]
             self.assertEquals(len(availables), 2)  # only 2 should be available in first 5 test ads
             self.assertEqual(availables[0].title, "in date")
             self.assertEqual(availables[1].title, "in date")
