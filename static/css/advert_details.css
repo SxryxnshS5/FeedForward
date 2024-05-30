@@ -60,10 +60,11 @@ input[type="time"] {
     border-radius: 5px;
     box-sizing: border-box;
     font-size: 16px;
+
 }
 
 textarea {
-    height: 100px; 
+    height: 100px;
 }
 
 input[type="submit"] {
@@ -75,7 +76,8 @@ input[type="submit"] {
     cursor: pointer;
     font-size: 16px;
     display: block;
-    margin: 0 auto; 
+    margin: 0 auto;
+    margin-bottom: 20px;
 }
 
 input[type="submit"]:hover {
@@ -95,6 +97,7 @@ input[type="submit"]:hover {
     margin: 0 auto; 
     width: 200px; 
     text-align: center;
+
 }
 
 .btn1:hover,
@@ -154,4 +157,51 @@ input[type="submit"]:hover {
     margin-bottom: 15px;
     margin-top: 25px;
     border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .background-container {
+        width: 90%;
+        margin: 20px auto;
+        border-radius: 20px;
+        padding: 10px;
+        justify-content: center;
+        justify-items: center;
+    }
+
+    .fjalla-one-regular {
+        font-size: 30px;
+    }
+
+    .form-container {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .btn1,
+    .btn2 {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .map-container h3 {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .open-map-button {
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .col-lg-6 {
+        display: block;
+        width: 100%;
+    }
+
+    .form-group {
+    margin-bottom: 20px;
+        text-align: center;
+}
 }
