@@ -13,3 +13,6 @@ SQLAlchemy~=2.0.30
 MarkupSafe~=2.1.5
 python-dotenv~=1.0.1
 psycopg2
+libcrypt1
+libxcrypt1
+libpython3.7
