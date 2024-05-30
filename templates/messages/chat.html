@@ -44,7 +44,7 @@
 
     <!-- Message input form -->
     {% if form %}
-        <form method="POST">
+        <form id="messageForm" method="POST" action="{{ url_for('messages.chat', messenger_id=session['messager']) }}">
             <div class="input-container">
                 {{ form.csrf_token() }}
                 {% for error in form.contents.errors %}
@@ -65,6 +65,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <script>
+    // Scroll to the bottom of the message container
+    function scrollToBottom() {
+        var msgs = document.getElementById("msgs");
+        msgs.scrollTop = msgs.scrollHeight;
+    }
+
     // Update messages every second
     function start_updating() {
         setInterval(update_messages, 1000);
@@ -74,17 +80,45 @@
     // then replace current list of messages with response
     function update_messages() {
         $.ajax({
-            url: "/update_chat/",
+            url: "{{ url_for('messages.update_chat') }}",
             type: "POST",
             success: function(response) {
                 $("#msgs").html(response.messages); // Update message container
+                scrollToBottom(); // Scroll to the bottom after updating
             }
         });
     }
 
+    // Clear the message form after submission
+    function clearForm() {
+        $("#messageForm")[0].reset();
+    }
+
+    // Append a new message to the message container
+    function appendMessage(message, isOutgoing) {
+        var messageDiv = $('<div>').addClass(isOutgoing ? 'outgoing' : 'incoming').html('<p>' + message + '</p>');
+        $("#msgs").append(messageDiv);
+        scrollToBottom(); // Scroll to the bottom after appending
+    }
+
     // Call the function to start updating messages when the page loads
     $(document).ready(function() {
-        //start_updating();
+        scrollToBottom(); // Scroll to the bottom when the page loads
+
+        // Clear the form on successful submission and append the new message
+        $("#messageForm").on("submit", function(event) {
+            event.preventDefault();
+            var form = $(this);
+            $.ajax({
+                url: form.attr("action"),
+                type: form.attr("method"),
+                data: form.serialize(),
+                success: function(response) {
+                    clearForm();
+                    appendMessage(response.new_message, true); // Append the new outgoing message
+                }
+            });
+        });
     });
 </script>
 

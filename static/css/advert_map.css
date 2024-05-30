@@ -114,3 +114,43 @@ button:hover {
     width: 100%;
   }
 }
+
+
+/* Custom styling for Maplibre popups */
+.maplibregl-popup {
+  width: 200px;
+  height: auto;
+  padding: 5px;
+  border-radius: 5px;
+  color: #0056b3;
+  background-color: #4F6F52;
+  transition: background-color 0.2s ease-in; /* Add transition property */
+}
+
+.maplibregl-popup:hover {
+  background-color: #1A4D2E;
+}
+
+
+.maplibregl-popup-content {
+  font-size: 14px;
+  border-radius: 35px;
+  background-color: #E8DFCA;
+}
+
+.maplibregl-popup-content a {
+  color: #1A4D2E;
+  text-decoration: none;
+
+}
+
+.maplibregl-popup-content a:hover {
+  text-decoration: underline;
+  color: #1A4D2E;
+}
+
+.maplibregl-popup-content p {
+  margin: 10px 0 0;
+  font-size: 12px;
+}
+
