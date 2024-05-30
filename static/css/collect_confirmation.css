@@ -20,7 +20,7 @@
 .background-container {
     display: flex; 
     justify-content: center; 
-*    align-items: center;
+    align-items: center;
     flex-direction: column;
     text-align: center;
     width: 80%; 
@@ -112,6 +112,7 @@
 
 }
 
+/* Media query for smaller screens */
 @media (max-width: 768px) {
     .background-container {
         width: 90%;
@@ -135,7 +136,7 @@
     .collectbtn {
         width: 80%;
         padding: 10px;
-        font-size: 14px; /* Adjust font size to fit within the button */
+        font-size: 14px; 
     }
 
     .button-container {
