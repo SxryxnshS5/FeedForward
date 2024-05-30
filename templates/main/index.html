@@ -17,7 +17,7 @@
     <section class="main-sect">
         <img class="bubble-1" src="../static/images/base/bubble1.png" alt="Bubble 1" >
         <img class="bubble-2" src="../static/images/base/bubble2.png" alt="Bubble 2" >
-        <section class="row section1">
+        <section class="row section1 content-container">
             <!-- Left column -->
             <div class="col-lg-6 part1">
                 <div class="subpt1">
@@ -45,7 +45,7 @@
 
     <!-- Donation and Find Food section -->
     <div class="container mt-5">
-        <div class="row">
+        <div class="row content-container">
             <div class="col-md-6">
                 <div class="cream-box text-center">
                     <!-- Donors section -->
@@ -97,7 +97,7 @@
                             initiatives. Join our community of supporters and be part of the
                             solution. Together, we can create a more sustainable and hunger-free world.</p>
                         <!-- Button to sign up for newsletter -->
-                        <button class="cream-box-button1" id="Newsletterbtn">Sign-up</button>
+                        <button class="cream-box-button1" onclick="location.href='{{ url_for('email.newsletter') }}'" id="Newsletterbtn">Sign-up</button>
                     </div>
                 </div>
             </div>
@@ -105,10 +105,5 @@
     </section>
 
     <!-- Script to redirect to newsletter page -->
-    <script>
-        document.getElementById("Newsletterbtn").addEventListener("click", function() {
-            window.location.href = "{{ url_for('newsletter') }}"; 
-        });
-    </script>
   
 {% endblock %}
