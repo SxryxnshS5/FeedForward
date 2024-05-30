@@ -116,7 +116,7 @@ def create_admin_account():
             new_admin = User(email=form.email.data,
                              first_name=form.first_name.data,
                              surname=form.last_name.data,
-                             password=bcrypt.hashpw(form.password.data.encode('utf-8'), bcrypt.gensalt()),
+                             password=form.password.data,
                              role='admin',
                              dob=form.dob.data,
                              address=form.address.data,
