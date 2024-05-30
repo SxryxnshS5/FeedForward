@@ -176,4 +176,12 @@
         padding-right: 0px;
         padding-bottom: 20px;
       }
+
+      .custom-button {
+        width: 50px;
+      }
+
+      .input-container input {
+        width: 100px;
+      }
 }
