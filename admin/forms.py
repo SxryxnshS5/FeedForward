@@ -18,6 +18,7 @@ from wtforms import StringField, SubmitField, PasswordField, DateField
 from wtforms.validators import Email, ValidationError, DataRequired, Length, EqualTo
 from datetime import datetime, timedelta
 
+
 def validate_name(form, name):
     """
     Validator to check for forbidden characters in names.
