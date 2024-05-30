@@ -177,6 +177,7 @@ button {
   font-weight: bold;
 }
 
+/* Media query for smaller screens */
 @media (max-width: 768px) {
   .container1 {
     width: 90%;

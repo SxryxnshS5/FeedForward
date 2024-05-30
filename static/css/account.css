@@ -166,25 +166,9 @@ button:hover {
 }
 
 /* Media query for smaller screens */
-@media (max-width: 767px) {
-  .image-container {
-
-  }
-  
-  .sticky-image {
-
-  }
-  
-  .image-text h2 {
-
-  }
-  
+@media (max-width: 767px) {  
   .main-sect {
     height: 400px;
-  }
-  
-  .title-container {
-
   }
   
   .fjalla-one-regular {
@@ -193,24 +177,12 @@ button:hover {
     padding-top: 10px;
   }
   
-  .body-text-1 {
-
-  }
-  
-  .body-p {
-
-  }
-  
   .sub-text {
     font-size: 18px;
   }
   
   .sub-text-div {
     margin: 0 auto;
-  }
-  
-  .donors-text {
-
   }
   
   .donors-text-body {
@@ -235,13 +207,6 @@ button:hover {
     width: 88%;
     margin: 0 auto;
     margin-bottom: 20px;
-
-
-    
-  }
-  
-  .notification {
-
   }
 
   .table {
@@ -272,21 +237,20 @@ button:hover {
     font-size: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
-}
+  }
 
-.container1 {
-  padding: 0px;
-  margin: 0 auto;
-}
+  .container1 {
+    padding: 0px;
+    margin: 0 auto;
+  }
 
-.table-2 {
-  margin-bottom: 40px;
-}
+  .table-2 {
+    margin-bottom: 40px;
+  }
 
-.account-title {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  padding-top: 20px;
-}
-
+  .account-title {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-top: 20px;
+  }
 }

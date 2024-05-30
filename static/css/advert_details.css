@@ -97,7 +97,6 @@ input[type="submit"]:hover {
     margin: 0 auto; 
     width: 200px; 
     text-align: center;
-
 }
 
 .btn1:hover,
@@ -159,6 +158,7 @@ input[type="submit"]:hover {
     border-radius: 5px;
 }
 
+/* Media query for smaller screens */
 @media (max-width: 768px) {
     .background-container {
         width: 90%;
@@ -203,5 +203,5 @@ input[type="submit"]:hover {
     .form-group {
     margin-bottom: 20px;
         text-align: center;
-}
+    }
 }
