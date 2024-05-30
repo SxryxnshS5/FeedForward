@@ -31,9 +31,6 @@ def index():
 def about():
     return render_template('general/about.html', current_page='about')
 
-@app.route('/newsletter')
-def newsletter():
-    return render_template('general/newsletter.html')
 
 
 # Errors
@@ -64,10 +61,12 @@ if __name__ == '__main__':
     from admin.views import admin_blueprint
     from adverts.views import adverts_blueprint
     from messages.views import messages_blueprint
+    from email_folder.views import email_blueprint
 
     # Register blueprints with app
     app.register_blueprint(users_blueprint)
     app.register_blueprint(admin_blueprint)
     app.register_blueprint(adverts_blueprint)
     app.register_blueprint(messages_blueprint)
+    app.register_blueprint(email_blueprint)
     app.run(debug=True)
