@@ -1,12 +1,11 @@
 from datetime import datetime
 
-from flask import Blueprint, render_template, jsonify, session
+from flask import Blueprint, render_template, jsonify, session, request
 from flask_login import current_user, login_required
 
 import datalink
 from messages.forms import MessageForm
 from models import Message
-
 
 messages_blueprint = Blueprint('messages', __name__, template_folder='templates')
 
@@ -80,12 +79,14 @@ def chat(messenger_id):
     if form.validate_on_submit():
         new_msg = Message(current_user.id, messenger_id, datetime.now(), form.contents.data)
         datalink.create_message(new_msg)
+        return jsonify(new_message=form.contents.data)
 
     # show conversation
     messages = datalink.get_message_history(current_user.id, messenger_id)
     user = datalink.get_user_from_id(messenger_id)
     name = user.first_name
     return render_template('messages/chat.html', form=form, conversation=messages, name=name)
+
 
 @messages_blueprint.route('/update_chat', methods=['POST'])
 @login_required
