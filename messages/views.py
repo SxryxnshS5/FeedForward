@@ -49,11 +49,11 @@ def view_messages():
                 time_diff //= 60
                 if time_diff > 24:  # > 1 day
                     time_diff //= 24
-                    time_msg = f"sent {time_diff} day(s) ago"
+                    time_msg = f"sent {int(time_diff)} day(s) ago"
                 else:
-                    time_msg = f"sent {time_diff} hours(s) ago"
+                    time_msg = f"sent {int(time_diff)} hours(s) ago"
             else:
-                time_msg = f"sent {time_diff} min(s) ago"
+                time_msg = f"sent {int(time_diff)} min(s) ago"
 
             time_messages.update({u: time_msg})
     return render_template('messages/messages.html',
