@@ -49,7 +49,7 @@ def create_message(message):
 
 def get_available_ads():
     """returns list of adverts that are currently available to collect
-        autimatically marks out of date ads as unavailable
+        automatically marks out of date ads as unavailable
     """
     check_expiry()
     return Advert.query.filter_by(available=True).all()
