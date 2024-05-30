@@ -44,7 +44,7 @@
 
     <!-- Message input form -->
     {% if form %}
-        <form method="POST">
+        <form id="messageForm" method="POST" action="{{ url_for('messages.chat', messenger_id=session['messager']) }}">
             <div class="input-container">
                 {{ form.csrf_token() }}
                 {% for error in form.contents.errors %}
@@ -74,7 +74,7 @@
     // then replace current list of messages with response
     function update_messages() {
         $.ajax({
-            url: "/update_chat/",
+            url: "{{ url_for('messages.update_chat') }}",
             type: "POST",
             success: function(response) {
                 $("#msgs").html(response.messages); // Update message container
@@ -82,9 +82,35 @@
         });
     }
 
+    // Clear the message form after submission
+    function clearForm() {
+        $("#messageForm")[0].reset();
+    }
+
+    // Append a new message to the message container
+    function appendMessage(message, isOutgoing) {
+        var messageDiv = $('<div>').addClass(isOutgoing ? 'outgoing' : 'incoming').html('<p>' + message + '</p>');
+        $("#msgs").append(messageDiv);
+    }
+
     // Call the function to start updating messages when the page loads
     $(document).ready(function() {
         //start_updating();
+
+        // Clear the form on successful submission and append the new message
+        $("#messageForm").on("submit", function(event) {
+            event.preventDefault();
+            var form = $(this);
+            $.ajax({
+                url: form.attr("action"),
+                type: form.attr("method"),
+                data: form.serialize(),
+                success: function(response) {
+                    clearForm();
+                    appendMessage(response.new_message, true); // Append the new outgoing message
+                }
+            });
+        });
     });
 </script>
 
