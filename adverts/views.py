@@ -44,7 +44,7 @@ def create_advert():
 
             return redirect(url_for('adverts.advert_details', advert=new_advert.adID))
     else:
-        return render_template('main/createadvert.html', form=form)
+        return render_template('adverts/create_advert.html', form=form, current_page='create_advert')
 
 
 # View for user account information
@@ -61,7 +61,7 @@ def advert_details(advert):
     """
     # Fetch and render user details
 
-    return render_template('main/advert_details.html', current_advert=Advert.query.get(advert))
+    return render_template('adverts/advert_details.html', current_advert=Advert.query.get(advert))
 
 
 @adverts_blueprint.route('/list_adverts')
@@ -75,7 +75,7 @@ def list_adverts():
         flask.Response: returns listedadverts.html template with the details of all the relevant adverts
     """
     adverts = Advert.query.filter_by(available=True)
-    return render_template('main/listedadverts.html', current_advert=adverts)
+    return render_template('adverts/listed_adverts.html', current_advert=adverts, current_page='list_adverts')
 
 
 @adverts_blueprint.route('/collect_confirmation/<advert>')
@@ -92,7 +92,7 @@ def collect_confirmation(advert):
     # check if current user is the owner of the advert
     if current_user.id == current_advert.owner:
         flash('You own this advert!')
-        return render_template('main/advert_details.html', current_advert=current_advert)
+        return render_template('adverts/advert_details.html', current_advert=current_advert)
     else:
         # create a new collection object
         with app.app_context():
@@ -106,7 +106,7 @@ def collect_confirmation(advert):
             # save collection object to database
             db.session.add(new_collection)
             db.session.commit()
-            return render_template('main/collect-confirmation.html', current_advert=current_advert)
+            return render_template('adverts/collect_confirmation.html', current_advert=current_advert)
 
 
 @adverts_blueprint.route('/delete_advert/<advert>')
@@ -133,7 +133,7 @@ def delete_advert(advert):
     else:
         flash("You don't own this advert!")
 
-        return render_template('main/advert_details.html', current_advert=Advert.query.get(advert))
+        return render_template('adverts/advert_details.html', current_advert=Advert.query.get(advert))
 
 
 @adverts_blueprint.route('/advert_map')
@@ -147,4 +147,4 @@ def advert_map():
         flask.Response: returns the advertmap.html template
         """
     adverts = Advert.query.filter_by(available=True)
-    return render_template('main/advertmap.html', current_adverts=adverts)
+    return render_template('adverts/advert_map.html', current_adverts=adverts, current_page='advert_map')

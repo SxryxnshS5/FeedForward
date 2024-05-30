@@ -29,3 +29,13 @@ This document contains all of the coding guidelines that we have followed in the
 
 ## Linters
 We used Pylint as our linter to ensure that we follow Pep8 guidelines so that our code is readable and consistent
+
+## HTML and CSS Guidelines
+- Use lowercase for all HTML tags and attributes.
+- Class names in HTML and CSS should be descriptive and use lowercase letters, with words separated by hyphens (-). E.g., .header-section, .main-content.
+- IDs in HTML and CSS should be used sparingly and be unique within the document. ID names should be descriptive and use lowercase letters, with words separated by hyphens (-). E.g., #navigation-menu, #footer-section.
+- Use semantic HTML elements whenever possible (e.g., <header>, <nav>, <main>, <footer>).
+- CSS properties should be organized logically and consistently.
+- Use shorthand properties where possible to keep the code concise (e.g., use 'margin' instead of 'margin-top', 'margin-bottom', 'margin-left', 'margin-right').
+- CSS should be written in an external stylesheet rather than inline whenever possible.
+- Avoid using inline styles except where absolutely necessary.

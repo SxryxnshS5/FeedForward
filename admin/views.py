@@ -25,6 +25,8 @@ Functions:
 """
 
 from flask import Blueprint, render_template, flash, redirect, url_for
+
+import admin
 from app import db, app
 from models import User, Advert, Collection
 from admin.forms import AdminSignUpForm
@@ -88,9 +90,9 @@ def admin_account():
     collected_adverts = [advert for advert in unavailable_adverts if advert.adID in collected_advert_ids]
 
     # renders the admin account template
-    return render_template('main/adminaccount.html', current_adverts=current_adverts, current_users=current_users,
+    return render_template('admin/admin_account.html', current_adverts=current_adverts, current_users=current_users,
                            current_admins=current_admins, collected_adverts=collected_adverts,
-                           deleted_adverts=deleted_adverts)
+                           deleted_adverts=deleted_adverts, current_page='admin_account')
 
 
 @admin_blueprint.route('/create_admin_account', methods=['GET', 'POST'])
@@ -116,7 +118,7 @@ def create_admin_account():
             # if email already exists redirect user back to admin creation page with error message so user can try again
             if admin:
                 flash('Email address already exists')
-                return render_template('main/create_admin_account.html', form=form)
+                return render_template('admin/create_admin_account.html', form=form)
 
             # create a new admin with the form data
             new_admin = User(email=form.email.data,
@@ -135,7 +137,7 @@ def create_admin_account():
             flash('New Admin added successfully')
             return redirect(url_for('admin.admin_account'))
     # if request method is GET or form not valid re-render admin page
-    return render_template('main/create_admin_account.html', form=form)
+    return render_template('admin/create_admin_account.html', form=form)
 
 
 @admin_blueprint.route('/account_overview/<user>')
@@ -156,11 +158,15 @@ def account_overview(user):
     """
     # get user from database
     user = User.query.get(user)
+    # check if user exists
+    if not user:
+        flash('User does not exist')
+        return redirect(url_for('admin.admin_account'))
     # get all adverts created by specific user
     adverts = Advert.query.filter_by(owner=user.id).all()
     # get all orders collected from specific user
     orders = Collection.query.filter_by(buyer=user.id).all()
-    return render_template('main/account_overview.html', user=user, adverts=adverts, orders=orders, admin_overview=True)
+    return render_template('admin/account_overview.html', user=user, adverts=adverts, orders=orders, admin_overview=True)
 
 
 @admin_blueprint.route('/delete_user/<int:user_id>', methods=["GET", "POST"])
@@ -181,6 +187,14 @@ def delete_user(user_id):
     """
     # get user from database
     active_user = User.query.filter_by(id=user_id).first()
+    # check if user exists
+    if not active_user:
+        flash('User does not exist')
+        return redirect(url_for('admin.admin_account'))
+    # check if the admin is trying to delete their own account
+    if active_user.id == current_user.id:
+        flash('To delete your own account, go need to do so through the Account page. You have just been redirected')
+        return redirect(url_for('admin.admin_account'))
     if not active_user.role == 'off':
         # change user role as offline
         active_user.role = 'off'

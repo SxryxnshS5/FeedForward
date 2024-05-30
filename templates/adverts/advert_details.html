@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- Include custom CSS file for advert details page -->
+    <link rel="stylesheet" href="../static/css/advert_details.css">
+
+    <!-- Sticky Image with text -->
+    <div class="image-container">
+        <img src="../static/images/base/uppershape.png" alt="Sticky Image" class="sticky-image">
+        <div class="image-text">
+            <!-- Title -->
+            <h2 class="fjalla-one-regular">Advert Details</h2>
+        </div>
+    </div>
+
+    <!-- Flash messages handling -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }}.
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Background container for advert details -->
+    <div class="background-container">
+        <!-- Form container for displaying advert details -->
+        <div class="form-container">
+            <form action="#" method="post">
+                <!-- Advert Title -->
+                <div class="form-group">
+                    <label for="advert_title">Advert Title:</label>
+                    {{ current_advert.title }}
+                </div>
+                <!-- Food Description -->
+                <div class="form-group">
+                    <label for="food_description">Food Description:</label>
+                    {{ current_advert.contents }}
+                </div>
+                <!-- Address -->
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    {{ current_advert.address }}
+                </div>
+                <!-- Best Before -->
+                <div class="form-group">
+                    <label for="best_before">Best Before:</label>
+                    {{ current_advert.expiry }}
+                </div>
+            </form>
+        </div>
+
+        <!-- Map container -->
+        <div class="map-container" id="map">
+            <h3>Location on the map:</h3>
+            <button class="open-map-button">Open Map</button>
+        </div>
+
+        <!-- Button container -->
+        <div class="button-container row">
+            <!-- Collect button (for users) -->
+            {% if current_user.id != current_advert.owner and current_user.role == 'user' %}
+                {% if current_advert.available == 1 %}
+                    <div class="col-lg-6">
+                        <a class="btn btn1" href="../collect_confirmation/{{current_advert.adID}}" onclick="return confirm('Are you sure you want to collect this advert?')">Collect</a>
+                    </div>
+                {% endif %}
+                <div class="col-lg-6">
+                    <!-- Message Advertiser button -->
+                    <input type="submit" value="Message Advertiser" class="btn btn3" onclick="window.location.href = '{{ url_for('messages.chat', id=current_advert.owner) }}'";>
+                </div>
+            {% endif %}
+            <!-- Delete button (for owners/admins) -->
+            {% if current_user.id == current_advert.owner or current_user.role == 'admin' %}
+                <div class="col-lg-6">
+                    <a class="btn btn2" href="../delete_advert/{{current_advert.adID}}" onclick="return confirm('Are you sure you want to delete this advert?')">Delete</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Include Maplibre and map initialization script -->
+    <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@4.3.1/dist/maplibre-gl.css' />
+    <script src='https://unpkg.com/maplibre-gl@4.3.1/dist/maplibre-gl.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve longitude and latitude from current advert
+            const longitude = {{ current_advert.longitude | safe }};
+            const latitude = {{ current_advert.latitude | safe }};
+            
+            // Initialize Maplibre map
+            const map = new maplibregl.Map({
+                container: 'map',
+                style: 'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL',
+                center: [longitude, latitude],
+                zoom: 8
+            });
+
+            // Add marker to the map
+            const marker = new maplibregl.Marker()
+                .setLngLat([longitude, latitude])
+                .addTo(map);
+
+            // Add geolocation control to the map
+            map.addControl(
+                new maplibregl.GeolocateControl({
+                    positionOptions: {
+                        enableHighAccuracy: true
+                    },
+                    trackUserLocation: true
+                })
+            );
+        });
+    </script>
+{% endblock %}

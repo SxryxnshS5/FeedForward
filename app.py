@@ -29,11 +29,11 @@ def index():
 
 @app.route('/about')
 def about():
-    return render_template('main/about.html')
+    return render_template('general/about.html', current_page='about')
 
 @app.route('/newsletter')
 def newsletter():
-    return render_template('main/newsletter.html')
+    return render_template('general/newsletter.html')
 
 
 # Errors

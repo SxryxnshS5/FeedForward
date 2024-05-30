@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- Include custom CSS file for listed adverts page -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/listed_adverts.css') }}">
+
+    <!-- Sticky Image with text -->
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='images/base/uppershape.png') }}" alt="Sticky Image" class="sticky-image">
+        <div class="image-text">
+            <!-- Title -->
+            <h2 class="fjalla-one-regular">Listed Adverts</h2>
+        </div>
+    </div>
+
+    <!-- Flash messages handling -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }}.
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Background container for advert table -->
+    <div class="background-container">
+        <div class="container1">
+            <!-- Advert collection history table -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Serial number</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Food description</th>
+                        <th scope="col">Best before</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for advert in current_advert %}
+                    <tr>
+                        <!-- Display advert details -->
+                        <td>{{ advert.adID }}</td>
+                        <td><a href="advert_details/{{ advert.adID }}">{{ advert.title }}</a></td>
+                        <td>{{ advert.contents }}</td>
+                        <td>{{ advert.expiry }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

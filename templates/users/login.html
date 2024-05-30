@@ -2,22 +2,25 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="../static/css/login.css">
+<!-- Include custom CSS file for login page -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
 
+<!-- Sticky Image with text -->
 <div class="image-container">
-    <img src="../static/images/base/uppershape.png" alt="Sticky Image" class="sticky-image">
+    <img src="{{ url_for('static', filename='images/base/uppershape.png') }}" alt="Sticky Image" class="sticky-image">
     <div class="image-text">
         <h2 class="fjalla-one-regular">Login</h2>
     </div>
 </div>
 
-    {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <div class="notification is-danger">
-                        {{ messages[0] }}.
-                    </div>
-                {% endif %}
-    {% endwith %}
+<!-- Flash messages handling -->
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}.
+        </div>
+    {% endif %}
+{% endwith %}
 
 <div class="background-container">
     <div class="container1">
@@ -41,14 +44,14 @@
             </div>
 
             <div class="form-group field">
-              <div class="btn-section text-center">
-                {{ form.submit(class="button is-info is-centered custom-button") }}
-            </div>
+                <div class="btn-section text-center">
+                    {{ form.submit(class="button is-info is-centered custom-button") }}
+                </div>
             </div>
         </form>
     </div>
-    <img class="bubble-1" src="../static/images/base/bubble1.png" alt="Bubble 1" >
-    <img class="bubble-2" src="../static/images/base/bubble2.png" alt="Bubble 2" >
+    <img class="bubble-1" src="../../static/images/base/bubble1.png" alt="Bubble 1">
+    <img class="bubble-2" src="../../static/images/base/bubble2.png" alt="Bubble 2">
 </div>
 
 {% endblock %}

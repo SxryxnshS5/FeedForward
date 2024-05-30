@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Include custom CSS file for chat page -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+
+<div class="image-container">
+    <img src="../../static/images/base/uppershape.png" alt="Sticky Image" class="sticky-image">
+    <div class="image-text">
+        <h2 class="fjalla-one-regular">Chat</h2>
+    </div>
+</div>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <!-- Flash messages handling -->
+        <div class="notification is-danger">
+            {{ messages[0] }}.
+        </div>
+    {% endif %}
+{% endwith %}
+
+<div class="background-container">
+    <!-- Profile name -->
+    <div class="profile">
+        <h4 class="fjalla-one-regular1">{{ name }}</h4>
+    </div>
+
+    <!-- Message container -->
+    <div class="message-container" id="msgs">
+        {% if conversation and name %}
+            {% for msg in conversation %}
+                {% if msg.sender == current_user.id %}
+                    <!-- Outgoing message -->
+                    <div class="outgoing"><p>{{ msg.contents }}</p></div>
+                {% else %}
+                    <!-- Incoming message -->
+                    <div class="incoming"><p>{{ msg.contents }}</p></div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <!-- Message input form -->
+    {% if form %}
+        <form method="POST">
+            <div class="input-container">
+                {{ form.csrf_token() }}
+                {% for error in form.contents.errors %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
+                {{ form.contents(class="input", placeholder="Type your message...") }}
+                <div class="form-group field">
+                    <div class="btn-section text-center">
+                        {{ form.submit(class="button is-info is-centered custom-button") }}
+                    </div>
+                </div>
+            </div>
+        </form>
+    {% endif %}
+</div>
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+    // Update messages every second
+    function start_updating() {
+        setInterval(update_messages, 1000);
+    }
+
+    // Update messages by pinging the update_chat view function
+    // then replace current list of messages with response
+    function update_messages() {
+        $.ajax({
+            url: "/update_chat/",
+            type: "POST",
+            success: function(response) {
+                $("#msgs").html(response.messages); // Update message container
+            }
+        });
+    }
+
+    // Call the function to start updating messages when the page loads
+    $(document).ready(function() {
+        //start_updating();
+    });
+</script>
+
+{% endblock %}
