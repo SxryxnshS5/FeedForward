@@ -138,6 +138,7 @@ button:hover {
   border-radius: 5px;
 }
 
+/* Media query for smaller screens */
 @media (max-width: 767px) {
   .image-container {
     width: 100%;
@@ -145,26 +146,26 @@ button:hover {
 
   .sticky-image {
     width: 100%;
-    height: auto; /* Maintain aspect ratio */
+    height: auto; 
   }
 
   .image-text {
-    font-size: 24px; /* Adjust font size for mobile */
+    font-size: 24px; 
   }
 
   .container1 {
-    width: 90%; /* Make the container wider */
-    padding: 10px; /* Adjust padding for mobile */
-    margin: 20px auto; /* Adjust margin for mobile */
+    width: 90%; 
+    padding: 10px; 
+    margin: 20px auto; 
   }
 
   .background-container {
-    width: 100%; /* Make the background container wider */
-    margin: 20px auto; /* Adjust margin for mobile */
-    padding: 10px; /* Adjust padding for mobile */
-    border-radius: 10px; /* Reduce border radius for mobile */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Reduce shadow for mobile */
-    overflow-x: auto; /* Enable horizontal scrolling if content overflows */
+    width: 100%;
+    margin: 20px auto; 
+    padding: 10px; 
+    border-radius: 10px; 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); 
+    overflow-x: auto; 
   }
 
   .table {
@@ -180,33 +181,31 @@ button:hover {
     font-size: 10px;
   }
 
-
-
   .signupbtn, button {
-    width: 80%; /* Make buttons wider */
-    padding: 10px; /* Adjust padding for buttons */
+    width: 80%; 
+    padding: 10px; 
   }
 
   .notification {
-    padding: 10px; /* Adjust padding for notification */
-    font-size: 14px; /* Adjust font size for notification */
+    padding: 10px; 
+    font-size: 14px; 
   }
 
   .fjalla-one-regular {
-    font-size: 32px; /* Adjust font size for title */
+    font-size: 32px; 
   }
 
   .form-group {
-    margin-bottom: 15px; /* Adjust margin for form group */
+    margin-bottom: 15px; 
   }
 
   input[type="text"],
   input[type="email"],
   input[type="tel"],
   input[type="password"] {
-    width: 100%; /* Ensure input fields fit within container */
-    padding: 10px; /* Adjust padding for input fields */
-    font-size: 14px; /* Adjust font size for input fields */
+    width: 100%; 
+    padding: 10px; 
+    font-size: 14px; 
   }
 }
 

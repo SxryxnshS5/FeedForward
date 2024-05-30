@@ -123,6 +123,7 @@ input[type="submit"]:hover {
     border-radius: 5px;
 }
 
+/* Media query for smaller screens */
 @media (max-width: 767px) {
   .image-container {
     width: 100%;
