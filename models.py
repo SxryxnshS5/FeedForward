@@ -247,17 +247,6 @@ class Message(db.Model):
         self.contents = contents
 
 
-class Email():
-    """Email class that acts as a template for all Email objects
-    When we want to send an email, we create an Email object that
-    contains all the data for the email. Created by Alex"""
-
-    def __init__(self, users, title, contents):
-        """Constructor for email class. Created by Alex"""
-        self.users = users
-        self.title = title
-        self.contents = contents
-
 
 def init_db():
     """Function to reset and initialise the database.

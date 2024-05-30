@@ -35,14 +35,22 @@
         <div class="background-container">
             <div class="container1">
                 <!-- Signup form -->
-                <form action="#" class="signup-form">
+                <form action="#" class="signup-form" method="POST">
+                    {{ form.csrf_token }}
+
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <!-- Input field for email -->
-                        <input type="email" id="email" name="email" required>
+                        {{ form.email(class="input", placeholder="Email") }}
+                        {% for error in form.email.errors %}
+                            <div class="error">{{ error }}</div>
+                        {% endfor %}
                     </div>
                     <!-- Signup button -->
-                    <button type="submit" class="signupbtn">Sign Up</button>
+                    <div class="form-group field">
+                        <div class="btn-section text-center">
+                            {{ form.submit(class="button is-info is-centered custom-button") }}
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
