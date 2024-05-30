@@ -100,3 +100,17 @@ button:hover {
   margin-top: 25px;
   border-radius: 5px;
 }
+
+@media (max-width: 767px) {
+  .fjalla-one-regular {
+    font-size: 35px;
+  }
+
+  .h3-heading {
+    padding-top: 20px;
+  }
+
+  .background-container {
+    width: 100%;
+  }
+}
