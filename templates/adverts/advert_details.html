@@ -67,7 +67,7 @@
                 {% endif %}
                 <div class="col-lg-6">
                     <!-- Message Advertiser button -->
-                    <input type="submit" value="Message Advertiser" class="btn btn3" onclick="window.location.href = '{{ url_for('messages.chat', id=current_advert.owner) }}'";>
+                    <input type="submit" value="Message Advertiser" class="btn btn3" onclick="window.location.href = '{{ url_for('messages.chat', messanger_id=current_advert.owner) }}'";>
                 </div>
             {% endif %}
             <!-- Delete button (for owners/admins) -->
