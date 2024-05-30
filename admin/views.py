@@ -10,23 +10,15 @@ The file includes the following functionalities:
 - Deleting users by changing their role to 'off'.
 
 Routes:
-- /adminaccount: View admin account details.
+- /admin_account: View admin account details.
 - /create_admin_account: Create a new admin account.
 - /account_overview/<user>: View account overview for a specific user.
 - /delete_user/<int:user_id>: Delete a user by changing their role to 'off'.
-
-Functions:
-- requires_roles(*roles): Custom decorator for role-based access control.
-- admin_account(): View function for viewing admin account details.
-- create_admin_account(): View function to create a new admin account.
-- account_overview(user): View function to display account overview for a specific user.
-- delete_user(user_id): View function to delete a user.
 
 """
 
 from flask import Blueprint, render_template, flash, redirect, url_for
 
-import admin
 from app import db, app
 from models import User, Advert, Collection
 from admin.forms import AdminSignUpForm
