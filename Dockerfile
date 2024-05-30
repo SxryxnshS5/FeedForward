@@ -4,6 +4,10 @@ FROM python:3.12
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    libcrypt1
+
 # Copy the current directory contents into the container at /usr/src/app
 COPY . .
 
