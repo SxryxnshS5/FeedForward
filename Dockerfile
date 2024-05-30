@@ -1,12 +1,15 @@
 # Use an official Python runtime as a parent image
-FROM python:3.12
+FROM python:3.12-slim-buster
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    libcrypt1
+    libcrypt1 \
+    libxcrypt1 \
+    libpython3.7 \
+    && apt-get clean
 
 # Copy the current directory contents into the container at /usr/src/app
 COPY . .
