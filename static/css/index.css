@@ -17,9 +17,8 @@
 
 .map-img {
   height: 60%;
-  width: 60%;
-  margin-top: 40px;
-  margin-right: 80px;
+  width: 80%;
+  margin-left: 50px;
   border-radius: 10%;
 }
 
@@ -33,7 +32,7 @@
   border-radius: 15px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-right: 200px;
+  margin-right: 185px;
   margin-top: 20px;
 }
 

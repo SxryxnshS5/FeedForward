@@ -35,7 +35,9 @@
             <div class="col-lg-6 part2">
                 <div class="map-container">
                     <!-- Map image -->
-                    <img src="../static/images/base/map.png" alt="Map" class="map-img">
+                    <div class="map-img">
+                        <div class="map-img" id="map" style="width: 80%; height: 400px;"></div>
+                    </div>
                     <!-- Button to open map -->
                     <a href="{{ url_for('adverts.advert_map') }}"><button class="open-map" onclick="" id="openMap">Open Map</button></a>
                 </div>
@@ -104,6 +106,45 @@
         </div>
     </section>
 
-    <!-- Script to redirect to newsletter page -->
+    <script src='https://unpkg.com/maplibre-gl@4.3.1/dist/maplibre-gl.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Maplibre map
+            const map = new maplibregl.Map({
+                container: 'map',
+                style: 'https://api.maptiler.com/maps/streets/style.json?key=t77n5IBUQrwePJ1SaNAp',
+                center: [-1.6151, 54.9741],
+                zoom: 8
+            });
+
+            // Loop through each current advert and add a marker on the map
+            {% for advert in current_adverts %}
+                const latitude{{ loop.index }} = {{ advert.latitude | safe }};
+                const longitude{{ loop.index }} = {{ advert.longitude | safe }};
+                const advertId{{ loop.index }} = {{ advert.adID | safe }};
+
+                // Create popup for each advert marker
+                const popup{{ loop.index }} = new maplibregl.Popup({offset: 50}).setHTML(
+                    "<a href='advert_details/{{ advert.adID | safe }}'><strong>{{ advert.title }}</strong></a><p>{{ advert.contents}}</p>"
+                );
+
+                // Add marker to the map
+                new maplibregl.Marker()
+                    .setLngLat([longitude{{ loop.index }}, latitude{{ loop.index }}])
+                    .setPopup(popup{{ loop.index }})
+                    .addTo(map);
+            {% endfor %}
+
+            // Add geolocation control to the map
+            map.addControl(
+                new maplibregl.GeolocateControl({
+                    positionOptions: {
+                        enableHighAccuracy: true
+                    },
+                    trackUserLocation: true
+                })
+            );
+        });
+    </script>
   
 {% endblock %}
