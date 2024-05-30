@@ -215,8 +215,8 @@ button {
   }
 
   .fjalla-one-regular {
-    padding-top: 30px;
-    font-size: 20px;
+    padding-top: 10px;
+    font-size: 30px;
     white-space: nowrap;
   }
 
@@ -235,7 +235,6 @@ button {
     text-align: left;
     border-bottom: 1px solid #ddd;
     font-size: 5px;
-    font-style:;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
