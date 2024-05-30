@@ -185,6 +185,6 @@ class ChangeCredentialsForm(FlaskForm):
                                                                                              'must be equal')])
     dob = DateField(validators=[DataRequired(), validate_dob])
     address = StringField(validators=[DataRequired(), Length(max=100, message="Address must not surpass 100 characters."
-                                                             ), validate_address()])
+                                                             ), validate_address])
     submit = SubmitField()
 
