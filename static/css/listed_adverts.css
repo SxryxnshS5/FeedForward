@@ -180,12 +180,7 @@ button:hover {
     border-bottom: 1px solid #ddd;
     font-size: 10px;
   }
-
-  .signupbtn, button {
-    width: 80%; 
-    padding: 10px; 
-  }
-
+  
   .notification {
     padding: 10px; 
     font-size: 14px; 
