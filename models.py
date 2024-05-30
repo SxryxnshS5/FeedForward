@@ -38,7 +38,7 @@ class User(db.Model, UserMixin):
                  role="user", newsletter=False):
         """Constructor for User class. Created by Alex"""
         self.email = email
-        self.password = password
+        self.password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
         self.first_name = first_name
         self.surname = surname
         self.dob = dob
@@ -247,7 +247,6 @@ class Message(db.Model):
         self.contents = contents
 
 
-
 def init_db():
     """Function to reset and initialise the database.
     To use run in python console:
@@ -259,7 +258,7 @@ def init_db():
     with app.app_context():
         db.drop_all()
         db.create_all()
-        new_user = User("a", "a", "b", "c", datetime.strptime("08/01/2004", "%d/%m/%Y"),
-                        "a", "1", "user", False)
+        new_user = User("admin@gmail.com", "Admin123!", "Admin", "Smith", datetime.strptime("08/01/2004", "%d/%m/%Y"),
+                        "Newcastle", "76352636923", "admin", False)
         db.session.add(new_user)
         db.session.commit()
