@@ -69,12 +69,12 @@ def advert_details(advert):
 def list_adverts():
     """Function that displays all the currently available adverts in a table
     Requires the user to be logged in
-    Created by Alex
+    Created by Alex, amended by Rebecca
 
     Returns:
         flask.Response: returns listedadverts.html template with the details of all the relevant adverts
     """
-    adverts = Advert.query.filter_by(available=True)
+    adverts = datalink.get_available_ads()
     return render_template('adverts/listed_adverts.html', current_advert=adverts, current_page='list_adverts')
 
 
@@ -141,10 +141,10 @@ def delete_advert(advert):
 def advert_map():
     """Function that displays the advertmap.html template
     Requires the user to be logged in
-    Created by Alex
+    Created by Alex, amended by Rebecca
 
     Returns:
         flask.Response: returns the advertmap.html template
         """
-    adverts = Advert.query.filter_by(available=True)
+    adverts = datalink.get_available_ads()
     return render_template('adverts/advert_map.html', current_adverts=adverts, current_page='advert_map')

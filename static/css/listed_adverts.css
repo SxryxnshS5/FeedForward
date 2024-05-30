@@ -159,7 +159,7 @@ button:hover {
   }
 
   .background-container {
-    width: 90%; /* Make the background container wider */
+    width: 100%; /* Make the background container wider */
     margin: 20px auto; /* Adjust margin for mobile */
     padding: 10px; /* Adjust padding for mobile */
     border-radius: 10px; /* Reduce border radius for mobile */
@@ -167,21 +167,20 @@ button:hover {
     overflow-x: auto; /* Enable horizontal scrolling if content overflows */
   }
 
-  .table th, .table td {
-    padding: 8px; /* Adjust padding for table cells */
-    font-size: 14px; /* Adjust font size for table cells */
-    max-width: 150px; /* Limit width of table cells */
-    word-wrap: break-word; /* Wrap long words within table cells */
-  }
-
-  .table th {
-    background-color: #f4f4f4; /* Ensure table header is readable */
-  }
-
   .table {
-    width: 100%; /* Ensure table fits within container */
-    margin-bottom: 0; /* Remove margin bottom */
+    width: 250px;
+    margin: 0 auto;
+    border-collapse: collapse;
   }
+
+  .table th, .table td {
+    padding: 5px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 10px;
+  }
+
+
 
   .signupbtn, button {
     width: 80%; /* Make buttons wider */
