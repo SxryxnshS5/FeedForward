@@ -61,9 +61,9 @@ def view_messages():
                            current_page='view_messages')
 
 
-@messages_blueprint.route('/<int:id>/chat', methods=['GET', 'POST'])
+@messages_blueprint.route('/<int:messenger_id>/chat', methods=['GET', 'POST'])
 @login_required
-def chat(messanger_id):
+def chat(messenger_id):
     """Function that provides the functionality of the chat page form.
             Allows user to view all messages they have with another user with id 'messanger_id' and
                 send a new one
@@ -74,18 +74,18 @@ def chat(messanger_id):
                 flask.Response: returns the chat.html template with appropriate message data passed
             """
     # store messanger id to be used for updating messages later with JS
-    session['messager'] = messanger_id
+    session['messager'] = messenger_id
     form = MessageForm()
     # send new message if POST
     if form.validate_on_submit():
-        new_msg = Message(current_user.id, messanger_id, datetime.now(), form.contents.data)
+        new_msg = Message(current_user.id, messenger_id, datetime.now(), form.contents.data)
         datalink.create_message(new_msg)
 
     # show conversation
-    messages = datalink.get_message_history(current_user.id, messanger_id)
-    user = datalink.get_user_from_id(messanger_id)
+    messages = datalink.get_message_history(current_user.id, messenger_id)
+    user = datalink.get_user_from_id(messenger_id)
     name = user.first_name
-    return render_template('main/chat.html', form=form, conversation=messages, name=name)
+    return render_template('messages/chat.html', form=form, conversation=messages, name=name)
 
 @messages_blueprint.route('/update_chat', methods=['POST'])
 @login_required
