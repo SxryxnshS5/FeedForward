@@ -16,15 +16,14 @@ services:
     build: .
     command: flask run --host=0.0.0.0
     volumes:
-      - .:/app
+      - .:/usr/src/app
     ports:
       - "5000:5000"
     depends_on:
       - db
     environment:
-      - SQLALCHEMY_DATABASE_URI=postgresql://youruser:yourpassword@localhost:5432/yourdatabase
+      - SQLALCHEMY_DATABASE_URI=postgresql://youruser:yourpassword@db:5432/yourdatabase
       - FLASK_DEBUG=1
-
 
 volumes:
   postgres_data:
