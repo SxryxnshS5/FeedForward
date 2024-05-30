@@ -142,7 +142,11 @@ def account():
 @users_blueprint.route('/changedetails', methods=['GET', 'POST'])
 @login_required
 def change_details():
-    """Function that allows users to change their details"""
+    """Function that allows users to change their details
+    Created By Toby, amended by Emmanouel
+    Returns:
+        flask.Response: Renders the change_details.html template
+    """
     form = ChangeCredentialsForm(object=current_user)
     if form.validate_on_submit():
         with app.app_context():
