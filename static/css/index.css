@@ -43,8 +43,9 @@
 
 .sub-text {
   font-family: "Inter tight", sans-serif;
-  font-size: 270%;
+  font-size: 170%;
   font-weight: 600;
+  padding: 10px;
 }
 
 .sub-text-div {
@@ -201,7 +202,7 @@
 @media (max-width: 767px) {
   .main-sect {
     overflow: hidden;
-    padding: 20px; 
+    padding: 5px; 
     height: auto; 
   }
 
@@ -242,8 +243,8 @@
   }
 
   .map-img {
-    width: 90%; 
-    margin: 20px auto;
+    width: 100%; 
+    margin: 5px auto;
     height: auto; 
     border-radius: 10%; 
   }
