@@ -1,0 +1,154 @@
+.image-container {
+  position: relative;
+  width: 100%;
+}
+
+.sticky-image {
+  width: 100%;
+  display: block;
+}
+
+.image-text {
+  position: absolute;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+}
+
+.container1 {
+  width: 80%;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.signupbtn {
+  width: 40%;
+  padding: 15px;
+  background-color: #FFFFFF;
+  color: #000000;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.background-container {
+  width: 75%;
+  margin: 50px auto;
+  background-color: rgba(217, 217, 217, 0.7); 
+  border-radius: 80px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px; /
+}
+
+.signup-form {
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  width: 40%;
+  padding: 15px;
+
+  background-color: #FFFFFF;
+  color: #000000;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.fjalla-one-regular {
+  font-family: "Fjalla One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 60px;
+}
+
+.notification {
+  background-color: #ff0000; 
+  color: #ffffff; 
+  padding: 10px;
+  margin-bottom: 15px;
+  margin-top: 25px;
+  border-radius: 5px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 767px) {
+  .fjalla-one-regular {
+    font-size: 35px;
+  }
+
+  .h3-heading {
+    padding-top: 20px;
+  }
+
+  .background-container {
+    width: 100%;
+  }
+}
+
+.maplibregl-popup {
+  width: 200px;
+  height: auto;
+  padding: 5px;
+  border-radius: 5px;
+  color: #0056b3;
+  background-color: #4F6F52;
+  transition: background-color 0.2s ease-in; 
+}
+
+.maplibregl-popup:hover {
+  background-color: #1A4D2E;
+}
+
+
+.maplibregl-popup-content {
+  font-size: 14px;
+  border-radius: 35px;
+  background-color: #E8DFCA;
+}
+
+.maplibregl-popup-content a {
+  color: #1A4D2E;
+  text-decoration: none;
+
+}
+
+.maplibregl-popup-content a:hover {
+  text-decoration: underline;
+  color: #1A4D2E;
+}
+
+.maplibregl-popup-content p {
+  margin: 10px 0 0;
+  font-size: 12px;
+}
+

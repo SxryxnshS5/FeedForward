@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- Include custom CSS file -->
+    <link rel="stylesheet" href="../static/css/index.css">
+
+    <!-- Flash messages handling -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }}.
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main content section -->
+    <section class="main-sect">
+        <img class="bubble-1" src="../static/images/base/bubble1.png" alt="Bubble 1" >
+        <img class="bubble-2" src="../static/images/base/bubble2.png" alt="Bubble 2" >
+        <section class="row section1 content-container">
+            <!-- Left column -->
+            <div class="col-lg-6 part1">
+                <div class="subpt1">
+                    <div>
+                        <!-- Main logo -->
+                        <img class="logo-image-index" src="../static/images/base/main-logo.png" alt="Logo" height="100%" width="100%">
+                    </div>
+                    <div class="sub-text-div">
+                        <p class="sub-text">"Food waste is not just an environmental issue, it’s a moral one. In a world where millions go hungry, wasting food is simply unacceptable."</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Right column -->
+            <div class="col-lg-6 part2">
+                <div class="map-container">
+                    <!-- Map image -->
+                    <div class="map-img">
+                        <div class="map-img" id="map" style="width: 80%; height: 400px;"></div>
+                    </div>
+                    <!-- Button to open map -->
+                    <a href="{{ url_for('adverts.advert_map') }}"><button class="open-map" onclick="" id="openMap">Open Map</button></a>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- Donation and Find Food section -->
+    <div class="container mt-5">
+        <div class="row content-container">
+            <div class="col-md-6">
+                <div class="cream-box text-center">
+                    <!-- Donors section -->
+                    <p class="donors-text">Donors</p>
+                    <p class="donors-text-body">Our donors are the heart of our mission to reduce food waste and fight hunger. By creating adverts
+                        and donating surplus food, they help provide meals to those in need and promote sustainability. We are deeply grateful for
+                        their support and generosity. Together, we can achieve zero hunger.</p>
+                    <button class="cream-box-button" onclick="location.href='{{ url_for('adverts.create_advert') }}'" id="Donate">Donate</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="cream-box text-center">
+                    <!-- Those In Need section -->
+                    <p class="donors-text">Those In Need</p>
+                    <p class="donors-text-body">If you're in need, our app connects you with local donors who have surplus food. Browse through adverts
+                        to find meals available near you. Our goal is to ensure everyone has access to nutritious food while reducing waste. Together,
+                        we can work towards a hunger-free community.</p>
+                    <button class="cream-box-button" onclick="location.href='{{ url_for('adverts.list_adverts') }}'" id="FindFood">Find Food</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Our mission section -->
+    <section>
+        <div class="row text-center body-text-1">
+            <h3>Our mission</h3>
+            <p class="body-p">Our mission is to eliminate food waste and combat hunger by seamlessly
+                connecting generous food donors with individuals and organizations in need. We aim to
+                build a sustainable and supportive community where surplus food is redistributed to
+                those who need it most, ensuring everyone has access to nutritious meals. By fostering
+                a culture of sharing and responsibility, we strive to reduce the environmental impact
+                of food waste while addressing food insecurity. Together, we can create a more equitable
+                and sustainable world.</p>
+        </div>
+    </section>
+
+    <!-- Monthly Newsletter section -->
+    <section>
+        <div class="container mt-5">
+            <div class="row">
+                <div>
+                    <div class="cream-box1 text-center">
+                        <h3>Monthly Newsletter</h3>
+                        <p class="donors-text-body">Sign up for our monthly newsletter to stay
+                            updated on our latest efforts to reduce food waste and combat hunger.
+                            Get insights into the impact we've made, stories from our community,
+                            tips on how to minimize food waste, and updates on new features and
+                            initiatives. Join our community of supporters and be part of the
+                            solution. Together, we can create a more sustainable and hunger-free world.</p>
+                        <!-- Button to sign up for newsletter -->
+                        <button class="cream-box-button1" onclick="location.href='{{ url_for('email.newsletter') }}'" id="Newsletterbtn">Sign-up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src='https://unpkg.com/maplibre-gl@4.3.1/dist/maplibre-gl.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Maplibre map
+            const map = new maplibregl.Map({
+                container: 'map',
+                style: 'https://api.maptiler.com/maps/streets/style.json?key=t77n5IBUQrwePJ1SaNAp',
+                center: [-1.6151, 54.9741],
+                zoom: 8
+            });
+
+            // Loop through each current advert and add a marker on the map
+            {% for advert in current_adverts %}
+                const latitude{{ loop.index }} = {{ advert.latitude | safe }};
+                const longitude{{ loop.index }} = {{ advert.longitude | safe }};
+                const advertId{{ loop.index }} = {{ advert.adID | safe }};
+
+                // Create popup for each advert marker
+                const popup{{ loop.index }} = new maplibregl.Popup({offset: 50}).setHTML(
+                    "<a href='advert_details/{{ advert.adID | safe }}'><strong>{{ advert.title }}</strong></a><p>{{ advert.contents}}</p>"
+                );
+
+                // Add marker to the map
+                new maplibregl.Marker()
+                    .setLngLat([longitude{{ loop.index }}, latitude{{ loop.index }}])
+                    .setPopup(popup{{ loop.index }})
+                    .addTo(map);
+            {% endfor %}
+
+            // Add geolocation control to the map
+            map.addControl(
+                new maplibregl.GeolocateControl({
+                    positionOptions: {
+                        enableHighAccuracy: true
+                    },
+                    trackUserLocation: true
+                })
+            );
+        });
+    </script>
+  
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Include custom CSS file for login page -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+
+<!-- Sticky Image with text -->
+<div class="image-container">
+    <img src="{{ url_for('static', filename='images/base/uppershape.png') }}" alt="Sticky Image" class="sticky-image">
+    <div class="image-text">
+        <h2 class="fjalla-one-regular">Login</h2>
+    </div>
+</div>
+
+<!-- Flash messages handling -->
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}.
+        </div>
+    {% endif %}
+{% endwith %}
+
+<div class="background-container">
+    <div class="container1">
+        <!-- Login form -->
+        <form action="#" class="login-form" method="POST">
+            {{ form.csrf_token }}
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                {{ form.email(class="input", placeholder="Email") }}
+                {% for error in form.email.errors %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                {{ form.password(class="input", placeholder="Password", type="password") }}
+                {% for error in form.password.errors %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="form-group field">
+                <div class="btn-section text-center">
+                    {{ form.submit(class="button is-info is-centered custom-button") }}
+                </div>
+            </div>
+        </form>
+    </div>
+    <img class="bubble-1" src="../../static/images/base/bubble1.png" alt="Bubble 1">
+    <img class="bubble-2" src="../../static/images/base/bubble2.png" alt="Bubble 2">
+</div>
+
+{% endblock %}

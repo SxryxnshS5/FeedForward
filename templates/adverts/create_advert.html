@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- Include custom CSS file for create advert page -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/create_advert.css') }}">
+
+    <!-- Sticky Image with text -->
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='images/base/uppershape.png') }}" alt="Sticky Image" class="sticky-image">
+        <div class="image-text">
+            <!-- Title -->
+            <h2 class="fjalla-one-regular">Create Advert</h2>
+        </div>
+    </div>
+
+    <!-- Flash messages handling -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }}.
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Background container for advert form -->
+    <div class="background-container">
+        <div class="form-container">
+            <!-- Advert form -->
+            <form action="#" method="post">
+                {{ form.csrf_token }}
+                <!-- Name -->
+                <div class="form-group field">
+                    <div class="control">
+                        <label for="title">Name</label>
+                        {{ form.name(class="input", placeholder="Name") }}
+                        {% for error in form.name.errors %}
+                            <div class="error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- Contents -->
+                <div class="form-group field">
+                    <div class="control">
+                        <label for="contents">Contents</label>
+                        {{ form.contents(class="input", placeholder="Contents") }}
+                        {% for error in form.contents.errors %}
+                            <div class="error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- Address -->
+                <div class="form-group field">
+                    <div class="control">
+                        <label for="address">Address</label>
+                        {{ form.address(class="input", placeholder="Address") }}
+                        {% for error in form.address.errors %}
+                            <div class="error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- Expiry -->
+                <div class="form-group field">
+                    <div class="control">
+                        <label for="expiry">Expiry</label>
+                        {{ form.expiry(class="input", type="date") }}
+                        {% for error in form.expiry.errors %}
+                            <div class="error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- Longitude (hidden) -->
+                <div class="form-group field" hidden="true">
+                    <div class="control">
+                        <label for="longitude">Longitude</label>
+                        {{ form.longitude(class="input", placeholder="Longitude") }}
+                        {% for error in form.longitude.errors %}
+                            <div class="error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- Latitude (hidden) -->
+                <div class="form-group field" hidden="true">
+                    <div class="control">
+                        <label for="latitude">Latitude</label>
+                        {{ form.latitude(class="input", placeholder="Latitude") }}
+                        {% for error in form.latitude.errors %}
+                            <div class="error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- Map container -->
+                <div class="form-group field" id="map">
+                    <label>Drag the marker</label>
+                    <h3>Drop your location on the map:</h3>
+                    <button class="open-map-button">Open Map</button>
+                </div>
+                <!-- Submit button -->
+                <div class="form-group field">
+                    <div>
+                        {{ form.submit(class="button is-info is-centered") }}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Include Maplibre and map initialization script -->
+    <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@4.3.1/dist/maplibre-gl.css' />
+    <script src='https://unpkg.com/maplibre-gl@4.3.1/dist/maplibre-gl.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const map = new maplibregl.Map({
+                container: 'map',
+                style: 'https://api.maptiler.com/maps/streets/style.json?key=t77n5IBUQrwePJ1SaNAp',
+                center: [-1.6151, 54.9741],
+                zoom: 8
+            });
+
+            const marker = new maplibregl.Marker({draggable: true})
+                .setLngLat([-1.6151, 54.9741])
+                .addTo(map);
+
+            map.addControl(
+                new maplibregl.GeolocateControl({
+                    positionOptions: {
+                        enableHighAccuracy: true
+                    },
+                    trackUserLocation: true
+                })
+            );
+
+            function onDragEnd() {
+                const lngLat = marker.getLngLat();
+                document.getElementById('latitude').value = lngLat.lat;
+                document.getElementById('longitude').value = lngLat.lng;
+            }
+
+            marker.on('dragend', onDragEnd);
+
+            // Set initial values
+            onDragEnd();
+        });
+    </script>
+{% endblock %}

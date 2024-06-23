@@ -1,0 +1,207 @@
+.image-container {
+    position: relative;
+    width: 100%;
+}
+
+.sticky-image {
+    width: 100%;
+    display: block;
+}
+
+.image-text {
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+
+.background-container {
+    width: 80%; 
+    margin: 50px auto;
+    background-color: rgba(217, 217, 217, 0.7);
+    border-radius: 80px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px; 
+}
+
+.fjalla-one-regular {
+    font-family: "Fjalla One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 60px;
+}
+
+.form-container {
+    max-width: 500px;
+    margin: 0; 
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+textarea,
+input[type="date"],
+input[type="time"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+
+}
+
+textarea {
+    height: 100px;
+}
+
+input[type="submit"] {
+    background-color: #4F6F52;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+input[type="submit"]:hover {
+    background-color: #1A4D2E;
+}
+
+.btn1,
+.btn2 {
+    background-color: #4F6F52;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin: 0 auto; 
+    width: 200px; 
+    text-align: center;
+}
+
+.btn1:hover,
+.btn2:hover {
+    background-color: #1A4D2E;
+}
+
+.map-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.map-container h3 {
+    text-align: left; 
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+.map-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.open-map-button {
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 90px;
+}
+
+.open-map-button:hover {
+    background-color: #0056b3;
+}
+
+.button-container {
+    padding-top: 20px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; 
+}
+
+.col-lg-6 {
+    display: inline-block; 
+}
+
+.notification {
+    background-color: #ff0000; 
+    color: #ffffff; 
+    padding: 10px;
+    margin-bottom: 15px;
+    margin-top: 25px;
+    border-radius: 5px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .background-container {
+        width: 90%;
+        margin: 20px auto;
+        border-radius: 20px;
+        padding: 10px;
+        justify-content: center;
+        justify-items: center;
+    }
+
+    .fjalla-one-regular {
+        font-size: 30px;
+    }
+
+    .form-container {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .btn1,
+    .btn2 {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .map-container h3 {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .open-map-button {
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .col-lg-6 {
+        display: block;
+        width: 100%;
+    }
+
+    .form-group {
+    margin-bottom: 20px;
+        text-align: center;
+    }
+}

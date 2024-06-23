@@ -1,0 +1,172 @@
+.image-container {
+    position: relative;
+    width: 100%;
+}
+
+.sticky-image {
+    width: 100%;
+    display: block;
+}
+
+.image-text {
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+
+.background-container {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 80%; 
+    margin: 50px auto;
+    height: auto;
+    background-color: rgba(217, 217, 217, 0.7); 
+    border-radius: 80px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px; 
+}
+
+.header-container {
+    margin-bottom: 20px;
+}
+
+.content-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 20px;
+}
+
+.form-container, .map-container {
+    flex: 1;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.vertical-align-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.collectbtn {
+    width: 20%;
+    padding: 15px;
+    color: white;
+    background-color: black;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.collectbtn:hover {
+    background-color: #0056b3;
+}
+
+.fjalla-one-regular {
+    font-family: "Fjalla One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 60px;
+ }
+
+.button-container {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.notification {
+    background-color: #ff0000; 
+    color: #ffffff; 
+    padding: 10px;
+    margin-bottom: 15px;
+    margin-top: 25px;
+    border-radius: 5px;
+}
+
+.container1 {
+  width: 80%;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 10px;
+
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .background-container {
+        width: 90%;
+        margin: 20px auto;
+        border-radius: 20px;
+        padding: 10px;
+    }
+
+    .fjalla-one-regular {
+        padding-top: 10px;
+        font-size: 25px;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .form-container, .map-container {
+        padding: 10px;
+        margin: 5px;
+    }
+
+    .collectbtn {
+        width: 80%;
+        padding: 10px;
+        font-size: 14px; 
+    }
+
+    .button-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .notification {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .container1 {
+        width: 90%;
+        margin: 20px auto;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .header-container {
+        margin-bottom: 10px;
+    }
+
+    .content-container {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .vertical-align-container {
+        padding: 10px;
+    }
+}
